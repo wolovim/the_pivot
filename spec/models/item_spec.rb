@@ -15,8 +15,12 @@ RSpec.describe Item, :type => :model do
       item2 = Item.create valid_params
       expect(item2).to_not be_valid
     end
-  end
 
+    it 'has categories' do 
+      item = Item.create valid_params
+      expect(item.categories).to eq([])
+    end
+  end
 
   describe "without valid params" do
     it 'is not valid without name' do
