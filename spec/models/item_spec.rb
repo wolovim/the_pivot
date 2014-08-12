@@ -1,7 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe Item, :type => :model do
-  let(:valid_params) {{title:'item', description: 'items items', price: 10.01}}
+  let(:valid_params) { {title:'item', description: 'items items', price: 10.01} }
+
   describe "with valid params" do
     it 'is valid' do
       item = Item.create valid_params
