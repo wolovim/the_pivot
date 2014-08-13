@@ -1,5 +1,30 @@
--@items.each do |item|
-  =item.title
-  =item.description
-  -item.categories.each do |category|
-    =link_to category.name, category_path(category)
+
+.container/
+
+
+-@categories.each_with_index do |category, i|
+  #accordion.panel-group
+    .panel.panel-default
+      .panel-heading
+        %h4.panel-title
+          %a{"data-parent" => "#accordion", "data-toggle" => "collapse", :href => "#collapse#{i}"}
+            =category.name
+      .panel-collapse.collapse{:id => "collapse#{i}"}
+        .panel-body
+          -category.items.each do |item|
+            -# .col-1
+            -#   %h3=item.title
+            -#   %p=item.description
+            -#   %a.btn.btn-default{:href => "#", :role => "button"} Add to Cart &raquo;
+
+
+            .col-sm-6.col-md-4
+              .thumbnail
+                %img{:alt => "...", "data-src" => "holder.js/300x300"}
+                  .caption
+                    %h3=item.title
+                    %p=item.description
+                    %a.btn.btn-primary{:href => "#", :role => "button"} Add to Cart
+
+  / /span
+-# =link_to category.name, category_path(category)
