@@ -16,9 +16,14 @@ RSpec.describe Item, :type => :model do
       expect(item2).to_not be_valid
     end
 
-    it 'has categories' do 
+    it 'has categories' do
       item = Item.create valid_params
       expect(item.categories).to eq([])
+    end
+
+    it 'has a cart' do
+      item = Item.create valid_params
+      expect(item).to respond_to(:cart)
     end
   end
 
