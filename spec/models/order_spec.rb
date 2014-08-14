@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe Order, :type => :model do
 
   let(:order) do
-    Order.new(id: 1, user_id: 1, get_order: "delivery")
+    Order.new(id: 1, user_id: 1, delivery: true)
   end
 
   let(:address) do
@@ -20,15 +20,14 @@ RSpec.describe Order, :type => :model do
     expect(order).to be_valid
   end
 
-  it 'is invalid without a get_order designation' do
-    order.get_order = nil
+  it 'is invalid without a delivery designation' do
+    order.delivery = nil
     expect(order).to_not be_valid
   end
 
-  it 'has address if get_order is "delivery"' do
+  it 'has address if delivery is true' do
     # address = Address.find_by_order_id(order.id)
-    expect(order.get_order).to eq("delivery")
+    expect(order.delivery).to eq(true)
     expect(address.order_id).to eq(order.id)
   end
-
 end

@@ -1,5 +1,4 @@
 source 'https://rubygems.org'
-gem 'pry'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -45,6 +44,11 @@ group :development, :test do
   gem 'capybara'
   gem 'haml-rails'
   gem 'launchy'
+  gem 'pry'
+end
+
+group :test do
+  gem 'factory_girl_rails'
 end
 
 group :production do
