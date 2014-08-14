@@ -1,8 +1,10 @@
 class Cart < ActiveRecord::Base
-  has_many :items
+  has_many :cart_items
+  has_many :items, through: :cart_items
   belongs_to :user
 
-  # def add_item(params)
-  #   self.items.create(params)
-  # end
+  def add_item(item_id)
+    cart_items.create(item_id: item_id, cart_id: self.id)
+  end
+
 end
