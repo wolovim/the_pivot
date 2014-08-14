@@ -4,4 +4,6 @@ Rails.application.routes.draw do
   resources :items
   resources :categories
   get 'menu', to: 'items#index'
+
+  resources :orders, except: [:new]
 end

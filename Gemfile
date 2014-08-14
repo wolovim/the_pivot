@@ -45,6 +45,8 @@ group :development, :test do
   gem 'haml-rails'
   gem 'launchy'
   gem 'pry'
+  gem 'better_errors'
+  gem 'binding_of_caller'
 end
 
 group :test do
