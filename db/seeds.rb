@@ -1,3 +1,14 @@
+user_list = [
+  ["Rachel", "Warbelow", "demo+rachel@jumpstartlab.com"],
+  ["Jeff", "", "demo+jeff@jumpstartlab.com"],
+  ["Jorge", "Tellez", "demo+jorge@jumpstartlab.com"],
+  ["Josh", "Cheek", "demo+josh@jumpstartlab.com"]
+]
+
+user_list.each do |first_name, last_name, email|
+  User.create(first_name: first_name, last_name: last_name, email: email)
+end
+
 item_list = [
   [ "Butterfly", "Delicious food item", 1],
   [ "Chub", "Delicious food item", 2 ],
