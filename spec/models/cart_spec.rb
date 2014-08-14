@@ -2,6 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Cart, :type => :model do
   let(:cart) { Cart.new }
+  let(:item) { build(:item) }
 
   it 'is valid' do
     expect(cart).to be_valid
@@ -16,9 +17,10 @@ RSpec.describe Cart, :type => :model do
   end
 
   it 'can add an item to a cart' do
-    cart.save
-    expect(cart.items.size).to eq(0)
-    cart.add_item(title: 'tiger', description: 'bengal tiger served on bed of rice', price: 35.00)
-    expect(cart.items.size).to eq(1)
+    binding.pry
+    # cart.save
+    # expect(cart.items.size).to eq(0)
+    # cart.add_item(title: 'tiger', description: 'bengal tiger served on bed of rice', price: 35.00)
+    # expect(cart.items.size).to eq(1)
   end
 end
