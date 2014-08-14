@@ -20,7 +20,6 @@
           %a{"data-toggle" => "modal", href: "#register"} Register
         %li
           %a{"data-toggle" => "modal", href: "#login"} Login
-
 #login.modal.fade
   .modal-dialog
     .modal-content
@@ -62,3 +61,19 @@
       .modal-footer
         %a.btn{"data-dismiss" => "modal", :href => "#"} Close
         %a.btn.btn-primary{:href => "#"} Register
+  %form.navbar-form.navbar-right{:role => "form"}
+    .form-group
+      %input.form-control{:placeholder => "Email", :type => "text"}
+    .form-group
+      %input.form-control{:placeholder => "Password", :type => "password"}
+    %button.btn.btn-primary{:type => "submit"} Sign in
+  .collapse.navbar-collapse
+    %ul.nav.navbar-nav
+      %li.active
+        %a{:href => "#"} Home
+      %li
+        %a{:href => "#about"} About
+      %li
+        %a{:href => "#contact"} Contact
+      %li
+        %a{:href => "/menu"} Menu
