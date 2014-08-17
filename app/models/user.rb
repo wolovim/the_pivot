@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   validates :first_name, presence: true
   validates :last_name, presence: true
-  validates :email, presence: true, uniqueness: true
+  validates :email, presence: true, uniqueness: { case_sensitive: false }
   validates :username,
             allow_blank: true,
             length: {
