@@ -10,7 +10,11 @@ describe "the navbar", type: :feature do
     visit "/"
     expect(page).to have_link("View Our Menu")
     expect(page).to have_css(".navbar-nav", text: "Menu")
-    click_link("Menu")
+    within(:css, ".navbar-nav") do
+      click_link("Menu")
+    end
+
+    # click_link("Menu")
     expect(current_url).to eq("http://www.example.com/menu")
   end
 
