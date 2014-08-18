@@ -17,6 +17,7 @@ describe 'an order', type: :feature do
   end
 
   xit 'can remove an item' do
+    #these tests could probably be rewritten
     item = Item.create!(title: 'John', description: 'Doe', price: 100.00)
     visit item_path(item)
     click_button("Add to Cart")
