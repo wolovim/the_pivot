@@ -7,5 +7,6 @@ Rails.application.routes.draw do
   resources :categories
   get 'menu', to: 'items#index'
 
+  resources :sessions, only: [:new, :create, :destroy]
   resources :orders, except: [:new]
 end
