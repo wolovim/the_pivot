@@ -25,44 +25,66 @@ RSpec.describe User, :type => :model do
   end
 
   it 'is invalid without a unique email' do
-    user = User.create(first_name: 'Jane', 
-                       last_name: 'Doe', 
-                       email: 'email@example.com')
+    user = User.create(first_name: 'Jane',
+                       last_name: 'Doe',
+                       email: 'email@example.com',
+                       password: 'swordfish')
     expect(user).to be_valid
 
-    user2 = User.create(first_name: 'Jane', 
-                        last_name: 'Doe', 
-                        email: 'email@example.com')
+    user2 = User.create(first_name: 'Jane',
+                        last_name: 'Doe',
+                        email: 'email@example.com',
+                        password: 'swordfish')
     expect(user2).not_to be_valid
   end
 
   it "is invalid if it's optional username betweeen 2 and 32 characters" do
-    user = User.new(first_name: 'John', 
-                    last_name: 'Doe', 
+    user = User.new(first_name: 'John',
+                    last_name: 'Doe',
                     email: 'email@example.com',
-                    username: 'goodusername')
+                    username: 'goodusername',
+                    password: 'swordfish')
     expect(user).to be_valid
 
-    user = User.new(first_name: 'John', 
-                    last_name: 'Doe', 
+    user = User.new(first_name: 'John',
+                    last_name: 'Doe',
                     email: 'email@example.com',
-                    username: 'a')
+                    username: 'a',
+                    password: 'swordfish')
     expect(user).not_to be_valid
 
-    user = User.new(first_name: 'John', 
-                    last_name: 'Doe', 
+    user = User.new(first_name: 'John',
+                    last_name: 'Doe',
                     email: 'email@example.com',
-                    username: 'abcdefghijklmnopqrstuvwxyz1234568')
+                    username: 'abcdefghijklmnopqrstuvwxyz1234568',
+                    password: 'swordfish')
     expect(user).not_to be_valid
   end
 
+  it "is invalid without a password" do
+    user          = build_user
+    user.password = nil
+    expect(user).not_to be_valid
+  end
+
+  it "is valid with a password" do
+    user = build_user
+    expect(user).to be_valid
+  end
+
+  it "is invalid with a password under 8 characters" do
+    user = build_user
+    user.password = "1234"
+    expect(user).to_not be_valid
+  end
+  
   # curious about the best way to organize this, not sure if I should stay away
-  # from letting :user float around with the let block and just ignore it in 
+  # from letting :user float around with the let block and just ignore it in
   # the uniqueness test
   def build_user
-    User.new(first_name: 'John', 
-             last_name: 'Doe', 
-             email: 'email@example.com') 
+    User.new(first_name: 'John',
+             last_name: 'Doe',
+             email: 'email@example.com',
+             password: 'swordfish')
   end
 end
-
