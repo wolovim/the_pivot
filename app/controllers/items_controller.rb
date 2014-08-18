@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :find_item, only: [:edit, :update, :destroy, :show]
+  before_action :find_item, only: [:edit, :update, :destroy, :show, :order]
 
   def index
     @items = Item.all
@@ -7,6 +7,7 @@ class ItemsController < ApplicationController
   end
 
   def show
+    @order = current_order || create_order
   end
 
   def new

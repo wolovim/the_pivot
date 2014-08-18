@@ -5,6 +5,7 @@ class OrdersController < ApplicationController
   end
 
   def show
+    current_order
   end
 
   def new
@@ -12,6 +13,12 @@ class OrdersController < ApplicationController
   end
 
   def edit
+  end
+
+  def add_item
+    item = Item.find(params[:item_id])
+    current_order.add_item(item)
+    redirect_to current_order
   end
 
   def create
