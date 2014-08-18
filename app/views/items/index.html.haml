@@ -17,4 +17,4 @@
                     %h3= link_to "#{item.title}", item_path(item)
                     %p=item.description
                     %p $ #{item.price.to_i}
-                    %a.btn.btn-primary{:href => "#", :role => "button"} Add to Cart
+                    = button_to "Add to Cart", add_item_order_path(@order, item_id: item.id), class: "btn btn-primary"

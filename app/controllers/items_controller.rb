@@ -4,6 +4,7 @@ class ItemsController < ApplicationController
   def index
     @items = Item.all
     @categories = Category.all
+    @order = current_order || create_order
   end
 
   def show
