@@ -5,4 +5,3 @@
       %p=@item.description
       %p $ #{@item.price.to_i}
       = button_to "Add to Cart", add_item_order_path(@order, item_id: @item.id), class: "btn btn-primary"
-      -# %a.btn.btn-primary{:href => "add_item_order_path(order)", :role => "button"} Add to Cart
