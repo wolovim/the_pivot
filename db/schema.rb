@@ -71,10 +71,12 @@ ActiveRecord::Schema.define(version: 20140817192345) do
     t.string   "last_name"
     t.string   "email"
     t.string   "username"
+    t.integer  "order_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
+  add_index "users", ["order_id"], name: "index_users_on_order_id"
 
 end

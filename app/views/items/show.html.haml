@@ -1,1 +1,7 @@
-%p=@item.title
+.thumbnail
+  %img{:alt => "...", "data-src" => "holder.js/300x300"}
+    .caption
+      %h3=@item.title
+      %p=@item.description
+      %p $ #{@item.price.to_i}
+      %a.btn.btn-primary{:href => "#", :role => "button"} Add to Cart
