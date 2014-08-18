@@ -30,4 +30,16 @@ RSpec.describe Order, :type => :model do
     expect(order.delivery).to eq(true)
     expect(address.order_id).to eq(order.id)
   end
+
+  it 'has many items' do
+    order = Order.create!(delivery: true)
+    item_1 = Item.create!(title: "Title", description: "Description", price: 10.00)
+    item_2 = Item.create!(title: "Title2", description: "Description", price: 10.00)
+
+    item_1.orders << order
+    item_2.orders << order
+
+    assert item_1.orders.include?(order)
+    assert item_2.orders.include?(order)
+  end
 end

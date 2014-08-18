@@ -11,6 +11,6 @@ describe 'an items show page', type: :feature do
 
   it "has an add to order button" do
     visit item_path(item)
-    expect(page).to have_content('Add to Cart')
+    expect(page).to have_button('Add to Cart')
   end
 end

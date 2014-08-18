@@ -12,5 +12,4 @@ class ApplicationController < ActionController::Base
     current_order = Order.create!(delivery: true)
     session[:order_id] = current_order.id
   end
-
 end
