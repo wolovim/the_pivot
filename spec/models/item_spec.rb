@@ -45,5 +45,17 @@ RSpec.describe Item, :type => :model do
       item.price = nil
       expect(item).to_not be_valid
     end
+
+    it 'has many orders' do
+      item = Item.create!(valid_params)
+      order1 = Order.create(delivery: true)
+      order2 = Order.create(delivery: true)
+
+      order1.items << item
+      order2.items << item
+
+      assert order1.items.include?(item)
+      assert order2.items.include?(item)
+    end
   end
 end
