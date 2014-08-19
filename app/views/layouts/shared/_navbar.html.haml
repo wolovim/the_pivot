@@ -1,0 +1,81 @@
+.nav-navbar.navbar-inverse
+  .container
+    .navbar-wrappper.navbar-inverse
+      %button.navbar-toggle{"data-target" => ".navbar-collapse", "data-toggle" => "collapse", :type => "button"}
+      %span.sr-only Toggle navigation
+      %span.icon-bar
+      %span.icon-bar
+      %span.icon-bar
+    %a.navbar-brand{:href => "#"} Endangered Eats
+    .collapse.navbar-collapse
+      %ul.nav.navbar-nav
+        %li.active
+          %a{:href => "#"} Home
+        %li
+          %a{:href => "#about"} About
+        %li
+          %a{:href => "#contact"} Contact
+        %li
+          %a{:href => "/menu"} Menu
+      %ul.nav.navbar-nav.navbar-right
+        %li.active
+          %a{"data-toggle" => "modal", href: "#register"} Register
+        %li
+          %a{"data-toggle" => "modal", href: "#login"} Login
+#login.modal.fade
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
+        %h3.modal-title Login
+      .modal-body
+        .form-group
+          %label{:for => "exampleInputEmail1"} Email address
+          %input#exampleInputEmail1.form-control{:placeholder => "Enter email", :type => "email"}
+        .form-group
+          %label{:for => "exampleInputPassword1"} Password
+          %input#exampleInputPassword1.form-control{:placeholder => "Password", :type => "password"}
+        %p.text-right
+          %a{:href => "#"} Forgot password?
+      .modal-footer
+        %a.btn{"data-dismiss" => "modal", :href => "#"} Close
+        %a.btn.btn-primary{:href => "#"} Login
+
+#register.modal.fade
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
+        %h3.modal-title Register
+      .modal-body
+        .form-group
+          %label{:for => "exampleInputFullName"} Full Name
+          %input#exampleInputEmail1.form-control{:placeholder => "Full name", :type => "name"}
+        .form-group
+          %label{:for => "exampleInputEmail1"} Email address
+          %input#exampleInputEmail1.form-control{:placeholder => "Enter email", :type => "email"}
+        .form-group
+          %label{:for => "exampleInputaddress"} Physical Address
+          %input#exampleInputEmail1.form-control{:placeholder => "Address", :type => "address"}
+        .form-group
+          %label{:for => "exampleInputPassword1"} Password
+          %input#exampleInputPassword1.form-control{:placeholder => "Password", :type => "password"}
+      .modal-footer
+        %a.btn{"data-dismiss" => "modal", :href => "#"} Close
+        %a.btn.btn-primary{:href => "#"} Register
+  %form.navbar-form.navbar-right{:role => "form"}
+    .form-group
+      %input.form-control{:placeholder => "Email", :type => "text"}
+    .form-group
+      %input.form-control{:placeholder => "Password", :type => "password"}
+    %button.btn.btn-primary{:type => "submit"} Sign in
+  .collapse.navbar-collapse
+    %ul.nav.navbar-nav
+      %li.active
+        %a{:href => "#"} Home
+      %li
+        %a{:href => "#about"} About
+      %li
+        %a{:href => "#contact"} Contact
+      %li
+        %a{:href => "/menu"} Menu
