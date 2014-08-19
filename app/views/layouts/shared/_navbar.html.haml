@@ -17,35 +17,35 @@
           %a{:href => "#contact"} Contact
       %ul.nav.navbar-nav.navbar-right
         %li.active
-          %a{"data-toggle" => "modal", href: "#register"} Register
+          %a{"data-toggle" => "modal", href: "#signup"} Signup
         %li
           %a{"data-toggle" => "modal", href: "#login"} Login
 
-#login.modal.fade
-  .modal-dialog
-    .modal-content
-      .modal-header
-        %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
-        %h3.modal-title Login
-      .modal-body
-        .form-group
-          %label{:for => "exampleInputEmail1"} Email address
-          %input#exampleInputEmail1.form-control{:placeholder => "Enter email", :type => "email"}
-        .form-group
-          %label{:for => "exampleInputPassword1"} Password
-          %input#exampleInputPassword1.form-control{:placeholder => "Password", :type => "password"}
-        %p.text-right
-          %a{:href => "#"} Forgot password?
-      .modal-footer
-        %a.btn{"data-dismiss" => "modal", :href => "#"} Close
-        %a.btn.btn-primary{:href => "#"} Login
+-# #login.modal.fade
+-#   .modal-dialog
+-#     .modal-content
+-#       .modal-header
+-#         %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
+-#         %h3.modal-title Login
+-#       .modal-body
+-#         .form-group
+-#           %label{:for => "exampleInputEmail1"} Email address
+-#           %input#exampleInputEmail1.form-control{:placeholder => "Enter email", :type => "email"}
+-#         .form-group
+-#           %label{:for => "exampleInputPassword1"} Password
+-#           %input#exampleInputPassword1.form-control{:placeholder => "Password", :type => "password"}
+-#         %p.text-right
+-#           %a{:href => "#"} Forgot password?
+-#       .modal-footer
+-#         %a.btn{"data-dismiss" => "modal", :href => "#"} Close
+-#         %a.btn.btn-primary{:href => "#"} Login
 
-#register.modal.fade
+#signup.modal.fade
   .modal-dialog
     .modal-content
       .modal-header
         %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
-        %h3.modal-title Register
+        %h3.modal-title Signup
       .modal-body
         .form-group
           %label{:for => "exampleInputFullName"} Full Name
@@ -61,4 +61,4 @@
           %input#exampleInputPassword1.form-control{:placeholder => "Password", :type => "password"}
       .modal-footer
         %a.btn{"data-dismiss" => "modal", :href => "#"} Close
-        %a.btn.btn-primary{:href => "#"} Register
+        %a.btn.btn-primary{:href => "#"} Signup
