@@ -1,12 +1,20 @@
 require_relative '../feature_spec_helper'
 
 describe 'the admin item view', type: :feature do
-  it 'displays the information for the correct item' do
+  let(:item) { 
     item = Item.create(title: "Food", description: "Yum", price: 20.00)
+  }
 
-    visit admin_items_path
-    click_link "View Item"
+  it 'displays the information for the correct item' do
+    visit admin_item_path(item)
+    
     expect(current_url).to eq "http://www.example.com/admin/items/1"
     expect(page).to have_content item.title
+  end
+
+  it 'has a link to edit an item' do
+    visit admin_items_path(item)
+
+    expect(page).to have_link "Edit Item"
   end
 end
