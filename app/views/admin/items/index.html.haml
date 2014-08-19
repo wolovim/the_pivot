@@ -1,1 +1,5 @@
-@testing
+%ul
+  - @items.each do |item|
+  %li= item.title
+  %li= item.description
+  %li= item.price
