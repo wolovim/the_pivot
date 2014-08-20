@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   resources :orders, except: [:new] do
     member do
       post :add_item
-      delete :delete_item
+      post :delete_item
     end
   end
 
