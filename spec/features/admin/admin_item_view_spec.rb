@@ -7,7 +7,7 @@ describe 'the admin item view', type: :feature do
 
   it 'displays the information for the correct item' do
     visit admin_item_path(item)
-    
+
     expect(current_url).to eq "http://www.example.com/admin/items/1"
     expect(page).to have_content item.title
   end
@@ -15,6 +15,6 @@ describe 'the admin item view', type: :feature do
   it 'has a link to edit an item' do
     visit admin_items_path(item)
 
-    expect(page).to have_link "Edit Item"
+    expect(page).to have_link "Edit Item", href: edit_admin_item_path(item)
   end
 end
