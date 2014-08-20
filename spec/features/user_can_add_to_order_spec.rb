@@ -4,8 +4,7 @@ describe 'an order', type: :feature do
   let(:current_order) { Order.create!(delivery: true) }
   it 'starts with zero items' do
     visit order_path(current_order)
-
-    expect(page).to have_content("Your order is empty")
+    expect(page).to have_content("You don't have any items in your cart!")
   end
 
   it 'can add an item' do
@@ -22,7 +21,7 @@ describe 'an order', type: :feature do
     visit item_path(item)
     click_button("Add to Cart")
     visit order_path(current_order)
-    click_button("Remove from Cart")
+    click_button("Remove")
     expect(page).not_to have_content("John")
     expect(page).not_to have_content("Remove")
   end

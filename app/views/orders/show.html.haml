@@ -4,10 +4,10 @@
     %p Look over your items, add a few more, or proceed to checkout.
     %table.table.table-striped
       %tbody
-      - if @current_order.items.empty?
+      -if @current_order.items.empty?
         %tr You don't have any items in your cart!
       -else
-        - @current_order.items.each do |item|
+        -@current_order.items.each do |item|
           %tr
             %td Title: #{item.title}
             %td Description #{item.description}
