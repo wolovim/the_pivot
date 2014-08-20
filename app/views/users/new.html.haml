@@ -1,17 +1,19 @@
 .container
-  - if @user.invalid?
-    %h3 Forms can not be left blank
-  %h2.form-signin-heading Join Today.
-  = form_for(@user, html: { class: 'form-signin' }) do |f|
-    .form-group
-      = f.text_field :first_name, class: "form-control", placeholder: "first name"
-      %br/
-      = f.text_field :last_name, class: "form-control", placeholder: "last name"
-      %br/
-      = f.text_field :email, class: "form-control", placeholder: "email address"
-      %br/
-      = f.text_field :password, class: "form-control", placeholder: "password", type: "password"
-      %br/
-      = f.text_field :password_confirmation, class: "form-control", placeholder: "password confirmation", type: "password"
-      %br/
-      = f.submit "Create my account", class: "btn btn-large btn-block btn-primary", href: "new_user_path"
+  .row.col-lg-6.col-lg-offset-3
+    %h2.form-signin-heading Join Today.
+    - if @user.invalid?
+      .alert.alert-danger{:role => "alert"} Forms can not be left blank
+
+    = form_for(@user, html: { class: 'form-signin' }) do |f|
+      .form-group
+        = f.text_field :first_name, class: "form-control", placeholder: "first name"
+        %br/
+        = f.text_field :last_name, class: "form-control", placeholder: "last name"
+        %br/
+        = f.text_field :email, class: "form-control", placeholder: "email address"
+        %br/
+        = f.text_field :password, class: "form-control", placeholder: "password", type: "password"
+        %br/
+        = f.text_field :password_confirmation, class: "form-control", placeholder: "password confirmation", type: "password"
+        %br/
+        = f.submit "Create my account", class: "btn btn-large btn-block btn-primary", href: "new_user_path"
