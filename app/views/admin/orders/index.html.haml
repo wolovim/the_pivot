@@ -1,0 +1,11 @@
+%h1.order-display Orders
+%h5= "Total orders: #{@orders.size}"
+%ul
+  -@orders.each do |order|
+    %h4= "Order #{order.id}"
+    %li= order.created_at
+    %li= "Delivery: #{order.delivery}"
+    %li
+      -order.items.each do |item|
+        = "#{item.title} |" + " #{item.description} |" + " #{item.price}"
+    %li= link_to "View order", admin_order_path(order)
