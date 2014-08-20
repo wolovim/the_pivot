@@ -21,6 +21,12 @@ class OrdersController < ApplicationController
     redirect_to current_order
   end
 
+  def delete_item
+    item = Item.find(params[:item_id])
+    current_order.remove_item(item)
+    redirect_to current_order
+  end
+
   def create
     # order_params needs to be filled out
     @order = Order.new(order_params)
