@@ -1,9 +1,12 @@
 Rails.application.routes.draw do
+  get 'users/new'
+
   root 'pages#home'
 
   resources :items
   resources :categories
   get 'menu', to: 'items#index'
+
 
   resources :orders, except: [:new] do
     member do
@@ -18,4 +21,9 @@ Rails.application.routes.draw do
     resources :categories
     resources :orders, only: [:index, :show, :edit, :update]
   end
+
+  resources :users, only: [:new, :create, :show, :index ]
+  resources :sessions, only: [:new, :create, :destroy]
+  resources :orders, except: [:new]
+
 end
