@@ -16,10 +16,9 @@
         %li
           %a{:href => "#contact"} Contact
       %ul.nav.navbar-nav.navbar-right
-        %li.active
-          %a{"data-toggle" => "modal", href: "#signup"} Signup
         %li
-          %a{"data-toggle" => "modal", href: "#login"} Login
+          = link_to 'Signup', new_user_path
+
 
 -# #login.modal.fade
 -#   .modal-dialog
@@ -40,25 +39,13 @@
 -#         %a.btn{"data-dismiss" => "modal", :href => "#"} Close
 -#         %a.btn.btn-primary{:href => "#"} Login
 
-#signup.modal.fade
-  .modal-dialog
-    .modal-content
-      .modal-header
-        %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
-        %h3.modal-title Signup
-      .modal-body
-        .form-group
-          %label{:for => "exampleInputFullName"} Full Name
-          %input#exampleInputEmail1.form-control{:placeholder => "Full name", :type => "name"}
-        .form-group
-          %label{:for => "exampleInputEmail1"} Email address
-          %input#exampleInputEmail1.form-control{:placeholder => "Enter email", :type => "email"}
-        .form-group
-          %label{:for => "exampleInputaddress"} Physical Address
-          %input#exampleInputEmail1.form-control{:placeholder => "Address", :type => "address"}
-        .form-group
-          %label{:for => "exampleInputPassword1"} Password
-          %input#exampleInputPassword1.form-control{:placeholder => "Password", :type => "password"}
-      .modal-footer
-        %a.btn{"data-dismiss" => "modal", :href => "#"} Close
-        %a.btn.btn-primary{:href => "#"} Signup
+            = form_for(User.new) do |f|
+              = f.label :full_name
+              = f.text_field :full_name
+              = f.label :email
+              = f.text_field :email
+              = f.label :password
+              = f.password_field :password
+              = f.label :password_confirmation, "Confirmation"
+              = f.password_field :password_confirmation
+              = f.submit "Create my account", class: "btn btn-large btn-primary"
