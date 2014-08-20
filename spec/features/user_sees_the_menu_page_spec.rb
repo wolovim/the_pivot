@@ -2,8 +2,8 @@ require_relative 'feature_spec_helper'
 
 describe 'the menu page', type: :feature do
   it 'shows a list of items' do
-    item_1 = Item.create(title: 'food', description: 'delicious', price: 10.00)
-    item_2 = Item.create(title: 'duck confils', description: 'expensive', price: 100.00)
+    item_1 = Item.create(title: 'food', description: 'delicious', price: 10)
+    item_2 = Item.create(title: 'duck confils', description: 'expensive', price: 100)
     item_1.categories.create(name: "africa")
     item_2.categories.create(name: "asia")
 
@@ -13,8 +13,8 @@ describe 'the menu page', type: :feature do
   end
 
   it 'views items by category' do
-    item_1 = Item.create(title: 'food', description: 'delicious', price: 10.00)
-    item_2 = Item.create(title: 'more food', description: 'delicious', price: 10.00)
+    item_1 = Item.create(title: 'food', description: 'delicious', price: 10)
+    item_2 = Item.create(title: 'more food', description: 'delicious', price: 10)
     item_1.categories.create(name: "africa")
     item_2.categories.create(name: "asia")
 

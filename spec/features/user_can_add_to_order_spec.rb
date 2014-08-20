@@ -10,7 +10,7 @@ describe 'an order', type: :feature do
   end
 
   it 'can add an item' do
-    item = Item.create!(title: 'John', description: 'Doe', price: 100.00)
+    item = Item.create!(title: 'John', description: 'Doe', price: 100)
     item.categories.create(name: 'africa')
     visit items_path
     click_button("Add to Cart")
@@ -19,7 +19,7 @@ describe 'an order', type: :feature do
   end
 
   it 'can remove an item' do
-    item = Item.create!(title: 'John', description: 'Doe', price: 100.00)
+    item = Item.create!(title: 'John', description: 'Doe', price: 100)
     visit item_path(item)
     click_button("Add to Cart")
     visit order_path(current_order)
