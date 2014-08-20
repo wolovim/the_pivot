@@ -11,7 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20140817192345) do
+||||||| merged common ancestors
+ActiveRecord::Schema.define(version: 20140814170558) do
+=======
+ActiveRecord::Schema.define(version: 20140818202042) do
+>>>>>>> building-sessions
 
   create_table "addresses", force: true do |t|
     t.integer  "order_id"
@@ -74,9 +80,16 @@ ActiveRecord::Schema.define(version: 20140817192345) do
     t.integer  "order_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "password_digest"
   end
 
+<<<<<<< HEAD
   add_index "users", ["email"], name: "index_users_on_email", unique: true
   add_index "users", ["order_id"], name: "index_users_on_order_id"
 
+||||||| merged common ancestors
+=======
+  add_index "users", ["email"], name: "index_users_on_email", unique: true
+
+>>>>>>> building-sessions
 end
