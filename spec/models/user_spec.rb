@@ -22,36 +22,14 @@ RSpec.describe User, :type => :model do
   end
 
   it 'is invalid without a unique email' do
-<<<<<<< HEAD
-    user = User.create(first_name: 'jane', 
-                       last_name: 'doe', 
-                       email: 'email@example.com')
-    expect(user).to be_valid
-||||||| merged common ancestors
-    user = User.create(first_name: 'Jane', 
-                       last_name: 'Doe', 
-                       email: 'email@example.com')
-    expect(user).to be_valid
-=======
     user = build_user(valid_params)
-    user2 = build_user(valid_params)
->>>>>>> building-sessions
+    expect(user).to be_valid
 
-<<<<<<< HEAD
-    user2 = User.create(first_name: 'jane', 
-                        last_name: 'doe', 
-                        email: 'email@example.com')
-||||||| merged common ancestors
-    user2 = User.create(first_name: 'Jane', 
-                        last_name: 'Doe', 
-                        email: 'email@example.com')
-=======
->>>>>>> building-sessions
+    user2 = build_user(valid_params)
     expect(user2).not_to be_valid
 
-    user3 = User.create(first_name: 'jane',
-                        last_name: 'doe',
-                        email: 'EMAiL@example.com')
+    user3       = build_user(valid_params)
+    user3.email = 'EMAiL@example.com'
     expect(user3).not_to be_valid
   end
 
