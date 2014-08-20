@@ -1,7 +1,7 @@
 .container
   .row.col-lg-6.col-lg-offset-3
     %h2.form-signin-heading Join Today.
-    - if @user.invalid?
+    - if @user.invalid? # flash[:invalid]
       .alert.alert-danger{:role => "alert"} Forms can not be left blank
 
     = form_for(@user, html: { class: 'form-signin' }) do |f|
