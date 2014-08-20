@@ -7,6 +7,10 @@ class Admin::ItemsController < ApplicationController
     @item = Item.find(params[:id])
   end
 
+  def show
+    @item = Item.find(params[:id])
+  end
+
   def new
     @item = Item.new
   end
@@ -15,10 +19,17 @@ class Admin::ItemsController < ApplicationController
     @item = Item.new(item_params)
 
     if @item.save
-      redirect_to @item
+      redirect_to admin_item_path(@item)
     else
       render :new
     end
+  end
+
+  def update
+    @item = Item.find(params[:id])
+    @item.update(item_params)
+
+    redirect_to admin_item_path(@item)
   end
 
   def item_params

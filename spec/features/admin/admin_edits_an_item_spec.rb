@@ -1,7 +1,7 @@
 require_relative '../feature_spec_helper'
 
 describe 'admin edits an item', type: :feature do
-  xit 'edits a menu item' do
+  it 'edits a menu item' do
     item = Item.create(title: "hi", description: "asf", price: 10.00)
 
     visit '/admin_dashboard'
@@ -10,8 +10,10 @@ describe 'admin edits an item', type: :feature do
     fill_in "Title", with: "NewTitle"
     fill_in "Description", with: "NewDescription"
     fill_in "Price", with: 100.00
-    click_button "submit"
+    click_button "Update Item"
 
+    # expect(current_url).to eq "http://www.example.com" + admin_item_path(item)
     expect(page).to have_content "NewTitle"
+    expect(page).not_to have_content "hi"
   end
 end

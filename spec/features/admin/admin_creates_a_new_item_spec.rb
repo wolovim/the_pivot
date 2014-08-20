@@ -11,6 +11,7 @@ describe 'admin', type: :feature do
     fill_in "Price", with: 20.00
     click_button "Create Item"
 
+    expect(page).to have_content "NewItem"
     expect(page).to have_content "NewItemDescription"
   end
 end
