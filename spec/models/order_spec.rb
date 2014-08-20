@@ -42,4 +42,19 @@ RSpec.describe Order, :type => :model do
     assert item_1.orders.include?(order)
     assert item_2.orders.include?(order)
   end
+
+  it 'adds item to order' do
+    item = Item.create(title: 'a',description: 'b', price: 1)
+    order = Order.create!(delivery: true)
+    order.add_item(item)
+    assert order.items.include? item
+  end
+
+  it 'removes item from order' do
+    item = Item.create(title: 'a',description: 'b', price: 1)
+    order = Order.create!(delivery: true)
+    order.add_item(item)
+    order.remove_item(item)
+    refute order.items.include? item
+  end
 end

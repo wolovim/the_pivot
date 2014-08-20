@@ -10,20 +10,19 @@ describe 'an order', type: :feature do
 
   it 'can add an item' do
     item = Item.create!(title: 'John', description: 'Doe', price: 100.00)
-    visit item_path(item)
+    item.categories.create(name: 'africa')
+    visit items_path
     click_button("Add to Cart")
     visit order_path(current_order)
     expect(page).to have_content("John")
   end
 
-  xit 'can remove an item' do
-    #these tests could probably be rewritten
+  it 'can remove an item' do
     item = Item.create!(title: 'John', description: 'Doe', price: 100.00)
     visit item_path(item)
     click_button("Add to Cart")
     visit order_path(current_order)
-    expect(page).to have_content("Remove")
-    click_link("Remove")
+    click_button("Remove from Cart")
     expect(page).not_to have_content("John")
     expect(page).not_to have_content("Remove")
   end
