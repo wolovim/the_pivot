@@ -7,4 +7,6 @@ class OrderItem < ActiveRecord::Base
   def set_default_quantity
     quantity = 1
   end
+
+
 end
