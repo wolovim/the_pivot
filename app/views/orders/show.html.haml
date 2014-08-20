@@ -2,3 +2,9 @@
 =@current_order.items.each do |item|
     %p= item.title
     = button_to "Remove from Cart", delete_item_order_path(item_id: item.id), method: :delete, class: "btn btn-primary"
+    %p= form_for item do |f|
+    .field
+    = f.label :quantity
+    = f.number_field item.order_items.first.quantity, class: "form-control input-lg"
+    .actions
+    = f.submit 'Update'

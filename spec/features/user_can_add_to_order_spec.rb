@@ -27,6 +27,11 @@ describe 'an order', type: :feature do
     expect(page).not_to have_content("Remove")
   end
 
-  xit 'can update the quantity of an item' do
+  it 'can change an item quantity from the order page' do
+    item = Item.create!(title: 'John', description: 'Doe', price: 100.00)
+    visit item_path(item)
+    click_button("Add to Cart")
+    visit order_path(current_order)
+    expect(page).to have_content("Quantity")
   end
 end
