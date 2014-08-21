@@ -7,11 +7,7 @@ Rails.application.routes.draw do
   resources :categories
   get 'menu', to: 'items#index'
 
-  resources :order_items do
-    member do
-      post :update
-    end
-  end
+  resources :order_items, only: [:update]
 
   resources :orders, except: [:new] do
     member do
