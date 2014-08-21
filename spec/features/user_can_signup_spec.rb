@@ -1,6 +1,5 @@
 require_relative 'feature_spec_helper'
 
-
 describe "signup" do
   before do
     visit "/"

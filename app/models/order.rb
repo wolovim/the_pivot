@@ -7,10 +7,22 @@ class Order < ActiveRecord::Base
   validates :delivery, presence: true
 
   def add_item(item)
-    self.items << item
+    if self.items.include?(item)
+      access_order_item(item).increment!(:quantity)
+    else
+      self.items << item
+    end
   end
 
   def remove_item(item)
     self.items.delete(item)
+  end
+
+  def access_order_item(item)
+    self.order_items.where(item_id: item.id).first
+  end
+
+  def empty?
+    items.empty?
   end
 end
