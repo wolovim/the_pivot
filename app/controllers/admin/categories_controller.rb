@@ -11,8 +11,8 @@ class Admin::CategoriesController < ApplicationController
   end
 
   def destroy
-    @item = Item.find(params[:item])
-    @item.categorizations.where(category_id: params[:id]).destroy_all
+    @item = Item.find(params[:id])
+    @item.categorizations.where(category_id: params[:category]).destroy_all
 
     redirect_to admin_item_path(@item)
   end

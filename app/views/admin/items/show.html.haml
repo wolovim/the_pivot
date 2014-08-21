@@ -7,4 +7,4 @@
       %h5 Categories:
       -@item.categories.each do |category| 
         %li= category.name 
-        = link_to "Remove Category", admin_category_path(params.merge(:item => @item)), method: :delete
+        = link_to "Remove Category", admin_category_path(params.merge(:category => category)), method: :delete
