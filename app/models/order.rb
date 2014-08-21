@@ -8,9 +8,7 @@ class Order < ActiveRecord::Base
 
   def add_item(item)
     if self.items.include?(item)
-      # binding.pry
-      updated = self.order_items.where(item_id: item.id).first.quantity + 1
-      self.order_items.where(item_id: item.id).first.update_attribute(:quantity, updated)
+      access_order_item(item).increment!(:quantity)
     else
       self.items << item
     end
@@ -18,5 +16,13 @@ class Order < ActiveRecord::Base
 
   def remove_item(item)
     self.items.delete(item)
+  end
+
+  def access_order_item(item)
+    self.order_items.where(item_id: item.id).first
+  end
+
+  def empty?
+    items.empty?
   end
 end

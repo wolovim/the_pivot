@@ -1,4 +1,5 @@
 class OrdersController < ApplicationController
+  include OrdersHelper
 
   def index
     @orders = Order.all
@@ -58,4 +59,5 @@ class OrdersController < ApplicationController
   def find_orders
     @order = Order.find(params[:id])
   end
+  
 end
