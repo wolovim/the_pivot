@@ -46,4 +46,13 @@ describe 'an order', type: :feature do
     click_button("Add to Cart")
     expect(page).to have_selector("input[value='2']")
   end
+
+  it 'subtotals the price of all items in order' do
+    item = Item.create!(title: 'John', description: 'Doe', price: 100)
+    visit item_path(item)
+    click_button("Add to Cart")
+    visit item_path(item)
+    click_button("Add to Cart")
+    expect(page).to have_content('$200')
+  end
 end
