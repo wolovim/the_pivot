@@ -19,13 +19,7 @@ describe "a user goes to the login page" do
       fill_in( "password",      :with => "123456789" )
       click_button("Login")
 
-<<<<<<< HEAD:spec/features/user_can_login_and_logout_spec.rb
       expect(page).to have_content("Your Info")
-||||||| merged common ancestors
-      expect(page).to have_content("Your Cart")
-=======
-      expect(page).to have_content("My Order")
->>>>>>> b2a88bc87a3f8f0be6c03095074cf364ac048410:spec/features/user_can_login_spec.rb
     end
   end
 
