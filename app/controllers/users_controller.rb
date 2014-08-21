@@ -10,8 +10,9 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      log_user_in(@user)
-      redirect_to @user, notice: 'Welcome to Endangered Eats'
+      sign_in @user
+      flash[:success] = 'Welcome to Endangered Eats' 
+      redirect_to @user
     else
       flash[:invalid] = @user.errors.messages
       render :new
