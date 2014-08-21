@@ -1,1 +1,5 @@
-%h3 Your Cart
+.container
+  %h3= "Hello, #{current_user.first_name.capitalize}!"
+  %h3 Your Info
+  %h5= current_user.username
+  %h5= current_user.email
