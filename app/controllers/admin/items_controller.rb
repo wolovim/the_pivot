@@ -2,7 +2,8 @@ class Admin::ItemsController < ApplicationController
   before_action :find_item, only: [:edit, :update, :destroy, :show, :order]
 
   def index
-    @items = Item.all
+    # @items = Item.all
+    @categories = Category.all
   end
 
   def edit
