@@ -1,4 +1,22 @@
-%p Your order is empty
-=@current_order.items.each do |item|
-    %p= item.title
-    = button_to "Remove from Cart", delete_item_order_path(item_id: item.id), method: :delete, class: "btn btn-primary"
+.container
+  .panel.panel-default
+    .panel-heading Your Order
+    .panel-body
+      %p Look over your items, add a few more, or proceed to checkout.
+      %table.table.table-striped
+        %tbody
+        -if @current_order.empty?
+          %tr You don't have any items in your cart!
+        -else
+          - @current_order.items.each do |item|
+            %tr
+              %td Title: #{item.title}
+              %td Description: #{item.description}
+              %td Unit Price: $ #{item.price}
+              %td Quantity:
+              %td
+                = form_for 'item', method: 'PUT', :url => {:controller => 'order_items', action: :update, id: item_quantity(item)} do |f|
+                  .field
+                    = f.number_field :quantity, :value => item_quantity(item)
+                    = submit_tag "Update"
+              %td= button_to "Remove", delete_item_order_path(@current_order, item_id: item.id), class: "btn btn-primary"

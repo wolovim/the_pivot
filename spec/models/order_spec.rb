@@ -57,4 +57,12 @@ RSpec.describe Order, :type => :model do
     order.remove_item(item)
     refute order.items.include? item
   end
+
+  it 'increases quantity if item is in order' do
+    item = Item.create(title: 'a',description: 'b', price: 1)
+    order = Order.create!(delivery: true)
+    order.add_item(item)
+    order.add_item(item)
+    assert order.items.length == 1
+  end
 end

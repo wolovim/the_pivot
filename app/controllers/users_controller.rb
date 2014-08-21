@@ -9,16 +9,12 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    @user.save!
-
-    respond_to do |format|
-      format.html { redirect_to @user, notice: 'Welcome to Endangered Eats' }
-      format.json { render :show, status: :created, location: @user }
-    end
-  rescue ActiveRecord::RecordInvalid
-    respond_to do |format|
-      format.html { render :new }
-      format.json { render json: @user.errors, status: :unprocessable_entity }
+    if @user.save
+      log_user_in(@user)
+      redirect_to @user, notice: 'Welcome to Endangered Eats'
+    else
+      flash[:invalid] = @user.errors.messages
+      render :new
     end
   end
 

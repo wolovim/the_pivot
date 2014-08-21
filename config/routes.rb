@@ -1,21 +1,15 @@
 Rails.application.routes.draw do
-  get 'users/new'
-
-  root 'pages#home'
-
   resources :items
   resources :categories
-  get 'menu', to: 'items#index'
-
-
+  resources :users, only: [:new, :create, :show, :index ]
+  resources :sessions, only: [:new, :create, :destroy]
+  resources :order_items, only: [:update]
   resources :orders, except: [:new] do
     member do
       post :add_item
-      delete :delete_item
+      post :delete_item
     end
   end
-
-  match '/admin_dashboard', to: 'admin#dashboard', via: :get
 
   namespace :admin do
     resources :items
@@ -23,8 +17,16 @@ Rails.application.routes.draw do
     resources :orders, only: [:index, :show, :edit, :update]
   end
 
-  resources :users, only: [:new, :create, :show, :index ]
+  resources :users, only: [:new, :create, :show, :index]
   resources :sessions, only: [:new, :create, :destroy]
   resources :orders, except: [:new]
+
+  root 'pages#home'
+
+  get   'menu',              to: 'items#index'
+  match '/signup',           to: 'users#new',         via: 'get'
+  match '/login',            to: 'sessions#new',      via: 'get'
+  match '/logout',           to: 'sessions#destroy',  via: 'delete'
+  match '/admin_dashboard',  to: 'admin#dashboard',   via: 'get'
 
 end
