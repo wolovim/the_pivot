@@ -1,0 +1,5 @@
+%h1= "Order ##{@order.id}"
+%ul
+  -@order.items.each do |item|
+    %li= "Delivery: #{@order.delivery}" 
+    %li= "#{item.title} |" + " #{item.description} |" + " #{item.price}"
