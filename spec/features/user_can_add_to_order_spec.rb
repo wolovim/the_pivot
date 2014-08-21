@@ -33,5 +33,17 @@ describe 'an order', type: :feature do
     click_button("Add to Cart")
     visit order_path(current_order)
     expect(page).to have_content("Quantity")
+    fill_in('item[quantity]', with: 200)
+    click_on('Update')
+    expect(page).to have_content("Quantity: 200")
+  end
+
+  it 'increases quantity when adding repeat items to the order' do
+    item = Item.create!(title: 'John', description: 'Doe', price: 100.00)
+    visit item_path(item)
+    click_button("Add to Cart")
+    visit item_path(item)
+    click_button("Add to Cart")
+    expect(page).to have_content("Quantity: 2")
   end
 end

@@ -47,7 +47,7 @@ ActiveRecord::Schema.define(version: 20140820231814) do
     t.string   "description"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.float    "price"
+    t.integer  "price"
   end
 
   create_table "order_items", force: true do |t|
@@ -76,5 +76,7 @@ ActiveRecord::Schema.define(version: 20140820231814) do
     t.datetime "updated_at"
     t.string   "password_digest"
   end
+
+  add_index "users", ["email"], name: "index_users_on_email", unique: true
 
 end
