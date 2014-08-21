@@ -4,4 +4,5 @@
   -@orders.each do |order|
     %h4= "Order #{order.id}"
     %li= order.created_at
+    %li= order.aasm_state
     %li= link_to "View order", admin_order_path(order)

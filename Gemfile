@@ -33,6 +33,9 @@ gem 'bcrypt', '~> 3.1.7'
 # Use unicorn as the app server
 gem 'unicorn'
 
+# Use AASM as state machine
+gem 'aasm'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
