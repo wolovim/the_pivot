@@ -2,6 +2,7 @@
   -@categories.each do |category|
     %h3= category.name
     -category.items.each do |item|
+      %li= item.title
       %li= item.description
       %li= item.price
       %li= link_to "View Item", admin_item_path(item)

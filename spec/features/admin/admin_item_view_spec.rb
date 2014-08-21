@@ -5,6 +5,10 @@ describe 'the admin item view', type: :feature do
     item = Item.create(title: "Food", description: "Yum", price: 20.00)
   }
 
+  before do
+    item.categories.create(name: "Lunch")
+  end
+
   it 'displays the information for the correct item' do
     visit admin_item_path(item)
 

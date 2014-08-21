@@ -3,6 +3,7 @@ require_relative '../feature_spec_helper'
 describe 'admin edits an item', type: :feature do
   it 'edits a menu item' do
     item = Item.create(title: "hi", description: "asf", price: 10.00)
+    item.categories.create(name: "Lunch")
 
     visit '/admin_dashboard'
     click_link 'View Menu Items'
