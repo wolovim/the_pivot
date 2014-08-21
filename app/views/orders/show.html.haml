@@ -21,3 +21,5 @@
                     = submit_tag "Update"
               %td= button_to "Remove", delete_item_order_path(order, item_id: item.id), class: "btn btn-primary"
               %td Subtotal: $#{item.price * order_item(item).quantity}
+          %tr
+            %td Total: $#{@current_order.total}
