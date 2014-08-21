@@ -19,7 +19,7 @@ describe "a user goes to the login page" do
       fill_in( "password",      :with => "123456789" )
       click_button("Login")
 
-      expect(page).to have_content("Your Cart")
+      expect(page).to have_content("My Order")
     end
   end
 

@@ -23,7 +23,7 @@ describe "signup" do
       click_button("Create my account")
 
       #We want the page to display an informative error
-      expect(page).to have_content("Forms can not be left blank")
+      expect(page).to have_content("can't be blank")
     end
   end
 
