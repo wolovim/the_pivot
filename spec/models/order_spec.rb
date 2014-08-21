@@ -33,8 +33,8 @@ RSpec.describe Order, :type => :model do
 
   it 'has many items' do
     order = Order.create!(delivery: true)
-    item_1 = Item.create!(title: "Title", description: "Description", price: 10.00)
-    item_2 = Item.create!(title: "Title2", description: "Description", price: 10.00)
+    item_1 = Item.create!(title: "Title", description: "Description", price: 10)
+    item_2 = Item.create!(title: "Title2", description: "Description", price: 10)
 
     item_1.orders << order
     item_2.orders << order
