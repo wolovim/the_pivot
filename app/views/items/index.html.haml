@@ -1,20 +1,19 @@
-.container/
-
--@categories.each_with_index do |category, i|
-  #accordion.panel-group
-    .panel.panel-default
-      .panel-heading
-        %h4.panel-title
-          %a{"data-parent" => "#accordion", "data-toggle" => "collapse", :href => "#collapse#{i}"}
-            =category.name
-      .panel-collapse.collapse{:id => "collapse#{i}"}
-        .panel-body
-          -category.items.each do |item|
-            .col-sm-6.col-md-4
-              .thumbnail
-                %img{:alt => "...", "data-src" => "holder.js/300x300"}
-                  .caption
-                    %h3= link_to "#{item.title}", item_path(item)
-                    %p=item.description
-                    %p $ #{item.price.to_i}
-                    = button_to "Add to Cart", add_item_order_path(@order, item_id: item.id), class: "btn btn-primary"
+.container
+  -@categories.each_with_index do |category, i|
+    #accordion.panel-group
+      .panel.panel-default
+        .panel-heading
+          %h4.panel-title
+            %a{"data-parent" => "#accordion", "data-toggle" => "collapse", :href => "#collapse#{i}"}
+              =category.name
+        .panel-collapse.collapse{:id => "collapse#{i}"}
+          .panel-body
+            -category.items.each do |item|
+              .col-sm-6.col-md-4
+                .thumbnail
+                  %img{:alt => "...", "data-src" => "holder.js/300x300"}
+                    .caption
+                      %h3= link_to "#{item.title}", item_path(item)
+                      %p=item.description
+                      %p $ #{item.price.to_i}
+                      = button_to "Add to Cart", add_item_order_path(@order, item_id: item.id), class: "btn btn-primary"

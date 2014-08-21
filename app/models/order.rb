@@ -8,7 +8,9 @@ class Order < ActiveRecord::Base
 
   def add_item(item)
     if self.items.include?(item)
-      self.order_items.where(item_id: item.id).first.quantity += 1
+      # binding.pry
+      updated = self.order_items.where(item_id: item.id).first.quantity + 1
+      self.order_items.where(item_id: item.id).first.update_attribute(:quantity, updated)
     else
       self.items << item
     end
