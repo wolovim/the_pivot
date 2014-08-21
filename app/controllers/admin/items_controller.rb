@@ -1,5 +1,5 @@
 class Admin::ItemsController < ApplicationController
-  before_action :find_item, only: [:edit, :update, :destroy, :show, :order]
+  before_action :find_item, only: [:edit, :update, :destroy, :show, :order, :remove_category_from_item]
 
   def index
     @items = Item.all

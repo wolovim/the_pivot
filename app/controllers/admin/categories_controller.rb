@@ -10,6 +10,13 @@ class Admin::CategoriesController < ApplicationController
     redirect_to admin_items_path
   end
 
+  def destroy
+    @item = Item.find(params[:item])
+    @item.categorizations.where(category_id: params[:id]).destroy_all
+
+    redirect_to admin_item_path(@item)
+  end
+
   def category_params
     params.require(:category).permit(:name)
   end
