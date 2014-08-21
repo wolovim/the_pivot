@@ -4,15 +4,6 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   include SessionsHelper
 
-  def current_order
-    return unless session[:order_id]
-    @current_order ||= Order.find(session[:order_id])
-  end
 
-  def create_order
-    return if session[:order_id]
-    current_order = Order.create!(delivery: true)
-    session[:order_id] = current_order.id
-  end
 
 end
