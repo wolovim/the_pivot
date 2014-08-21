@@ -1,0 +1,10 @@
+= form_for [:admin, @category] do |f|
+  %ul
+    - @category.errors.full_messages.each do |error|
+      %li= error
+  %p
+    = f.label :name
+    %br/
+    = f.text_field :name
+  %p
+    = f.submit

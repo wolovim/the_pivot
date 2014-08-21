@@ -6,7 +6,7 @@ class OrdersController < ApplicationController
   end
 
   def show
-    current_order
+    order
   end
 
   def new
@@ -59,5 +59,5 @@ class OrdersController < ApplicationController
   def find_orders
     @order = Order.find(params[:id])
   end
-  
+
 end

@@ -17,9 +17,9 @@ Rails.application.routes.draw do
     resources :orders, only: [:index, :show, :edit, :update]
   end
 
-  resources :users, only: [:new, :create, :show, :index]
-  resources :sessions, only: [:new, :create, :destroy]
-  resources :orders, except: [:new]
+  # resources :users, only: [:new, :create, :show, :index]
+  # resources :sessions, only: [:new, :create, :destroy]
+  # resources :orders, except: [:new]
 
   root 'pages#home'
 
