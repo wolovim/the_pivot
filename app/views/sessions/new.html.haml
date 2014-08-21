@@ -1,2 +1,13 @@
-%h1 Sessions#new
-%p Find me in app/views/sessions/new.html.haml
+.container
+  .row.col-lg-6.col-lg-offset-3
+    %h2.form-signin-heading Login.
+
+    = form_for(:session, url: sessions_path, html: { class: 'form-signin' }) do |f|
+      .form-group
+        = f.text_field :email, class: "form-control", placeholder: "email address"
+        %br/
+        = f.text_field :password, class: "form-control", placeholder: "password", type: "password"
+        %br/
+        = f.submit "Login", class: "btn btn-large btn-block btn-primary", href: "new_user_path"
+
+    %p New user? #{link_to "Join Today!", signup_path}

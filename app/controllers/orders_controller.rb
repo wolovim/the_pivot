@@ -1,4 +1,5 @@
 class OrdersController < ApplicationController
+  include OrdersHelper
 
   def index
     @orders = Order.all
@@ -18,6 +19,12 @@ class OrdersController < ApplicationController
   def add_item
     item = Item.find(params[:item_id])
     current_order.add_item(item)
+    redirect_to current_order
+  end
+
+  def delete_item
+    item = Item.find(params[:item_id])
+    current_order.remove_item(item)
     redirect_to current_order
   end
 
@@ -52,4 +59,5 @@ class OrdersController < ApplicationController
   def find_orders
     @order = Order.find(params[:id])
   end
+  
 end

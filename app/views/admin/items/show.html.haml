@@ -1,0 +1,10 @@
+.thumbnail
+  %img{:alt => "...", "data-src" => "holder.js/300x300"}
+    .caption
+      %h3=@item.title
+      %p=@item.description
+      %p $ #{@item.price.to_i}
+      %h5 Categories:
+      -@item.categories.each do |category| 
+        %li= category.name 
+        = link_to "Remove Category", admin_category_path(params.merge(:item => @item)), method: :delete

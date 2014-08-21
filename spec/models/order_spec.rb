@@ -33,13 +33,36 @@ RSpec.describe Order, :type => :model do
 
   it 'has many items' do
     order = Order.create!(delivery: true)
-    item_1 = Item.create!(title: "Title", description: "Description", price: 10.00)
-    item_2 = Item.create!(title: "Title2", description: "Description", price: 10.00)
+    item_1 = Item.create!(title: "Title", description: "Description", price: 10)
+    item_2 = Item.create!(title: "Title2", description: "Description", price: 10)
 
     item_1.orders << order
     item_2.orders << order
 
     assert item_1.orders.include?(order)
     assert item_2.orders.include?(order)
+  end
+
+  it 'adds item to order' do
+    item = Item.create(title: 'a',description: 'b', price: 1)
+    order = Order.create!(delivery: true)
+    order.add_item(item)
+    assert order.items.include? item
+  end
+
+  it 'removes item from order' do
+    item = Item.create(title: 'a',description: 'b', price: 1)
+    order = Order.create!(delivery: true)
+    order.add_item(item)
+    order.remove_item(item)
+    refute order.items.include? item
+  end
+
+  it 'increases quantity if item is in order' do
+    item = Item.create(title: 'a',description: 'b', price: 1)
+    order = Order.create!(delivery: true)
+    order.add_item(item)
+    order.add_item(item)
+    assert order.items.length == 1
   end
 end
