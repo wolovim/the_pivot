@@ -1,8 +1,16 @@
 %h1.order-display Orders
 %h5= "Total orders: #{@orders.size}"
+%h5= "Orders by status:"
+%ul
+  %li basket: #{Order.basket.length}
+  %li ordered: #{Order.ordered.length}
+  %li paid: #{Order.paid.length}
+  %li completed: #{Order.completed.length}
+  %li cancelled: #{Order.cancelled.length}
+
 %ul
   -@orders.each do |order|
     %h4= "Order #{order.id}"
     %li= order.created_at
-    %li= order.aasm_state
+    %li Status: #{order.aasm_state}
     %li= link_to "View order", admin_order_path(order)

@@ -2,9 +2,9 @@ require_relative '../feature_spec_helper'
 
 describe "admin items view", type: :feature do
   it 'has a list of menu items' do
-    item1 = build_item(title: "Food", description: "Doe", price: 100.00)
-    item2 = build_item(title: "MoreFood", description: "John", price: 150.00)
-    item3 = build_item(title: "Foood", description: "Jane", price: 200.00)
+    item1 = build_item(title: "Food", description: "Doe", price: 100)
+    item2 = build_item(title: "MoreFood", description: "John", price: 150)
+    item3 = build_item(title: "Foood", description: "Jane", price: 200)
     item1.categories.create(name: "Lunch")
     item2.categories.create(name: "Dinner")
     item3.categories.create(name: "hi")
@@ -44,7 +44,7 @@ describe "admin items view", type: :feature do
     {
       title: "John",
       description: "Doe",
-      price: 20.00
+      price: 20
     }
   end
 

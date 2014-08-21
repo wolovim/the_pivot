@@ -2,7 +2,7 @@ require_relative '../feature_spec_helper'
 
 describe 'admin', type: :feature do
   it 'deletes a menu item' do
-    item = build_item(title: "Hi", description: "Hello", price: 100.00)
+    item = build_item(title: "Hi", description: "Hello", price: 100)
     item.categories.create(name: "Lunch")
 
     # not sure how necessary these steps are, would it make sense

@@ -11,6 +11,7 @@ class Order < ActiveRecord::Base
     state :ordered
     state :paid
     state :completed
+    state :cancelled
 
     event :ordered do
       transitions :from => :basket, :to => :ordered

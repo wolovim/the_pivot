@@ -4,8 +4,8 @@ describe 'admin order/show', type: :feature do
   before do
     user = User.create!(first_name: "John", last_name: "Doe", email: "john@example.com", password: "swordfish")
     # we need user/order/item/orderitem
-    item1 = Item.create!(title: "Food", description: "Yum", price: 20.00)
-    item2 = Item.create!(title: "MoarFood", description: "Yummer", price: 20.00)
+    item1 = Item.create!(title: "Food", description: "Yum", price: 20)
+    item2 = Item.create!(title: "MoarFood", description: "Yummer", price: 20)
     order1 = Order.create!(user_id: user.id, delivery: true)
     order2 = Order.create!(user_id: user.id, delivery: true)
     OrderItem.create!(item_id: item1.id, order_id: order1.id)

@@ -2,7 +2,7 @@ require_relative '../feature_spec_helper'
 
 describe 'the admin item view', type: :feature do
   let(:item) { 
-    item = Item.create(title: "Food", description: "Yum", price: 20.00)
+    item = Item.create(title: "Food", description: "Yum", price: 20)
   }
 
   before do
