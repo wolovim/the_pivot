@@ -11,7 +11,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       sign_in @user
-      flash[:success] = 'Welcome to Endangered Eats' 
+      flash[:success] = 'Welcome to Endangered Eats!' 
       redirect_to @user
     else
       flash[:invalid] = @user.errors.messages

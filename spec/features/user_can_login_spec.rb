@@ -19,14 +19,15 @@ describe "a user goes to the login page" do
       fill_in( "password",      :with => "123456789" )
       click_button("Login")
 
-      expect(page).to have_content("Your Cart")
+      expect(page).to have_content("Your Info")
     end
   end
 
   describe "with invalid parameters" do
-    it "should render a new login template" do
+    it "should render a new login template with a friendly error message" do
       click_button("Login")
 
+      expect(page).to have_content("Invalid email/password combination")
       expect(page).to have_content("Login.")
     end
   end

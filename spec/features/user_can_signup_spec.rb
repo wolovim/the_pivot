@@ -10,11 +10,12 @@ describe "signup" do
     it "should create a new user" do
         fill_in( "first name",            :with => "John")
         fill_in( "last name",             :with => "Doe")
-        fill_in( "email address",         :with => "john@example.com" )
+        fill_in( "email address",         :with => "johndoe@example.com" )
         fill_in( "password",              :with => "swordfish" )
         fill_in( "password confirmation", :with => "swordfish" )
 
         expect { click_button("Create my account") }.to change(User, :count).by(1)
+        expect(page).to have_content("Welcome to Endangered Eats!")
     end
   end
 
@@ -23,7 +24,7 @@ describe "signup" do
       click_button("Create my account")
 
       #We want the page to display an informative error
-      expect(page).to have_content("Forms can not be left blank")
+      expect(page).to have_content("Signup")
     end
   end
 
