@@ -2,7 +2,7 @@ require_relative '../feature_spec_helper'
 
 describe 'admin', type: :feature do
   # Needs refactoring the way things are now (links to add categories
-  # are on the index page).
+  # are on the show page).
   xit 'removes a category from a menu item' do
     item = Item.create(title: "hi", description: "mom", price: 10)
     item.categories.create(name: "Lunch")

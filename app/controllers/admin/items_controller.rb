@@ -39,9 +39,10 @@ class Admin::ItemsController < ApplicationController
 
   def add_category
     @item = Item.find(params[:id])
-    @item.categorizations.create(item_id: @item.id, category_id: params[:category])
+    @category = Category.find(params[:category])
+    @item.add_category(@category)
+    # @item.categorizations.create(item_id: @item.id, category_id: params[:category])
     redirect_to admin_item_path(@item)
-    # raise params.inspect
   end
 
   def item_params

@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Item, :type => :model do
-  let(:valid_params) { {title:'item', description: 'items items', price: 10.01} }
+  let(:valid_params) { {title:'item', description: 'items items', price: 10} }
 
   describe "with valid params" do
     it 'is valid' do
@@ -24,6 +24,21 @@ RSpec.describe Item, :type => :model do
     it 'has an order' do
       item = Item.create valid_params
       expect(item).to respond_to(:orders)
+    end
+
+    it 'adds a category to an item' do
+      item = Item.create(title: 'a',description: 'b', price: 1)
+      category = Category.create(name: 'name')
+      item.add_category(category)
+      assert item.categories.include? category
+    end
+
+    it 'removes a category from an item' do
+      item = Item.create(title: 'a',description: 'b', price: 1)
+      category = Category.create(name: 'name')
+      item.add_category(category)
+      item.remove_category(category)
+      refute item.categories.include? category
     end
   end
 
