@@ -15,6 +15,11 @@ Rails.application.routes.draw do
     resources :items
     resources :categories
     resources :orders, only: [:index, :show, :edit, :update]
+    get 'completed', to: 'orders#completed', as: 'completed_orders'
+    get 'ordered', to: 'orders#ordered', as: 'ordered_orders'
+    get 'cancelled', to: 'orders#cancelled', as: 'cancelled_orders'
+    get 'paid', to: 'orders#paid', as: 'paid_orders'
+    get 'basket', to: 'orders#basket', as: 'basket_orders'
   end
 
   resources :users, only: [:new, :create, :show, :index]
