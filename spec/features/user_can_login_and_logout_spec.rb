@@ -1,12 +1,12 @@
 require_relative 'feature_spec_helper'
 
 describe "a user goes to the login page" do
-  user = User.new
-  user.first_name = "John"
-  user.last_name  = "Doe"
-  user.email      = "j@example.com"
-  user.password   = "123456789"
-  user.save
+  # user = User.new
+  # user.first_name = "John"
+  # user.last_name  = "Doe"
+  # user.email      = "j@example.com"
+  # user.password   = "123456789"
+  # user.save
 
   before do
     visit "/"
@@ -19,6 +19,7 @@ describe "a user goes to the login page" do
       fill_in( "password",      :with => "123456789" )
       click_button("Login")
 
+      # Any way to verify user specific things?
       expect(page).to have_content("Your Info")
     end
   end

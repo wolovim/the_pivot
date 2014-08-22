@@ -1,15 +1,16 @@
 require 'rails_helper'
 
 RSpec.describe Item, :type => :model do
-  let(:item) { FactoryGirl.create(:item) }
+  let(:item) { create :item }
 
   describe "with valid params" do
     it 'is valid' do
       expect(item).to be_valid
     end
 
+    # Same issues as email for dealing with testing uniqueness
     xit 'has a unique name' do
-      item2 = FactoryGirl.create(:item)
+      item2 = create :item
       expect(item2).to_not be_valid
     end
 
@@ -22,13 +23,13 @@ RSpec.describe Item, :type => :model do
     end
 
     it 'adds a category to an item' do
-      category = Category.create(name: 'name')
+      category = create :category
       item.add_category(category)
       assert item.categories.include? category
     end
 
     it 'removes a category from an item' do
-      category = Category.create(name: 'name')
+      category = create :category
       item.add_category(category)
       item.remove_category(category)
       refute item.categories.include? category
@@ -52,8 +53,8 @@ RSpec.describe Item, :type => :model do
     end
 
     it 'has many orders' do
-      order1 = Order.create(delivery: true)
-      order2 = Order.create(delivery: true)
+      order1 = create :order
+      order2 = create :order
 
       order1.items << item
       order2.items << item

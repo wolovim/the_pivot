@@ -2,6 +2,7 @@ require_relative 'feature_spec_helper'
 
 describe 'an order', type: :feature do
   let(:current_order) { Order.create!(delivery: true) }
+  
   it 'starts with zero items' do
     visit items_path
     visit order_path(current_order)

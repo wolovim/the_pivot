@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Order, :type => :model do
 
-  let(:order) { FactoryGirl.create(:order) }
+  let(:order) { create(:order) }
 
   let(:address) do
     Address.new(order_id: 1, street_1: "123 Washington St", city: "Denver", state: "CO", zip: "80202")
@@ -61,6 +61,6 @@ RSpec.describe Order, :type => :model do
   end
 
   def build_item
-    FactoryGirl.create(:item)
+    create(:item)
   end
 end

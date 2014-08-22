@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe User, :type => :model do
-  let(:user) { FactoryGirl.create(:user) }
+  let(:user) { create(:user) }
 
   it 'is valid' do
     expect(user).to be_valid
@@ -25,10 +25,10 @@ RSpec.describe User, :type => :model do
   # Not sure how to fix this one yet, DatabaseCleaner might help, or using
   # something other than let?
   xit 'is invalid without a unique email' do
-    user2 = FactoryGirl.create(:user)
+    user2 = create(:user)
     expect(user2).not_to be_valid
 
-    user3       = FactoryGirl.create(:user)
+    user3       = create(:user)
     user3.email = 'EMAiL@example.com'
     expect(user3).not_to be_valid
   end
@@ -49,15 +49,5 @@ RSpec.describe User, :type => :model do
   it "is invalid with a password under 8 characters" do
     user.password = "1234"
     expect(user).to_not be_valid
-  end
-
-  def valid_params
-    {
-      first_name: 'John',
-      last_name: 'Doe',
-      email: 'email@example.com',
-      username: 'goodusername',
-      password: 'swordfish'
-    }
   end
 end
