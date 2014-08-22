@@ -2,9 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Order, :type => :model do
 
-  let(:order) do
-    Order.new(id: 1, user_id: 1, delivery: true)
-  end
+  let(:order) { FactoryGirl.create(:order) }
 
   let(:address) do
     Address.new(order_id: 1, street_1: "123 Washington St", city: "Denver", state: "CO", zip: "80202")
@@ -31,10 +29,9 @@ RSpec.describe Order, :type => :model do
     expect(address.order_id).to eq(order.id)
   end
 
-  it 'has many items' do
-    order = Order.create!(delivery: true)
-    item_1 = Item.create!(title: "Title", description: "Description", price: 10)
-    item_2 = Item.create!(title: "Title2", description: "Description", price: 10)
+  xit 'has many items' do
+    item_1 = build_item
+    item_2 = build_item
 
     item_1.orders << order
     item_2.orders << order
@@ -44,25 +41,26 @@ RSpec.describe Order, :type => :model do
   end
 
   it 'adds item to order' do
-    item = Item.create(title: 'a',description: 'b', price: 1)
-    order = Order.create!(delivery: true)
+    item = build_item
     order.add_item(item)
     assert order.items.include? item
   end
 
   it 'removes item from order' do
-    item = Item.create(title: 'a',description: 'b', price: 1)
-    order = Order.create!(delivery: true)
+    item = build_item
     order.add_item(item)
     order.remove_item(item)
     refute order.items.include? item
   end
 
   it 'increases quantity if item is in order' do
-    item = Item.create(title: 'a',description: 'b', price: 1)
-    order = Order.create!(delivery: true)
+    item = build_item
     order.add_item(item)
     order.add_item(item)
     assert order.items.length == 1
+  end
+
+  def build_item
+    FactoryGirl.create(:item)
   end
 end
