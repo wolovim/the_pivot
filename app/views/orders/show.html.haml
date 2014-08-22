@@ -1,14 +1,14 @@
 .container
   .panel.panel-default
-    .panel-heading Your Order
+    %h1.panel-heading Your Order
     .panel-body
       %p Look over your items, add a few more, or proceed to checkout.
       %table.table.table-striped
         %tbody
-        -if @current_order.empty?
+        -if order.empty?
           %tr You don't have any items in your cart!
         -else
-          - @current_order.items.each do |item|
+          - order.items.each do |item|
             %tr
               %td Title: #{item.title}
               %td Description: #{item.description}
@@ -18,6 +18,12 @@
                 = form_for 'item', method: 'PUT', :url => {:controller => 'order_items', action: :update, id: order_item(item) } do |f|
                   .field
                     = f.number_field :quantity, :value => order_item(item).quantity
-                    = submit_tag "Update"
-              %td= button_to "Remove", delete_item_order_path(@current_order, item_id: item.id), class: "btn btn-primary"
+                    = submit_tag "Update", class: "btn btn-primary"
+              %td= button_to "Remove", delete_item_order_path(order, item_id: item.id), class: "btn btn-primary"
               %td Subtotal: $#{item.price * order_item(item).quantity}
+
+  .masthead
+    %h3.text-muted.pull-right= "Total: $#{@current_order.total}"
+    %ul.nav.nav-justified.pull-right
+      %li
+        .btn.btn-lg.btn-primary.pull-right Proceed to Checkout

@@ -50,4 +50,10 @@ class Order < ActiveRecord::Base
   def empty?
     items.empty?
   end
+
+  def total
+    order_items.reduce(0) do |sum, order_item|
+      sum += order_item.quantity * order_item.item.price
+    end
+  end
 end

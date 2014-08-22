@@ -2,7 +2,7 @@
 
   .row.col-lg-6.col-lg-offset-3
     %h2.form-signin-heading Login.
-    .alert.alert-danger= flash.now[:error]
+    = flash.now[:error]
     = form_for(:session, url: sessions_path, html: { class: 'form-signin' }) do |f|
       .form-group
         = f.text_field :email, class: "form-control", placeholder: "email address"
