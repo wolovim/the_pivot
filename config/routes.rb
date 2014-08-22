@@ -12,8 +12,12 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
-    resources :items
-    resources :categories
+    resources :items do
+      member do
+        put :add_category
+      end
+    end
+    resources :categories 
     resources :orders, only: [:index, :show, :edit, :update]
   end
 
@@ -28,5 +32,4 @@ Rails.application.routes.draw do
   match '/login',            to: 'sessions#new',      via: 'get'
   match '/logout',           to: 'sessions#destroy',  via: 'delete'
   match '/admin_dashboard',  to: 'admin#dashboard',   via: 'get'
-
 end
