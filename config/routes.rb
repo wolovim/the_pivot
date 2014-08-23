@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
+    resources :admin, except: [:show]
     resources :items
     resources :categories
     resources :orders, only: [:index, :show, :edit, :update]
@@ -27,6 +28,6 @@ Rails.application.routes.draw do
   match '/signup',           to: 'users#new',         via: 'get'
   match '/login',            to: 'sessions#new',      via: 'get'
   match '/logout',           to: 'sessions#destroy',  via: 'delete'
-  match '/admin_dashboard',  to: 'admin#dashboard',   via: 'get'
+  match '/admin_dashboard',  to: 'admin/admin#show',  via: 'get'
 
 end
