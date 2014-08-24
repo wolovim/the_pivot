@@ -1,6 +1,14 @@
 require_relative '../feature_spec_helper'
 
 describe "admin items view", type: :feature do
+  before do
+    admin = create(:user)
+    visit login_path
+    fill_in 'email address', :with => admin.email
+    fill_in 'password', :with => admin.password
+    click_button("Login")
+  end
+
   it 'has a list of menu items' do
     item1 = build_item(title: "Food", description: "Doe", price: 100.00)
     item2 = build_item(title: "MoreFood", description: "John", price: 150.00)

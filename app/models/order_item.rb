@@ -8,5 +8,19 @@ class OrderItem < ActiveRecord::Base
     quantity = 1
   end
 
+  def quantity_update(params)
+    if params.to_i >= 0
+      quantity_limit(params)
+    else
+      0
+    end
+  end
 
+  def quantity_limit(params)
+    if params.to_i <= item.max_quantity
+      params
+    else
+      nil
+    end
+  end
 end

@@ -1,6 +1,15 @@
 require_relative '../feature_spec_helper'
 
 describe 'admin', type: :feature do
+
+  before do
+    admin = create(:user)
+    visit login_path
+    fill_in 'email address', :with => admin.email
+    fill_in 'password', :with => admin.password
+    click_button("Login")
+  end
+  
   it 'deletes a menu item' do
     item = build_item(title: "Hi", description: "Hello", price: 100.00)
     item.categories.create(name: "Lunch")
@@ -15,6 +24,6 @@ describe 'admin', type: :feature do
   end
 
   def build_item(options={})
-    Item.create(options) 
+    Item.create(options)
   end
 end

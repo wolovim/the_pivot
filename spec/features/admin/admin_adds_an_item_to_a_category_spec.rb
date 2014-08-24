@@ -1,6 +1,14 @@
 require_relative '../feature_spec_helper'
 
 describe 'admin', type: :feature do
+  before do
+    admin = create(:user)
+    visit login_path
+    fill_in 'email address', :with => admin.email
+    fill_in 'password', :with => admin.password
+    click_button("Login")
+  end
+  
   xit 'adds a category to an item' do
     item = Item.create(title: "hi", description: "mom", price: 10)
     category = Category.new(name: "Dinner")

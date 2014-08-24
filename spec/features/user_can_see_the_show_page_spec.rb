@@ -12,7 +12,7 @@ describe "show page" do
     visit user_path(user)
   end
 
-  it "shows the email form input field" do
+  xit "shows the email form input field" do
       fill_in 'email address', :with => 'Robert'
       click_button("Submit")
 
