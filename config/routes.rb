@@ -27,6 +27,6 @@ Rails.application.routes.draw do
   match '/signup',           to: 'users#new',         via: 'get'
   match '/login',            to: 'sessions#new',      via: 'get'
   match '/logout',           to: 'sessions#destroy',  via: 'delete'
-  match '/admin_dashboard',  to: 'admin#dashboard',   via: 'get'
+  match '/admin_dashboard',  to: 'admin#dashboard',  via: 'get'
 
 end

@@ -1,4 +1,4 @@
-class Admin::ItemsController < ApplicationController
+class Admin::ItemsController < AdminController
   before_action :find_item, only: [:edit, :update, :destroy, :show, :order, :remove_category_from_item]
 
   def index

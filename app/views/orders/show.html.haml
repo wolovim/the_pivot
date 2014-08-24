@@ -22,8 +22,22 @@
               %td= button_to "Remove", delete_item_order_path(order, item_id: item.id), class: "btn btn-primary"
               %td Subtotal: $#{item.price * order_item(item).quantity}
 
-  .masthead
+
     %h3.text-muted.pull-right= "Total: $#{@current_order.total}"
-    %ul.nav.nav-justified.pull-right
-      %li
-        .btn.btn-lg.btn-primary.pull-right Proceed to Checkout
+-if signed_in?
+  .container
+    .row.pull-right
+      %ul.nav.nav-pills
+        %li.active
+          %a{:href => "#"} Proceed to Checkout
+-else
+  .container
+    .col-lg-5-offset-3.pull-right
+      %h5.alert.alert-warning You'll need to log in or sign up to complete your order.
+  .container
+    .col-lg-5-offset-3.pull-right
+      %ul.nav.nav-pills
+        %li.active
+          %a{href: login_path} Login
+        %li.active
+          %a{href: signup_path} Signup
