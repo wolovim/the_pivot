@@ -3,6 +3,7 @@
     %h1.panel-heading Your Order
     .panel-body
       %p Look over your items, add a few more, or proceed to checkout.
+      = flash[:toomany]
       %table.table.table-striped
         %tbody
         -if order.empty?

@@ -13,4 +13,16 @@ RSpec.describe OrderItem, :type => :model do
     order_item.item_id = nil
     expect(order_item).to_not be_valid
   end
+
+  it 'checks quantity for negatives' do
+    quantity = -1
+    
+    expect(order_item.quantity_update(quantity)).to eq(0)
+  end
+
+  it 'checks quantity against max quantity' do
+    quantity = 6000
+
+    expect(order_item.quantity_update(quantity)).to eq(nil)
+  end
 end
