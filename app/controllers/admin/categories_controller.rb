@@ -10,8 +10,6 @@ class Admin::CategoriesController < AdminController
     redirect_to admin_items_path
   end
 
-  # removes category association from an item
-  # move this to items controller eventually
   def destroy
     @item = Item.find(params[:id])
     @category = Category.find(params[:category])
