@@ -3,7 +3,7 @@ require_relative 'feature_spec_helper'
 describe 'an order', type: :feature do
   let(:current_order) { Order.create!(delivery: true) }
   let(:item) { create :item }
-
+  
   it 'starts with zero items' do
     visit items_path
     visit order_path(current_order)
@@ -92,7 +92,7 @@ describe 'an order', type: :feature do
     item2 = create :item, title: "Jane", price: 50
     item1.categories.create(name: 'africa')
     item2.categories.create(name: 'africa')
-
+    
     visit items_path
 
     page.find(:xpath, "(//div[@class='caption'])[1]").click_on("Add to Cart")

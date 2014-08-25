@@ -60,4 +60,9 @@ class OrdersController < ApplicationController
     @order = Order.find(params[:id])
   end
 
+  def checkout
+    @address = Address.new
+  end
+
+
 end
