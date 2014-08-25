@@ -7,7 +7,6 @@ describe 'admin', type: :feature do
 
   it 'deletes a menu item' do
 
-    item = build_item(title: "Hi", description: "Hello", price: 100)
     item = create :item, title: "MyTitle"
     item.categories.create(name: "Lunch")
 
@@ -17,6 +16,5 @@ describe 'admin', type: :feature do
     first(:link, "Delete Item").click
 
     expect(page).not_to have_content "MyTitle"
-    expect(page).not_to have_content "Hello"
   end
 end

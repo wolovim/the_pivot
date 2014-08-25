@@ -30,8 +30,6 @@ Rails.application.routes.draw do
     resources :items
     resources :categories
     resources :orders, only: [:index, :show, :edit, :update]
-  end
-
 
     get 'completed', to: 'orders#completed', as: 'completed_orders'
     get 'ordered', to: 'orders#ordered', as: 'ordered_orders'
