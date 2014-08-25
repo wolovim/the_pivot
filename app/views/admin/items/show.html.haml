@@ -4,6 +4,7 @@
       %h3=@item.title
       %p=@item.description
       %p $ #{@item.price.to_i}
+      %p= image_tag @item.image.url
       %h5 Categories:
       .current-categories
         -@item.categories.each do |category| 
