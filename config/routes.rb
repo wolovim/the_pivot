@@ -33,4 +33,7 @@ Rails.application.routes.draw do
   match '/login',            to: 'sessions#new',      via: 'get'
   match '/logout',           to: 'sessions#destroy',  via: 'delete'
   match '/admin_dashboard',  to: 'admin#dashboard',   via: 'get'
+
+  match '/admin_dashboard',  to: 'admin#dashboard',  via: 'get'
+  match "*a",                to: 'errors#routing_error', via: 'get'
 end

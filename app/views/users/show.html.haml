@@ -22,9 +22,14 @@
                   %th Title
                   %th Description
                   %th Price
+                  %th Quantity
+                  %th Subtotal
               %tbody
-              -order.items.each do |item|
+              -order.order_items.each do |order_item|
                 %tr
-                  %td= link_to item.title, item_path(item)
-                  %td= link_to item.description, item_path(item)
-                  %td= link_to "$#{item.price}.00", item_path(item)
+                  %td= link_to order_item.item.title, item_path(order_item.item)
+                  %td= link_to order_item.item.description, item_path(order_item.item)
+                  %td= link_to "$#{order_item.item.price}.00", item_path(order_item.item)
+                  %td= link_to order_item.quantity, item_path(order_item.item)
+                  %td= link_to "$#{(order_item.quantity * order_item.item.price)}.00"  
+            %h4.pull-right="Total: $#{order.total}.00"
