@@ -70,4 +70,15 @@ RSpec.describe Item, :type => :model do
       assert order2.items.include?(item)
     end
   end
+
+  describe "scarcity" do
+    it "starts out as endangered" do
+      expect(item.scarcity).to eq("endangered")
+    end
+
+    it "can become extinct" do
+      Item.extinction(item)
+      expect(item.scarcity).to eq("extinct")
+    end
+  end
 end
