@@ -13,6 +13,12 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :items
+    resources :items do
+      member do
+        put :add_category
+        delete :remove_category
+      end
+    end
     resources :categories
     resources :orders, only: [:index, :show, :edit, :update] do
       member do
@@ -21,6 +27,11 @@ Rails.application.routes.draw do
         post :cancel
       end
     end
+    resources :items
+    resources :categories
+    resources :orders, only: [:index, :show, :edit, :update]
+  end
+
 
     get 'completed', to: 'orders#completed', as: 'completed_orders'
     get 'ordered', to: 'orders#ordered', as: 'ordered_orders'
@@ -35,6 +46,8 @@ Rails.application.routes.draw do
   match '/signup',           to: 'users#new',         via: 'get'
   match '/login',            to: 'sessions#new',      via: 'get'
   match '/logout',           to: 'sessions#destroy',  via: 'delete'
-  match '/admin_dashboard',  to: 'admin#dashboard',  via: 'get'
+  match '/admin_dashboard',  to: 'admin#dashboard',   via: 'get'
 
+  match '/admin_dashboard',  to: 'admin#dashboard',  via: 'get'
+  match "*a",                to: 'errors#routing_error', via: 'get'
 end

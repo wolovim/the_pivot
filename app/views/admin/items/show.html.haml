@@ -5,6 +5,12 @@
       %p=@item.description
       %p $ #{@item.price.to_i}
       %h5 Categories:
-      -@item.categories.each do |category| 
-        %li= category.name 
-        = link_to "Remove Category", admin_category_path(params.merge(:category => category)), method: :delete
+      .current-categories
+        -@item.categories.each do |category| 
+          %li= category.name 
+          = link_to "Remove Category", remove_category_admin_item_path(params.merge(:category => category)), method: :delete
+  %h4 Add Category
+  %ul
+    -@categories.each do |category|
+      - if !@item.categories.include?(category)
+        %li= link_to category.name, add_category_admin_item_path(params.merge(:category => category)), method: :put
