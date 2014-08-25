@@ -9,11 +9,10 @@ describe "a user goes to the login page" do
 
   describe "with valid parameters" do
     it "should login to their account" do
-      fill_in( "email address", :with => "john@example.com" )
-      fill_in( "password",      :with => "swordfish" )
+      fill_in( "email address", :with => "j@example.com" )
+      fill_in( "password",      :with => "123456789" )
       click_button("Login")
 
-      # Any way to verify user specific things?
       expect(page).to have_content("Your Info")
     end
   end

@@ -1,9 +1,15 @@
 require_relative '../feature_spec_helper'
 
 describe 'the admin orders view', type: :feature do
+  before do
+    admin = create(:user)
+    visit login_path
+    fill_in 'email address', :with => admin.email
+    fill_in 'password', :with => admin.password
+    click_button("Login")
+  end
 
   it 'displays a list of orders' do
-    # not sure if I need these
     user1 = User.create!(first_name: "John", last_name: "Doe", email: "john@example.com", password: "swordfish")
     user2 = User.create!(first_name: "Jane", last_name: "Doe", email: "jane@example.com", password: "swordfish")
 
