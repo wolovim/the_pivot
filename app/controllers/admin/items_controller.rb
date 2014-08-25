@@ -1,5 +1,5 @@
-class Admin::ItemsController < AdminController
-  before_action :find_item, only: [:edit, :update, :destroy, :show, :order, :remove_category_from_item]
+class Admin::ItemsController < ApplicationController
+  before_action :find_item, only: [:edit, :update, :destroy, :show]
 
   def index
     @items = Item.all
@@ -9,6 +9,7 @@ class Admin::ItemsController < AdminController
   end
 
   def show
+    @categories = Category.all
   end
 
   def new
@@ -27,13 +28,28 @@ class Admin::ItemsController < AdminController
 
   def update
     @item.update(item_params)
-
     redirect_to admin_item_path(@item)
   end
 
   def destroy
     @item.destroy
     redirect_to admin_items_path
+  end
+
+  def add_category
+    @item = Item.find(params[:id])
+    @category = Category.find(params[:category])
+    @item.add_category(@category)
+
+    redirect_to admin_item_path(@item)
+  end
+
+  def remove_category
+    @item = Item.find(params[:id])
+    @category = Category.find(params[:category])
+    @item.remove_category(@category)
+     
+    redirect_to admin_item_path(@item)
   end
 
   def item_params
