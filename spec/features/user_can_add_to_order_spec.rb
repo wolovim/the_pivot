@@ -47,6 +47,24 @@ describe 'an order', type: :feature do
     expect(page).to have_selector("input[value='2']")
   end
 
+  it 'cannot have a negative quantity' do
+    item = Item.create!(title: 'John', description: 'Doe', price: 100)
+    visit item_path(item)
+    click_button("Add to Cart")
+    fill_in('item[quantity]', with: -2)
+    click_on('Update')
+    expect(page).to have_selector("input[value='0']")
+  end
+
+  it 'cannot exceed max quantity' do
+    item = Item.create!(title: 'John', description: 'Doe', price: 100)
+    visit item_path(item)
+    click_button("Add to Cart")
+    fill_in('item[quantity]', with: 6000)
+    click_on('Update')
+    expect(page).to have_content("There aren't enough of that animal left!")
+  end
+
   it 'subtotals the price of each item in order' do
     item = Item.create!(title: 'John', description: 'Doe', price: 100)
     visit item_path(item)

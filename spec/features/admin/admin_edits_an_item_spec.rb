@@ -1,6 +1,14 @@
 require_relative '../feature_spec_helper'
 
 describe 'admin edits an item', type: :feature do
+  before do
+    admin = create(:user)
+    visit login_path
+    fill_in 'email address', :with => admin.email
+    fill_in 'password', :with => admin.password
+    click_button("Login")
+  end
+
   it 'edits a menu item' do
     item = Item.create(title: "hi", description: "asf", price: 10)
     item.categories.create(name: "Lunch")

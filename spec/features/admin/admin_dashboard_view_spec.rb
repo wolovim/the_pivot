@@ -1,6 +1,14 @@
 require_relative '../feature_spec_helper'
 
 describe 'the admin dashboard', type: :feature do
+  before do
+    admin = create(:user)
+    visit login_path
+    fill_in 'email address', :with => admin.email
+    fill_in 'password', :with => admin.password
+    click_button("Login")
+  end
+  
   it 'has links' do
     visit '/admin_dashboard'
     expect(page).to have_link "View Menu Items", href: admin_items_path

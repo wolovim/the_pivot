@@ -1,14 +1,9 @@
 require_relative 'feature_spec_helper'
 
 describe "a user goes to the login page" do
-  user = User.new
-  user.first_name = "John"
-  user.last_name  = "Doe"
-  user.email      = "j@example.com"
-  user.password   = "123456789"
-  user.save
 
   before do
+    user = create(:user)
     visit "/"
     first(:link, "Login").click
   end

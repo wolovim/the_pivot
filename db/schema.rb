@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140821164644) do
+ActiveRecord::Schema.define(version: 20140824215244) do
 
   create_table "addresses", force: true do |t|
     t.integer  "order_id"
@@ -48,6 +48,7 @@ ActiveRecord::Schema.define(version: 20140821164644) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "price"
+    t.integer  "max_quantity", default: 500
   end
 
   create_table "order_items", force: true do |t|
@@ -77,6 +78,7 @@ ActiveRecord::Schema.define(version: 20140821164644) do
     t.datetime "updated_at"
     t.string   "password_digest"
     t.string   "remember_token"
+    t.string   "role"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
