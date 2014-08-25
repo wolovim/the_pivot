@@ -16,7 +16,10 @@
  *= require_tree .
  *= require_self
  */
-
+#errors {
+  color: red;
+  list-style-type: none;
+}
     /* Carousel base class */
     .carousel {
       margin-top: 0px;

@@ -14,7 +14,6 @@ class UsersController < ApplicationController
       flash[:success] = 'Welcome to Endangered Eats!' 
       redirect_to @user
     else
-      flash[:invalid] = @user.errors.messages
       render :new
     end
   end

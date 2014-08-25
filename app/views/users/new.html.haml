@@ -1,8 +1,11 @@
 .container
   .row.col-lg-6.col-lg-offset-3
     %h2.form-signin-heading Join Today.
-    = flash[:invalid]
     = form_for(@user, html: { class: 'form-signin' }) do |f|
+      - if @user.errors.any?
+        %ul#errors
+          - @user.errors.full_messages.each do |error|
+            %li= error
       .form-group
         = f.text_field :first_name, class: "form-control", placeholder: "first name"
         %br/
