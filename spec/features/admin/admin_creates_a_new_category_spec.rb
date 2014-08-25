@@ -6,8 +6,8 @@ describe 'admin', type: :feature do
   before { login_as_admin }
 
   xit 'creates a new category' do
-    item1 = Item.create(title: "Food", description: "Yum", price: 20.00)
-    item2 = Item.create(title: "MoarFood", description: "Yummer", price: 20.00)
+    item1 = Item.create(title: "Food", description: "Yum", price: 20)
+    item2 = Item.create(title: "MoarFood", description: "Yummer", price: 20)
     item1.categories.new(name: "Lunch")
     item1.categories.new(name: "Dinner")
     item2.categories.new(name: "Lunch")

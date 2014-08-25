@@ -8,12 +8,13 @@ describe 'admin edits an item', type: :feature do
   it 'edits a menu item' do
     item = create :item, :title => "hi"
 
+
     visit '/admin_dashboard'
     click_link 'View Menu Items'
     first(:link, "Edit Item").click
     fill_in "Title", with: "NewTitle"
     fill_in "Description", with: "NewDescription"
-    fill_in "Price", with: 100.00
+    fill_in "Price", with: 100
     click_button "Update Item"
 
     expect(page).to have_content "NewTitle"

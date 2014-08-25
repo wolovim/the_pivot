@@ -7,7 +7,6 @@
   %a{href: admin_paid_orders_path} paid #{Order.paid.length}
   %a{href: admin_completed_orders_path} completed #{Order.completed.length}
   %a{href: admin_cancelled_orders_path} cancelled #{Order.cancelled.length}
-
 .orders-container
   -@orders.each do |order|
     %h4= "Order #{order.id}"
@@ -15,3 +14,6 @@
       %li= order.created_at
       %li Status: #{order.aasm_state}
       %li= link_to "View order", admin_order_path(order)
+    .change-order-state
+      =link_to "Mark as Completed", complete_admin_order_path(order), method: "post"
+      =link_to "Cancel Order", cancel_admin_order_path(order), method: "post"

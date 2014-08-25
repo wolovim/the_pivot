@@ -12,19 +12,31 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
+    resources :items
     resources :items do
       member do
         put :add_category
         delete :remove_category
       end
     end
-    resources :categories 
+    resources :categories
+    resources :orders, only: [:index, :show, :edit, :update] do
+      member do
+        post :pay
+        post :complete
+        post :cancel
+      end
+    end
+    resources :items
+    resources :categories
     resources :orders, only: [:index, :show, :edit, :update]
-  end
 
-  # resources :users, only: [:new, :create, :show, :index]
-  # resources :sessions, only: [:new, :create, :destroy]
-  # resources :orders, except: [:new]
+    get 'completed', to: 'orders#completed', as: 'completed_orders'
+    get 'ordered', to: 'orders#ordered', as: 'ordered_orders'
+    get 'cancelled', to: 'orders#cancelled', as: 'cancelled_orders'
+    get 'paid', to: 'orders#paid', as: 'paid_orders'
+    get 'basket', to: 'orders#basket', as: 'basket_orders'
+  end
 
   root 'pages#home'
 
