@@ -2,6 +2,11 @@ require_relative '../feature_spec_helper'
 
 describe "an admin changes state of orders" do
   before(:each) do
+    admin = create(:user)
+    visit login_path
+    fill_in 'email address', :with => admin.email
+    fill_in 'password', :with => admin.password
+    click_button("Login")
     visit admin_orders_path
   end
 

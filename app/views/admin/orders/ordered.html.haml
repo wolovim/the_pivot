@@ -14,3 +14,6 @@
       %li= order.created_at
       %li Status: #{order.aasm_state}
       %li= link_to "View order", admin_order_path(order)
+    .change-order-state
+      =link_to "Mark as Paid", pay_admin_order_path(order), method: "post"
+      =link_to "Cancel Order", cancel_admin_order_path(order), method: "post"
