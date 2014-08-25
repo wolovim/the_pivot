@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140824215244) do
+ActiveRecord::Schema.define(version: 20140825200221) do
 
   create_table "addresses", force: true do |t|
     t.integer  "order_id"
@@ -49,6 +49,7 @@ ActiveRecord::Schema.define(version: 20140824215244) do
     t.datetime "updated_at"
     t.integer  "price"
     t.integer  "max_quantity", default: 500
+    t.string   "scarcity",     default: "endangered"
   end
 
   create_table "order_items", force: true do |t|
