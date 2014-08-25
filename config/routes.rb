@@ -15,6 +15,7 @@ Rails.application.routes.draw do
     resources :items do
       member do
         put :add_category
+        delete :remove_category
       end
     end
     resources :categories 

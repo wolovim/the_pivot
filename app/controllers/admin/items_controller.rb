@@ -28,7 +28,6 @@ class Admin::ItemsController < ApplicationController
 
   def update
     @item.update(item_params)
-
     redirect_to admin_item_path(@item)
   end
 
@@ -41,7 +40,15 @@ class Admin::ItemsController < ApplicationController
     @item = Item.find(params[:id])
     @category = Category.find(params[:category])
     @item.add_category(@category)
-    # @item.categorizations.create(item_id: @item.id, category_id: params[:category])
+
+    redirect_to admin_item_path(@item)
+  end
+
+  def remove_category
+    @item = Item.find(params[:id])
+    @category = Category.find(params[:category])
+    @item.remove_category(@category)
+     
     redirect_to admin_item_path(@item)
   end
 
