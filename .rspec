@@ -1,2 +1,2 @@
---color
+--format NyanCatFormatter
 --require spec_helper

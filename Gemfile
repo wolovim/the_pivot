@@ -59,6 +59,7 @@ end
 group :test do
   gem 'factory_girl_rails'
   gem 'database_cleaner'
+  gem 'nyan-cat-formatter'
 end
 
 group :production do
