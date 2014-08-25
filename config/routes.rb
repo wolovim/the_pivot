@@ -12,11 +12,11 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
-    resources :items
     resources :items do
       member do
-        put :add_category
+        put    :add_category
         delete :remove_category
+        post   :extinction
       end
     end
     resources :categories
@@ -27,10 +27,6 @@ Rails.application.routes.draw do
         post :cancel
       end
     end
-    resources :items
-    resources :categories
-    resources :orders, only: [:index, :show, :edit, :update]
-
     get 'completed', to: 'orders#completed', as: 'completed_orders'
     get 'ordered', to: 'orders#ordered', as: 'ordered_orders'
     get 'cancelled', to: 'orders#cancelled', as: 'cancelled_orders'

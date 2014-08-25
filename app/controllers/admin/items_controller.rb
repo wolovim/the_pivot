@@ -48,7 +48,7 @@ class Admin::ItemsController < ApplicationController
     @item = Item.find(params[:id])
     @category = Category.find(params[:category])
     @item.remove_category(@category)
-     
+
     redirect_to admin_item_path(@item)
   end
 
@@ -58,5 +58,11 @@ class Admin::ItemsController < ApplicationController
 
   def find_item
     @item = Item.find(params[:id])
+  end
+
+  def extinction
+    item = Item.find(params[:id])
+    Item.extinction(item)
+    redirect_to admin_item_path(item)
   end
 end
