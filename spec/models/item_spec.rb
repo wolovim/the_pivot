@@ -8,10 +8,9 @@ RSpec.describe Item, :type => :model do
       expect(item).to be_valid
     end
 
-    # Same issues as email for dealing with testing uniqueness
-    xit 'has a unique name' do
-      item2 = create :item
-      expect(item2).to_not be_valid
+    it 'has a unique name' do
+      create :item
+      expect{ create :item }.to raise_exception ActiveRecord::RecordInvalid
     end
 
     it 'has categories' do

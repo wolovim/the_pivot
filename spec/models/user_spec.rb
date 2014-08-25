@@ -22,15 +22,15 @@ RSpec.describe User, :type => :model do
     expect(user).not_to be_valid
   end
 
-  # Not sure how to fix this one yet, DatabaseCleaner might help, or using
-  # something other than let?
-  xit 'is invalid without a unique email' do
-    user2 = create(:user)
-    expect(user2).not_to be_valid
+  it 'is invalid without a unique email' do
+    create :user
+    expect { 
+      create :user 
+    }.to raise_exception ActiveRecord::RecordInvalid
 
-    user3       = create(:user)
-    user3.email = 'EMAiL@example.com'
-    expect(user3).not_to be_valid
+    expect { 
+      create :user, :email => "J@EXAMPle.com" 
+    }.to raise_exception ActiveRecord::RecordInvalid
   end
 
   it "is invalid without a password" do
