@@ -7,13 +7,13 @@ RSpec.describe User, :type => :model do
     expect(user).to be_valid
   end
 
-  it 'is invalid without a first name' do
-    user.first_name = nil
-    expect(user).not_to be_valid
+  it 'is valid without a last name' do
+    user.last_name = nil
+    expect(user).to be_valid
   end
 
-  it 'is invalid without a last name' do
-    user.last_name = nil
+  it 'is invalid without a first name' do
+    user.first_name = nil
     expect(user).not_to be_valid
   end
 
