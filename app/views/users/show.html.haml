@@ -3,5 +3,28 @@
   %h3= "Hello, #{current_user.first_name.capitalize}!"
   %h3 Your Info
   %h5= current_user.username
-  %h5= current_user.role
   %h5= current_user.email
+
+  %h3= "Previous Orders"
+  -current_user.orders.reverse.each_with_index do |order, i|
+    -unless order.empty?
+      #accordian.panel-group
+        .panel.panel-default
+          .panel-heading
+            %h4.panel-title
+              %a{"data-parent" => "#accordion", "data-toggle" => "collapse", :href => "#collapse#{i}"}
+                ="#{order.created_at.to_formatted_s(:long_ordinal)}"
+        .panel-collapse.collapse{:id => "collapse#{i}"}
+          .panel-body
+            %table.table-hover.col-lg-12
+              %thead
+                %tr
+                  %th Title
+                  %th Description
+                  %th Price
+              %tbody
+              -order.items.each do |item|
+                %tr
+                  %td= link_to item.title, item_path(item)
+                  %td= link_to item.description, item_path(item)
+                  %td= link_to "$#{item.price}.00", item_path(item)
