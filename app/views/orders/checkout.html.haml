@@ -1,17 +1,24 @@
-%h1 You're checking out!
-
-= form_for(@address) do |f|
-  .form-group
-    = f.text_field :street_1, class: "form-control", placeholder: "Street"
-    %br/
-    = f.text_field :street_2, class: "form-control", placeholder: "Street"
-    %br/
-    = f.text_field :city, class: "form-control", placeholder: "City"
-    %br/
-    = f.text_field :state, class: "form-control", placeholder: "State"
-    %br/
-    = f.text_field :zip, class: "form-control", placeholder: "Zipcode"
-    %br/
-    = f.hidden_field :order_id
-    %br/
-    = f.submit "Save address", class: "btn btn-large btn-block btn-primary", href: "addresses_path", method: 'POST'
+.container
+  #accordion.panel-group
+    .panel.panel-default
+      .panel-heading
+        %h4.panel-title
+          %a{"data-parent" => "#accordion", "data-toggle" => "collapse", :href => "#collapse"}
+            Submit a New Address
+      .panel-collapse.collapse{:id => "collapse"}
+        .panel-body
+          = form_for @address do |f|
+            .form-group
+              = f.text_field :street_1, class: "form-control", placeholder: "Street"
+              %br/
+              = f.text_field :street_2, class: "form-control", placeholder: "Street"
+              %br/
+              = f.text_field :city, class: "form-control", placeholder: "City"
+              %br/
+              = f.text_field :state, class: "form-control", placeholder: "State"
+              %br/
+              = f.text_field :zip, class: "form-control", placeholder: "Zipcode"
+              %br/
+              = f.hidden_field :order_id, value: order.id
+              %br/
+              = f.submit "Save Address", class: "btn btn-large btn-block btn-primary", href: "addresses_path", method: 'POST'
