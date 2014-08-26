@@ -30,7 +30,7 @@
     .row.pull-right
       %ul.nav.nav-pills
         %li.active
-          %a{:href => "#"} Proceed to Checkout
+          = link_to "Proceed to Checkout", checkout_path(order)
 -else
   .container
     .col-lg-5-offset-3.pull-right
