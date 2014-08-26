@@ -18,6 +18,11 @@ RSpec.describe Order, :type => :model do
     expect(order).to be_valid
   end
 
+  xit 'is valid if delivery is false' do
+    order.delivery = false
+    expect(order).to be_valid
+  end
+
   it 'is invalid without a delivery designation' do
     order.delivery = nil
     expect(order).to_not be_valid

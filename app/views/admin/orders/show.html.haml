@@ -1,5 +1,33 @@
-%h1= "Order ##{@order.id}"
-%ul
-  -@order.items.each do |item|
-    %li= "Delivery: #{@order.delivery}" 
-    %li= "#{item.title} |" + " #{item.description} |" + " #{item.price}"
+.container
+  .order-header
+    %h2= "Order: #{@order.id}"
+    .order-info-table-div
+      %table.table.table-striped.order-info-table
+        %thead
+          %tr
+            %th Created
+            %th Name
+            %th Email
+            %th Status
+        %tbody
+          %tr
+            %th= @order.created_at
+            %th= "#{@order.user.first_name.capitalize} #{@order.user.last_name.capitalize}"
+            %th= @order.user.email
+            %th= @order.aasm_state.capitalize 
+    %table.table.table-striped
+      %thead
+        %tr
+          %th Title
+          %th Description
+          %th Price
+          %th Quantity
+          %th Subtotal
+      %tbody
+        -@order.order_items.each do |order_item|
+          %tr
+            %td= link_to order_item.item.title, item_path(order_item.item)
+            %td= order_item.item.description
+            %td= order_item.item.price
+            %td= order_item.quantity
+            %td= "$#{(order_item.quantity * order_item.item.price)}.00"

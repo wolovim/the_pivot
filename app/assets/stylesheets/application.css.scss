@@ -16,6 +16,11 @@
  *= require_tree .
  *= require_self
  */
+
+th {
+  text-align: center;
+}
+
 #errors {
   color: red;
   list-style-type: none;
@@ -31,6 +36,16 @@
 }
 
 .order-display {
+  text-align: center;
+}
+
+.order-info-table {
+  width: 70%;
+  margin: 0 auto;
+  margin-bottom: 20px;
+}
+
+.order-info-table-div {
   text-align: center;
 }
 
