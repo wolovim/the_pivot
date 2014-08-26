@@ -61,6 +61,7 @@ class OrdersController < ApplicationController
   end
 
   def checkout
+    order.ordered
     @address = Address.new
   end
 
