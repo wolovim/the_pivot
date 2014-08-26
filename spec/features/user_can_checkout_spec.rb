@@ -42,4 +42,13 @@ describe 'A user who is logged in' do
     click_on('Save Address')
     expect(page).to have_content('123 Main St.')
   end
+
+  it 'can add payment info' do
+    click_on('Proceed to Checkout')
+    fill_in 'order[ccn]', with: '1234567812345678'
+    fill_in 'order[expdate]', with: '12-12'
+    fill_in 'order[card_name]', with: 'Allison Larson'
+    click_on('Enter Payment Info')
+    expect(page).to have_content('Confirm Order')
+  end
 end
