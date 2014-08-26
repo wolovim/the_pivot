@@ -15,7 +15,7 @@ class Order < ActiveRecord::Base
     state :cancelled
 
     event :ordered do
-      transitions :from => :basket, :to => :ordered, :guard => :has_items?
+      transitions :from => :basket, :to => :ordered
     end
 
     event :paid do
@@ -58,7 +58,6 @@ class Order < ActiveRecord::Base
     end
   end
 
-  private
 
   def has_items?
     self.items.length > 0

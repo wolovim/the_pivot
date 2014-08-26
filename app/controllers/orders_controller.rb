@@ -6,7 +6,7 @@ class OrdersController < ApplicationController
   end
 
   def show
-    order
+    @order = order
   end
 
   def new
@@ -61,11 +61,17 @@ class OrdersController < ApplicationController
   end
 
   def checkout
-    order.ordered
+    @order = order
+    @order.ordered
     @address = Address.new
   end
 
   def confirm
+    # if order.paid
+    #   redirect_to
+    # else
+    #   render :confirm
+    # end
   end
 
 
