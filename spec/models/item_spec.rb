@@ -51,6 +51,14 @@ RSpec.describe Item, :type => :model do
       expect(item).to_not be_valid
     end
 
+    it 'is not valid with a price less than 0' do
+      item.price = -50
+      expect(item).not_to be_valid
+
+      item.price = 0
+      expect(item).not_to be_valid
+    end
+
     it 'has many orders' do
       order1 = create :order
       order2 = create :order
@@ -60,6 +68,17 @@ RSpec.describe Item, :type => :model do
 
       assert order1.items.include?(item)
       assert order2.items.include?(item)
+    end
+  end
+
+  describe "scarcity" do
+    it "starts out as endangered" do
+      expect(item.scarcity).to eq("endangered")
+    end
+
+    it "can become extinct" do
+      Item.extinction(item)
+      expect(item.scarcity).to eq("extinct")
     end
   end
 end
