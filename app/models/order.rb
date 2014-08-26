@@ -19,7 +19,7 @@ class Order < ActiveRecord::Base
     end
 
     event :paid do
-      transitions :from => :ordered, :to => :paid
+      transitions :from => :ordered, :to => :paid, before_enter: :erase_current_order
     end
 
     event :completed do
@@ -58,8 +58,7 @@ class Order < ActiveRecord::Base
     end
   end
 
-
-  def has_items?
-    self.items.length > 0
+  def erase_current_order
+    current_order = nil
   end
 end
