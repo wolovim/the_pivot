@@ -29,7 +29,6 @@ class OrdersController < ApplicationController
   end
 
   def create
-    # order_params needs to be filled out
     @order = Order.new(order_params)
 
     if @order.save
@@ -40,8 +39,9 @@ class OrdersController < ApplicationController
   end
 
   def update
+    @order = Order.find(params[:id])
     if @order.save
-      redirect_to @order
+      redirect_to confirm_path
     else
       render :edit
     end
@@ -59,5 +59,13 @@ class OrdersController < ApplicationController
   def find_orders
     @order = Order.find(params[:id])
   end
+
+  def checkout
+    @address = Address.new
+  end
+
+  def confirm
+  end
+
 
 end

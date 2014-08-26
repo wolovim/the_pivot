@@ -7,8 +7,6 @@ class Item < ActiveRecord::Base
   validates_attachment_content_type :image, :content_type => ['image/jpeg', 'image/png','image/gif']
   validates_attachment_size :image, :less_than => 1.megabytes
 
-  before_create :set_default_max_quantity
-
   validates :price, presence: true
 
   has_many :categorizations
@@ -28,14 +26,6 @@ class Item < ActiveRecord::Base
 
   def remove_category(category)
     self.categories.delete(category)
-  end
-
-  def set_default_max_quantity
-    max_quantity = 500
-  end
-
-  def set_default_scarcity
-    scarcity = 'endangered'
   end
 
   def self.extinction(item)

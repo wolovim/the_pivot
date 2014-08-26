@@ -11,6 +11,8 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :addresses, only: [:create]
+
   namespace :admin do
     resources :items do
       member do
@@ -32,6 +34,7 @@ Rails.application.routes.draw do
     get 'cancelled', to: 'orders#cancelled', as: 'cancelled_orders'
     get 'paid', to: 'orders#paid', as: 'paid_orders'
     get 'basket', to: 'orders#basket', as: 'basket_orders'
+
   end
 
   root 'pages#home'
@@ -40,6 +43,8 @@ Rails.application.routes.draw do
   match '/signup',           to: 'users#new',         via: 'get'
   match '/login',            to: 'sessions#new',      via: 'get'
   match '/logout',           to: 'sessions#destroy',  via: 'delete'
+  get '/checkout',           to: 'orders#checkout'
+  get '/confirm',            to: 'orders#confirm'
   match '/admin_dashboard',  to: 'admin#dashboard',   via: 'get'
 
   match '/admin_dashboard',  to: 'admin#dashboard',  via: 'get'

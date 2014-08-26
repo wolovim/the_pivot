@@ -4,7 +4,9 @@ class Order < ActiveRecord::Base
   belongs_to :user
   has_many :order_items
   has_many :items, through: :order_items
-  validates :delivery, presence: true
+  validates_associated :items
+  has_many :addresses
+  validates :delivery, inclusion: { in: [true, false] }
 
   aasm do
     state :basket, :initial => true
@@ -14,7 +16,7 @@ class Order < ActiveRecord::Base
     state :cancelled
 
     event :ordered do
-      transitions :from => :basket, :to => :ordered
+      transitions :from => :basket, :to => :ordered, :guard => :has_items?
     end
 
     event :paid do
@@ -55,5 +57,11 @@ class Order < ActiveRecord::Base
     order_items.reduce(0) do |sum, order_item|
       sum += order_item.quantity * order_item.item.price
     end
+  end
+
+  private
+
+  def has_items?
+    self.items > 0
   end
 end

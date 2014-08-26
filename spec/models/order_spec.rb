@@ -28,6 +28,11 @@ RSpec.describe Order, :type => :model do
     expect(order).to_not be_valid
   end
 
+  it 'is valid with delivery designated as false' do
+    order.delivery = false
+    expect(order).to be_valid
+  end
+
   it 'has address if delivery is true' do
     # address = Address.find_by_order_id(order.id)
     expect(order.delivery).to eq(true)
