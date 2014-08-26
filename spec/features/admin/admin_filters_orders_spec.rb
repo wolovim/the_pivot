@@ -10,7 +10,7 @@ describe "an admin filters orders by state" do
     visit admin_orders_path
   end
 
-  it "sees all orders" do
+  xit "sees all orders" do
     within ".orders-container" do
       Order.all.each do |order|
         expect(page).to have_content("Order #{order.id}")
@@ -18,7 +18,7 @@ describe "an admin filters orders by state" do
     end
   end
 
-  it "filters by basket" do
+  xit "filters by basket" do
     within ".order-filters" do
       click_on("basket")
     end
@@ -32,7 +32,7 @@ describe "an admin filters orders by state" do
     end
   end
 
-  it "filters by ordered" do
+  xit "filters by ordered" do
     within ".order-filters" do
       click_on("ordered")
     end
@@ -46,7 +46,7 @@ describe "an admin filters orders by state" do
     end
   end
 
-  it "filters by paid" do
+  xit "filters by paid" do
     within ".order-filters" do
       click_on("paid")
     end
@@ -60,7 +60,7 @@ describe "an admin filters orders by state" do
     end
   end
 
-  it "filters by complete" do
+  xit "filters by complete" do
     within ".order-filters" do
       click_on("complete")
     end
@@ -74,7 +74,7 @@ describe "an admin filters orders by state" do
     end
   end
 
-  it "filters by cancelled" do
+  xit "filters by cancelled" do
     within ".order-filters" do
       click_on("cancelled")
     end
