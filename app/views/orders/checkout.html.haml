@@ -11,9 +11,9 @@
     .panel.panel-default
       .panel-heading
         %h4.panel-title
-          %a{"data-parent" => "#accordion", "data-toggle" => "collapse", :href => "#collapse"}
+          %a{"data-parent" => "#accordion", "data-toggle" => "collapse", :href => "#collapse_address"}
             Submit a New Address
-      .panel-collapse.collapse{:id => "collapse"}
+      .panel-collapse.collapse{:id => "collapse_address"}
         .panel-body
           = form_for @address do |f|
             .form-group
@@ -30,3 +30,21 @@
               = f.hidden_field :order_id, value: order.id
               %br/
               = f.submit "Save Address", class: "btn btn-large btn-block btn-primary", href: "addresses_path", method: 'POST'
+
+  #accordion.panel-group
+    .panel.panel-default
+      .panel-heading
+        %h4.panel-title
+          %a{"data-parent" => "#accordion", "data-toggle" => "collapse", :href => "#collapse_payment"}
+            Submit Payment Information
+      .panel-collapse.collapse{:id => "collapse_payment"}
+        .panel-body
+          = form_for order do |f|
+            .form-group
+              = f.text_field :ccn, class: "form-control", placeholder: "Credit Card Number"
+              %br/
+              = f.text_field :expdate, class: "form-control", placeholder: "Expiration Date"
+              %br/
+              = f.text_field :card_name, class: "form-control", placeholder: "Name on Card"
+              %br/
+              = f.submit "Enter Payment Info", class: "btn btn-large btn-block btn-primary", href: "order_path", method: 'PATCH'
