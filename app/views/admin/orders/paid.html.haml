@@ -1,19 +1,38 @@
-%h1.order-display Orders
-%h5= "Total orders: #{@orders.size}"
-%h5= "Orders by status:"
-.order-filters
-  %a{href: admin_basket_orders_path} basket #{Order.basket.length}
-  %a{href: admin_ordered_orders_path} ordered #{Order.ordered.length}
-  %a{href: admin_paid_orders_path} paid #{Order.paid.length}
-  %a{href: admin_completed_orders_path} completed #{Order.completed.length}
-  %a{href: admin_cancelled_orders_path} cancelled #{Order.cancelled.length}
-.orders-container
-  -@orders.each do |order|
-    %h4= "Order #{order.id}"
-    %ul
-      %li= order.created_at
-      %li Status: #{order.aasm_state}
-      %li= link_to "View order", admin_order_path(order)
-    .change-order-state
-      =link_to "Mark as Completed", complete_admin_order_path(order), method: "post"
-      =link_to "Cancel Order", cancel_admin_order_path(order), method: "post"
+.container
+  .order-header
+    %h3 Orders
+  .order-filters
+    = render partial: "filter_bar"
+  -@orders.reverse.each_with_index do |order, i|
+    #accordian.panel-group
+      .panel.panel-default
+        .panel-heading
+          %h4.panel-title.order-display
+            %a{"data-parent" => "#accordion", "data-toggle" => "collapse", :href => "#collapse#{i}"}
+              ="#{order.created_at.to_formatted_s(:long_ordinal)}"
+              = "|| #{order.aasm_state.capitalize}"
+      .panel-collapse.collapse{:id => "collapse#{i}"}
+        .panel-body
+          %table.table-hover.col-lg-12
+            %thead
+              %tr
+                %th Title
+                %th Description
+                %th Price
+                %th Quantity
+                %th Subtotal
+            %tbody
+            -order.order_items.each do |order_item|
+              %tr
+                %td= link_to order_item.item.title, item_path(order_item.item)
+                %td= link_to order_item.item.description, item_path(order_item.item)
+                %td= link_to "$#{order_item.item.price}.00", item_path(order_item.item)
+                %td= link_to order_item.quantity, item_path(order_item.item)
+                %td= link_to "$#{(order_item.quantity * order_item.item.price)}.00"
+          %h4.pull-right
+            = link_to "View Order", admin_order_path(order), :role => "button", :class => "btn btn-primary"
+            ="Total: $#{order.total}.00"
+          %h4.pull-left
+            =link_to "Mark as completed", complete_admin_order_path(order), method: "post", :role => "button", :class => "btn btn-success"
+            =link_to "Cancel Order", cancel_admin_order_path(order), method: "post", :role => "button", :class => "btn btn-danger"
+

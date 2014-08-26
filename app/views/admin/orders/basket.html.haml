@@ -1,16 +1,6 @@
-%h1.order-display Orders
-%h5= "Total orders: #{@orders.size}"
-%h5= "Orders by status:"
+.order-header
+  %h3 Orders
 .order-filters
-  %a{href: admin_basket_orders_path} basket #{Order.basket.length}
-  %a{href: admin_ordered_orders_path} ordered #{Order.ordered.length}
-  %a{href: admin_paid_orders_path} paid #{Order.paid.length}
-  %a{href: admin_completed_orders_path} completed #{Order.completed.length}
-  %a{href: admin_cancelled_orders_path} cancelled #{Order.cancelled.length}
-.orders-container
-  -@orders.each do |order|
-    %h4= "Order #{order.id}"
-    %ul
-      %li= order.created_at
-      %li Status: #{order.aasm_state}
-      %li= link_to "View order", admin_order_path(order)
+  = render partial: "filter_bar"
+.container
+  = render partial: "order_list"
