@@ -42,7 +42,7 @@ RSpec.describe ItemsController, :type => :controller do
 
     describe "with invalid params" do
       it "re-renders the 'new' template" do
-        Item.any_instance.stub(:save).and_return(false)
+        allow_any_instance_of(Item).to receive(:save).and_return(false)
         post :create, {:item => {title: 'invalid'}}
         expect(response).to render_template("new")
       end
