@@ -31,3 +31,5 @@
             %td= order_item.item.price
             %td= order_item.quantity
             %td= "$#{(order_item.quantity * order_item.item.price)}.00"
+    %h4.pull-right
+      ="Total: $#{order.total}.00"

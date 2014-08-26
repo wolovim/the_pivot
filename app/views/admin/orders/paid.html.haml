@@ -33,6 +33,6 @@
             = link_to "View Order", admin_order_path(order), :role => "button", :class => "btn btn-primary"
             ="Total: $#{order.total}.00"
           %h4.pull-left
-            =link_to "Mark as completed", complete_admin_order_path(order), method: "post", :role => "button", :class => "btn btn-success"
+            =link_to "Mark as Completed", complete_admin_order_path(order), method: "post", :role => "button", :class => "btn btn-success"
             =link_to "Cancel Order", cancel_admin_order_path(order), method: "post", :role => "button", :class => "btn btn-danger"
 

@@ -39,6 +39,6 @@ class Admin::OrdersController < AdminController
 
   def cancel
     Order.find(params[:id]).cancelled!
-    redirect_to admin_orders_path
+    redirect_to admin_cancelled_orders_path
   end
 end
