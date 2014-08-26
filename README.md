@@ -60,11 +60,11 @@ COMPLETED
 
 ###ALLOWED TO:
 
-*~~Create item listings including a name, description, price, and upload a photo~~
-*~~Modify existing items’ name, description, price, and photo~~
-*~~Create named categories for items (eg: "Small Plates")~~
-*~~ Assign items to categories or remove them from categories. Products can belong to more than one category.~~
-*~~Retire an item from being sold, which hides it from browsing by any non-administrator~~
+* ~~Create item listings including a name, description, price, and upload a photo~~
+* ~~Modify existing items’ name, description, price, and photo~~
+* ~~Create named categories for items (eg: "Small Plates")~~
+* ~~ Assign items to categories or remove them from categories. Products can belong to more than one category.~~
+* ~~Retire an item from being sold, which hides it from browsing by any non-administrator~~
 
 ###As an Admin, I can also view an order "dashboard" where I can:
 
