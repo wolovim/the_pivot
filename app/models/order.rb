@@ -5,7 +5,7 @@ class Order < ActiveRecord::Base
   has_many :order_items
   has_many :items, through: :order_items
   has_many :addresses
-  validates :delivery, presence: true
+  validates :delivery, inclusion: { in: [true, false] }
 
   aasm do
     state :basket, :initial => true
