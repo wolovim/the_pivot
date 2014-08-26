@@ -37,14 +37,14 @@ Rails.application.routes.draw do
 
   end
 
-  root 'pages#home'
-
+  root  'pages#home'
   get   'menu',              to: 'items#index'
+  match '/about_us',         to: 'pages#about_us',    via: 'get'
   match '/signup',           to: 'users#new',         via: 'get'
   match '/login',            to: 'sessions#new',      via: 'get'
   match '/logout',           to: 'sessions#destroy',  via: 'delete'
-  get '/checkout',           to: 'orders#checkout'
-  get '/confirm',            to: 'orders#confirm'
+  get   '/checkout',           to: 'orders#checkout'
+  get   '/confirm',            to: 'orders#confirm'
   match '/admin_dashboard',  to: 'admin#dashboard',   via: 'get'
 
   match '/admin_dashboard',  to: 'admin#dashboard',  via: 'get'
