@@ -16,7 +16,7 @@ class Order < ActiveRecord::Base
     state :cancelled
 
     event :ordered do
-      transitions :from => :basket, :to => :ordered
+      transitions :from => :basket, :to => :ordered, :guard => :has_items?
     end
 
     event :paid do
@@ -57,5 +57,11 @@ class Order < ActiveRecord::Base
     order_items.reduce(0) do |sum, order_item|
       sum += order_item.quantity * order_item.item.price
     end
+  end
+
+  private
+
+  def has_items?
+    self.items > 0
   end
 end
