@@ -1,3 +1,11 @@
+%h3 You're checking out!
+-order.addresses.each do |address|
+  =address.street_1
+  =address.street_2
+  =address.city
+  =address.state
+  =address.zip
+  %br
 .container
   #accordion.panel-group
     .panel.panel-default
