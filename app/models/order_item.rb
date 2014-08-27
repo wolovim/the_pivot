@@ -4,10 +4,6 @@ class OrderItem < ActiveRecord::Base
   validates :order_id, :item_id, presence: true
   before_create :set_default_quantity
 
-  def set_default_quantity
-    quantity = 1
-  end
-
   def quantity_update(params)
     if params.to_i >= 0
       quantity_limit(params)
@@ -22,5 +18,11 @@ class OrderItem < ActiveRecord::Base
     else
       nil
     end
+  end
+
+  private
+
+  def set_default_quantity
+    quantity = 1
   end
 end
