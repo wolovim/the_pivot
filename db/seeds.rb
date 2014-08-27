@@ -156,16 +156,16 @@ OrderItem.create!([
   {order_id: 35, item_id: 12, quantity: 1}
 ])
 User.create!([
-  {first_name: "Rachel", last_name: "Warbelow", email: "demo+rachel@jumpstartlab.com", username: nil, password_digest: "$2a$10$GPNgoosGRZbohOHMaBt3xePtkpFlu6B3Zj8CDXDJ9i/Jzh3gsG1zC", remember_token: "8ce8ec74b76c17833ff4901ea32c4c90324474f6", role: "user"},
-  {first_name: "Jorge", last_name: "Tellez", email: "demo+jorge@jumpstartlab.com", username: "novohispano", password_digest: "$2a$10$RC5799VPSbgtPZvJVm.Nz.fyofrHAW5IYqlbmPZseh1iLuDLWPdN2", remember_token: "bb09a4bb90cbc32d81e319cb14d15cdd49ba7bff", role: "user"},
-  {first_name: "Jon", last_name: "Snow", email: "jsnow@whitewall.gov", username: "theblack69", password_digest: "$2a$10$9gcAFyEo6hymw0k.l8653eMghh65G/8YOw8CPE6Usg6T1eKfmrM4W", remember_token: "28bc42990b503914c5d1aa859969eaa5b75a5f5e", role: "admin"},
-  {first_name: "Josh", last_name: "Cheek", email: "demo+josh@jumpstartlab.com", username: "josh", password_digest: "$2a$10$XXYd/OxqYGlklA8TjeDHMup3s7L6PeNYQ6Ap7Lg8c0XpiWC0cQBoy", remember_token: "f6304acc4b3135450d7101ca1f5feca3bd4a8056", role: "admin"},
-  {first_name: "jeff", last_name: "", email: "demo+jeff@jumpstartlab.com", username: nil, password_digest: "$2a$10$ZV3zrWeSnakTEv9KlyFh7eaocuavCf/pKROYPxdANo5T9IMxr5kjC", remember_token: "818638e85f5c1ed1d0825fb5538ee52a95143914", role: nil},
-  {first_name: "a", last_name: "b", email: "a@b.com", username: nil, password_digest: "$2a$10$OugDLoowJlvoBHdWc0PKEebR./dHumLaptSsVvixQpJn2NQ5.8rYK", remember_token: "8831530c3886859e57198dd9130be150ed7b5db7", role: nil},
-  {first_name: "c", last_name: "d", email: "c@d.com", username: nil, password_digest: "$2a$10$zAWcE3k16DSfGgRff1Rnlu6am/LztfmyhXXft9.rZM4cdT5aML6uG", remember_token: "aad22d3728cd2d820822a39571549a9c7974545a", role: nil},
-  {first_name: "e", last_name: "f", email: "e@f.com", username: nil, password_digest: "$2a$10$eOnmqA/yZ0i1xHhCvtTOruA9.oA2x2/6kL79NQYhRW2nykFOmM2.m", remember_token: "f546a510412d146feedd68eaefe4c4b5f4d0acee", role: nil},
-  {first_name: "a", last_name: "a", email: "abc@123.com", username: nil, password_digest: "$2a$10$6exVJSAP2JlNXSlpYsItWeRt8aGONXai9fKwE52OteeH1M1EOAww6", remember_token: "85d4dc9e90b24a71e4db6e5d1ec1db11837203a7", role: nil},
-  {first_name: "name", last_name: "nammmmme", email: "abcd@123.com", username: nil, password_digest: "$2a$10$LZZCNLdMcfH/oPU6uPo4tu8NebIoOOrINBhimhFd2f3Z6UaKOy0im", remember_token: "5aca60fb7b8afa64b87562410d1ec7043c7cc458", role: nil},
-  {first_name: "name", last_name: "name", email: "abcde@123.com", username: nil, password_digest: "$2a$10$XPoav2keJrI9r7y2NTDdG.mlgcIpmuH7fjV29ZzN3FaLdyybr2l1K", remember_token: "67a0566062e1fb1a9e7f10a6014fd8a3b4b5f125", role: nil},
-  {first_name: "Bald", last_name: "Eagle", email: "bald@eagle.com", username: nil, password_digest: "$2a$10$SwnVrCtgy1nn1RaXQzKDBew7pxWoB1xlNjlpypdjETXiUnSMyaR.2", remember_token: "bd67f414f90c5069b48e15e7329ffff24f465373", role: nil}
+  {first_name: "Rachel", last_name: "Warbelow", email: "demo+rachel@jumpstartlab.com", username: nil, password: "password", role: "user"},
+  {first_name: "Jorge", last_name: "Tellez", email: "demo+jorge@jumpstartlab.com", username: "novohispano", password: "password", role: "user"},
+  {first_name: "Jon", last_name: "Snow", email: "jsnow@whitewall.gov", username: "theblack69", password: "password", role: "admin"},
+  {first_name: "Josh", last_name: "Cheek", email: "demo+josh@jumpstartlab.com", username: "josh", password: "password", role: "admin"},
+  {first_name: "jeff", last_name: "", email: "demo+jeff@jumpstartlab.com", username: nil, password: "password", role: nil},
+  {first_name: "a", last_name: "b", email: "a@b.com", username: nil, password: "password", role: nil},
+  {first_name: "c", last_name: "d", email: "c@d.com", username: nil, password: "password", role: nil},
+  {first_name: "e", last_name: "f", email: "e@f.com", username: nil, password: "password", role: nil},
+  {first_name: "a", last_name: "a", email: "abc@123.com", username: nil, password: "password", role: nil},
+  {first_name: "name", last_name: "nammmmme", email: "abcd@123.com", username: nil, password: "password", role: nil},
+  {first_name: "name", last_name: "name", email: "abcde@123.com", username: nil, password: "password", role: nil},
+  {first_name: "Bald", last_name: "Eagle", email: "bald@eagle.com", username: nil, password: "password", role: nil}
 ])
