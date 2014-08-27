@@ -107,7 +107,7 @@ For each item on the order:
 *  User
 
 *  ~~A user must have a plausibly valid email address that is unique across all users~~
-*  A user must have a full name that is not blank
+*  ~~A user must have a full name that is not blank~~
 *  ~~A user may optionally provide a display name that must be no less than 2 characters long and no more than 32~~
 
 ###Order
