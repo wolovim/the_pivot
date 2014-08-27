@@ -1,77 +1,221 @@
-user_list = [
-  ["Rachel", "Warbelow", "demo+rachel@jumpstartlab.com"],
-  ["Jeff", "", "demo+jeff@jumpstartlab.com"],
-  ["Jorge", "Tellez", "demo+jorge@jumpstartlab.com"],
-  ["Josh", "Cheek", "demo+josh@jumpstartlab.com"]
-]
-
-user_list.each do |first_name, last_name, email|
-  User.create(first_name: first_name, last_name: last_name, email: email)
-end
-
-item_list = [
-  [ "Butterfly", "Delicious food item", 1],
-  [ "Chub", "Delicious food item", 2 ],
-  [ "Whooping Crane", "Delicious food item", 3 ],
-  [ "Ferret", "Delicious food item", 4 ],
-  [ "Flycatcher", "Delicious food item", 5 ],
-  [ "Canada Lynx", "Delicious food item", 6 ],
-  [ "Jumping Mouse", "Delicious food item", 7 ],
-  [ "Mexican Spotted Owl", "Delicious food item", 20 ],
-  [ "Pikeminnow", "Delicious food item", 15 ],
-  [ "Plover", "Delicious food item", 15 ],
-  [ "Lesser Prarie Chicken", "Delicious food item", 15 ],
-  [ "Pawnee Skipper", "Delicious food item", 20 ],
-  [ "Sucker", "Delicious food item", 13 ],
-  [ "Tern", "Delicious food item", 13 ],
-  [ "Golden-winged Warbler", "Delicious food item", 13 ],
-  [ "Monomorium talbotae", "Delicious food item", 13 ],
-  [ "Olive-sided Flycatcher", "Delicious food item", 17 ],
-  [ "Rocky Mountain Capshell", "Delicious food item", 17 ],
-  [ "Rusty Blackbird", "Delicious food item", 17 ],
-  [ "Uncompahgre Fritillary Butterfly", "Delicious food item", 17 ]
-]
-
-item_list.each do |title, description, price|
-  Item.create( title:       title,
-               description: description,
-               price:       price)
-end
-
-category_list = [
-  "Snails",
-  "Breakfast",
-  "Bugs",
-  "Birds",
-  "Cute",
-  "Family Style",
-  "Local",
-  "Animal Style",
-  "Gluten Free"
-]
-
-category_list.each do |name|
-  Category.create( name: name )
-end
-
-items = Item.all
-categories = Category.all
-
-items.each do |item|
-  item.categories << categories.sample
-  item.categories << categories.sample
-end
-
-
-# Items
-# At least 20 items of varying prices
-# Some of the items should be attached to multiple categories
-# Categories
-# At least 5 categories with a varying number of member items
-# Orders
-# At least 10 sample orders, with at least two at each stage of fulfillment (ordered, completed, cancelled)
-# Users
-# Normal user with full name "Rachel Warbelow", email address "demo+rachel@jumpstartlab.com", password of "password" and no display name
-# Normal user with full name "Jeff", email address "demo+jeff@jumpstartlab.com", password of "password" and display name "j3"
-# Normal user with full name "Jorge Tellez", email address "demo+jorge@jumpstartlab.com", password of "password" and display name "novohispano"
-# User with admin priviliges with full name "Josh Cheek", email address "demo+josh@jumpstartlab.com", password of "password", and display name "josh"
+Address.create!([
+  {order_id: 3, street_1: "1510 Blake St", street_2: "", city: "Denver", state: "CO", zip: "80202"},
+  {order_id: 5, street_1: "asdf", street_2: "asdf", city: "sdf", state: "sadf", zip: "fds"},
+  {order_id: 3, street_1: "1510 Blake St", street_2: "", city: "Denver", state: "CO", zip: "80202"},
+  {order_id: 5, street_1: "asdf", street_2: "asdf", city: "sdf", state: "sadf", zip: "fds"}
+])
+Categorization.create!([
+  {item_id: 3, category_id: 1},
+  {item_id: 3, category_id: 9},
+  {item_id: 1, category_id: 1},
+  {item_id: 1, category_id: 7},
+  {item_id: 2, category_id: 2},
+  {item_id: 2, category_id: 6},
+  {item_id: 4, category_id: 3},
+  {item_id: 5, category_id: 4},
+  {item_id: 6, category_id: 2},
+  {item_id: 6, category_id: 7},
+  {item_id: 7, category_id: 7},
+  {item_id: 7, category_id: 3},
+  {item_id: 8, category_id: 4},
+  {item_id: 9, category_id: 1},
+  {item_id: 9, category_id: 7},
+  {item_id: 10, category_id: 6},
+  {item_id: 10, category_id: 3},
+  {item_id: 11, category_id: 4},
+  {item_id: 11, category_id: 8},
+  {item_id: 12, category_id: 8},
+  {item_id: 12, category_id: 2},
+  {item_id: 13, category_id: 1},
+  {item_id: 13, category_id: 9},
+  {item_id: 14, category_id: 6},
+  {item_id: 14, category_id: 3},
+  {item_id: 15, category_id: 1},
+  {item_id: 15, category_id: 8},
+  {item_id: 16, category_id: 8},
+  {item_id: 16, category_id: 6},
+  {item_id: 16, category_id: 3},
+  {item_id: 17, category_id: 3},
+  {item_id: 17, category_id: 8},
+  {item_id: 17, category_id: 6},
+  {item_id: 18, category_id: 5},
+  {item_id: 18, category_id: 4},
+  {item_id: 19, category_id: 6},
+  {item_id: 19, category_id: 8},
+  {item_id: 19, category_id: 1},
+  {item_id: 20, category_id: 6},
+  {item_id: 20, category_id: 3},
+  {item_id: 21, category_id: 5},
+  {item_id: 21, category_id: 8},
+  {item_id: 21, category_id: 3},
+  {item_id: 22, category_id: 6},
+  {item_id: 22, category_id: 8},
+  {item_id: 22, category_id: 3},
+  {item_id: 23, category_id: 5},
+  {item_id: 23, category_id: 8},
+  {item_id: 23, category_id: 1},
+  {item_id: 3, category_id: 1},
+  {item_id: 3, category_id: 9},
+  {item_id: 1, category_id: 1},
+  {item_id: 1, category_id: 7},
+  {item_id: 2, category_id: 2},
+  {item_id: 2, category_id: 6},
+  {item_id: 4, category_id: 3},
+  {item_id: 5, category_id: 4},
+  {item_id: 6, category_id: 2},
+  {item_id: 6, category_id: 7},
+  {item_id: 7, category_id: 7},
+  {item_id: 7, category_id: 3},
+  {item_id: 8, category_id: 4},
+  {item_id: 9, category_id: 1},
+  {item_id: 9, category_id: 7},
+  {item_id: 10, category_id: 6},
+  {item_id: 10, category_id: 3},
+  {item_id: 11, category_id: 4},
+  {item_id: 11, category_id: 8},
+  {item_id: 12, category_id: 8},
+  {item_id: 12, category_id: 2},
+  {item_id: 13, category_id: 1},
+  {item_id: 13, category_id: 9},
+  {item_id: 14, category_id: 6},
+  {item_id: 14, category_id: 3},
+  {item_id: 15, category_id: 1},
+  {item_id: 15, category_id: 8},
+  {item_id: 16, category_id: 8},
+  {item_id: 16, category_id: 6},
+  {item_id: 16, category_id: 3},
+  {item_id: 17, category_id: 3},
+  {item_id: 17, category_id: 8},
+  {item_id: 17, category_id: 6},
+  {item_id: 18, category_id: 5},
+  {item_id: 18, category_id: 4},
+  {item_id: 19, category_id: 6},
+  {item_id: 19, category_id: 8},
+  {item_id: 19, category_id: 1},
+  {item_id: 20, category_id: 6},
+  {item_id: 20, category_id: 3},
+  {item_id: 21, category_id: 5},
+  {item_id: 21, category_id: 8},
+  {item_id: 21, category_id: 3},
+  {item_id: 22, category_id: 6},
+  {item_id: 22, category_id: 8},
+  {item_id: 22, category_id: 3},
+  {item_id: 23, category_id: 5},
+  {item_id: 23, category_id: 8},
+  {item_id: 23, category_id: 1}
+])
+Category.create!([
+  {name: "Appetizers"},
+  {name: "Lunch"},
+  {name: "Dinner"},
+  {name: "Dessert"},
+  {name: "Bugs"},
+  {name: "Birds"},
+  {name: "Cute"},
+  {name: "Local"},
+  {name: "Gluten Free"}
+])
+Item.create!([
+  {title: "Koala Kebabs", description: "Marinated in Austrailian Aoili, with Bokchoy, Red Pepper, & Pineapple.", price: 27, max_quantity: 500, scarcity: "endangered", image_file_name: nil, image_content_type: nil, image_file_size: nil, image_updated_at: nil},
+  {title: "Garlic Herb Bald Eagle", description: "Served on a bed of Arugula & Roasted Vegetables", price: 1776, max_quantity: 500, scarcity: "endangered", image_file_name: nil, image_content_type: nil, image_file_size: nil, image_updated_at: nil},
+  {title: "Octokitty & Chips", description: "Freshwater Octokitty, served with Tartar sauce", price: 1337, max_quantity: 500, scarcity: "endangered", image_file_name: nil, image_content_type: nil, image_file_size: nil, image_updated_at: nil},
+  {title: "Blue Whale Steak", description: "Served blue unless specified, served with Garlic Fries", price: 12, max_quantity: 500, scarcity: "endangered", image_file_name: nil, image_content_type: nil, image_file_size: nil, image_updated_at: nil},
+  {title: "Wooly Mammoth Burger", description: "Med-Rare Burger with Swiss, Carmelized Onions, and Bacon on a Brioche Bun", price: 20, max_quantity: 500, scarcity: "endangered", image_file_name: nil, image_content_type: nil, image_file_size: nil, image_updated_at: nil},
+  {title: "Seal Veal Picatta", description: "Capers, Arugula, Parsley, & a Red-Wine Reduction",  price: 14, max_quantity: 500, scarcity: "endangered", image_file_name: nil, image_content_type: nil, image_file_size: nil, image_updated_at: nil},
+  {title: "Giant Panda Skillet", description: "Stir-Fried with Bok Choy, Peppers, Peas and Carrots over Jasmine Rice", price: 80, max_quantity: 500, scarcity: "endangered", image_file_name: nil, image_content_type: nil, image_file_size: nil, image_updated_at: nil},
+  {title: "Capybara Stew", description: "Slow cooked with Potatoes, Parsnips, & Beets. Comes with a side of fresh-baked French Baguette", price: 33, max_quantity: 500, scarcity: "endangered", image_file_name: nil, image_content_type: nil, image_file_size: nil, image_updated_at: nil},
+  {title: "Sloth Ribs", description: "Slow-cooked and oh so tender, with Ghost Pepper Fries and a Garlic Aoili", price: 32, max_quantity: 500, scarcity: "endangered", image_file_name: nil, image_content_type: nil, image_file_size: nil, image_updated_at: nil},
+  {title: "Whooping Crane Sandwich", description: "Grilled & Seasoned Crane with Provolone, Arugula, & Red Pepper Hummus", price: 3, max_quantity: 500, scarcity: "endangered", image_file_name: nil, image_content_type: nil, image_file_size: nil, image_updated_at: nil},
+  {title: "Braised Canada Lynx Steak", description: "Served with Chanterelles, Parsley & Chèvre ", price: 6, max_quantity: 500, scarcity: "endangered", image_file_name: nil, image_content_type: nil, image_file_size: nil, image_updated_at: nil},
+  {title: "Humpback Chub Sandwich", description: "Salsa Verde & Potato Salad on a Sourdough Bun", price: 24, max_quantity: 500, scarcity: "endangered", image_file_name: nil, image_content_type: nil, image_file_size: nil, image_updated_at: nil},
+  {title: "Marinated Preble's Meadow Jumping Mouse", description: "Served on a bed of Greens, Lemon & Olive oil", price: 7, max_quantity: 500, scarcity: "endangered", image_file_name: nil, image_content_type: nil, image_file_size: nil, image_updated_at: nil},
+  {title: "Mexican Spotted Owl Tacos", description: "Street-Style Tacos served with fresh Pico de Gallo & Cabbage Slaw", price: 20, max_quantity: 500, scarcity: "endangered", image_file_name: nil, image_content_type: nil, image_file_size: nil, image_updated_at: nil},
+  {title: "Grilled Colorado Pikeminnow Salad", description: "Summer Corn Succotash, Cherry Tomatoes & Basil Pistou on a bed of Spinach", price: 15, max_quantity: 500, scarcity: "endangered", image_file_name: nil, image_content_type: nil, image_file_size: nil, image_updated_at: nil},
+  {title: "Mountain Plover & Beet Salad", description: "Plover & Beets served with Arugula, Garlic, & Pinenuts", price: 15, max_quantity: 500, scarcity: "endangered", image_file_name: nil, image_content_type: nil, image_file_size: nil, image_updated_at: nil},
+  {title: "Fried Lesser Prarie Chicken Salad", description: "Summer Salad with Strawberries, Almonds, & Feta Cheese", price: 15, max_quantity: 500, scarcity: "endangered", image_file_name: nil, image_content_type: nil, image_file_size: nil, image_updated_at: nil},
+  {title: "Pawnee Skipper Filet", description: "Served with Jumbo Lump Crab, Asparagus, Baby Fingerlings, Gribiche", price: 20, max_quantity: 500, scarcity: "endangered", image_file_name: nil, image_content_type: nil, image_file_size: nil, image_updated_at: nil},
+  {title: "Golden-winged Warbler Breast", description: "Green Chile Grit Cake, Lacinato Kale, Piquillo Coulis & Green Curry Sauce", price: 13, max_quantity: 500, scarcity: "endangered", image_file_name: nil, image_content_type: nil, image_file_size: nil, image_updated_at: nil},
+  {title: "Olive-sided Flycatcher Quinoa Bowl", description: "Protien-packed Bowl with Spinach, Tomato, & Pesto", price: 17, max_quantity: 500, scarcity: "endangered", image_file_name: nil, image_content_type: nil, image_file_size: nil, image_updated_at: nil},
+  {title: "Rocky Mountain Capshells", description: "Served with Plantain Hash, Green Beans, Edamame, Fried Capers, Pickled Red Onions & Lemon Habanero Tartar Sauce ", price: 17, max_quantity: 500, scarcity: "endangered", image_file_name: nil, image_content_type: nil, image_file_size: nil, image_updated_at: nil},
+  {title: "Grilled Greed Rusty Blackbird Bun", description: "Steamed Sesame Bun, Scallions & Miso-Pickled Cucumbers", price: 17, max_quantity: 500, scarcity: "endangered", image_file_name: nil, image_content_type: nil, image_file_size: nil, image_updated_at: nil},
+  {title: "Uncompahgre Fritillary Butterfly", description: "Crispy Noodles, Lemongrass, Coconut Milk, Pea Shoots, & Cilantro", price: 17, max_quantity: 500, scarcity: "endangered", image_file_name: nil, image_content_type: nil, image_file_size: nil, image_updated_at: nil}
+])
+Order.create!([
+  {delivery: true, user_id: 1, aasm_state: "cancelled", ccn: nil, expdate: nil, card_name: nil},
+  {delivery: true, user_id: 2, aasm_state: "cancelled", ccn: nil, expdate: nil, card_name: nil},
+  {delivery: true, user_id: 5, aasm_state: "completed", ccn: nil, expdate: nil, card_name: nil},
+  {delivery: true, user_id: 4, aasm_state: "completed", ccn: nil, expdate: nil, card_name: nil},
+  {delivery: true, user_id: 6, aasm_state: "completed", ccn: nil, expdate: nil, card_name: nil},
+  {delivery: true, user_id: 7, aasm_state: "basket", ccn: nil, expdate: nil, card_name: nil},
+  {delivery: true, user_id: 8, aasm_state: "basket", ccn: nil, expdate: nil, card_name: nil},
+  {delivery: true, user_id: 3, aasm_state: "basket", ccn: nil, expdate: nil, card_name: nil},
+  {delivery: true, user_id: 6, aasm_state: "basket", ccn: nil, expdate: nil, card_name: nil},
+  {delivery: true, user_id: 7, aasm_state: "ordered", ccn: nil, expdate: nil, card_name: nil},
+  {delivery: true, user_id: 9, aasm_state: "ordered", ccn: nil, expdate: nil, card_name: nil},
+  {delivery: true, user_id: 10, aasm_state: "paid", ccn: nil, expdate: nil, card_name: nil},
+  {delivery: true, user_id: 11, aasm_state: "paid", ccn: nil, expdate: nil, card_name: nil},
+  {delivery: true, user_id: 12, aasm_state: "paid", ccn: nil, expdate: nil, card_name: nil},
+  {delivery: true, user_id: 3, aasm_state: "paid", ccn: nil, expdate: nil, card_name: nil},
+  {delivery: true, user_id: nil, aasm_state: "basket", ccn: nil, expdate: nil, card_name: nil},
+  {delivery: true, user_id: 3, aasm_state: "basket", ccn: nil, expdate: nil, card_name: nil},
+  {delivery: true, user_id: 1, aasm_state: "basket", ccn: nil, expdate: nil, card_name: nil},
+  {delivery: true, user_id: 2, aasm_state: "ordered", ccn: nil, expdate: nil, card_name: nil},
+  {delivery: true, user_id: 4, aasm_state: "ordered", ccn: nil, expdate: nil, card_name: nil},
+  {delivery: true, user_id: 5, aasm_state: "ordered", ccn: nil, expdate: nil, card_name: nil},
+  {delivery: true, user_id: 4, aasm_state: "ordered", ccn: nil, expdate: nil, card_name: nil}
+])
+OrderItem.create!([
+  {order_id: 2, item_id: 23, quantity: 1},
+  {order_id: 3, item_id: 21, quantity: 1},
+  {order_id: 3, item_id: 22, quantity: 1},
+  {order_id: 3, item_id: 14, quantity: 1},
+  {order_id: 4, item_id: 5, quantity: 1},
+  {order_id: 4, item_id: 23, quantity: 1},
+  {order_id: 4, item_id: 3, quantity: 1},
+  {order_id: 5, item_id: 3, quantity: 1},
+  {order_id: 5, item_id: 5, quantity: 1},
+  {order_id: 5, item_id: 7, quantity: 1},
+  {order_id: 17, item_id: 8, quantity: 1},
+  {order_id: 17, item_id: 6, quantity: 1},
+  {order_id: 18, item_id: 23, quantity: 1},
+  {order_id: 18, item_id: 13, quantity: 1},
+  {order_id: 19, item_id: 15, quantity: 1},
+  {order_id: 19, item_id: 7, quantity: 2},
+  {order_id: 12, item_id: 2, quantity: 1},
+  {order_id: 14, item_id: 13, quantity: 1},
+  {order_id: 14, item_id: 19, quantity: 1},
+  {order_id: 5, item_id: 5, quantity: 1},
+  {order_id: 5, item_id: 22, quantity: 1},
+  {order_id: 6, item_id: 18, quantity: 1},
+  {order_id: 16, item_id: 6, quantity: 1},
+  {order_id: 7, item_id: 2, quantity: 1},
+  {order_id: 11, item_id: 12, quantity: 1},
+  {order_id: 1, item_id: 12, quantity: 1},
+  {order_id: 18, item_id: 12, quantity: 1},
+  {order_id: 18, item_id: 12, quantity: 1},
+  {order_id: 1, item_id: 4, quantity: 1},
+  {order_id: 2, item_id: 8, quantity: 1},
+  {order_id: 3, item_id: 3, quantity: 2},
+  {order_id: 14, item_id: 17, quantity: 1},
+  {order_id: 4, item_id: 20, quantity: 1},
+  {order_id: 19, item_id: 12, quantity: 1},
+  {order_id: 19, item_id: 12, quantity: 1},
+  {order_id: 20, item_id: 12, quantity: 1},
+  {order_id: 16, item_id: 12, quantity: 1},
+  {order_id: 18, item_id: 12, quantity: 1},
+  {order_id: 12, item_id: 12, quantity: 1}
+])
+User.create!([
+  {first_name: "Rachel", last_name: "Warbelow", email: "demo+rachel@jumpstartlab.com", username: nil, password: "password", role: "user"},
+  {first_name: "Jorge", last_name: "Tellez", email: "demo+jorge@jumpstartlab.com", username: "novohispano", password: "password", role: "user"},
+  {first_name: "Jon", last_name: "Snow", email: "jsnow@whitewall.gov", username: "theblack69", password: "password", role: "admin"},
+  {first_name: "Josh", last_name: "Cheek", email: "demo+josh@jumpstartlab.com", username: "josh", password: "password", role: "admin"},
+  {first_name: "jeff", last_name: "", email: "demo+jeff@jumpstartlab.com", username: nil, password: "password", role: nil},
+  {first_name: "a", last_name: "b", email: "a@b.com", username: nil, password: "password", role: nil},
+  {first_name: "c", last_name: "d", email: "c@d.com", username: nil, password: "password", role: nil},
+  {first_name: "e", last_name: "f", email: "e@f.com", username: nil, password: "password", role: nil},
+  {first_name: "a", last_name: "a", email: "abc@123.com", username: nil, password: "password", role: nil},
+  {first_name: "name", last_name: "nammmmme", email: "abcd@123.com", username: nil, password: "password", role: nil},
+  {first_name: "name", last_name: "name", email: "abcde@123.com", username: nil, password: "password", role: nil},
+  {first_name: "Bald", last_name: "Eagle", email: "bald@eagle.com", username: nil, password: "password", role: nil}
+])

@@ -1,0 +1,6 @@
+%a.btn.btn-primary{:href => admin_orders_path(scope: 'all'),       role: "button"} All       (#{Order.count})
+%a.btn.btn-primary{:href => admin_orders_path(scope: 'basket'),    role: "button"} Basket    (#{Order.basket.count})
+%a.btn.btn-primary{:href => admin_orders_path(scope: 'ordered'),   role: "button"} Ordered   (#{Order.ordered.count})
+%a.btn.btn-primary{:href => admin_orders_path(scope: 'paid'),      role: "button"} Paid      (#{Order.paid.count})
+%a.btn.btn-primary{:href => admin_orders_path(scope: 'completed'), role: "button"} Completed (#{Order.completed.count})
+%a.btn.btn-primary{:href => admin_orders_path(scope: 'cancelled'), role: "button"} Cancelled (#{Order.cancelled.count})

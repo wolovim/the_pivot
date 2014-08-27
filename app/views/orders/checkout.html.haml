@@ -1,0 +1,62 @@
+.container
+
+  %h3 You're checking out!
+
+  =@address.street_1
+  =@address.street_2
+  =@address.city
+  =@address.state
+  =@address.zip
+  %br
+
+
+  = form_for @order do |f|
+    =radio_button_tag("order_type", "pickup", order: true)
+    =label_tag(:order_pickup, "Pickup")
+    =radio_button_tag("order_type", "delivery")
+    =label_tag(:order_delivery, "Delivery")
+  #delivery-address.panel-group.hidden
+    .panel.panel-default
+      .panel-heading
+        %h4.panel-title
+          Submit a New Address
+      .panel
+        .panel-body
+          = form_for @address do |f|
+            .form-group
+              = f.text_field :street_1, class: "form-control", placeholder: "Street"
+              %br/
+              = f.text_field :street_2, class: "form-control", placeholder: "Street"
+              %br/
+              = f.text_field :city, class: "form-control", placeholder: "City"
+              %br/
+              = f.text_field :state, class: "form-control", placeholder: "State"
+              %br/
+              = f.text_field :zip, class: "form-control", placeholder: "Zipcode"
+              %br/
+              = f.hidden_field :order_id, value: order.id
+              %br/
+              = f.submit "Save Address", class: "btn btn-large btn-block btn-warning", href: "address_path(@address)", method: 'PATCH'
+
+  =form_for @order do |f|
+    =radio_button_tag(:payment_type, :pay_in_store, order: true)
+    =label_tag(:pay_in_store, "Pay in Store")
+    =radio_button_tag(:payment_type, :pay_online)
+    =label_tag(:pay_online, "Pay Online")
+  #payment-info.panel-group.hidden
+    .panel.panel-default
+      .panel-heading
+        %h4.panel-title
+          Submit Payment Information
+      .panel
+        .panel-body
+          = form_for order do |f|
+            .form-group
+              = f.text_field :ccn, class: "form-control", placeholder: "Credit Card Number"
+              %br/
+              = f.text_field :expdate, class: "form-control", placeholder: "Expiration Date"
+              %br/
+              = f.text_field :card_name, class: "form-control", placeholder: "Name on Card"
+              %br/
+              = f.submit "Enter Payment Info", class: "btn btn-large btn-block btn-warning", href: "order_path", method: 'PATCH'
+  = link_to 'Continue to Confirmation Screen', confirm_path, class: 'btn btn-primary btn-block'

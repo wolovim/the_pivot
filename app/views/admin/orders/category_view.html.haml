@@ -1,0 +1,26 @@
+%H1 View Items By Category
+.btn-group
+  %button.btn.btn-default.dropdown-toggle{"data-toggle" => "dropdown", :type => "button"}
+    Action
+    %span.caret
+  %ul.dropdown-menu{:role => "menu"}
+    %li
+      %a{render :partial => 'order_by_state', :locals => { :Order.basket => @orders }} basket
+    %li
+      %a{:href => "#"} ordered
+    %li
+      %a{:href => "#"} paid
+    %li
+      %a{:href => "#"} completed
+    %li
+      %a{:href => "#"} cancelled
+
+
+= render :partial => 'meeting_info', :locals => { :info => @info }
+
+
+%li basket: #{Order.basket.length}
+%li ordered: #{Order.ordered.length}
+%li paid: #{Order.paid.length}
+%li completed: #{Order.completed.length}
+%li cancelled: #{Order.cancelled.length}

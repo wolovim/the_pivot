@@ -1,15 +1,11 @@
 class OrdersController < ApplicationController
+  include OrdersHelper
 
   def index
     @orders = Order.all
   end
 
   def show
-    current_order
-  end
-
-  def new
-    @order = Order.new
   end
 
   def edit
@@ -17,31 +13,18 @@ class OrdersController < ApplicationController
 
   def add_item
     item = Item.find(params[:item_id])
-    current_order.add_item(item)
-    redirect_to current_order
+    order.add_item(item)
+    redirect_to order
   end
 
-  def create
-    # order_params needs to be filled out
-    @order = Order.new(order_params)
-
-    if @order.save
-      redirect_to @order
-    else
-      render :new
-    end
-  end
-
-  def update
-    if @order.save
-      redirect_to @order
-    else
-      render :edit
-    end
+  def delete_item
+    item = Item.find(params[:item_id])
+    order.remove_item(item)
+    redirect_to order
   end
 
   def destroy
-    @order.destroy
+    order.destroy
     redirect_to root_path
   end
 
@@ -49,7 +32,22 @@ class OrdersController < ApplicationController
     params.require(:order).permit()
   end
 
-  def find_orders
-    @order = Order.find(params[:id])
+  def checkout
+    @address = Address.find_by(order_id: order.id) || Address.new
+  end
+
+  def confirm
+    if order.basket?
+      order.order!
+    end
+
+    @address = Address.find_by(order_id: order)
+  end
+
+  def paid
+    if order.ordered?
+      order.paid!
+    end
+    session[:order_id] = nil
   end
 end

@@ -17,6 +17,61 @@
  *= require_self
  */
 
+/*
+th {
+  text-align: center;
+}
+
+td {
+  text-align: center;
+}
+*/
+
+.title-col {
+  max-width: 160px;
+}
+
+.desc-col {
+  max-width: 360px;
+}
+
+#errors {
+  color: red;
+  list-style-type: none;
+}
+
+.order-header {
+  text-align: center;
+}
+
+.order-filters {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.order-display {
+  text-align: center;
+}
+
+.order-info-table {
+  width: 70%;
+  margin: 0 auto;
+  margin-bottom: 20px;
+}
+
+.order-info-table-div {
+  text-align: center;
+}
+
+#order-info {
+  margin-top: 80px;
+}
+
+.dash-buttons {
+  width: 50%;
+  margin-top: 20px;
+}
+
     /* Carousel base class */
     .carousel {
       margin-top: 0px;

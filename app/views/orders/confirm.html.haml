@@ -1,0 +1,46 @@
+%h1 Confirm Order
+
+%h3.panel-heading Your Order
+.panel-body
+  %table.table.table-striped
+    %tbody
+      -order.items.each do |item|
+        %tr
+          %td #{item.title}
+          %td #{item.description}
+          %td $#{item.price}
+          %td Quantity: #{order_item(item).quantity}
+
+          %td Subtotal: $#{item.price * order_item(item).quantity}
+
+  %h5.text-muted.pull-right= "Subtotal: $#{order.total}"
+  %br
+  %h5.text-muted.pull-right= "Tax: $#{order.tax}"
+  %br
+  %h3.text-muted.pull-right= "Total: $#{order.total_price}"
+
+%h3.panel-heading Your Delivery Information
+.panel-body
+  %p Delivered? #{order.delivery}
+  -if !@address.nil?
+    %table.table.table-striped
+      %tbody
+        %tr
+          %td #{@address.street_1}
+          %td #{@address.street_2}
+          %td #{@address.city}
+          %td #{@address.state}
+          %td #{@address.zip}
+
+%h3.panel-heading Your Payment Information
+.panel-body
+  %table.table.table-striped
+    %tbody
+      %tr
+        %td #{order.card_name}
+        %td #{order.ccn}
+        %td #{order.expdate}
+
+
+Look good?
+=link_to "Confirm Order", paid_path

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140817192345) do
+ActiveRecord::Schema.define(version: 20140826160552) do
 
   create_table "addresses", force: true do |t|
     t.integer  "order_id"
@@ -45,16 +45,23 @@ ActiveRecord::Schema.define(version: 20140817192345) do
   create_table "items", force: true do |t|
     t.string   "title"
     t.string   "description"
-    t.float    "price"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "price"
+    t.integer  "max_quantity",       default: 500
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+    t.string   "scarcity",           default: "endangered"
   end
 
   create_table "order_items", force: true do |t|
-    t.integer  "order_id",   null: false
-    t.integer  "item_id",    null: false
+    t.integer  "order_id",               null: false
+    t.integer  "item_id",                null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "quantity",   default: 1
   end
 
   create_table "orders", force: true do |t|
@@ -62,6 +69,10 @@ ActiveRecord::Schema.define(version: 20140817192345) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
+    t.string   "aasm_state"
+    t.string   "ccn"
+    t.string   "expdate"
+    t.string   "card_name"
   end
 
   add_index "orders", ["user_id"], name: "index_orders_on_user_id"
@@ -71,12 +82,14 @@ ActiveRecord::Schema.define(version: 20140817192345) do
     t.string   "last_name"
     t.string   "email"
     t.string   "username"
-    t.integer  "order_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "password_digest"
+    t.string   "remember_token"
+    t.string   "role"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["order_id"], name: "index_users_on_order_id"
+  add_index "users", ["remember_token"], name: "index_users_on_remember_token"
 
 end

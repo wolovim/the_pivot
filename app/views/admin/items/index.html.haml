@@ -1,0 +1,31 @@
+.container
+  %table.table.table-striped
+    %thead
+      %tr
+        %th.title-col Title
+        %th.desc-col Description
+        %th Price
+        %th Categories
+        %th
+        %th
+        %th
+    %tbody
+      -@items.each do |item|
+        %tr
+          %td.title-col= item.title
+          %td.desc-col= item.description
+          %td= item.price
+          %td
+            .dropdown
+              %button#dropdownMenu1.btn.btn-default.dropdown-toggle{"data-toggle" => "dropdown", :type => "button"}
+                Categories
+                %span.caret
+              %ul.dropdown-menu{"aria-labelledby" => "dropdownMenu1", :role => "menu"}
+                -item.categories.each do |category|
+                  %li{:role => "presentation"}
+                    = link_to category.name, admin_item_path(item), role: "menuitem", tabindex: "-1"
+                    / # %a{:href => , :role => "menuitem", :tabindex => "-1"}= category.name
+          %td= link_to "View Item", admin_item_path(item)
+          %td= link_to "Edit Item", edit_admin_item_path(item)
+          %td= link_to "Delete Item", admin_item_path(item), method: :delete
+
