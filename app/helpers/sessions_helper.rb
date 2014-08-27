@@ -18,8 +18,10 @@ module SessionsHelper
   end
 
   def current_user
-    remember_token = User.digest(cookies.signed[:remember_token])
-    @current_user ||= User.find_by(remember_token: remember_token)
+    @current_user ||= begin
+      remember_token = User.digest(cookies.signed[:remember_token])
+      User.find_by(remember_token: remember_token)
+    end
   end
 
   def sign_out
