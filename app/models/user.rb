@@ -27,6 +27,10 @@ class User < ActiveRecord::Base
     Digest::SHA1.hexdigest(token.to_s)
   end
 
+  def full_name
+    "#{first_name} #{last_name}"
+  end
+
   private
 
   def create_remember_token
