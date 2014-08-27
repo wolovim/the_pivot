@@ -58,6 +58,8 @@ class Order < ActiveRecord::Base
     end
   end
 
+  private
+
   def erase_current_order
     current_order = nil
   end
