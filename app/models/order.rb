@@ -27,7 +27,7 @@ class Order < ActiveRecord::Base
     end
 
     event :cancel do
-      transitions :from => [:basket, :ordered, :paid, :completed], :to => :cancelled
+      transitions :from => [:basket, :ordered, :paid], :to => :cancelled
     end
   end
 
