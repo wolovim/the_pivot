@@ -113,15 +113,6 @@ Category.create!([
   {name: "Birds"},
   {name: "Cute"},
   {name: "Local"},
-  {name: "Gluten Free"},
-  {name: "Appetizers"},
-  {name: "Lunch"},
-  {name: "Dinner"},
-  {name: "Dessert"},
-  {name: "Bugs"},
-  {name: "Birds"},
-  {name: "Cute"},
-  {name: "Local"},
   {name: "Gluten Free"}
 ])
 Item.create!([
