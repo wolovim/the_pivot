@@ -1,4 +1,4 @@
-class Category < ActiveRecord::Base
+class Category < ActiveRecord::Base
   validates :name, presence: true
 
   has_many :categorizations
