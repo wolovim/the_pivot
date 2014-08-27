@@ -1,7 +1,8 @@
 class ItemsController < ApplicationController
   def index
     @items = Item.all
-    @categories = Category.all
+    @main_categories = Category.main_categories
+    @special_categories = Category.special_categories
     @order = current_order || create_order
   end
 
