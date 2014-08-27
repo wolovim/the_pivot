@@ -14,19 +14,19 @@ class Order < ActiveRecord::Base
     state :completed
     state :cancelled
 
-    event :ordered do
+    event :order do
       transitions :from => :basket, :to => :ordered
     end
 
-    event :paid do
+    event :pay do
       transitions :from => :ordered, :to => :paid, before_enter: :erase_current_order
     end
 
-    event :completed do
+    event :complete do
       transitions :from => :paid, :to => :completed
     end
 
-    event :cancelled do
+    event :cancel do
       transitions :from => [:basket, :ordered, :paid, :completed], :to => :cancelled
     end
   end

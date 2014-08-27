@@ -68,7 +68,7 @@ class OrdersController < ApplicationController
   def confirm
     @order = order
     if @order.basket?
-      @order.ordered!
+      @order.order!
     end
 
     @address = Address.find_by(order_id: @order)

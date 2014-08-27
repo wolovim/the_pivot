@@ -4,26 +4,16 @@ class Admin::OrdersController < AdminController
     @orders = Order.public_send filter
   end
 
-  def by_scope
-  end
-
   def show
     @order = Order.find(params[:id])
   end
 
-  def pay
-    Order.find(params[:id]).paid!
-    redirect_to admin_paid_orders_path
-  end
-
-  def complete
-    Order.find(params[:id]).completed!
-    redirect_to admin_completed_orders_path
-  end
-
-  def cancel
-    Order.find(params[:id]).cancelled!
-    redirect_to admin_cancelled_orders_path
+  def run_event
+    @order = Order.find(params[:id])
+    if @order.aasm.may_fire_event? params[:event].to_sym # <-- to_sym exposes gc hack :/
+      @order.public_send "#{params[:event]}!" # <--  dynamic method invocation *sigh* fkn metaprogramming, y'all
+    end
+    redirect_to admin_orders_path(scope: @order.aasm_state)
   end
 
   private
