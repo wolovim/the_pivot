@@ -48,8 +48,8 @@ COMPLETED
 * ~~if completed or cancelled, display a timestamp when that action took place~~
 
 ###IF ANY ITEM IS RETIRED FROM THE MENU:
-* **they can still access the item page**
-* **they cannot add it to a new cart**
+* ~~they can still access the item page~~
+* ~~they cannot add it to a new cart~~
 
 ###NOT ALLOWED TO:
 * ~~view another user’s private data (such as current order, etc.)~~
