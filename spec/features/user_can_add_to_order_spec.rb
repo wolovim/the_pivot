@@ -13,7 +13,7 @@ describe 'an order', type: :feature do
 
   it 'can add an item' do
     item = create :item, title: "John"
-    item.categories.create(name: 'africa')
+    item.categories.create(name: 'Appetizers')
 
     visit items_path
     click_button("Add to Cart")
@@ -90,8 +90,8 @@ describe 'an order', type: :feature do
   it 'totals the price of all items in order' do
     item1 = create :item, title: "John", price: 100
     item2 = create :item, title: "Jane", price: 50
-    item1.categories.create(name: 'africa')
-    item2.categories.create(name: 'africa')
+    item1.categories.create(name: 'Appetizers')
+    item2.categories.create(name: 'Appetizers')
 
     visit items_path
 

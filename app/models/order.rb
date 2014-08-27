@@ -44,10 +44,6 @@ class Order < ActiveRecord::Base
     self.items.delete(item)
   end
 
-  def access_order_item(item)
-    self.order_items.where(item_id: item.id).first
-  end
-
   def empty?
     items.empty?
   end
@@ -66,4 +62,9 @@ class Order < ActiveRecord::Base
     total + tax
   end
 
+  private
+
+  def access_order_item(item)
+    self.order_items.where(item_id: item.id).first
+  end
 end
