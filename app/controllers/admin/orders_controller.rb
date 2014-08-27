@@ -5,15 +5,15 @@ class Admin::OrdersController < AdminController
   end
 
   def show
-    @order = Order.find(params[:id])
+    @user_order = Order.find(params[:id])
   end
 
   def run_event
-    @order = Order.find(params[:id])
-    if @order.aasm.may_fire_event? params[:event].to_sym # <-- to_sym exposes gc hack :/
-      @order.public_send "#{params[:event]}!" # <--  dynamic method invocation *sigh* fkn metaprogramming, y'all
+    user_order = Order.find(params[:id])
+    if user_order.aasm.may_fire_event? params[:event].to_sym # <-- to_sym exposes gc hack :/
+      user_order.public_send "#{params[:event]}!" # <--  dynamic method invocation *sigh* fkn metaprogramming, y'all
     end
-    redirect_to admin_orders_path(scope: @order.aasm_state)
+    redirect_to admin_orders_path(scope: user_order.aasm_state)
   end
 
   private

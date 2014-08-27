@@ -1,5 +1,5 @@
 module OrdersHelper
   def order_item(item)
-    item.order_items.where(order_id: @current_order.id).first
+    item.order_items.where(order_id: order.id).first
   end
 end
