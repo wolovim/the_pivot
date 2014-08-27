@@ -23,8 +23,16 @@
               %td= button_to "Remove", delete_item_order_path(@order, item_id: item.id), class: "btn btn-danger"
               %td Subtotal: $#{item.price * order_item(item).quantity}
 
+    #order-status
+      %h4.text-muted= "Order Status: #{@order.aasm_state}"
+      -unless @order.basket?
+        %h4.text-muted= "Order Submitted at: #{@order.created_at}"
+      -if @order.completed? || @order.cancelled?
+        %h4.text-muted= "Order Inactive: #{@order.updated_at}"
+    #order-total
+      %h3.text-muted.pull-right= "Total: $#{@order.total}"
 
-    %h3.text-muted.pull-right= "Total: $#{@order.total}"
+
 -if signed_in?
   .container
     .row.pull-right
