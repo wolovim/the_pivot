@@ -66,10 +66,4 @@ class Order < ActiveRecord::Base
     total + tax
   end
 
-  private
-
-
-  def erase_current_order
-    current_order = nil
-  end
 end

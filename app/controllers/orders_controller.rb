@@ -79,7 +79,7 @@ class OrdersController < ApplicationController
     if @order.ordered?
       @order.paid!
     end
-
+    session[:order_id] = nil
   end
 
 

@@ -5,25 +5,32 @@
       %p Look over your items, add a few more, or proceed to checkout.
       = flash[:toomany]
       %table.table.table-striped
+        %thead
+          %tr
+            %th Title
+            %th Description
+            %th Price
+            %th Quantity
+            %th
+            %th Item Subtotal
         %tbody
         -if @order.empty?
           %tr You don't have any items in your cart!
         -else
           -@order.items.each do |item|
             %tr
-              %td Title: #{item.title}
-              %td Description: #{item.description}
-              %td Unit Price: $ #{item.price}
-              %td Quantity:
+              %td #{item.title}
+              %td #{item.description}
+              %td $#{item.price}
               %td
                 = form_for 'item', method: 'PUT', :url => {:controller => 'order_items', action: :update, id: order_item(item) } do |f|
                   .field
                     = f.number_field :quantity, :value => order_item(item).quantity
                     = submit_tag "Update", class: "btn btn-primary"
               %td= button_to "Remove", delete_item_order_path(@order, item_id: item.id), class: "btn btn-danger"
-              %td Subtotal: $#{item.price * order_item(item).quantity}
+              %td $#{item.price * order_item(item).quantity}
     #order-total
-      %h3.text-muted.pull-right= "Total: $#{@order.total}"
+      %h3.text-muted.pull-right= "Order Subtotal: $#{@order.total}"
 
 
 -if signed_in?

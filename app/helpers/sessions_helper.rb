@@ -31,7 +31,7 @@ module SessionsHelper
   end
 
   def order
-    @order = current_order || create_order
+    current_order || create_order
   end
 
   def current_order
