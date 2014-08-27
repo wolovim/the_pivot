@@ -11,9 +11,8 @@ describe 'admin', type: :feature do
 
     visit '/admin_dashboard'
     click_link 'View Menu Items'
-    first(:link, "View Item").click
+    click_on item.title
 
-    # use css here, target the list of current categories
     expect(page).to have_css ".current-categories", text: "Lunch"
     click_link 'Remove Category'
     expect(page).not_to have_css ".current-categories", text: "Lunch"

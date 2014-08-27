@@ -12,7 +12,7 @@ describe 'admin', type: :feature do
 
     visit '/admin_dashboard'
     click_link 'View Menu Items'
-    first(:link, "View Item").click
+    click_on item.title
 
     expect(page).not_to have_css ".current-categories", text: "Dinner"
     click_link 'Dinner'

@@ -1,15 +1,14 @@
-.thumbnail
-  %img{:alt => "...", "data-src" => "holder.js/300x300"}
-    .caption
-      %h3=@item.title
-      %p=@item.description
-      %p $ #{@item.price.to_i}
-      %p= image_tag @item.image.url
-      %h5 Categories:
-      .current-categories
-        -@item.categories.each do |category|
-          %li= category.name
-          = link_to "Remove Category", remove_category_admin_item_path(params.merge(:category => category)), method: :delete
+.admin-item-container
+  %h3= @item.title
+  %p= @item.description
+  %p $ #{@item.price.to_i}
+  %p= image_tag @item.image.url, size: "200x200"
+.categories-container
+  %h5 Categories:
+  .current-categories
+    -@item.categories.each do |category|
+      %li= category.name
+      = link_to "Remove Category", remove_category_admin_item_path(params.merge(:category => category)), method: :delete
   %h4 Add Category
   %ul
     -@categories.each do |category|
