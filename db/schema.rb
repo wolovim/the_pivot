@@ -49,11 +49,11 @@ ActiveRecord::Schema.define(version: 20140826160552) do
     t.datetime "updated_at"
     t.integer  "price"
     t.integer  "max_quantity",       default: 500
-    t.string   "scarcity",           default: "endangered"
     t.string   "image_file_name"
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
+    t.string   "scarcity",           default: "endangered"
   end
 
   create_table "order_items", force: true do |t|
