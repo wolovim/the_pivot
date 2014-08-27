@@ -1,17 +1,16 @@
 Rails.application.routes.draw do
-  resources :items
-  resources :categories
-  resources :users, only: [:new, :create, :show, :index ]
-  resources :sessions, only: [:new, :create, :destroy]
+  resources :items,       only: [:index, :show]
+  resources :categories,  only: [:index, :show]
+  resources :users,       only: [:new, :create, :show, :index ]
+  resources :sessions,    only: [:new, :create, :destroy]
   resources :order_items, only: [:update]
-  resources :orders, except: [:new] do
+  resources :addresses,   only: [:create]
+  resources :orders,      except: [:new] do
     member do
       post :add_item
       post :delete_item
     end
   end
-
-  resources :addresses, only: [:create]
 
   namespace :admin do
     resources :items do
@@ -34,7 +33,6 @@ Rails.application.routes.draw do
     get 'cancelled', to: 'orders#cancelled', as: 'cancelled_orders'
     get 'paid', to: 'orders#paid', as: 'paid_orders'
     get 'basket', to: 'orders#basket', as: 'basket_orders'
-
   end
 
   root 'pages#home'
