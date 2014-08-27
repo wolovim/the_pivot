@@ -62,13 +62,24 @@ class OrdersController < ApplicationController
 
   def checkout
     @order = order
-    @order.ordered
     @address = Address.find_by(order_id: @order.id) || Address.new
   end
 
   def confirm
     @order = order
+    if @order.basket?
+      @order.ordered!
+    end
+
     @address = Address.find_by(order_id: @order)
+  end
+
+  def paid
+    @order = order
+    if @order.ordered?
+      @order.paid!
+    end
+
   end
 
 
