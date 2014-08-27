@@ -13,9 +13,9 @@ describe "show page" do
   end
 
   xit "shows the email form input field" do
-      fill_in 'email address', :with => 'Robert'
-      click_button("Submit")
+    fill_in 'email address', :with => 'Robert'
+    click_button("Submit")
 
-      expect(page).to have_content("Robert")
+    expect(page).to have_content("Robert")
   end
 end

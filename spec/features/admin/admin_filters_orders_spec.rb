@@ -1,90 +1,95 @@
 require_relative '../feature_spec_helper'
 
 describe "an admin filters orders by state" do
-  before(:each) do
-    admin = create(:user)
-    visit login_path
-    fill_in 'email address', :with => admin.email
-    fill_in 'password', :with => admin.password
-    click_button("Login")
+  include AdminHelper
+
+  before do 
+    login_as_admin
+
+    @basket_order = create :order, aasm_state: "basket"
+    @ordered_order = create :order, aasm_state: "ordered"
+    @paid_order = create :order, aasm_state: "paid"
+    @completed_order = create :order, aasm_state: "completed"
+    @cancelled_order = create :order, aasm_state: "cancelled"
+  end
+
+  def all_orders
+    [@basket_order, @ordered_order, @paid_order, @completed_order, @cancelled_order]
+  end
+
+  it "sees all orders" do
     visit admin_orders_path
-  end
 
-  xit "sees all orders" do
-    within ".orders-container" do
-      Order.all.each do |order|
-        expect(page).to have_content("Order #{order.id}")
+    within ".order-display" do
+      all_orders.each do |order|
+        expect(page).to have_content("Order ##{order.id}")
       end
     end
   end
 
-  xit "filters by basket" do
+  it "filters by basket" do
+    visit admin_orders_path
+
     within ".order-filters" do
-      click_on("basket")
+      click_on "Basket"
     end
-    within ".orders-container" do
-      Order.basket.each do |order|
-        expect(page).to have_content("Order #{order.id}")
-      end
-      Order.all.reject {|order| order.basket?}.each do |order|
-        expect(page).to_not have_content("Order #{order.id}")
-      end
+
+    within ".order-display" do
+      expect(page).to have_content "Order ##{@basket_order.id}"
+      expect(page).not_to have_content "Order ##{@paid_order.id}"
     end
   end
 
-  xit "filters by ordered" do
+  # Don't forget to refute other content exists
+  it "filters by ordered" do
+    visit admin_orders_path
+
     within ".order-filters" do
-      click_on("ordered")
+      click_on "Ordered"
     end
-    within ".orders-container" do
-      Order.ordered.each do |order|
-        expect(page).to have_content("Order #{order.id}")
-      end
-      Order.all.reject {|order| order.ordered?}.each do |order|
-        expect(page).to_not have_content("Order #{order.id}")
-      end
+
+    within ".order-display" do
+      expect(page).to have_content "Order ##{@ordered_order.id}"
+      expect(page).not_to have_content "Order ##{@completed_order.id}"
     end
   end
 
-  xit "filters by paid" do
+  it "filters by paid" do
+    visit admin_orders_path
+
     within ".order-filters" do
-      click_on("paid")
+      click_on "Paid"
     end
-    within ".orders-container" do
-      Order.paid.each do |order|
-        expect(page).to have_content("Order #{order.id}")
-      end
-      Order.all.reject {|order| order.paid?}.each do |order|
-        expect(page).to_not have_content("Order #{order.id}")
-      end
+
+    within ".order-display" do
+      expect(page).to have_content "Order ##{@paid_order.id}"
+      expect(page).not_to have_content "Order ##{@basket_order.id}"
     end
   end
 
-  xit "filters by complete" do
+  it "filters by complete" do
+    visit admin_orders_path
+
     within ".order-filters" do
-      click_on("complete")
+      click_on "Complete"
     end
-    within ".orders-container" do
-      Order.completed.each do |order|
-        expect(page).to have_content("Order #{order.id}")
-      end
-      Order.all.reject {|order| order.completed?}.each do |order|
-        expect(page).to_not have_content("Order #{order.id}")
-      end
+
+    within ".order-display" do
+      expect(page).to have_content("Order ##{@completed_order.id}")
+      expect(page).not_to have_content "Order ##{@paid_order.id}"
     end
   end
 
-  xit "filters by cancelled" do
+  it "filters by cancelled" do
+    visit admin_orders_path
+
     within ".order-filters" do
-      click_on("cancelled")
+      click_on "Cancelled"
     end
-    within ".orders-container" do
-      Order.cancelled.each do |order|
-        expect(page).to have_content("Order #{order.id}")
-      end
-      Order.all.reject {|order| order.cancelled?}.each do |order|
-        expect(page).to_not have_content("Order #{order.id}")
-      end
+
+    within ".order-display" do
+      expect(page).to have_content("Order ##{@cancelled_order.id}")
+      expect(page).not_to have_content "Order ##{@paid_order.id}"
     end
   end
 end

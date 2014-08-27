@@ -27,6 +27,14 @@ td {
 }
 */
 
+.title-col {
+  max-width: 160px;
+}
+
+.desc-col {
+  max-width: 360px;
+}
+
 #errors {
   color: red;
   list-style-type: none;

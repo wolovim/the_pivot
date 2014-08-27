@@ -2,7 +2,8 @@ require 'rails_helper'
 
 RSpec.describe Order, :type => :model do
 
-  let(:order) { create(:order) }
+  let(:order) { create :order }
+  let(:item) { create :item}
 
   let(:address) do
     Address.new(order_id: 1, street_1: "123 Washington St", city: "Denver", state: "CO", zip: "80202")
@@ -18,7 +19,7 @@ RSpec.describe Order, :type => :model do
     expect(order).to be_valid
   end
 
-  xit 'is valid if delivery is false' do
+  it 'is valid if delivery is false' do
     order.delivery = false
     expect(order).to be_valid
   end
@@ -39,9 +40,9 @@ RSpec.describe Order, :type => :model do
     expect(address.order_id).to eq(order.id)
   end
 
-  xit 'has many items' do
-    item_1 = build_item
-    item_2 = build_item
+  it 'has many items' do
+    item_1 = create :item, title: "Item1"
+    item_2 = create :item, title: "Item2"
 
     item_1.orders << order
     item_2.orders << order
@@ -51,20 +52,17 @@ RSpec.describe Order, :type => :model do
   end
 
   it 'adds item to order' do
-    item = build_item
     order.add_item(item)
     assert order.items.include? item
   end
 
   it 'removes item from order' do
-    item = build_item
     order.add_item(item)
     order.remove_item(item)
     refute order.items.include? item
   end
 
   it 'increases quantity if item is in order' do
-    item = build_item
     order.add_item(item)
     order.add_item(item)
     assert order.items.length == 1

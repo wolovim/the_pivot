@@ -1,29 +1,31 @@
--@orders.reverse.each_with_index do |order, i|
-  #accordian.panel-group
-    .panel.panel-default
-      .panel-heading
-        %h4.panel-title.order-display
-          %a{"data-parent" => "#accordion", "data-toggle" => "collapse", :href => "#collapse#{i}"}
-            ="#{order.created_at.to_formatted_s(:long_ordinal)}"
-            = "|| #{order.aasm_state.capitalize}"
-    .panel-collapse.collapse{:id => "collapse#{i}"}
-      .panel-body
-        %table.table-hover.col-lg-12
-          %thead
-            %tr
-              %th Title
-              %th Description
-              %th Price
-              %th Quantity
-              %th Subtotal
-          %tbody
-          -order.order_items.each do |order_item|
-            %tr
-              %td= link_to order_item.item.title, item_path(order_item.item)
-              %td= link_to order_item.item.description, item_path(order_item.item)
-              %td= link_to "$#{order_item.item.price}.00", item_path(order_item.item)
-              %td= link_to order_item.quantity, item_path(order_item.item)
-              %td= link_to "$#{(order_item.quantity * order_item.item.price)}.00"
-        %h4.pull-right
-          = link_to "View Order", admin_order_path(order), :role => "button", :class => "btn btn-primary"
-          ="Total: $#{order.total}.00"
+.order-display
+  -@orders.reverse.each_with_index do |order, i|
+    #accordian.panel-group
+      .panel.panel-default
+        .panel-heading
+          %h4.panel-title
+            %a{"data-parent" => "#accordion", "data-toggle" => "collapse", :href => "#collapse#{i}"}
+              = "Order ##{order.id}"
+              = "#{order.created_at.to_formatted_s(:long_ordinal)}"
+              = "|| #{order.aasm_state.capitalize}"
+      .panel-collapse.collapse{:id => "collapse#{i}"}
+        .panel-body
+          %table.table-hover.col-lg-12
+            %thead
+              %tr
+                %th Title
+                %th Description
+                %th Price
+                %th Quantity
+                %th Subtotal
+            %tbody
+            -order.order_items.each do |order_item|
+              %tr
+                %td= link_to order_item.item.title, item_path(order_item.item)
+                %td= link_to order_item.item.description, item_path(order_item.item)
+                %td= link_to "$#{order_item.item.price}.00", item_path(order_item.item)
+                %td= link_to order_item.quantity, item_path(order_item.item)
+                %td= link_to "$#{(order_item.quantity * order_item.item.price)}.00"
+          %h4.pull-right
+            = link_to "View Order", admin_order_path(order), :role => "button", :class => "btn btn-primary"
+            ="Total: $#{order.total}.00"

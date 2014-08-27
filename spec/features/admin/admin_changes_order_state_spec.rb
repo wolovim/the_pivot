@@ -9,7 +9,7 @@ describe "an admin changes order state" do
     click_button("Login")
   end
 
-  it "changes one order from ordered to paid state" do
+    it "changes one order from ordered to paid state" do
     order = create :order, aasm_state: "ordered"
     visit admin_ordered_orders_path
 
@@ -18,7 +18,10 @@ describe "an admin changes order state" do
     end
 
     expect(current_path).to eq '/admin/paid'
-    expect(page).to have_css ".order-display", text: order.created_at.to_formatted_s(:long_ordinal)
+    within ".order-display" do
+      expect(page).to have_content order.created_at.to_formatted_s(:long_ordinal)
+      expect(page).to have_content "Order ##{order.id}"
+    end
   end
 
   it "changes one order from paid to completed state" do
@@ -30,7 +33,10 @@ describe "an admin changes order state" do
     end
 
     expect(current_path).to eq '/admin/completed'
-    expect(page).to have_css ".order-display", text: order.created_at.to_formatted_s(:long_ordinal)
+    within ".order-display" do
+      expect(page).to have_content order.created_at.to_formatted_s(:long_ordinal)
+      expect(page).to have_content "Order ##{order.id}"
+    end 
   end
 
   it "changes one order from ordered to cancelled state" do
@@ -42,7 +48,10 @@ describe "an admin changes order state" do
     end
 
     expect(current_path).to eq '/admin/cancelled'
-    expect(page).to have_css ".order-display", text: order.created_at.to_formatted_s(:long_ordinal)
+    within ".order-display" do
+      expect(page).to have_content order.created_at.to_formatted_s(:long_ordinal)
+      expect(page).to have_content "Order ##{order.id}"
+    end
   end
 
   it "changes one order from paid to cancelled state" do
@@ -54,6 +63,9 @@ describe "an admin changes order state" do
     end
 
     expect(current_path).to eq '/admin/cancelled'
-    expect(page).to have_css ".order-display", text: order.created_at.to_formatted_s(:long_ordinal)
+    within ".order-display" do
+      expect(page).to have_content order.created_at.to_formatted_s(:long_ordinal)
+      expect(page).to have_content "Order ##{order.id}"
+    end
   end
 end
