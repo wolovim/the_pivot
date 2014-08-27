@@ -1,30 +1,14 @@
 class Admin::OrdersController < AdminController
   def index
-    @orders = Order.all
+    filter = known_scopes.find(-> { :all }) { |scope_name| scope_name == params[:scope] }
+    @orders = Order.public_send filter
+  end
+
+  def by_scope
   end
 
   def show
     @order = Order.find(params[:id])
-  end
-
-  def completed
-    @orders = Order.completed
-  end
-
-  def basket
-    @orders = Order.basket
-  end
-
-  def paid
-    @orders = Order.paid
-  end
-
-  def ordered
-    @orders = Order.ordered
-  end
-
-  def cancelled
-    @orders = Order.cancelled
   end
 
   def pay
@@ -40,5 +24,11 @@ class Admin::OrdersController < AdminController
   def cancel
     Order.find(params[:id]).cancelled!
     redirect_to admin_cancelled_orders_path
+  end
+
+  private
+
+  def known_scopes
+    @known_scopes ||= Order.aasm.states.map { |state| state.name.to_s }
   end
 end
