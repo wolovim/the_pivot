@@ -7,6 +7,6 @@
         = image_tag item.image.url, size: "100x100"
         .caption
           %h3= link_to "#{item.title}", item_path(item)
-          %p=item.description
+          %p=truncate(item.description, :length => 45)
           %p $ #{item.price.to_i}
           = button_to "Add to Cart", add_item_order_path(order, item_id: item.id), class: "btn btn-primary"
