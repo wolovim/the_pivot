@@ -20,7 +20,9 @@
         %ul.nav.navbar-nav.navbar-right
           %li= link_to "Welcome, #{current_user.first_name.capitalize}!", current_user
           %li= link_to "My Order ($#{order.total})", order_path(session[:order_id])
-          %li= link_to "Settings", '#'
+          -if current_user.role == "admin"
+            %li= link_to "Admin Dashboard", admin_dashboard_path
+          -else
           %li= link_to "Log out", logout_path, method: "delete"
       - else
         %ul.nav.navbar-nav.navbar-right
