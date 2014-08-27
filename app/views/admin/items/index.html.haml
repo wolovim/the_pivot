@@ -12,7 +12,7 @@
     %tbody
       -@items.each do |item|
         %tr
-          %td.title-col= item.title
+          %td.title-col= link_to item.title, admin_item_path(item)
           %td.desc-col= item.description
           %td= item.price
           %td

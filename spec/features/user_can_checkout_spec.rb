@@ -27,7 +27,7 @@ describe 'A user who is logged in' do
     click_button("Login")
   end
 
-  it 'can access the checkout page' do
+  xit 'can access the checkout page' do
     visit order_path(@order)
     binding.pry
     save_and_open_page
