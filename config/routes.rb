@@ -11,7 +11,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :addresses, only: [:create]
+  resources :addresses
 
   namespace :admin do
     resources :items do

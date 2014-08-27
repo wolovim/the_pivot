@@ -4,7 +4,7 @@ class Order < ActiveRecord::Base
   belongs_to :user
   has_many :order_items
   has_many :items, through: :order_items
-  has_many :addresses
+  belongs_to :address
   validates :delivery, inclusion: { in: [true, false] }
 
   aasm do
@@ -56,6 +56,14 @@ class Order < ActiveRecord::Base
     order_items.reduce(0) do |sum, order_item|
       sum += order_item.quantity * order_item.item.price
     end
+  end
+
+  def tax
+    total * 0.08
+  end
+
+  def total_price
+    total + tax
   end
 
   def erase_current_order
