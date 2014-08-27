@@ -6,6 +6,7 @@ class CategoriesController < ApplicationController
   end
 
   def show
+    @order = order
   end
 
   def new
