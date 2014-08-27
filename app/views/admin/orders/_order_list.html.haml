@@ -4,7 +4,8 @@
       .panel-heading
         %h4.panel-title.order-display
           %a{"data-parent" => "#accordion", "data-toggle" => "collapse", :href => "#collapse#{i}"}
-            ="#{order.created_at.to_formatted_s(:long_ordinal)}"
+            = "Order ##{order.id}"
+            = "#{order.created_at.to_formatted_s(:long_ordinal)}"
             = "|| #{order.aasm_state.capitalize}"
     .panel-collapse.collapse{:id => "collapse#{i}"}
       .panel-body
