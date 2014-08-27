@@ -32,7 +32,9 @@
                   %td= link_to "$#{order_item.item.price}.00", item_path(order_item.item)
                   %td= link_to order_item.quantity, item_path(order_item.item)
                   %td= link_to "$#{(order_item.quantity * order_item.item.price)}.00"
-            %h4.pull-right="Total: $#{order.total}.00"
+            %h6.pull-right="Subtotal: $#{order.total}"
+            %h6.pull-right="Tax: $#{order.tax}"
+            %h4.pull-right="Total: $#{order.total_price}"
             #order-info
               %h6="Order Status: #{order.aasm_state}"
               %h6="Order Submitted: #{order.updated_at.to_formatted_s(:long_ordinal)}"
