@@ -2,12 +2,12 @@ class ItemsController < ApplicationController
   def index
     @items = Item.all
     @categories = Category.all
-    @order = current_order || create_order
+    @order = order
   end
 
   def show
     @item = Item.find(params[:id])
-    @order = current_order || create_order
+    @order = order
   end
 
   def item_params
