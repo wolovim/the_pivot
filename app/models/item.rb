@@ -32,4 +32,8 @@ class Item < ActiveRecord::Base
     item.scarcity = 'extinct'
     item.save
   end
+
+  def extinct?
+    self.scarcity == 'extinct'
+  end
 end
