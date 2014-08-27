@@ -41,7 +41,7 @@ class OrdersController < ApplicationController
   def update
     @order = Order.find(params[:id])
     if @order.save
-      redirect_to confirm_path
+      redirect_to checkout_path
     else
       render :edit
     end
@@ -62,16 +62,24 @@ class OrdersController < ApplicationController
 
   def checkout
     @order = order
-    @order.ordered
-    @address = Address.new
+    @address = Address.find_by(order_id: @order.id) || Address.new
   end
 
   def confirm
-    # if order.paid
-    #   redirect_to
-    # else
-    #   render :confirm
-    # end
+    @order = order
+    if @order.basket?
+      @order.ordered!
+    end
+
+    @address = Address.find_by(order_id: @order)
+  end
+
+  def paid
+    @order = order
+    if @order.ordered?
+      @order.paid!
+    end
+
   end
 
 

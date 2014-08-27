@@ -12,6 +12,9 @@ Rails.application.routes.draw do
     end
   end
 
+
+  resources :addresses
+
   namespace :admin do
     resources :items do
       member do
@@ -41,8 +44,9 @@ Rails.application.routes.draw do
   match '/signup',           to: 'users#new',         via: 'get'
   match '/login',            to: 'sessions#new',      via: 'get'
   match '/logout',           to: 'sessions#destroy',  via: 'delete'
-  get   '/checkout',           to: 'orders#checkout'
-  get   '/confirm',            to: 'orders#confirm'
+  get   '/checkout',         to: 'orders#checkout'
+  get   '/confirm',          to: 'orders#confirm'
+  get   '/paid',             to: 'orders#paid'
   match '/admin_dashboard',  to: 'admin#dashboard',   via: 'get'
 
   match '/admin_dashboard',  to: 'admin#dashboard',  via: 'get'

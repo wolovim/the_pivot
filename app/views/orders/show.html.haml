@@ -22,9 +22,10 @@
                     = submit_tag "Update", class: "btn btn-primary"
               %td= button_to "Remove", delete_item_order_path(@order, item_id: item.id), class: "btn btn-danger"
               %td Subtotal: $#{item.price * order_item(item).quantity}
+    #order-total
+      %h3.text-muted.pull-right= "Total: $#{@order.total}"
 
 
-    %h3.text-muted.pull-right= "Total: $#{@order.total}"
 -if signed_in?
   .container
     .row.pull-right
