@@ -1,25 +1,26 @@
-%h3 You're checking out!
-
-=@address.street_1
-=@address.street_2
-=@address.city
-=@address.state
-=@address.zip
-%br
-
 .container
-  = form_for order do |f|
-    =radio_button_tag "delivery", false # something: order.delivery == false
-    =label_tag(:delivery_false, "Pickup")
-    =radio_button_tag("delivery", true) # something: order.deliver == true
-    =label_tag(:delivery_true, "Delivery")
-  #accordion.panel-group
+
+  %h3 You're checking out!
+
+  =@address.street_1
+  =@address.street_2
+  =@address.city
+  =@address.state
+  =@address.zip
+  %br
+
+
+  = form_for @order do |f|
+    =radio_button_tag("order_type", "pickup", order: true)
+    =label_tag(:order_pickup, "Pickup")
+    =radio_button_tag("order_type", "delivery")
+    =label_tag(:order_delivery, "Delivery")
+  #delivery-address.panel-group.hidden
     .panel.panel-default
       .panel-heading
         %h4.panel-title
-          %a{"data-parent" => "#accordion", "data-toggle" => "collapse", :href => "#collapse_address"}
-            Submit a New Address
-      .panel-collapse.collapse{:id => "collapse_address"}
+          Submit a New Address
+      .panel
         .panel-body
           = form_for @address do |f|
             .form-group
@@ -35,19 +36,19 @@
               %br/
               = f.hidden_field :order_id, value: order.id
               %br/
-              = f.submit "Save Address", class: "btn btn-large btn-block btn-primary", href: "address_path(@address)", method: 'PATCH'
-  =form_for order do |f|
-    =radio_button_tag(:order, "pay_in_store")
-    =label_tag(:order_pickup, "Pay in Store")
-    =radio_button_tag(:order, "pay_online")
-    =label_tag(:order_delivery, "Pay Online")
-  #accordion.panel-group
+              = f.submit "Save Address", class: "btn btn-large btn-block btn-warning", href: "address_path(@address)", method: 'PATCH'
+
+  =form_for @order do |f|
+    =radio_button_tag(:payment_type, :pay_in_store, order: true)
+    =label_tag(:pay_in_store, "Pay in Store")
+    =radio_button_tag(:payment_type, :pay_online)
+    =label_tag(:pay_online, "Pay Online")
+  #payment-info.panel-group.hidden
     .panel.panel-default
       .panel-heading
         %h4.panel-title
-          %a{"data-parent" => "#accordion", "data-toggle" => "collapse", :href => "#collapse_payment"}
-            Submit Payment Information
-      .panel-collapse.collapse{:id => "collapse_payment"}
+          Submit Payment Information
+      .panel
         .panel-body
           = form_for order do |f|
             .form-group
@@ -57,5 +58,5 @@
               %br/
               = f.text_field :card_name, class: "form-control", placeholder: "Name on Card"
               %br/
-              = f.submit "Enter Payment Info", class: "btn btn-large btn-block btn-primary", href: "order_path", method: 'PATCH'
-  = link_to 'Continue to Confirmation Screen', confirm_path
+              = f.submit "Enter Payment Info", class: "btn btn-large btn-block btn-warning", href: "order_path", method: 'PATCH'
+  = link_to 'Continue to Confirmation Screen', confirm_path, class: 'btn btn-primary btn-block'
