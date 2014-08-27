@@ -33,6 +33,7 @@ class OrdersController < ApplicationController
   end
 
   def checkout
+    
     @address = Address.find_by(order_id: order.id) || Address.new
   end
 
