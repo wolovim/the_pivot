@@ -1,8 +1,8 @@
 class OrderItemsController < ApplicationController
   def update
-    @orderitem = OrderItem.find(params[:id])
+    @order_item = OrderItem.find(params[:id])
 
-    if @orderitem.update_attribute(:quantity, quantity_params)
+    if @order_item.update_attribute(:quantity, quantity_params)
       redirect_to current_order
     else
       render :edit
@@ -10,7 +10,7 @@ class OrderItemsController < ApplicationController
   end
 
   def quantity_params
-    result = @orderitem.quantity_update(params[:item][:quantity])
+    result = @order_item.quantity_update(params[:item][:quantity])
 
     if result != nil
       result
@@ -19,5 +19,4 @@ class OrderItemsController < ApplicationController
       params[:item][:quantity] = 0
     end
   end
-
 end

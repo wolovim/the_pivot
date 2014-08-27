@@ -9,11 +9,12 @@
         .panel-collapse.collapse{:id => "collapse#{i}"}
           .panel-body
             -category.items.each do |item|
-              .col-sm-6.col-md-4
-                .thumbnail
-                  = image_tag item.image.url, size: "100x100"
-                  .caption
-                    %h3= link_to "#{item.title}", item_path(item)
-                    %p=item.description
-                    %p $ #{item.price.to_i}
-                    = button_to "Add to Cart", add_item_order_path(@order, item_id: item.id), class: "btn btn-primary"
+              -unless item.extinct?
+                .col-sm-6.col-md-4
+                  .thumbnail
+                    = image_tag item.image.url, size: "100x100"
+                    .caption
+                      %h3= link_to "#{item.title}", item_path(item)
+                      %p=item.description
+                      %p $ #{item.price.to_i}
+                      = button_to "Add to Cart", add_item_order_path(@order, item_id: item.id), class: "btn btn-primary"

@@ -42,14 +42,14 @@ COMPLETED
 ###ON THAT ORDER DISPLAY PAGE THERE ARE:
 * ~~items with quantity ordered and line-item subtotals~~
 * ~~links to each item description page~~
-* **the current status of the order**
+* ~~the current status of the order~~
 * ~~order total price~~
-* **date/time order was submitted**
-* **if completed or cancelled, display a timestamp when that action took place**
+* ~~date/time order was submitted~~
+* ~~if completed or cancelled, display a timestamp when that action took place~~
 
 ###IF ANY ITEM IS RETIRED FROM THE MENU:
-* **they can still access the item page**
-* **they cannot add it to a new cart**
+* ~~they can still access the item page~~
+* ~~they cannot add it to a new cart~~
 
 ###NOT ALLOWED TO:
 * ~~view another user’s private data (such as current order, etc.)~~
@@ -107,7 +107,7 @@ For each item on the order:
 *  User
 
 *  ~~A user must have a plausibly valid email address that is unique across all users~~
-*  A user must have a full name that is not blank
+*  ~~A user must have a full name that is not blank~~
 *  ~~A user may optionally provide a display name that must be no less than 2 characters long and no more than 32~~
 
 ###Order

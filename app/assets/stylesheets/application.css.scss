@@ -17,9 +17,15 @@
  *= require_self
  */
 
+/*
 th {
   text-align: center;
 }
+
+td {
+  text-align: center;
+}
+*/
 
 #errors {
   color: red;
@@ -47,6 +53,15 @@ th {
 
 .order-info-table-div {
   text-align: center;
+}
+
+#order-info {
+  margin-top: 80px;
+}
+
+.dash-buttons {
+  width: 50%;
+  margin-top: 20px;
 }
 
     /* Carousel base class */

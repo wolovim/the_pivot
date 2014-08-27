@@ -215,3 +215,18 @@ OrderItem.create!([
   {order_id: 35, item_id: 12, quantity: 1},
   {order_id: 35, item_id: 12, quantity: 1}
 ])
+
+User.create!([
+  {first_name: "Rachel", last_name: "Warbelow", email: "demo+rachel@jumpstartlab.com", username: nil, password: "password", role: "user"},
+  {first_name: "Jorge", last_name: "Tellez", email: "demo+jorge@jumpstartlab.com", username: "novohispano", password: "password", role: "user"},
+  {first_name: "Jon", last_name: "Snow", email: "jsnow@whitewall.gov", username: "theblack69", password: "password", role: "admin"},
+  {first_name: "Josh", last_name: "Cheek", email: "demo+josh@jumpstartlab.com", username: "josh", password: "password", role: "admin"},
+  {first_name: "jeff", last_name: "", email: "demo+jeff@jumpstartlab.com", username: nil, password: "password", role: nil},
+  {first_name: "a", last_name: "b", email: "a@b.com", username: nil, password: "password", role: nil},
+  {first_name: "c", last_name: "d", email: "c@d.com", username: nil, password: "password", role: nil},
+  {first_name: "e", last_name: "f", email: "e@f.com", username: nil, password: "password", role: nil},
+  {first_name: "a", last_name: "a", email: "abc@123.com", username: nil, password: "password", role: nil},
+  {first_name: "name", last_name: "nammmmme", email: "abcd@123.com", username: nil, password: "password", role: nil},
+  {first_name: "name", last_name: "name", email: "abcde@123.com", username: nil, password: "password", role: nil},
+  {first_name: "Bald", last_name: "Eagle", email: "bald@eagle.com", username: nil, password: "password", role: nil}
+])

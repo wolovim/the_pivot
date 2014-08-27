@@ -1,13 +1,37 @@
-%ul
-  -@items.each do |item|
-    %h4= item.title
-    %li Categories:
-    -item.categories.each do |category|
-      %li= category.name
-    %li= "Description: #{item.description}"
-    %li= "Price: #{item.price}  "
-    %li= link_to "View Item", admin_item_path(item)
-    %li= link_to "Edit Item", edit_admin_item_path(item)
-    %li= link_to "Delete Item", admin_item_path(item), method: :delete
-    %br
+.container
+  %table.table.table-striped
+    %thead
+      %tr
+        %th Title
+        %th Description
+        %th Price
+        %th Categories
+        %th
+        %th
+        %th
+    %tbody
+      -@items.each do |item|
+        %tr
+          %td= item.title
+          %td= item.description
+          %td= item.price
+          %td
+            .dropdown
+              %button#dropdownMenu1.btn.btn-default.dropdown-toggle{"data-toggle" => "dropdown", :type => "button"}
+                Categories
+                %span.caret
+              %ul.dropdown-menu{"aria-labelledby" => "dropdownMenu1", :role => "menu"}
+                -item.categories.each do |category|
+                  %li{:role => "presentation"}
+                    = category.name 
+                  / %li{:role => "presentation"}
+                  /   %a{:href => "#", :role => "menuitem", :tabindex => "-1"} Another action
+                  / %li{:role => "presentation"}
+                  /   %a{:href => "#", :role => "menuitem", :tabindex => "-1"} Something else here
+                  / %li.divider{:role => "presentation"}
+                  / %li{:role => "presentation"}
+                  /   %a{:href => "#", :role => "menuitem", :tabindex => "-1"} Separated link
+          %td= link_to "View Item", admin_item_path(item)
+          %td= link_to "Edit Item", edit_admin_item_path(item)
+          %td= link_to "Delete Item", admin_item_path(item), method: :delete
 

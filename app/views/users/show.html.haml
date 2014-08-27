@@ -31,5 +31,10 @@
                   %td= link_to order_item.item.description, item_path(order_item.item)
                   %td= link_to "$#{order_item.item.price}.00", item_path(order_item.item)
                   %td= link_to order_item.quantity, item_path(order_item.item)
-                  %td= link_to "$#{(order_item.quantity * order_item.item.price)}.00"  
+                  %td= link_to "$#{(order_item.quantity * order_item.item.price)}.00"
             %h4.pull-right="Total: $#{order.total}.00"
+            #order-info
+              %h6="Order Status: #{order.aasm_state}"
+              %h6="Order Submitted: #{order.updated_at.to_formatted_s(:long_ordinal)}"
+              -if order.completed? || order.cancelled?
+                %h6.text-muted= "Order Inactive as of: #{order.updated_at.to_formatted_s(:long_ordinal)}"
