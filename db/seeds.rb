@@ -156,16 +156,16 @@ OrderItem.create!([
   {order_id: 35, item_id: 12, quantity: 1}
 ])
 User.create!([
-  {first_name: "Rachel", last_name: "Warbelow", email: "demo+rachel@jumpstartlab.com", username: nil, password: "password" role: "user"},
-  {first_name: "Jorge", last_name: "Tellez", email: "demo+jorge@jumpstartlab.com", username: "novohispano", password: "password"bb09a4bb90cbc32d81e319cb14d15cdd49ba7bff", role: "user"},
-  {first_name: "Jon", last_name: "Snow", email: "jsnow@whitewall.gov", username: "theblack69", password: "password"28bc42990b503914c5d1aa859969eaa5b75a5f5e", role: "admin"},
-  {first_name: "Josh", last_name: "Cheek", email: "demo+josh@jumpstartlab.com", username: "josh", password: "password" role: "admin"},
-  {first_name: "jeff", last_name: "", email: "demo+jeff@jumpstartlab.com", username: nil, password: "password" role: nil},
-  {first_name: "a", last_name: "b", email: "a@b.com", username: nil, password: "password"8831530c3886859e57198dd9130be150ed7b5db7", role: nil},
-  {first_name: "c", last_name: "d", email: "c@d.com", username: nil, password: "password"aad22d3728cd2d820822a39571549a9c7974545a", role: nil},
-  {first_name: "e", last_name: "f", email: "e@f.com", username: nil, password: "password"", remember_token: "f546a510412d146feedd68eaefe4c4b5f4d0acee", role: nil},
-  {first_name: "a", last_name: "a", email: "abc@123.com", username: nil, password: "password" nil},
-  {first_name: "name", last_name: "nammmmme", email: "abcd@123.com", username: nil, password: "password" role: nil},
-  {first_name: "name", last_name: "name", email: "abcde@123.com", username: nil, password: "password" role: nil},
-  {first_name: "Bald", last_name: "Eagle", email: "bald@eagle.com", username: nil, password: "password" role: nil}
+  {first_name: "Rachel", last_name: "Warbelow", email: "demo+rachel@jumpstartlab.com", username: nil, password: "password", role: "user"},
+  {first_name: "Jorge", last_name: "Tellez", email: "demo+jorge@jumpstartlab.com", username: "novohispano", password: "password", role: "user"},
+  {first_name: "Jon", last_name: "Snow", email: "jsnow@whitewall.gov", username: "theblack69", password: "password", role: "admin"},
+  {first_name: "Josh", last_name: "Cheek", email: "demo+josh@jumpstartlab.com", username: "josh", password: "password", role: "admin"},
+  {first_name: "jeff", last_name: "", email: "demo+jeff@jumpstartlab.com", username: nil, password: "password", role: nil},
+  {first_name: "a", last_name: "b", email: "a@b.com", username: nil, password: "password", role: nil},
+  {first_name: "c", last_name: "d", email: "c@d.com", username: nil, password: "password", role: nil},
+  {first_name: "e", last_name: "f", email: "e@f.com", username: nil, password: "password", role: nil},
+  {first_name: "a", last_name: "a", email: "abc@123.com", username: nil, password: "password", role: nil},
+  {first_name: "name", last_name: "nammmmme", email: "abcd@123.com", username: nil, password: "password", role: nil},
+  {first_name: "name", last_name: "name", email: "abcde@123.com", username: nil, password: "password", role: nil},
+  {first_name: "Bald", last_name: "Eagle", email: "bald@eagle.com", username: nil, password: "password", role: nil}
 ])
