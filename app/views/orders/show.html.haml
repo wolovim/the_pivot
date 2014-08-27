@@ -6,10 +6,10 @@
       = flash[:toomany]
       %table.table.table-striped
         %tbody
-        -if order.empty?
+        -if @order.empty?
           %tr You don't have any items in your cart!
         -else
-          - order.items.each do |item|
+          -@order.items.each do |item|
             %tr
               %td Title: #{item.title}
               %td Description: #{item.description}
@@ -20,17 +20,17 @@
                   .field
                     = f.number_field :quantity, :value => order_item(item).quantity
                     = submit_tag "Update", class: "btn btn-primary"
-              %td= button_to "Remove", delete_item_order_path(order, item_id: item.id), class: "btn btn-danger"
+              %td= button_to "Remove", delete_item_order_path(@order, item_id: item.id), class: "btn btn-danger"
               %td Subtotal: $#{item.price * order_item(item).quantity}
 
 
-    %h3.text-muted.pull-right= "Total: $#{@current_order.total}"
+    %h3.text-muted.pull-right= "Total: $#{@order.total}"
 -if signed_in?
   .container
     .row.pull-right
       %ul.nav.nav-pills
         %li.active
-          = link_to "Proceed to Checkout", checkout_path(order)
+          = link_to "Proceed to Checkout", checkout_path
 -else
   .container
     .col-lg-5-offset-3.pull-right

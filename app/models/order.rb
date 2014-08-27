@@ -4,7 +4,6 @@ class Order < ActiveRecord::Base
   belongs_to :user
   has_many :order_items
   has_many :items, through: :order_items
-  validates_associated :items
   has_many :addresses
   validates :delivery, inclusion: { in: [true, false] }
 
@@ -16,11 +15,11 @@ class Order < ActiveRecord::Base
     state :cancelled
 
     event :ordered do
-      transitions :from => :basket, :to => :ordered, :guard => :has_items?
+      transitions :from => :basket, :to => :ordered
     end
 
     event :paid do
-      transitions :from => :ordered, :to => :paid
+      transitions :from => :ordered, :to => :paid, before_enter: :erase_current_order
     end
 
     event :completed do
@@ -59,9 +58,7 @@ class Order < ActiveRecord::Base
     end
   end
 
-  private
-
-  def has_items?
-    self.items > 0
+  def erase_current_order
+    current_order = nil
   end
 end

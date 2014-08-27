@@ -51,6 +51,7 @@ group :development, :test do
   gem 'pry'
   gem 'binding_of_caller'
   gem 'guard-rspec'
+  gem 'seed_dump'
 end
 
 group :development do

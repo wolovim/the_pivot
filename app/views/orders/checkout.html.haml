@@ -6,7 +6,13 @@
   =address.state
   =address.zip
   %br
+
 .container
+  = form_for @order do |f|
+    =radio_button_tag(:order, "pickup")
+    =label_tag(:order_pickup, "Pickup")
+    =radio_button_tag(:order, "delivery")
+    =label_tag(:order_delivery, "Delivery")
   #accordion.panel-group
     .panel.panel-default
       .panel-heading
@@ -30,7 +36,11 @@
               = f.hidden_field :order_id, value: order.id
               %br/
               = f.submit "Save Address", class: "btn btn-large btn-block btn-primary", href: "addresses_path", method: 'POST'
-
+  =form_for @order do |f|
+    =radio_button_tag(:order, "pay_in_store")
+    =label_tag(:order_pickup, "Pay in Store")
+    =radio_button_tag(:order, "pay_online")
+    =label_tag(:order_delivery, "Pay Online")
   #accordion.panel-group
     .panel.panel-default
       .panel-heading

@@ -15,22 +15,30 @@ end
 
 describe 'A user who is logged in' do
   before do
-    user = create :user
-    order = create :order
-    item = create :item
+    @user = create :user
+    @order = create :order
+    @item = create :item
 
     visit login_path
-    fill_in 'email address', :with => user.email
-    fill_in 'password', :with => user.password
+    fill_in 'email address', :with => @user.email
+    fill_in 'password', :with => @user.password
     click_button("Login")
-    user.orders << order
-    order.items << item
-    visit order_path(order)
+    @user.orders << @order
+    @order.items << @item
+    visit order_path(@order)
   end
 
   it 'can access the checkout page' do
     click_on('Proceed to Checkout')
     expect(page).to have_content("You're checking out!")
+  end
+
+  it 'can choose pickup' do
+    click_on('Proceed to Checkout')
+    choose('Pickup')
+    choose('Pay in Store')
+    click_on('Enter Payment Info')
+    expect(page).to have_content('Confirm Order')
   end
 
   it 'can add addresses' do
