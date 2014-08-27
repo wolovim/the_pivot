@@ -3,6 +3,8 @@ class ItemsController < ApplicationController
     @items = Item.all
     @categories = Category.all
     @order = order
+    @main_categories = Category.main_categories
+    @special_categories = Category.special_categories
   end
 
   def show

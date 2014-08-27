@@ -1,44 +1,24 @@
 class Admin::OrdersController < AdminController
   def index
-    @orders = Order.all
+    filter = known_scopes.find(-> { :all }) { |scope_name| scope_name == params[:scope] }
+    @orders = Order.public_send filter
   end
 
   def show
-    @order = Order.find(params[:id])
+    @user_order = Order.find(params[:id])
   end
 
-  def completed
-    @orders = Order.completed
+  def run_event
+    user_order = Order.find(params[:id])
+    if user_order.aasm.may_fire_event? params[:event].to_sym # <-- to_sym exposes gc hack :/
+      user_order.public_send "#{params[:event]}!" # <--  dynamic method invocation *sigh* fkn metaprogramming, y'all
+    end
+    redirect_to admin_orders_path(scope: user_order.aasm_state)
   end
 
-  def basket
-    @orders = Order.basket
-  end
+  private
 
-  def paid
-    @orders = Order.paid
-  end
-
-  def ordered
-    @orders = Order.ordered
-  end
-
-  def cancelled
-    @orders = Order.cancelled
-  end
-
-  def pay
-    Order.find(params[:id]).paid!
-    redirect_to admin_paid_orders_path
-  end
-
-  def complete
-    Order.find(params[:id]).completed!
-    redirect_to admin_completed_orders_path
-  end
-
-  def cancel
-    Order.find(params[:id]).cancelled!
-    redirect_to admin_cancelled_orders_path
+  def known_scopes
+    @known_scopes ||= Order.aasm.states.map { |state| state.name.to_s }
   end
 end

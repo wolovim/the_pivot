@@ -12,7 +12,6 @@ Rails.application.routes.draw do
     end
   end
 
-
   resources :addresses
 
   namespace :admin do
@@ -24,18 +23,8 @@ Rails.application.routes.draw do
       end
     end
     resources :categories
-    resources :orders, only: [:index, :show, :edit, :update] do
-      member do
-        post :pay
-        post :complete
-        post :cancel
-      end
-    end
-    get 'completed', to: 'orders#completed', as: 'completed_orders'
-    get 'ordered', to: 'orders#ordered', as: 'ordered_orders'
-    get 'cancelled', to: 'orders#cancelled', as: 'cancelled_orders'
-    get 'paid', to: 'orders#paid', as: 'paid_orders'
-    get 'basket', to: 'orders#basket', as: 'basket_orders'
+    resources :orders, only: [:index, :show, :edit, :update]
+    put '/orders/:id/run_event', to: 'orders#run_event', as: :order_event
   end
 
   root  'pages#home'
@@ -44,11 +33,9 @@ Rails.application.routes.draw do
   match '/signup',           to: 'users#new',         via: 'get'
   match '/login',            to: 'sessions#new',      via: 'get'
   match '/logout',           to: 'sessions#destroy',  via: 'delete'
+  get   '/paid',             to: 'orders#paid'
   get   '/checkout',         to: 'orders#checkout'
   get   '/confirm',          to: 'orders#confirm'
-  get   '/paid',             to: 'orders#paid'
-  match '/admin_dashboard',  to: 'admin#dashboard',   via: 'get'
-
-  match '/admin_dashboard',  to: 'admin#dashboard',  via: 'get'
+  match '/admin_dashboard',  to: 'admin#dashboard',      via: 'get'
   match "*a",                to: 'errors#routing_error', via: 'get'
 end

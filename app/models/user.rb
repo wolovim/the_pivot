@@ -17,6 +17,10 @@ class User < ActiveRecord::Base
 
   has_many :orders
 
+  def full_name
+    "#{first_name} #{last_name}"
+  end
+
   has_secure_password
 
   def User.new_remember_token

@@ -9,6 +9,7 @@
   =@address.zip
   %br
 
+
   = form_for @order do |f|
     =radio_button_tag("order_type", "pickup", order: true)
     =label_tag(:order_pickup, "Pickup")
@@ -36,6 +37,7 @@
               = f.hidden_field :order_id, value: order.id
               %br/
               = f.submit "Save Address", class: "btn btn-large btn-block btn-warning", href: "address_path(@address)", method: 'PATCH'
+
   =form_for @order do |f|
     =radio_button_tag(:payment_type, :pay_in_store, order: true)
     =label_tag(:pay_in_store, "Pay in Store")

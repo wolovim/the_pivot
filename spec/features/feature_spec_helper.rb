@@ -4,10 +4,17 @@ require 'capybara/rails'
 
 module AdminHelper
   def login_as_admin
-    admin = create(:user)
-    visit login_path
-    fill_in 'email address', :with => admin.email
-    fill_in 'password', :with => admin.password
-    click_button("Login")
+    log_me_in_with_role 'admin'
+  end
+
+  def log_me_in!
+    log_me_in_with_role 'user'
+  end
+
+  def log_me_in_with_role(role)
+    user = build(:user, role: role)
+    allow_any_instance_of(ApplicationController)
+      .to receive(:current_user) { user }
+    user
   end
 end

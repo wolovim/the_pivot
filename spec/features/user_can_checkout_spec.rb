@@ -14,16 +14,18 @@ describe "A user who is not logged in" do
 end
 
 describe 'A user who is logged in' do
-  before do
-    @user = create :user
-    @order = create :order
-    @item = create :item
-    @order.items << @item
+  include AdminHelper
 
-    visit login_path
-    fill_in 'email address', :with => @user.email
-    fill_in 'password', :with => @user.password
-    click_button("Login")
+  before do
+    @user  = create :user
+    @order = create :order
+    @item  = create :item
+    @user.orders << @order
+    @order.items << @item
+    allow_any_instance_of(ApplicationController)
+      .to receive(:order) { @order }
+
+    log_me_in!
     visit order_path(@order)
     save_and_open_page
 
@@ -34,7 +36,7 @@ describe 'A user who is logged in' do
     expect(page).to have_content("You're checking out!")
   end
 
-  xit 'can choose pickup' do
+  xit 'can choose pickup'  do
     click_on('Proceed to Checkout')
     choose('Pickup')
     choose('Pay in Store')
