@@ -8,5 +8,5 @@
         .caption
           %h3= link_to "#{item.title}", item_path(item)
           %p=truncate(item.description, :length => 45)
-          %p $ #{item.price.to_i}
+          %p $ #{item.price_for_humans}
           = button_to "Add to Cart", add_item_order_path(order, item_id: item.id), class: "btn btn-primary"

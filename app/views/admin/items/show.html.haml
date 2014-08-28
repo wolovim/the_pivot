@@ -3,7 +3,7 @@
     %img{src: "#{@item.image_file_name}", width: "242", height: "242"}
     %h3= @item.title
     %p= @item.description
-    %p $ #{@item.price.to_i}
+    %p $ #{@item.price_for_humans}
     = link_to "Edit Item", edit_admin_item_path(@item), role: "button", class: "btn btn-default btn-block edit-item-button"
     %table.table.table-striped.categories-container
       %thead

@@ -14,7 +14,7 @@
         %tr
           %td.title-col= link_to item.title, admin_item_path(item)
           %td.desc-col= item.description
-          %td= item.price
+          %td= item.price_for_humans
           %td
             .dropdown
               %button#dropdownMenu1.btn.btn-default.dropdown-toggle{"data-toggle" => "dropdown", :type => "button"}
@@ -27,4 +27,3 @@
           %td= link_to "Add/Remove Categories", admin_item_path(item)
           %td= link_to "Edit Item", edit_admin_item_path(item)
           %td= link_to "Delete Item", admin_item_path(item), method: :delete
-

@@ -23,12 +23,12 @@
               %tr.order-items
                 %td= link_to order_item.item.title, item_path(order_item.item)
                 %td= link_to order_item.item.description, item_path(order_item.item)
-                %td= link_to "$#{order_item.item.price}.00", item_path(order_item.item)
+                %td= link_to "$#{order_item.item.price_for_humans}", item_path(order_item.item)
                 %td= link_to order_item.quantity, item_path(order_item.item)
-                %td= link_to "$#{(order_item.quantity * order_item.item.price)}.00"
+                %td= link_to "$#{quantity_price_for_humans(order_item.item, order)}"
           %h4.pull-right
             = link_to "View Order", admin_order_path(order), :role => "button", :class => "btn btn-primary"
-            ="Total: $#{order.total}.00"
+            ="Total: $#{order.total_price_for_humans}"
           %h4.pull-left
             - if order.may_pay?
               = link_to "Mark as Paid",      admin_order_event_path(order, event: 'pay'),      method: "put", :role => "button", :class => "btn btn-success"
