@@ -20,12 +20,13 @@
                   -category.items.each do |item|
                     .col-sm-6.col-md-4
                       .thumbnail
-                        %img{src: "#{item.image_file_name}"}
-                        .caption
-                          %h3= link_to "#{item.title}", item_path(item)
-                          %p= truncate(item.description, :length => 30)
-                          %p $ #{item.price_for_humans}
-                          = button_to "Add to Cart", add_item_order_path(order, item_id: item.id), class: "thumbnail-btn btn btn-primary"
+                        %a{href: "#{item_path(item)}"}
+                          %img{src: "#{item.image_file_name}"}
+                          .caption
+                            %h3= link_to "#{item.title}", item_path(item)
+                            %p= truncate(item.description, :length => 30)
+                            %p $ #{item.price_for_humans}
+                            = button_to "Add to Cart", add_item_order_path(order, item_id: item.id), class: "thumbnail-btn btn btn-primary"
 
     #sidebar.col-xs-6.col-sm-3.sidebar-offcanvas{:role => "navigation"}
       .list-group

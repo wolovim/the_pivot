@@ -2,7 +2,7 @@
   .caption.item-container
     %h3=@item.title
     %img{src: "#{@item.image_file_name}", width: "242", height: "242"}
-    %p=@item.description
+    %p.menu-item-description=@item.description
     %p $ #{@item.price_for_humans}
     -unless @item.extinct?
       = button_to "Add to Cart", add_item_order_path(order, item_id: @item.id), class: "btn btn-primary"
