@@ -102,4 +102,17 @@ describe 'an order', type: :feature do
 
     expect(page).to have_content('$1.50')
   end
+
+    it "can destroy an order" do
+    item = create :item
+    item.categories.create(name: 'Appetizers')
+
+    visit items_path
+    click_button("Add to Cart")
+    visit order_path(current_order)
+
+    click_button("Remove")
+
+    expect(page).to have_content("You don't have any items in your cart!")
+  end
 end

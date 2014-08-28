@@ -20,4 +20,9 @@ describe 'an items show page', type: :feature do
     visit item_path(item)
     expect(page).to_not have_button('Add to Cart')
   end
+
+    it "cannot visit a page with no action" do
+    visit "/dfghjk"
+    expect(page).to have_content("scurry")
+  end
 end
