@@ -22,14 +22,23 @@
           %th Description
           %th Price
           %th Quantity
+          %th
+          %th
           %th Subtotal
-      %tbody
+      %tbody.order-items
         -@user_order.order_items.each do |order_item|
           %tr
             %td= link_to order_item.item.title, item_path(order_item.item)
             %td= order_item.item.description
-            %td= order_item.item.price
+            %td= order_item.item.price_for_humans
             %td= order_item.quantity
+            - if @user_order.paid? || @user_order.ordered?
+              %td
+                = form_for 'item', method: 'PUT', :url => {:controller => 'order_items', action: :update, id: order_item.id } do |f|
+                  .field
+                    = f.number_field :quantity, :value => order_item.quantity
+                    = submit_tag "Update", class: "btn btn-primary"
+              %td= link_to "Remove", admin_delete_order_item_path(@user_order, item_id: order_item.item.id), method: :delete, class: "btn btn-danger"
             %td= "$#{(order_item.quantity * order_item.item.price)}.00"
     %h4.pull-right
-      ="Total: $#{order.total}.00"
+      ="Total: $#{@user_order.total}.00"

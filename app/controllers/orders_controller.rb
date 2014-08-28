@@ -1,6 +1,4 @@
 class OrdersController < ApplicationController
-  include OrdersHelper
-
   def index
     @orders = Order.all
   end
