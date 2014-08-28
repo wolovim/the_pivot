@@ -24,6 +24,10 @@ class Item < ActiveRecord::Base
     end
   end
 
+  def price_for_humans
+    sprintf("%.2f", (price.to_f/100))
+  end
+
   def remove_category(category)
     self.categories.delete(category)
   end
