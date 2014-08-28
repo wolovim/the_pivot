@@ -16,8 +16,8 @@ RSpec.describe OrderItem, :type => :model do
 
   it 'checks quantity for negatives' do
     quantity = -1
-    
-    expect(order_item.quantity_update(quantity)).to eq(0)
+
+    expect(order_item.quantity_update(quantity)).to eq(1)
   end
 
   it 'checks quantity against max quantity' do

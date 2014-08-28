@@ -64,7 +64,7 @@ describe 'an order', type: :feature do
     click_button("Add to Cart")
     fill_in('item[quantity]', with: -2)
     click_on('Update')
-    expect(page).to have_selector("input[value='0']")
+    expect(page).to have_selector("input[value='1']")
   end
 
   it 'cannot exceed max quantity' do
