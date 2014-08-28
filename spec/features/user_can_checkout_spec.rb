@@ -27,7 +27,6 @@ describe 'A user who is logged in' do
 
     log_me_in!
     visit order_path(@order)
-
   end
 
   it 'can access the checkout page' do

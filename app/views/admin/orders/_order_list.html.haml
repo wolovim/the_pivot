@@ -20,7 +20,7 @@
                 %th Subtotal
             %tbody
             -order.order_items.each do |order_item|
-              %tr
+              %tr.order-items
                 %td= link_to order_item.item.title, item_path(order_item.item)
                 %td= link_to order_item.item.description, item_path(order_item.item)
                 %td= link_to "$#{order_item.item.price}.00", item_path(order_item.item)

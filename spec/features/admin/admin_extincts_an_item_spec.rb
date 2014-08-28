@@ -13,13 +13,13 @@ describe 'admin', type: :feature do
     visit admin_item_path(item)
 
     within ".scarcity" do
-      expect(page).to have_content("endangered")
+      expect(page).to have_content("Endangered")
     end
 
-    click_link 'Extinction Event'
+    click_link 'Trigger Extinction Event'
 
     within ".scarcity" do
-      expect(page).to have_content("extinct")
+      expect(page).to have_content("Extinct")
     end
   end
 end

@@ -1,5 +1,4 @@
 class User < ActiveRecord::Base
-  # callback for email uniqueness
   before_save { self.email == email.downcase }
   before_create :create_remember_token
 

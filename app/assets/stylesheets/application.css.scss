@@ -17,15 +17,52 @@
  *= require_self
  */
 
-/*
-th {
+.menu-item-description {
+  margin-top: 30px;
+}
+
+.center-me {
   text-align: center;
 }
 
-td {
-  text-align: center;
+#item_quantity {
+  width: 26px;
+  margin-right: 20px;
 }
-*/
+
+.order-items {
+  text-align: left;
+}
+
+.edit-item-button {
+  width: 300px;
+  margin: 0 auto;
+}
+
+.item-container {
+  text-align: center;
+  margin: 0 auto;
+  margin-top: 20px;
+  max-width: 500px;
+}
+
+.scarcity {
+  text-decoration: none;
+  width: 300px;
+  margin: 0 auto;
+  margin-bottom: 40px;
+}
+
+.category-dropdown {
+  width: 300px;
+  margin-bottom: 20px;
+}
+
+.categories-container {
+  max-width: 300px;  
+  margin: 0 auto;
+  margin-bottom: 20px;
+}
 
 .title-col {
   max-width: 160px;

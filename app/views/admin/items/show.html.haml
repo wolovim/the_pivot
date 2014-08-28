@@ -1,20 +1,29 @@
-.thumbnail
-  %img{:alt => "...", "data-src" => "holder.js/300x300"}
-    .caption
-      %h3=@item.title
-      %p=@item.description
-      %p $ #{@item.price.to_i}
-      %p= image_tag @item.image.url
-      %h5 Categories:
-      .current-categories
+.container
+  .item-container
+    %img{src: "#{@item.image_file_name}", width: "242", height: "242"}
+    %h3= @item.title
+    %p= @item.description
+    %p $ #{@item.price.to_i}
+    = link_to "Edit Item", edit_admin_item_path(@item), role: "button", class: "btn btn-default btn-block edit-item-button"
+    %table.table.table-striped.categories-container
+      %thead
+        %tr
+          %th Categories
+          %th
+      %tbody
         -@item.categories.each do |category|
-          %li= category.name
-          = link_to "Remove Category", remove_category_admin_item_path(params.merge(:category => category)), method: :delete
-  %h4 Add Category
-  %ul
-    -@categories.each do |category|
-      - if !@item.categories.include?(category)
-        %li= link_to category.name, add_category_admin_item_path(params.merge(:category => category)), method: :put
-  .scarcity
-    %h4 Scarcity: #{@item.scarcity}
-    %p= link_to "Extinction Event", extinction_admin_item_path(@item), method: :post
+          %tr
+            %td= category.name
+            %td= link_to "Remove Category", remove_category_admin_item_path(params.merge(:category => category)), method: :delete
+    .dropdown
+      %button#dropdownMenu1.btn.btn-default.category-dropdown.dropdown-toggle{"data-toggle" => "dropdown", :type => "button"}
+        Add Category
+        %span.caret
+      %ul.dropdown-menu{"aria-labelledby" => "dropdownMenu1", :role => "menu"}
+        -@categories.each do |category|
+          %li{:role => "presentation"}
+            - unless @item.categories.include?(category)
+              = link_to category.name, add_category_admin_item_path(params.merge(:category => category)), method: :put, :role => "menuitem", :tabindex => "-1"
+    .scarcity
+      %h4 Current Scarcity: #{@item.scarcity.capitalize}
+      = link_to "Trigger Extinction Event", extinction_admin_item_path(@item), method: :post, role: "button", class: "btn btn-danger btn-block"
