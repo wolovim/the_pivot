@@ -1,0 +1,53 @@
+.container
+  .panel.panel-default
+    %h1.panel-heading Your Order
+    .panel-body
+      %p Look over your items, add a few more, or proceed to checkout.
+      = flash[:toomany]
+      %table.table.table-striped
+        %thead
+          %tr
+            %th Title
+            %th Description
+            %th Price
+            %th Quantity
+            %th
+            %th Item Subtotal
+        %tbody
+        -if order.empty?
+          %tr You don't have any items in your cart!
+        -else
+          -order.items.each do |item|
+            %tr
+              %td #{item.title}
+              %td #{item.description}
+              %td $#{item.price_for_humans}
+              %td
+                = form_for 'item', method: 'PUT', :url => {:controller => 'order_items', action: :update, id: order_item(item) } do |f|
+                  .field
+                    = f.number_field :quantity, :value => order_item(item).quantity
+                    = submit_tag "Update", class: "btn btn-primary"
+              %td= button_to "Remove", delete_item_order_path(order, item_id: item.id), class: "btn btn-danger"
+              %td $#{quantity_price_for_humans(item)}
+    #order-total
+      %h3.text-muted.pull-right= "Order Subtotal: $#{order.total_for_humans}"
+
+
+-if signed_in?
+  -unless order.empty?
+    .container
+      .row.pull-right
+        %ul.nav.nav-pills
+          %li.active
+            = link_to "Proceed to Checkout", checkout_path
+-else
+  .container
+    .col-lg-5-offset-3.pull-right
+      %h5.alert.alert-warning You'll need to log in or sign up to complete your order.
+  .container
+    .col-lg-5-offset-3.pull-right
+      %ul.nav.nav-pills
+        %li.active
+          %a{href: login_path} Login
+        %li.active
+          %a{href: signup_path} Signup

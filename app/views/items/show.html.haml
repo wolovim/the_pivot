@@ -4,6 +4,6 @@
       %h3=@item.title
       %p= image_tag @item.image.url, size: "50x50"
       %p=@item.description
-      %p $ #{@item.price.to_i}
+      %p $ #{@item.price_for_humans}
       -unless @item.extinct?
         = button_to "Add to Cart", add_item_order_path(order, item_id: @item.id), class: "btn btn-primary"

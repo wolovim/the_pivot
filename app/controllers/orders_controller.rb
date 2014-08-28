@@ -33,7 +33,6 @@ class OrdersController < ApplicationController
   end
 
   def checkout
-    
     @address = Address.find_by(order_id: order.id) || Address.new
   end
 
@@ -47,7 +46,7 @@ class OrdersController < ApplicationController
 
   def paid
     if order.ordered?
-      order.paid!
+      order.pay!
     end
     session[:order_id] = nil
   end

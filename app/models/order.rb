@@ -54,12 +54,29 @@ class Order < ActiveRecord::Base
     end
   end
 
+
+  def total_for_humans
+    sprintf("%.2f",(total.to_f/100))
+  end
+
   def tax
     total * 0.08
   end
 
+  def tax_for_humans
+    sprintf("%.2f",(tax.to_f/100))
+  end
+
   def total_price
     total + tax
+  end
+
+  def total_price_for_humans
+    sprintf("%.2f",(total_price.to_f/100))
+  end
+  
+  def arrival_time
+    (updated_at + 45.minutes).strftime('%l:%M %p')
   end
 
   private

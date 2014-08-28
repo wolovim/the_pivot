@@ -84,7 +84,7 @@ describe 'an order', type: :feature do
     visit item_path(item)
     click_button("Add to Cart")
 
-    expect(page).to have_content('$200')
+    expect(page).to have_content('$2.00')
   end
 
   it 'totals the price of all items in order' do
@@ -100,6 +100,6 @@ describe 'an order', type: :feature do
     visit items_path
     page.find(:xpath, "(//div[@class='caption'])[2]").click_on("Add to Cart")
 
-    expect(page).to have_content('$150')
+    expect(page).to have_content('$1.50')
   end
 end

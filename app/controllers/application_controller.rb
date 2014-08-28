@@ -39,14 +39,10 @@ class ApplicationController < ActionController::Base
   end
 
   helper_method def order
-    @order ||= (_user_order || _session_order || _create_order)
+    @order ||= (_session_order || _create_order)
   end
 
   private
-
-  def _user_order
-    current_user && current_user.orders.last # <-- maybe bullshit
-  end
 
   def _session_order
     return unless session[:order_id]
