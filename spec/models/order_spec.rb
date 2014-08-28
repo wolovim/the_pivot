@@ -68,6 +68,12 @@ RSpec.describe Order, :type => :model do
     assert order.items.length == 1
   end
 
+  it 'tells arrival time on payment' do
+    order.order
+    order.pay
+    assert_equal (order.updated_at + 45.minutes).strftime('%l:%M %p'), order.arrival_time
+  end
+
   def build_item
     create(:item)
   end
