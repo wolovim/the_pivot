@@ -5,7 +5,6 @@ class CategoriesController < ApplicationController
 
   def show
     @category = Category.find(params[:id])
-    @order = order
   end
 
   def category_params

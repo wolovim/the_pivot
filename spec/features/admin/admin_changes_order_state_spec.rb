@@ -11,13 +11,13 @@ describe "an admin changes order state" do
 
     it "changes one order from ordered to paid state" do
     order = create :order, aasm_state: "ordered"
-    visit admin_ordered_orders_path
+    visit admin_orders_path(scope: 'ordered')
 
     within "h4.pull-left" do
       click_link_or_button 'Mark as Paid'
     end
 
-    expect(current_path).to eq '/admin/paid'
+    expect(current_url).to eq admin_orders_url(scope: 'paid')
     within ".order-display" do
       expect(page).to have_content order.created_at.to_formatted_s(:long_ordinal)
       expect(page).to have_content "Order ##{order.id}"
@@ -26,28 +26,28 @@ describe "an admin changes order state" do
 
   it "changes one order from paid to completed state" do
     order = create :order, aasm_state: "paid"
-    visit admin_paid_orders_path
+    visit admin_orders_path(scope: 'paid')
 
     within "h4.pull-left" do
       click_link_or_button 'Mark as Completed'
     end
 
-    expect(current_path).to eq '/admin/completed'
+    expect(current_url).to eq admin_orders_url(scope: 'completed')
     within ".order-display" do
       expect(page).to have_content order.created_at.to_formatted_s(:long_ordinal)
       expect(page).to have_content "Order ##{order.id}"
-    end 
+    end
   end
 
   it "changes one order from ordered to cancelled state" do
     order = create :order, aasm_state: "ordered"
-    visit admin_ordered_orders_path
+    visit admin_orders_path(scope: 'ordered')
 
     within "h4.pull-left" do
       click_link_or_button 'Cancel Order'
     end
 
-    expect(current_path).to eq '/admin/cancelled'
+    expect(current_url).to eq admin_orders_url(scope: 'cancelled')
     within ".order-display" do
       expect(page).to have_content order.created_at.to_formatted_s(:long_ordinal)
       expect(page).to have_content "Order ##{order.id}"
@@ -56,13 +56,13 @@ describe "an admin changes order state" do
 
   it "changes one order from paid to cancelled state" do
     order = create :order, aasm_state: "paid"
-    visit admin_paid_orders_path
+    visit admin_orders_path(scope: 'paid')
 
     within "h4.pull-left" do
       click_link_or_button 'Cancel Order'
     end
 
-    expect(current_path).to eq '/admin/cancelled'
+    expect(current_url).to eq admin_orders_url(scope: 'cancelled')
     within ".order-display" do
       expect(page).to have_content order.created_at.to_formatted_s(:long_ordinal)
       expect(page).to have_content "Order ##{order.id}"

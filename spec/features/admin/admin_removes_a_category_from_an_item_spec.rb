@@ -13,8 +13,8 @@ describe 'admin', type: :feature do
     click_link 'View Menu Items'
     click_on item.title
 
-    expect(page).to have_css ".current-categories", text: "Lunch"
+    expect(page).to have_css ".categories-container", text: "Lunch"
     click_link 'Remove Category'
-    expect(page).not_to have_css ".current-categories", text: "Lunch"
+    expect(page).not_to have_css ".categories-container", text: "Lunch"
   end
 end

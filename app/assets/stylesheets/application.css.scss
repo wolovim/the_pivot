@@ -29,6 +29,25 @@ td {
 
 .admin-item-container {
   text-align: center;
+  margin: 0 auto;
+  max-width: 500px;
+}
+
+.scarcity {
+  text-decoration: none;
+  width: 300px;
+  margin: 0 auto;
+}
+
+.category-dropdown {
+  width: 300px;
+  margin-bottom: 20px;
+}
+
+.categories-container {
+  max-width: 300px;  
+  margin: 0 auto;
+  margin-bottom: 20px;
 }
 
 .title-col {

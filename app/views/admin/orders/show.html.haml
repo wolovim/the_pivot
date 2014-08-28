@@ -1,6 +1,6 @@
 .container
   .order-header
-    %h2= "Order: #{@order.id}"
+    %h2= "Order: #{@user_order.id}"
     .order-info-table-div
       %table.table.table-striped.order-info-table
         %thead
@@ -11,10 +11,10 @@
             %th Status
         %tbody
           %tr
-            %th= @order.created_at
-            %th= "#{@order.user.first_name.capitalize} #{@order.user.last_name.capitalize}"
-            %th= @order.user.email
-            %th= @order.aasm_state.capitalize 
+            %th= @user_order.created_at
+            %th= "#{@user_order.user.first_name.capitalize} #{@user_order.user.last_name.capitalize}"
+            %th= @user_order.user.email
+            %th= @user_order.aasm_state.capitalize
     %table.table.table-striped
       %thead
         %tr
@@ -24,7 +24,7 @@
           %th Quantity
           %th Subtotal
       %tbody
-        -@order.order_items.each do |order_item|
+        -@user_order.order_items.each do |order_item|
           %tr
             %td= link_to order_item.item.title, item_path(order_item.item)
             %td= order_item.item.description

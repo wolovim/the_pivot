@@ -1,14 +1,15 @@
 class ItemsController < ApplicationController
   def index
     @items = Item.all
+    @categories = Category.all
+    @order = order
     @main_categories = Category.main_categories
     @special_categories = Category.special_categories
-    @order = current_order || create_order
   end
 
   def show
     @item = Item.find(params[:id])
-    @order = current_order || create_order
+    @order = order
   end
 
   def item_params

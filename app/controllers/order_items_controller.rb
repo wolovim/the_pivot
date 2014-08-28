@@ -3,7 +3,7 @@ class OrderItemsController < ApplicationController
     @order_item = OrderItem.find(params[:id])
 
     if @order_item.update_attribute(:quantity, quantity_params)
-      redirect_to current_order
+      redirect_to order
     else
       render :edit
     end

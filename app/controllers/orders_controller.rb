@@ -6,11 +6,6 @@ class OrdersController < ApplicationController
   end
 
   def show
-    @order = order
-  end
-
-  def new
-    @order = Order.new
   end
 
   def edit
@@ -18,37 +13,18 @@ class OrdersController < ApplicationController
 
   def add_item
     item = Item.find(params[:item_id])
-    current_order.add_item(item)
-    redirect_to current_order
+    order.add_item(item)
+    redirect_to order
   end
 
   def delete_item
     item = Item.find(params[:item_id])
-    current_order.remove_item(item)
-    redirect_to current_order
-  end
-
-  def create
-    @order = Order.new(order_params)
-
-    if @order.save
-      redirect_to @order
-    else
-      render :new
-    end
-  end
-
-  def update
-    @order = Order.find(params[:id])
-    if @order.save
-      redirect_to checkout_path
-    else
-      render :edit
-    end
+    order.remove_item(item)
+    redirect_to order
   end
 
   def destroy
-    @order.destroy
+    order.destroy
     redirect_to root_path
   end
 
@@ -56,31 +32,23 @@ class OrdersController < ApplicationController
     params.require(:order).permit()
   end
 
-  def find_orders
-    @order = Order.find(params[:id])
-  end
-
   def checkout
-    @order = order
-    @address = Address.find_by(order_id: @order.id) || Address.new
+    
+    @address = Address.find_by(order_id: order.id) || Address.new
   end
 
   def confirm
-    @order = order
-    if @order.basket?
-      @order.ordered!
+    if order.basket?
+      order.order!
     end
 
-    @address = Address.find_by(order_id: @order)
+    @address = Address.find_by(order_id: order)
   end
 
   def paid
-    @order = order
-    if @order.ordered?
-      @order.paid!
+    if order.ordered?
+      order.paid!
     end
     session[:order_id] = nil
   end
-
-
 end
