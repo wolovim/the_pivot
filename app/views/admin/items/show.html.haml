@@ -1,6 +1,6 @@
 .container
-  .admin-item-container
-    %p= image_tag @item.image.url, size: "200x200"
+  .item-container
+    %img{src: "#{@item.image_file_name}", width: "242", height: "242"}
     %h3= @item.title
     %p= @item.description
     %p $ #{@item.price.to_i}
