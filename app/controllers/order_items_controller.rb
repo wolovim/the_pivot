@@ -2,10 +2,12 @@ class OrderItemsController < ApplicationController
   def update
     @order_item = OrderItem.find(params[:id])
 
-    if @order_item.update_attribute(:quantity, quantity_params)
+    if quantity_params != '0'
+      @order_item.update_attribute(:quantity, quantity_params)
       redirect_to order
     else
-      render :edit
+      @order_item.destroy
+      redirect_to order
     end
   end
 
@@ -16,7 +18,7 @@ class OrderItemsController < ApplicationController
       result
     else
       flash[:toomany] = "There aren't enough of that animal left!"
-      params[:item][:quantity] = 0
+      params[:item][:quantity] = 1
     end
   end
 end

@@ -8,7 +8,7 @@ class OrderItem < ActiveRecord::Base
     if params.to_i >= 0
       quantity_limit(params)
     else
-      0
+      1
     end
   end
 
