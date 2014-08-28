@@ -37,6 +37,7 @@ Rails.application.routes.draw do
   get   '/checkout',         to: 'orders#checkout'
   get   '/confirm',          to: 'orders#confirm'
   match '/admin_dashboard',  to: 'admin#dashboard',   via: 'get'
+  get   '/code',             to: 'pages#code'
   delete '/admin/:id/orders', to: 'admin/orders#delete_item', as: "admin_delete_order_item"
   put   '/admin/order_items/:id', to: 'admin/order_items#update'
   match "*a",                to: 'errors#routing_error', via: 'get'
