@@ -31,6 +31,9 @@ class Order < ActiveRecord::Base
     end
   end
 
+  def pay_in_store?
+    ccn == nil && expdate == nil
+  end
 
   def add_item(item)
     if self.items.include?(item)
@@ -74,7 +77,7 @@ class Order < ActiveRecord::Base
   def total_price_for_humans
     sprintf("%.2f",(total_price.to_f/100))
   end
-  
+
   def arrival_time
     (updated_at + 45.minutes).strftime('%l:%M %p')
   end

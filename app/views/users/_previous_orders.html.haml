@@ -18,13 +18,13 @@
                 %th Quantity
                 %th Subtotal
             %tbody
-            -order.order_items.each do |order_item|
+            -order.order_items.each do |o_item|
               %tr
-                %td= link_to order_item.item.title, item_path(order_item.item)
-                %td= link_to order_item.item.description, item_path(order_item.item)
-                %td= link_to "$#{order_item.item.price_for_humans}", item_path(order_item.item)
-                %td= link_to order_item.quantity, item_path(order_item.item)
-                %td= link_to "$#{quantity_price_for_humans(order_item.item)}"
+                %td= link_to o_item.item.title, item_path(o_item.item)
+                %td= link_to o_item.item.description, item_path(o_item.item)
+                %td= link_to "$#{o_item.item.price_for_humans}", item_path(o_item.item)
+                %td= link_to o_item.quantity, item_path(o_item.item)
+                %td $ #{quantity_price_for_humans(o_item.item, order)}
           %h6.order_totals="Subtotal: $#{order.total_for_humans}"
           %h6.order_totals="Tax: $#{order.tax_for_humans}"
           %h4.order_totals="Total: $#{order.total_price_for_humans}"

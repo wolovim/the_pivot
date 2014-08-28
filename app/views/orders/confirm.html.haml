@@ -1,46 +1,43 @@
-%h1 Confirm Order
+.container
+  %h1 Confirm Order
 
-%h3.panel-heading Your Order
-.panel-body
-  %table.table.table-striped
-    %tbody
-      -order.items.each do |item|
-        %tr
-          %td #{item.title}
-          %td #{item.description}
-          %td $#{item.price_for_humans}
-          %td Quantity: #{order_item(item).quantity}
-
-          %td Subtotal: $#{quantity_price_for_humans(item)}
-
-  %h5.text-muted.order_totals= "Subtotal: $#{order.total_for_humans}"
-  %br
-  %h5.text-muted.order_totals= "Tax: $#{order.tax_for_humans}"
-  %br
-  %h3.text-muted.order_totals= "Total: $#{order.total_price_for_humans}"
-
-%h3.panel-heading Your Delivery Information
-.panel-body
-  %p Delivered? #{order.delivery}
-  -if !@address.nil?
+  %h3.panel-heading Your Order
+  .panel-body
     %table.table.table-striped
       %tbody
-        %tr
-          %td #{@address.street_1}
-          %td #{@address.street_2}
-          %td #{@address.city}
-          %td #{@address.state}
-          %td #{@address.zip}
+        -order.items.each do |item|
+          %tr
+            %td #{item.title}
+            %td #{item.description}
+            %td $#{item.price_for_humans}
+            %td Quantity: #{order_item(item).quantity}
 
-%h3.panel-heading Your Payment Information
-.panel-body
-  %table.table.table-striped
-    %tbody
-      %tr
-        %td #{order.card_name}
-        %td #{order.ccn}
-        %td #{order.expdate}
+            %td Subtotal: $#{quantity_price_for_humans(item)}
+
+    %h5.text-muted.order_totals= "Subtotal: $#{order.total_for_humans}"
+    %br
+    %h5.text-muted.order_totals= "Tax: $#{order.tax_for_humans}"
+    %br
+    %h3.text-muted.order_totals= "Total: $#{order.total_price_for_humans}"
+    =link_to "Change Order", order_path(order), class: 'btn btn-danger'
+
+  %h3.panel-heading Your Delivery Information
+  -if @address.nil?
+    %h5.panel-body Your order is being picked up
+  -else
+    =render partial: 'order_address'
+  =link_to "Change Delivery Information", checkout_path, class: 'btn btn-danger'
+
+  %h3.panel-heading Your Payment Information
+  -if order.pay_in_store?
+    %h5.panel-body You are paying in store
+  -else
+    =render partial: 'order_payment'
+  =link_to "Change Payment Information", checkout_path, class: 'btn btn-danger'
+  %br
+  %br
+  %br
 
 
-Look good?
-=link_to "Confirm Order", paid_path
+  =link_to "Look Good? Confirm Order", paid_path, class: 'btn btn-primary btn-block'
+  %br
