@@ -27,24 +27,20 @@ describe 'A user who is logged in' do
 
     log_me_in!
     visit order_path(@order)
-    save_and_open_page
-
   end
 
-  xit 'can access the checkout page' do
+  it 'can access the checkout page' do
     click_on('Proceed to Checkout')
     expect(page).to have_content("You're checking out!")
   end
 
-  xit 'can choose pickup'  do
+  it 'can get to confirmation screen'  do
     click_on('Proceed to Checkout')
-    choose('Pickup')
-    choose('Pay in Store')
     click_on('Continue to Confirmation Screen')
     expect(page).to have_content('Confirm Order')
   end
 
-  xit 'can add addresses' do
+  it 'can add addresses' do
     click_on('Proceed to Checkout')
     fill_in 'address[street_1]', with: '123 Main St.'
     fill_in 'address[city]', with: 'Denver'
@@ -54,7 +50,7 @@ describe 'A user who is logged in' do
     expect(page).to have_content('123 Main St.')
   end
 
-  xit 'can add payment info' do
+  it 'can add payment info' do
     click_on('Proceed to Checkout')
     fill_in 'order[ccn]', with: '1234567812345678'
     fill_in 'order[expdate]', with: '12-12'

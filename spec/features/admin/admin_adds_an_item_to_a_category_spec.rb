@@ -12,11 +12,11 @@ describe 'admin', type: :feature do
 
     visit '/admin_dashboard'
     click_link 'View Menu Items'
-    first(:link, "View Item").click
+    click_on item.title
 
-    expect(page).not_to have_css ".current-categories", text: "Dinner"
+    expect(page).not_to have_css ".categories-container", text: "Dinner"
     click_link 'Dinner'
     expect(current_url).to eq "http://www.example.com/admin/items/1"
-    expect(page).to have_css ".current-categories", text: "Dinner"
+    expect(page).to have_css ".categories-container", text: "Dinner"
   end
 end

@@ -46,7 +46,7 @@ class OrdersController < ApplicationController
 
   def paid
     if order.ordered?
-      order.paid!
+      order.pay!
     end
     session[:order_id] = nil
   end

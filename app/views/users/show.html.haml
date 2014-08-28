@@ -5,38 +5,4 @@
   %h5= current_user.name
   %h5= current_user.email
 
-  %h3= "Previous Orders"
-  -current_user.orders.reverse.each_with_index do |order, i|
-    -unless order.empty?
-      #accordian.panel-group
-        .panel.panel-default
-          .panel-heading
-            %h4.panel-title
-              %a{"data-parent" => "#accordion", "data-toggle" => "collapse", :href => "#collapse#{i}"}
-                ="#{order.created_at.to_formatted_s(:long_ordinal)}"
-        .panel-collapse.collapse{:id => "collapse#{i}"}
-          .panel-body
-            %table.table-hover.col-lg-12
-              %thead
-                %tr
-                  %th Title
-                  %th Description
-                  %th Price
-                  %th Quantity
-                  %th Subtotal
-              %tbody
-              -order.order_items.each do |order_item|
-                %tr
-                  %td= link_to order_item.item.title, item_path(order_item.item)
-                  %td= link_to order_item.item.description, item_path(order_item.item)
-                  %td= link_to "$#{order_item.item.price}.00", item_path(order_item.item)
-                  %td= link_to order_item.quantity, item_path(order_item.item)
-                  %td= link_to "$#{(order_item.quantity * order_item.item.price)}.00"
-            %h6.pull-right="Subtotal: $#{order.total}"
-            %h6.pull-right="Tax: $#{order.tax}"
-            %h4.pull-right="Total: $#{order.total_price}"
-            #order-info
-              %h6="Order Status: #{order.aasm_state}"
-              %h6="Order Submitted: #{order.updated_at.to_formatted_s(:long_ordinal)}"
-              -if order.completed? || order.cancelled?
-                %h6.text-muted= "Order Inactive as of: #{order.updated_at.to_formatted_s(:long_ordinal)}"
+  = render partial: 'users/previous_orders'
