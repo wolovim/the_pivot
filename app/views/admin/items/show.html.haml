@@ -1,9 +1,10 @@
 .container
   .admin-item-container
+    %p= image_tag @item.image.url, size: "200x200"
     %h3= @item.title
     %p= @item.description
     %p $ #{@item.price.to_i}
-
+    = link_to "Edit Item", edit_admin_item_path(@item), role: "button", class: "btn btn-default btn-block edit-item-button"
     %table.table.table-striped.categories-container
       %thead
         %tr
@@ -26,4 +27,3 @@
     .scarcity
       %h4 Current Scarcity: #{@item.scarcity.capitalize}
       = link_to "Trigger Extinction Event", extinction_admin_item_path(@item), method: :post, role: "button", class: "btn btn-danger btn-block"
-/ # %p.item-image= image_tag @item.image.url, size: "300x300"
