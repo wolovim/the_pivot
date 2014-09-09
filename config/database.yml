@@ -8,12 +8,12 @@ default: &default
 
 development:
   <<: *default
-  database: register_for_class_development
+  database: pivot_development
 
 test:
   <<: *default
-  database: register_for_class_test
+  database: pivot_test
 
 production:
   <<: *default
-  database: register_for_class_production
+  database: pivot_production
