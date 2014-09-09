@@ -6,13 +6,13 @@
       %span.icon-bar
       %span.icon-bar
       %span.icon-bar
-    %a.navbar-brand{:href => "/"} Endangered Eats
+    %a.navbar-brand{:href => "/"} TravelHome
     .collapse.navbar-collapse
       %ul.nav.navbar-nav
         %li
           %a{:href => "/about_us"} About Us
         %li
-          %a{:href => "/menu"} Menu
+          %a{:href => "/menu"} Listings
 
       - if signed_in?
         %ul.nav.navbar-nav.navbar-right
@@ -23,6 +23,6 @@
           %li= link_to "Log out", logout_path, method: "delete"
       - else
         %ul.nav.navbar-nav.navbar-right
-          %li= link_to "My Order (#{order.items.length})", order_path(order)
+          %li= link_to "My Bookings (#{order.items.length})", order_path(order)
           %li= link_to 'Login', login_path
           %li= link_to 'Signup', signup_path
