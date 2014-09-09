@@ -1,7 +1,7 @@
 require_relative 'feature_spec_helper'
 
 describe 'an order', type: :feature do
-  let(:current_order) { Order.create!(delivery: true) }
+  let(:current_order) { Order.create! }
   let(:item) { create :item }
 
   it 'starts with zero items' do
