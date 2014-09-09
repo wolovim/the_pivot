@@ -1,6 +1,6 @@
 #TO DO
 ##Week 1
-* Translate everything into stories (16 - 24 stories)
+* ~~~Translate everything into stories (16 - 24 stories)~~~
 * Create listings
     Hosts may list multiple accommodations (i.e., multiple guest rooms, couch, etc.)
 * Hosts can visit:
@@ -357,4 +357,3 @@ For each item on the order:
 - *Your project must be "live" on the web for your evaluation. We recommend you deploy it on Heroku*
 - *Your README file on GitHub should contain a link to your live site*
 - *On the production site, the URL path /code should redirect the user to the GitHub repository*
-
