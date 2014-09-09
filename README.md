@@ -1,18 +1,90 @@
-[![Code Climate](https://codeclimate.com/github/ericfransen/dinner_dash/badges/gpa.svg)](https://codeclimate.com/github/ericfransen/dinner_dash)
+#TO DO
+##Week 1
+* Translate everything into stories (16 - 24 stories)
+* Create listings
+    Hosts may list multiple accommodations (i.e., multiple guest rooms, couch, etc.)
+* Hosts can visit:
+    own listing page
+    other host's listing pages
+    all listings in system
+* Filtering on aggregate listings page
 
-```
-                      I0 - Coming Soon!/ Wire Framing
-                      I1 - Listing Items
-                      /\
-            Customer /  \ Admin
-        Add to cart /    \ CRUD Items
-   Delivery/pickup /      \ Categories
-   Status/History /        \ Orders
-                            \ Browsing
-                             \ Inactive items
-```
+##Week 2
+* add photos to new listing form
+*
+
+
+#Customer Expectations
+* Listings are shown in tile format (4-6 across, 4 down)
+* Filtering is handled on left side of main page, with white space on right side of listings
+
+
+###Project Workflow
+Work for the project should go through this process:
+
+* A story is written in the project management tool in this manner:
+    Identity
+    Context
+    Action
+    Outcome
+* A developer comments on the story that they’re beginning work
+* They create a feature branch
+* They develop and test the feature
+* They push the feature branch to the repository
+* They submit a pull request asking to merge the branch into master
+* A teammate reviews the code for quality and functionality
+* The teammate merges the pull request and closes the story/issue
+* Later, the customer will review the delivered features by browsing closed pull requests
+
 
 #Base Expectations
+##Extend Dinner Dash so that it can handle multiple, simultaneous hosts.
+##Each host has their own:
+  name
+  unique URL pattern
+  items (listings [multiple])
+  orders (reservations)
+  administrators
+
+
+* User Account
+  Users register on the site and can be:
+    both hosts (the business)
+    and travelers (the customer)
+
+##Hosts
+* A host has a listings page where they list available accommodations and they have
+  a profile with their photo, name, and description
+
+##Listings
+* A listing has:
+    a title
+    description
+    categories
+    quantity available
+    people-per-unit
+    daily rate
+    photos
+    location
+    shared/private bathroom indicator
+    available dates
+* The hosts can either confirm or deny requests from Travelers
+
+##Travelers
+* A traveler can browse the site and view all available listings
+* They can add one or more listings along with requested dates to their cart
+* Their profile has their name, photo, and previous bookings
+* When they checkout, the hosts are notified of the requests
+* The traveler is notified when request status changes
+* A traveler will need a good way to roll up all their bookings into an itinerary
+  that helps them get from place to place with a map and pushes data to their Google Calendar.
+
+
+
+
+
+#Previous Project State of Affairs:
+
 ##Unauthenticated Users
 
 ###ALLOWED TO:
