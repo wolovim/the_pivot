@@ -13,6 +13,6 @@ describe 'user', type: :feature do
     fill_in "password confirmation", with: "password"
     click_on "Create my account"
 
-    expect(page).to have_content "jonsnow"
+    expect(page).to have_content "Jon"
   end
 end
