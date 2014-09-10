@@ -1,5 +1,5 @@
 .container-fluid
-  / %h1.page-header= "Hello, #{current_user.first_name.capitalize}! Welcome to your Account Dashboard!"
+  %h1.page-header= "Hello, #{current_user.first_name.capitalize}! Welcome to your Account Dashboard!"
   .row.placeholders
     .col-xs-6.col-sm-4.placeholder
       %img.img-responsive{:alt => "Generic placeholder thumbnail", :src => "http://static.pexels.com/wp-content/uploads/2014/05/girl-hair-meadow-403.jpg"}/
@@ -14,4 +14,4 @@
       %h4= link_to "Traveler"
       %span.text-muted Manage your trips
 
-= link_to "Create your first listing", new_admin_item_path
+/ = link_to "Create your first listing", new_admin_item_path

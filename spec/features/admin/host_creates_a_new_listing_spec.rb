@@ -5,7 +5,7 @@ describe 'host', type: :feature do
 
   before { log_me_in! }
 
-  it 'creates a first listing' do
+  xit 'creates a first listing' do
     user = create :user, role: "default"
 
     visit user_path(user)
