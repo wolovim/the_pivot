@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe Address, :type => :model do
 
   let(:address) {
-    Address.new(order_id: 1, 
+    Address.new(item_id: 1, 
                 street_1: "123 Washington St", 
                 city: "Denver", 
                 state: "CO", 
@@ -39,8 +39,8 @@ RSpec.describe Address, :type => :model do
     expect(address).to_not be_valid
   end
 
-  it "is invalid if it doesn't reference an order" do
-    address.order_id = nil
+  it "is invalid if it doesn't reference an item" do
+    address.item_id = nil
     expect(address).to_not be_valid
   end
 end

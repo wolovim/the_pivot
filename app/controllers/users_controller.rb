@@ -8,11 +8,9 @@ class UsersController < ApplicationController
   end
 
   def show
-    if current_user
-      render "errors/404"  unless session[:user_id] == current_user.id
-    end
+    return render "errors/404" unless current_user
 
-    render "errors/404"
+    render "errors/404"  unless session[:user_id] == current_user.id
   end
 
   def create

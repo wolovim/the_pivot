@@ -11,8 +11,13 @@ class Item < ActiveRecord::Base
 
   belongs_to :user
 
+  has_one :address
+
   has_many :categorizations
   has_many :categories, through: :categorizations
+
+  has_many :item_availabilities
+  has_many :availabilities, through: :item_availabilities
 
   has_many :order_items
   has_many :orders, through: :order_items

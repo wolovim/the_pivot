@@ -1,6 +1,5 @@
 class Address < ActiveRecord::Base
-  belongs_to :order
+  belongs_to :item
 
-  validates :order_id, presence: true
-  validates :street_1, :city, :state, :zip, presence: true
+  validates :street_1, :city, :state, :zip, :item_id, presence: true
 end

@@ -16,7 +16,7 @@ describe 'an order', type: :feature do
     item.categories.create(name: 'Appetizers')
 
     visit items_path
-    click_button("Add to Cart")
+    click_button("Book it!")
     visit order_path(current_order)
 
     expect(page).to have_content("John")
@@ -95,10 +95,10 @@ describe 'an order', type: :feature do
 
     visit items_path
 
-    page.find(:xpath, "(//div[@class='caption'])[1]").click_on("Add to Cart")
+    page.find(:xpath, "(//div[@class='caption'])[1]").click_on("Book it!")
 
     visit items_path
-    page.find(:xpath, "(//div[@class='caption'])[2]").click_on("Add to Cart")
+    page.find(:xpath, "(//div[@class='caption'])[2]").click_on("Book it!")
 
     expect(page).to have_content('$1.50')
   end
@@ -108,7 +108,7 @@ describe 'an order', type: :feature do
     item.categories.create(name: 'Appetizers')
 
     visit items_path
-    click_button("Add to Cart")
+    click_button("Book it!")
     visit order_path(current_order)
 
     click_button("Remove")
