@@ -34,12 +34,6 @@ RSpec.describe Order, :type => :model do
     expect(order).to be_valid
   end
 
-  it 'has address if delivery is true' do
-    # address = Address.find_by_order_id(order.id)
-    expect(order.delivery).to eq(true)
-    expect(address.order_id).to eq(order.id)
-  end
-
   it 'has many items' do
     item_1 = create :item, title: "Item1"
     item_2 = create :item, title: "Item2"
