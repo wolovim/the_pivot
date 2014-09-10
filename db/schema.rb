@@ -17,7 +17,6 @@ ActiveRecord::Schema.define(version: 20140910195349) do
   enable_extension "plpgsql"
 
   create_table "addresses", force: true do |t|
-    t.integer  "order_id"
     t.string   "street_1"
     t.string   "street_2"
     t.string   "city"
@@ -26,8 +25,6 @@ ActiveRecord::Schema.define(version: 20140910195349) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
-  add_index "addresses", ["order_id"], name: "index_addresses_on_order_id", using: :btree
 
   create_table "availabilities", force: true do |t|
     t.date     "start_date"

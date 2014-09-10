@@ -7,6 +7,14 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
+  def show
+    if current_user
+      render "errors/404"  unless session[:user_id] == current_user.id
+    end
+
+    render "errors/404"
+  end
+
   def create
     @user = User.new(user_params)
     if @user.save
