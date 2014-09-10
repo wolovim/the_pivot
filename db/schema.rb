@@ -76,6 +76,7 @@ ActiveRecord::Schema.define(version: 20140910201617) do
     t.string   "scarcity",           default: "endangered"
     t.integer  "people_per_unit",    default: 1
     t.string   "bathroom",           default: "private"
+    t.integer  "user_id"
   end
 
   create_table "order_items", force: true do |t|

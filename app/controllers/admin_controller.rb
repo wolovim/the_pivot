@@ -9,6 +9,6 @@ class AdminController < ApplicationController
 
   private
   def authorize?
-    redirect_to "https://www.youtube.com/watch?v=4dGOfFbzvq4&t=0m45s" unless current_user.role == "admin"
+    session[:user_id] == current_user.id
   end
 end
