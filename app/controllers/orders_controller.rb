@@ -31,7 +31,7 @@ class OrdersController < ApplicationController
   end
 
   def checkout
-    @address = Address.find_by(order_id: order.id) || Address.create
+    @address = Address.create
   end
 
   def confirm
@@ -39,7 +39,7 @@ class OrdersController < ApplicationController
       order.order!
     end
 
-    @address = Address.find_by(order_id: order)
+    # @address = Address.create()
   end
 
   def paid
