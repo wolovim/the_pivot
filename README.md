@@ -1,3 +1,4 @@
+[![Stories in Ready](https://badge.waffle.io/marcgarreau/the_pivot.png?label=ready&title=Ready)](https://waffle.io/marcgarreau/the_pivot)
 #TO DO
 ##Week 1
 * ~~~Translate everything into stories (16 - 24 stories)~~~
