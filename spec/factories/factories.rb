@@ -1,7 +1,9 @@
 FactoryGirl.define do
   factory :item do
-    title 'Ostrich'
-    description 'That sweet, sweet ostrich meat.'
+    title 'MyTitle'
+    description 'MyDesc'
+    bathroom 'private'
+    people_per_unit 1
     price 32
   end
 

@@ -7,9 +7,11 @@
       %span.text-muted Manage account info
     .col-xs-6.col-sm-4.placeholder
       %img.img-responsive{:alt => "Generic placeholder thumbnail", :src => "http://static.pexels.com/wp-content/uploads/2014/08/bed-lamp-room-2643.jpg"}/
-      %h4= link_to "Host"
+      %h4= link_to "Host", admin_items_path
       %span.text-muted Manage your listings
     .col-xs-6.col-sm-4.placeholder
       %img.img-responsive{:alt => "Generic placeholder thumbnail", :src => "http://static.pexels.com/wp-content/uploads/2014/07/airport-amsterdam-arrival-2069.jpg"}/
       %h4= link_to "Traveler"
       %span.text-muted Manage your trips
+
+= link_to "Create your first listing", new_admin_item_path

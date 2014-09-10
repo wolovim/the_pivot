@@ -1,6 +1,6 @@
 require_relative 'feature_spec_helper'
 
-describe 'a site visitor', type: :feature do
+describe 'user', type: :feature do
 
   it 'signs up and logs out' do
     visit "/"
@@ -14,7 +14,7 @@ describe 'a site visitor', type: :feature do
     fill_in( "password confirmation", :with => "password" )
     click_on("Create my account")
 
-    expect(page).to have_content( "Hello, Martha!")
+    expect(page).to have_content( "Welcome, Martha!")
 
     click_link("Log out")
     expect(page).to have_content( "Login")
