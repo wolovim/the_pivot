@@ -21,13 +21,6 @@
     %h3.text-muted.order_totals= "Total: $#{order.total_price_for_humans}"
     =link_to "Change Order", order_path(order), class: 'btn btn-danger'
 
-  %h3.panel-heading Your Delivery Information
-  -if @address.nil?
-    %h5.panel-body Your order is being picked up
-  -else
-    =render partial: 'order_address'
-  =link_to "Change Delivery Information", checkout_path, class: 'btn btn-danger'
-
   %h3.panel-heading Your Payment Information
   -if order.pay_in_store?
     %h5.panel-body You are paying in store
