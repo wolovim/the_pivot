@@ -51,7 +51,7 @@ class ApplicationController < ActionController::Base
 
   def _create_order
     return if session[:order_id]
-    current_order = Order.create!(delivery: true)
+    current_order = Order.create!
     session[:order_id] = current_order.id
     current_order
   end

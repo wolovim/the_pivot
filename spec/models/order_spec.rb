@@ -18,22 +18,7 @@ RSpec.describe Order, :type => :model do
   it 'is valid' do
     expect(order).to be_valid
   end
-
-  it 'is valid if delivery is false' do
-    order.delivery = false
-    expect(order).to be_valid
-  end
-
-  it 'is invalid without a delivery designation' do
-    order.delivery = nil
-    expect(order).to_not be_valid
-  end
-
-  it 'is valid with delivery designated as false' do
-    order.delivery = false
-    expect(order).to be_valid
-  end
-
+  
   it 'has many items' do
     item_1 = create :item, title: "Item1"
     item_2 = create :item, title: "Item2"
