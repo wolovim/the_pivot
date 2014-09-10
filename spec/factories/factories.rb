@@ -10,7 +10,6 @@ FactoryGirl.define do
   end
 
   factory :order do
-    delivery true
   end
 
   factory :order_item do
