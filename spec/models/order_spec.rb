@@ -18,7 +18,7 @@ RSpec.describe Order, :type => :model do
   it 'is valid' do
     expect(order).to be_valid
   end
-
+  
   it 'has many items' do
     item_1 = create :item, title: "Item1"
     item_2 = create :item, title: "Item2"
