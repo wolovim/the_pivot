@@ -21,6 +21,10 @@ RSpec.describe Item, :type => :model do
       expect(item).to respond_to(:orders)
     end
 
+    it 'belongs to a user' do
+      expect(item).to respond_to(:user)
+    end
+
     it 'adds a category to an item' do
       category = create :category
       item.add_category(category)

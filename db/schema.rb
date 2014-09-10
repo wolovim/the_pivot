@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140910002251) do
+ActiveRecord::Schema.define(version: 20140910195349) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -86,6 +86,7 @@ ActiveRecord::Schema.define(version: 20140910002251) do
     t.string   "scarcity",           default: "endangered"
     t.integer  "people_per_unit",    default: 1
     t.string   "bathroom",           default: "private"
+    t.integer  "user_id"
   end
 
   create_table "order_items", force: true do |t|
