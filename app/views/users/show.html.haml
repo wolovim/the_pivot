@@ -1,8 +1,15 @@
-.container
-  = flash[:success]
-  %h3= "Hello, #{current_user.first_name.capitalize}!"
-  %h3 Your Info
-  %h5= current_user.name
-  %h5= current_user.email
-
-  = render partial: 'users/previous_orders'
+.container-fluid
+  %h1.page-header Account Dashboard
+  .row.placeholders
+    .col-xs-6.col-sm-4.placeholder
+      %img.img-responsive{:alt => "Generic placeholder thumbnail", :src => "http://static.pexels.com/wp-content/uploads/2014/05/girl-hair-meadow-403.jpg"}/
+      %h4= link_to "Profile"
+      %span.text-muted Manage account info
+    .col-xs-6.col-sm-4.placeholder
+      %img.img-responsive{:alt => "Generic placeholder thumbnail", :src => "http://static.pexels.com/wp-content/uploads/2014/08/bed-lamp-room-2643.jpg"}/
+      %h4= link_to "Host"
+      %span.text-muted Manage your listings
+    .col-xs-6.col-sm-4.placeholder
+      %img.img-responsive{:alt => "Generic placeholder thumbnail", :src => "http://static.pexels.com/wp-content/uploads/2014/07/airport-amsterdam-arrival-2069.jpg"}/
+      %h4= link_to "Traveler"
+      %span.text-muted Manage your trips
