@@ -11,8 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
-ActiveRecord::Schema.define(version: 20140909224259) do
+ActiveRecord::Schema.define(version: 20140910002251) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,6 +29,13 @@ ActiveRecord::Schema.define(version: 20140909224259) do
 
   add_index "addresses", ["order_id"], name: "index_addresses_on_order_id", using: :btree
 
+  create_table "availabilities", force: true do |t|
+    t.date     "start_date"
+    t.date     "end_date"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "categories", force: true do |t|
     t.string   "name"
     t.datetime "created_at"
@@ -45,6 +51,26 @@ ActiveRecord::Schema.define(version: 20140909224259) do
 
   add_index "categorizations", ["category_id"], name: "index_categorizations_on_category_id", using: :btree
   add_index "categorizations", ["item_id"], name: "index_categorizations_on_item_id", using: :btree
+
+  create_table "item_addresses", force: true do |t|
+    t.integer  "item_id"
+    t.integer  "address_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "item_addresses", ["address_id"], name: "index_item_addresses_on_address_id", using: :btree
+  add_index "item_addresses", ["item_id"], name: "index_item_addresses_on_item_id", using: :btree
+
+  create_table "item_availabilities", force: true do |t|
+    t.integer  "availability_id"
+    t.integer  "items_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "item_availabilities", ["availability_id"], name: "index_item_availabilities_on_availability_id", using: :btree
+  add_index "item_availabilities", ["items_id"], name: "index_item_availabilities_on_items_id", using: :btree
 
   create_table "items", force: true do |t|
     t.string   "title"
@@ -82,6 +108,16 @@ ActiveRecord::Schema.define(version: 20140909224259) do
   end
 
   add_index "orders", ["user_id"], name: "index_orders_on_user_id", using: :btree
+
+  create_table "user_addresses", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "address_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "user_addresses", ["address_id"], name: "index_user_addresses_on_address_id", using: :btree
+  add_index "user_addresses", ["user_id"], name: "index_user_addresses_on_user_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "first_name"
