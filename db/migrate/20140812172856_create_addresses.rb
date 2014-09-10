@@ -7,7 +7,7 @@ class CreateAddresses < ActiveRecord::Migration
       t.string :state
       t.string :zip
 
-      t.references :items, index: true
+      t.references :item, index: true
 
       t.timestamps
     end

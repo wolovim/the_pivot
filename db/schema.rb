@@ -22,12 +22,12 @@ ActiveRecord::Schema.define(version: 20140910201617) do
     t.string   "city"
     t.string   "state"
     t.string   "zip"
-    t.integer  "items_id"
+    t.integer  "item_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "addresses", ["items_id"], name: "index_addresses_on_items_id", using: :btree
+  add_index "addresses", ["item_id"], name: "index_addresses_on_item_id", using: :btree
 
   create_table "availabilities", force: true do |t|
     t.date     "start_date"
@@ -54,13 +54,13 @@ ActiveRecord::Schema.define(version: 20140910201617) do
 
   create_table "item_availabilities", force: true do |t|
     t.integer  "availability_id"
-    t.integer  "items_id"
+    t.integer  "item_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   add_index "item_availabilities", ["availability_id"], name: "index_item_availabilities_on_availability_id", using: :btree
-  add_index "item_availabilities", ["items_id"], name: "index_item_availabilities_on_items_id", using: :btree
+  add_index "item_availabilities", ["item_id"], name: "index_item_availabilities_on_item_id", using: :btree
 
   create_table "items", force: true do |t|
     t.string   "title"
