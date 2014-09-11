@@ -9,6 +9,7 @@ describe 'user', type: :feature do
       visit listings_user_path(user)
 
       expect(page).not_to have_content "Edit Listing"
+      expect(page).not_to have_button "Create New Listing"
       expect(page).to have_button "Book it!"
       expect(page).to have_content "MyTitle"
     end
@@ -27,6 +28,7 @@ describe 'user', type: :feature do
       visit listings_user_path(user)
 
       expect(page).not_to have_content "Book it!"
+      expect(page).to have_content "Create New Listing"
       expect(page).to have_button "Edit Listing"
     end
   end
