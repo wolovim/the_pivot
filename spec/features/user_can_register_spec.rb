@@ -5,13 +5,13 @@ describe 'user', type: :feature do
     visit '/signup'
     # save_and_open_page
 
-    fill_in "first name", with: "Jon"
-    fill_in "last name", with: "Snow"
-    fill_in "email address", with: "jonsnow@whitewall.gov"
-    fill_in "city", with: "Denver"
-    fill_in "state", with: "Colorado"
-    fill_in "password", with: "password"
-    fill_in "password confirmation", with: "password"
+    fill_in "First Name", with: "Jon"
+    fill_in "Last Name", with: "Snow"
+    fill_in "Email Address", with: "jonsnow@whitewall.gov"
+    fill_in "City", with: "Denver"
+    fill_in "State", with: "Colorado"
+    fill_in "Password", with: "password"
+    fill_in "Password Confirmation", with: "password"
     click_on "Create my account"
 
     expect(page).to have_content "Jon"
