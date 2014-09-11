@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
       if @user.role == "admin"
         redirect_to admin_dashboard_path
       else
-        redirect_to @user
+        redirect_to dashboard_user_path(@user)
       end
     else
       flash.now[:error] = 'Invalid email/password combination'
