@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
   resources :items,       only: [:index, :show]
   resources :categories,  only: [:index, :show]
-  resources :users,       only: [:new, :create, :show, :index ]
+  resources :users,       only: [:new, :create, :show, :index ] do
+    member do
+      get :listings
+    end
+  end
   resources :sessions,    only: [:new, :create, :destroy]
   resources :order_items, only: [:update]
   resources :addresses,   only: [:create]
