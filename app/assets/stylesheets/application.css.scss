@@ -166,9 +166,16 @@
   overflow-y: scroll;
 }
 
-.new-listing {
-  width: 50%;
-  margin: 0 auto;
-  margin-top: 20px;
-  margin-bottom: 20px;
+#each_listing {
+  width:100px;
+  height:100px;
+  margin-right:10px;
+  float:left;
 }
+
+// .new-listing {
+//   width: 50%;
+//   margin: 0 auto;
+//   margin-top: 20px;
+//   margin-bottom: 20px;
+// }
