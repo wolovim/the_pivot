@@ -12,13 +12,14 @@ describe 'an items show page', type: :feature do
 
   it "has an add to order button" do
     visit item_path(item)
-    expect(page).to have_button('Add to Cart')
+    expect(page).to have_button('Book it!')
   end
 
-  it "can see an extinct item" do
+  # For TravelHome, users should not be able to view an "extinct" item
+  xit "can see an extinct item" do
     Item.extinction(item)
     visit item_path(item)
-    expect(page).to_not have_button('Add to Cart')
+    expect(page).to_not have_button('Book it!')
   end
 
     it "cannot visit a page with no action" do
