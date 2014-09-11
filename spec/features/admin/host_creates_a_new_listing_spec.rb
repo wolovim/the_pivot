@@ -34,12 +34,12 @@ describe 'host', type: :feature do
 
     click_link "Host"
     click_link "Create New Listing"    
-
-    fill_in "Title", with: "NewListingTitle"
-    fill_in "Description", with: "NewListingDescription"
-    fill_in "Price", with: 20
-    fill_in "People per unit", with: 1
-    fill_in "Bathroom", with: "private"
+    # save_and_open_page
+    fill_in "Listing Title", with: "NewListingTitle"
+    fill_in "Listing Description", with: "NewListingDescription"
+    fill_in "Price Per Night", with: 20
+    # fill_in "People per unit", with: 1
+    # fill_in "Bathroom Type: Private or Shared", with: "private"
     # attach_file "Image", 'spec/fixtures/missing.jpg'
     click_button "Create Listing"
 
