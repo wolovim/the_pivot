@@ -1,0 +1,16 @@
+.container.new-listing
+  -if host? @user
+    = link_to "Create New Listing", new_admin_item_path, role: "button", :class => "btn btn-primary btn-lg btn-block new-listing"
+  .listings.user-listings
+    -@listings.each do |item|
+      %tr
+        .thumbnail.col-lg-3
+
+          %img{src: "#{item.image_file_name}"}
+          .caption
+            %h3= link_to "#{item.title}", item_path(item)
+            %p $ #{item.price_for_humans}
+            -unless host? @user
+              = button_to "Book it!", add_item_order_path(order, item_id: item.id), class: "thumbnail-btn btn btn-primary"
+            -if host? @user
+              = button_to "Edit Listing", class: "thumbnail-btn btn btn-primary"
