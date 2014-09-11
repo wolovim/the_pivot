@@ -1,8 +1,8 @@
 Address.create!([
-  {order_id: 3, street_1: "1510 Blake St", street_2: "", city: "Denver", state: "CO", zip: "80202"},
-  {order_id: 5, street_1: "asdf", street_2: "asdf", city: "sdf", state: "sadf", zip: "fds"},
-  {order_id: 3, street_1: "1510 Blake St", street_2: "", city: "Denver", state: "CO", zip: "80202"},
-  {order_id: 5, street_1: "asdf", street_2: "asdf", city: "sdf", state: "sadf", zip: "fds"}
+  {item_id: 3, street_1: "1510 Blake St", street_2: "", city: "Denver", state: "CO", zip: "80202"},
+  {item_id: 5, street_1: "asdf", street_2: "asdf", city: "sdf", state: "sadf", zip: "fds"},
+  {item_id: 3, street_1: "1510 Blake St", street_2: "", city: "Denver", state: "CO", zip: "80202"},
+  {item_id: 5, street_1: "asdf", street_2: "asdf", city: "sdf", state: "sadf", zip: "fds"}
 ])
 Categorization.create!([
   {item_id: 3, category_id: 1},
