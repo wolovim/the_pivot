@@ -16,8 +16,16 @@
       %br/
       = f.text_field :price
     %p
+      = f.label :people_per_unit
+      %br/
+      = f.text_field :people_per_unit
+    %p
+      = f.label :bathroom
+      %br/
+      = f.text_field :bathroom
+    %p
       = f.label :image
       %br/
       = f.file_field :image
     %p
-      = f.submit
+      = f.submit "Create Listing"
