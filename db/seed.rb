@@ -119,16 +119,16 @@ OrderItem.create!([
   {order_id: 12, item_id: 12, quantity: 1}
 ])
 User.create!([
-  {first_name: "Rachel",  last_name: "Warbelow",   email: "demo+rachel@jumpstartlab.com", city: "Las Vegas",   state: "Nevada",     password: "password", role: "user"},
-  {first_name: "Jorge",   last_name: "Tellez",     email: "demo+jorge@jumpstartlab.com",  city: "San Diego",   state: "California", password: "password", role: "user"},
-  {first_name: "Jon",     last_name: "Snow",       email: "jsnow@whitewall.gov",          city: "Hollywood",   state: "California", password: "password", role: "admin"},
-  {first_name: "Josh",    last_name: "Cheek",      email: "demo+josh@jumpstartlab.com",   city: "Chicago",     state: "Illinois",   password: "password", role: "admin"},
-  {first_name: "Jeff",    last_name: "",           email: "demo+jeff@jumpstartlab.com",   city: "Denver",      state: "Colorado",   password: "password", role: nil},
-  {first_name: "Emily",   last_name: "Davis",      email: "emily@email.com",              city: "Kansas City", state: "Missouri",   password: "password", role: nil},
-  {first_name: "Will",    last_name: "Faurot",     email: "will@email.com",               city: "Denver",      state: "Colorado",   password: "password", role: nil},
-  {first_name: "Gustavo", last_name: "Villagrana", email: "gustavo@email.com",            city: "Austin",      state: "Texas",      password: "password", role: nil},
-  {first_name: "Marc",    last_name: "Garreau",    email: "marc@email.com",               city: "Orlando",     state: "Florida",    password: "password", role: nil},
-  {first_name: "Eric",    last_name: "Fransen",    email: "eric@email.com",               city: "St. Louis",   state: "Missouri",   password: "password", role: nil},
-  {first_name: "name",    last_name: "name",       email: "abcde@123.com",                city: "Portland",    state: "Oregon",     password: "password", role: nil},
-  {first_name: "Bald",    last_name: "Eagle",      email: "bald@eagle.com",               city: "Dayton",      state: "Ohio",       password: "password", role: nil}
+  {first_name: "Rachel", last_name: "Warbelow", email: "demo+rachel@jumpstartlab.com", city: "Las Vegas", state: "Nevada", password: "password", role: "user"},
+  {first_name: "Jorge", last_name: "Tellez", email: "demo+jorge@jumpstartlab.com", city: "San Diego", state: "California", password: "password", role: "user"},
+  {first_name: "Jon", last_name: "Snow", email: "jsnow@whitewall.gov", city: "Hollywood", state: "California", password: "password", role: "admin"},
+  {first_name: "Josh", last_name: "Cheek", email: "demo+josh@jumpstartlab.com", city: "Chicago", state: "Illinois", password: "password", role: "admin"},
+  {first_name: "Jeff", last_name: "", email: "demo+jeff@jumpstartlab.com", city: "Denver", state: "Colorado", password: "password", role: nil},
+  {first_name: "Emily", last_name: "Davis", email: "emily@email.com", city: "Kansas City", state: "Missouri", password: "password", role: nil},
+  {first_name: "Will", last_name: "Faurot", email: "will@email.com", city: "Denver", state: "Colorado", password: "password", role: nil},
+  {first_name: "Gustavo", last_name: "Villagrana", email: "gustavo@email.com", city: "Austin", state: "Texas", password: "password", role: nil},
+  {first_name: "Marc", last_name: "Garreau", email: "marc@email.com", city: "Orlando", state: "Florida", password: "password", role: nil},
+  {first_name: "Eric", last_name: "Fransen", email: "eric@email.com", city: "St. Louis", state: "Missouri", password: "password", role: nil},
+  {first_name: "name", last_name: "name", email: "abcde@123.com", city: "Portland", state: "Oregon", password: "password", role: nil},
+  {first_name: "Bald", last_name: "Eagle", email: "bald@eagle.com", city: "Dayton", state: "Ohio", password: "password", role: nil}
 ])
