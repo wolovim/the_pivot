@@ -29,6 +29,10 @@ class UsersController < ApplicationController
     @listings = @user.items.all.to_a
   end
 
+  def dashboard
+    @user = current_user
+  end
+
   def user_params
       params.require(:user).permit(:first_name, :last_name,
                                    :username,   :email,

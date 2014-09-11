@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :users,       only: [:new, :create, :show, :index ] do
     member do
       get :listings
+      get :dashboard
     end
   end
   resources :sessions,    only: [:new, :create, :destroy]
