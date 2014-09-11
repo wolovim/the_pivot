@@ -1,36 +1,107 @@
-.h1
-.container
-  .row.row-offcanvas.row-offcanvas-right
-    .col-xs-12.col-sm-9
-      %p.pull-right.visible-xs
-        %button.btn.btn-primary.btn-xs{"data-toggle" => "offcanvas", :type => "button"} Toggle nav
-      .jumbotron
-        %h1 Our Menu
-        %p Free range. Single source. Fully organic.
-      -@main_categories.each_with_index do |category, i|
-        -unless category.items.empty?
-          #accordion.panel-group
-            .panel.panel-default
-              .panel-heading
-                %h4.panel-title
-                  %a{"data-parent" => "#accordion", "data-toggle" => "collapse", :href => "#collapse#{i}"}
-                    =category.name
-              .panel-collapse.collapse{:id => "collapse#{i}"}
-                .panel-body
-                  -category.items.each do |item|
-                    .col-sm-6.col-md-4
-                      .thumbnail
-                        %a{href: "#{item_path(item)}"}
-                          %img{src: "#{item.image_file_name}"}
-                          .caption
-                            %h3= link_to "#{item.title}", item_path(item)
-                            %p= truncate(item.description, :length => 30)
-                            %p $ #{item.price_for_humans}
-                            = button_to "Book it!", add_item_order_path(order, item_id: item.id), class: "thumbnail-btn btn btn-primary"
 
-    #sidebar.col-xs-6.col-sm-3.sidebar-offcanvas{:role => "navigation"}
-      .list-group
-        %a.list-group-item.active Special Categories
-        -@special_categories.each do |category|
-          -unless category.items.empty?
-            %a.list-group-item{:href => category_path(category)}= category.name
+#sidebar.sidebar-offcanvas.no-gutter{:role => "navigation"}
+  .list-group
+    %a.list-group-item.active Special Categories
+    -@special_categories.each do |category|
+      -unless category.items.empty?
+        %a.list-group-item{:href => category_path(category)}= category.name
+
+    .container-fluid
+      .row
+        %ul.nav.nav-sidebar
+          %li.active
+            %a{:href => "#"} Location
+          %li
+            %a{:href => "#"} Price
+          %li
+            %a{:href => "#"} Available Dates
+          %li
+            %a{:href => "#"} People per Unit
+          %li
+            %a{:href => "#"} Private Room/Shared Room/Couch
+          %li
+            =link_to "Shared/Private Bath", items_path
+      %ul.pagination
+        %li
+          %a{:href => "#"} «
+        %li
+          %a{:href => "#"} 1
+        %li
+          %a{:href => "#"} 2
+        %li
+          %a{:href => "#"} 3
+        %li
+          %a{:href => "#"} 4
+        %li
+          %a{:href => "#"} »
+
+.content
+
+  #googleMap{:style => "width:100%;height:300px;"}
+
+  .listings
+    .each_listing
+      -@items.each do |item|
+        %tr
+          .thumbnail.col-lg-3
+
+            %img{src: "#{item.image_file_name}"}
+            .caption
+              %h3= link_to "#{item.title}", item_path(item)
+              %p $ #{item.price_for_humans}
+              = button_to "Book it!", add_item_order_path(order, item_id: item.id), class: "thumbnail-btn btn btn-primary"
+
+      .row
+        .col-lg-12
+
+
+
+      // each listing
+      .col-lg-3
+        %img
+
+
+
+
+-# .container
+-#   .row.row-offcanvas.row-offcanvas-right
+-#     .col-xs-12.col-sm-9
+-#       %p.pull-right.visible-xs
+-#         %button.btn.btn-primary.btn-xs{"data-toggle" => "offcanvas", :type => "button"} Toggle nav
+-#       -@main_categories.each_with_index do |category, i|
+-#         -unless category.items.empty?
+-#           #accordion.panel-group
+-#             .panel.panel-default
+-#               .panel-heading
+-#                 %h4.panel-title
+-#                   %a{"data-parent" => "#accordion", "data-toggle" => "collapse", :href => "#collapse#{i}"}
+-#                     =category.name
+-#               .panel-collapse.collapse{:id => "collapse#{i}"}
+-#                 .panel-body
+-#                   -category.items.each do |item|
+-#                     .col-sm-6.col-md-4
+-#                       .thumbnail
+-#                         %a{href: "#{item_path(item)}"}
+-#                           %img{src: "#{item.image_file_name}"}
+-#                           .caption
+-#                             %h3= link_to "#{item.title}", item_path(item)
+-#                             %p= truncate(item.description, :length => 30)
+-#                             %p $ #{item.price_for_humans}
+-#                             = button_to "Book it!", add_item_order_path(order, item_id: item.id), class: "thumbnail-btn btn btn-primary"
+
+-# .container
+
+%script{:src => "http://maps.googleapis.com/maps/api/js?key=AIzaSyDY0kkJiTPVd2U7aTOAwhc9ySH6oHxOIYM&sensor=false"}
+:javascript
+  function initialize()
+  {
+  var mapProp = {
+    center:new google.maps.LatLng(39.749650, -105.000107),
+    zoom:13,
+    mapTypeId:google.maps.MapTypeId.ROADMAP
+    };
+  var map=new google.maps.Map(document.getElementById("googleMap")
+    ,mapProp);
+  }
+
+  google.maps.event.addDomListener(window, 'load', initialize);
