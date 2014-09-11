@@ -11,7 +11,7 @@ describe 'an order', type: :feature do
     expect(page).to have_content("You don't have any items in your cart!")
   end
 
-  xit 'can add an item' do
+  it 'can add an item' do
     item = create :item, title: "John"
     item.categories.create(name: 'Appetizers')
 
@@ -87,7 +87,7 @@ describe 'an order', type: :feature do
     expect(page).to have_content('$2.00')
   end
 
-  xit 'totals the price of all items in order' do
+  it 'totals the price of all items in order' do
     item1 = create :item, title: "John", price: 100
     item2 = create :item, title: "Jane", price: 50
     item1.categories.create(name: 'Appetizers')
@@ -103,7 +103,7 @@ describe 'an order', type: :feature do
     expect(page).to have_content('$1.50')
   end
 
-    xit "can destroy an order" do
+    it "can destroy an order" do
     item = create :item
     item.categories.create(name: 'Appetizers')
 
