@@ -1,31 +1,20 @@
 .container
-  = form_for [:admin, @item] do |f|
-    %ul
-      - @item.errors.full_messages.each do |error|
-        %li= error
-    %p
-      = f.label :title
-      %br/
-      = f.text_field :title
-    %p
-      = f.label :description
-      %br/
-      = f.text_area :description
-    %p
-      = f.label :price
-      %br/
-      = f.text_field :price
-    %p
-      = f.label :people_per_unit
-      %br/
-      = f.text_field :people_per_unit
-    %p
-      = f.label :bathroom
-      %br/
-      = f.text_field :bathroom
-    %p
-      = f.label :image
-      %br/
-      = f.file_field :image
-    %p
-      = f.submit "Create Listing"
+  .row.col-lg-6.col-lg-offset-3
+    %h2.form-signin-heading Create a New Listing.
+    = form_for [:admin, @item] do |f|
+      - if @item.errors.any?
+        %ul#errors
+          - @item.errors.full_messages.each do |error|
+            %li= error
+      .form-group
+        = f.text_field :title, class: "form-control", placeholder: "Listing Title"
+        %br/
+        = f.text_area :description, class: "form-control", placeholder: "Listing Description"
+        %br/
+        = f.text_field :price, class: "form-control", placeholder: "Price Per Night"
+        %br/
+        = f.text_field :people_per_unit, class: "form-control", value: "People Per Unit"
+        %br/
+        = f.text_field :bathroom, class: "form-control", value: "Bathroom Type: Private or Shared"
+        %br/
+        = f.submit "Create Listing", class: "btn btn-large btn-block btn-primary"
