@@ -17,7 +17,7 @@ class Admin::ItemsController < AdminController
   end
 
   def create
-    @item = Item.new(item_params)
+    @item = current_user.items.new(item_params)
 
     if @item.save
       redirect_to admin_item_path(@item)
@@ -53,7 +53,7 @@ class Admin::ItemsController < AdminController
   end
 
   def item_params
-    params.require(:item).permit(:title, :description, :price, :image)
+    params.require(:item).permit(:title, :description, :price, :image, :user_id)
   end
 
   def find_item
