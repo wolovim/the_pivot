@@ -25,7 +25,8 @@ class UsersController < ApplicationController
   end
 
   def listings
-    @listings = Item.find(params[:id])
+    @user = User.find(params[:id])
+    @listings = @user.items.all.to_a
   end
 
   def user_params
