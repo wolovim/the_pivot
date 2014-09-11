@@ -14,4 +14,4 @@ test:
 
 production:
   <<: *default
-  database: the_pivot_production
+  url: <%= ENV['DATABASE_URL'] %>
