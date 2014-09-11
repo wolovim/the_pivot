@@ -24,6 +24,6 @@
           %li{:role => "presentation"}
             - unless @item.categories.include?(category)
               = link_to category.name, add_category_admin_item_path(params.merge(:category => category)), method: :put, :role => "menuitem", :tabindex => "-1"
-    .scarcity
-      %h4 Current Scarcity: #{@item.scarcity.capitalize}
-      = link_to "Trigger Extinction Event", extinction_admin_item_path(@item), method: :post, role: "button", class: "btn btn-danger btn-block"
+    / .scarcity
+    /   %h4 Current Scarcity: #{@item.scarcity.capitalize}
+    /   = link_to "Trigger Extinction Event", extinction_admin_item_path(@item), method: :post, role: "button", class: "btn btn-danger btn-block"
