@@ -17,6 +17,24 @@
  *= require_self
  */
 
+.image_small {
+  float: right;
+  margin-top: 20px;
+}
+
+.thumbx {
+  margin: 0 10px;
+}
+
+.location_title {
+  float: left;
+  width: 100%;
+}
+
+.location_info {
+  border: solid;
+}
+
 .no-gutter {
   padding: 0;
 }
