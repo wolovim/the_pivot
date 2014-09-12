@@ -53,7 +53,7 @@ class Admin::ItemsController < AdminController
   end
 
   def item_params
-    params.require(:item).permit(:title, :description, :price, :image, :user_id)
+    params.require(:item).permit(:title, :description, :price, :image, :people_per_unit, :bathroom, :user_id)
   end
 
   def find_item
