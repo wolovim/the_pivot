@@ -8,7 +8,7 @@
     %p.location_text
       Rate: $ #{@item.price}
     %p.location_text
-      Decription: #{@item.description}
+      Description: #{@item.description}
     %a= button_to "Book it!", add_item_order_path(order, item_id: @item.id), class: 'btn btn-success'
     %p
 
