@@ -1,5 +1,9 @@
 $(document).ready(function () {
 
+
+// put in price slider
+  $("#ex2").slider({});
+
   var deliveryAddress = $('#delivery-address');
   var paymentInformation = $('#payment-info');
 
