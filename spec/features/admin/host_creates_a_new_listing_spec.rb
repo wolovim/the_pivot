@@ -33,11 +33,11 @@ describe 'host', type: :feature do
     click_button 'Login'
 
     click_link "Host"
-    click_link "Create New Listing"    
+    click_link "Create New Listing"
     # save_and_open_page
     fill_in "Listing Title", with: "NewListingTitle"
     fill_in "Listing Description", with: "NewListingDescription"
-    fill_in "Price Per Night", with: 20
+    fill_in "Daily Rate", with: 20
     # fill_in "People per unit", with: 1
     # fill_in "Bathroom Type: Private or Shared", with: "private"
     # attach_file "Image", 'spec/fixtures/missing.jpg'

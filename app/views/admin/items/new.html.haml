@@ -11,10 +11,10 @@
         %br/
         = f.text_area :description, class: "form-control", placeholder: "Listing Description"
         %br/
-        = f.text_field :price, class: "form-control", placeholder: "Price Per Night"
+        = f.text_field :price, class: "form-control", placeholder: "Daily Rate"
         %br/
-        = f.text_field :people_per_unit, class: "form-control", value: "People Per Unit"
+        = f.select(:people_per_unit, options_for_select([['People Per Unit', 1], [1, 1], [2, 2], [3, 3], [4, 4], [5, 5], [6, 6]]), {}, {class: "form-control"})
         %br/
-        = f.text_field :bathroom, class: "form-control", value: "Bathroom Type: Private or Shared"
+        = f.select(:bathroom, options_for_select([['Bathroom Type', 'Bathroom Type'], ['Private', 'Private'], ['Shared', 'Shared']]), {}, {class: "form-control"})
         %br/
         = f.submit "Create Listing", class: "btn btn-large btn-block btn-primary"
