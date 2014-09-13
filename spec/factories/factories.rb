@@ -2,7 +2,7 @@ FactoryGirl.define do
   factory :item do
     title 'MyTitle'
     description 'MyDesc'
-    bathroom 'private'
+    bathroom 'Private'
     people_per_unit 1
     price 32
   end
