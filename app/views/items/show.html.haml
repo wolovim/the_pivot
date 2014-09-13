@@ -10,6 +10,8 @@
     %p.location_text
       Description: #{@item.description}
     %p.location_text
+      Bathroom: #{@item.bathroom}
+    %p.location_text
       Category:
       - @item.categories.each do |category|
         = category.name
