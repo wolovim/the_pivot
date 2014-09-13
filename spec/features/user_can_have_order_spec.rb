@@ -26,7 +26,7 @@ describe 'an order', type: :feature do
     item = create :item, title: "John"
 
     visit item_path(item)
-    click_button("Add to Cart")
+    click_button("Book it!")
     visit order_path(current_order)
     click_button("Remove")
 
@@ -37,7 +37,7 @@ describe 'an order', type: :feature do
   it 'can change an item quantity from the order page' do
     visit item_path(item)
 
-    click_button("Add to Cart")
+    click_button("Book it!")
     visit order_path(current_order)
 
     expect(page).to have_content("Quantity")
@@ -51,9 +51,9 @@ describe 'an order', type: :feature do
   it 'increases quantity when adding repeat items to the order' do
     visit item_path(item)
 
-    click_button("Add to Cart")
+    click_button("Book it!")
     visit item_path(item)
-    click_button("Add to Cart")
+    click_button("Book it!")
 
     expect(page).to have_selector("input[value='2']")
   end
@@ -61,7 +61,7 @@ describe 'an order', type: :feature do
   it 'cannot have a negative quantity' do
     item = Item.create!(title: 'John', description: 'Doe', price: 100)
     visit item_path(item)
-    click_button("Add to Cart")
+    click_button("Book it!")
     fill_in('item[quantity]', with: -2)
     click_on('Update')
     expect(page).to have_selector("input[value='1']")
@@ -70,7 +70,7 @@ describe 'an order', type: :feature do
   it 'cannot exceed max quantity' do
     item = Item.create!(title: 'John', description: 'Doe', price: 100)
     visit item_path(item)
-    click_button("Add to Cart")
+    click_button("Book it!")
     fill_in('item[quantity]', with: 6000)
     click_on('Update')
     expect(page).to have_content("There aren't enough of that animal left!")
@@ -80,9 +80,9 @@ describe 'an order', type: :feature do
     item = create :item, price: 100
 
     visit item_path(item)
-    click_button("Add to Cart")
+    click_button("Book it!")
     visit item_path(item)
-    click_button("Add to Cart")
+    click_button("Book it!")
 
     expect(page).to have_content('$2.00')
   end

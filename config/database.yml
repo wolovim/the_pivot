@@ -3,8 +3,6 @@ default: &default
   encoding: unicode
   pool:     5
   timeout:  5000
-  username:
-  password:
 
 development:
   <<: *default
@@ -16,4 +14,4 @@ test:
 
 production:
   <<: *default
-  database: the_pivot_production
+  url: <%= ENV['DATABASE_URL'] %>
