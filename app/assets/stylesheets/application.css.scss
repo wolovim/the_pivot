@@ -17,6 +17,11 @@
  *= require_self
  */
 
+.carousel-caption {
+  // text-shadow: 2px 2px #000000;
+  text-shadow: 4px 0px 5px rgba(0, 0, 0, 1);
+  }
+
 .image_small {
   float: right;
   margin-top: 20px;
@@ -170,7 +175,7 @@
   position: fixed;
   top: 50px;
   bottom: 0px;
-  right: 0;
+  right: 0px;
   left: 250px;
 }
 
@@ -178,23 +183,51 @@
   position: absolute;
   padding: 0 60px;
   top: 300px;
-  bottom: 0;
+  bottom: 0px;
   left: 0px;
   right: 0px;
   overflow-y: scroll;
 }
 
-#each_listing {
-  width:100px;
-  height:100px;
-  margin-right:10px;
-  float:left;
+.pagination {
+  float: none;
+  display: inline-block;
 }
 
-
-.new-listing {
-  width: 50%;
-  margin: 0 auto;
-  margin-top: 20px;
-  margin-bottom: 20px;
+.col-lg-3 {
+  float: left;
 }
+
+@media (min-width: 990px) and (max-width: 1199px) {
+  .col-lg-3 {
+    width: 33.333333%;
+  }
+}
+
+@media (min-width: 767px) and (max-width: 989px) {
+  .col-lg-3 {
+    width: 50%;
+  }
+}
+
+@media (max-width: 766px) {
+  .col-lg-3 {
+    float: none;
+    min-width: 380px;
+  }
+}
+
+// #each_listing {
+//   width:100px;
+//   height:100px;
+//   margin-top: 10px;
+//   margin-right:10px;
+//   float:left;
+// }
+
+// .new-listing {
+//   width: 50%;
+//   margin: 0 auto;
+//   margin-top: 20px;
+//   margin-bottom: 20px;
+// }
