@@ -29,7 +29,7 @@ describe 'host', type: :feature do
 
     visit user_path(user)
     click_link "Host"
-    click_link "Create New Listing"    
+    click_link "Create New Listing"
     expect(current_path).to eq new_admin_item_path
 
     fill_in "Title", with: "NewListingTitle"

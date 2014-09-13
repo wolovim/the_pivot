@@ -2,7 +2,7 @@ $(document).ready(function () {
 
 
 // put in price slider
-  $("#ex2").slider({});
+  $("#price_slider").slider({});
 
   var deliveryAddress = $('#delivery-address');
   var paymentInformation = $('#payment-info');

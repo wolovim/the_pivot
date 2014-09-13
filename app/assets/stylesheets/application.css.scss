@@ -172,6 +172,11 @@
   overflow-y: scroll;
 }
 
+.pagination {
+  float: none;
+  display: inline-block;
+}
+
 .col-lg-3 {
   float: left;
 }
@@ -203,9 +208,6 @@
 //   float:left;
 // }
 
-#ex1Slider .slider-selection {
-	background: #BABABA;
-}
 // .new-listing {
 //   width: 50%;
 //   margin: 0 auto;
