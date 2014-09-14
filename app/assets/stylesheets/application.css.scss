@@ -50,7 +50,37 @@
 
 .profile-items {
   text-align: center;
-  // margin-top: 20px;
+}
+
+// USER DASHBOARD
+.admin-dashboard {
+  margin: 50px 0;
+  padding: 30px;
+  border: 4px solid black;
+  border-radius: 25px 0 25px;
+  -webkit-border-radius: 25px 0 25px;
+  -moz-border-radius: 25px 0 25px;
+  text-align: center;
+}
+
+.admin-title {
+  text-align: center;
+  font-size: 24px;
+}
+
+.admin-section {
+  text-align: left;
+  margin-left: 65px;
+}
+
+.admin-section-title {
+  margin-top: 20px;
+  font-size: 18px;
+  color: #0b0e75;
+}
+
+.admin-section-content {
+
 }
 
 // EVERYTHING ELSE

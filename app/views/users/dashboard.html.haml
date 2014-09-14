@@ -1,17 +1,32 @@
 .container-fluid
-  %h1.page-header= "Hello, #{current_user.first_name.capitalize}! Welcome to your Account Dashboard!"
-  .row.placeholders
-    .col-xs-6.col-sm-4.placeholder
-      %img.img-responsive{:alt => "Generic placeholder thumbnail", :src => "http://static.pexels.com/wp-content/uploads/2014/05/girl-hair-meadow-403.jpg"}/
-      %h4= link_to "Profile"
-      %span.text-muted Manage account info
-    .col-xs-6.col-sm-4.placeholder
-      %img.img-responsive{:alt => "Generic placeholder thumbnail", :src => "http://static.pexels.com/wp-content/uploads/2014/08/bed-lamp-room-2643.jpg"}/
-      %h4= link_to "Host", listings_user_path(current_user)
-      %span.text-muted Manage your listings
-    .col-xs-6.col-sm-4.placeholder
-      %img.img-responsive{:alt => "Generic placeholder thumbnail", :src => "http://static.pexels.com/wp-content/uploads/2014/07/airport-amsterdam-arrival-2069.jpg"}/
-      %h4= link_to "Traveler"
-      %span.text-muted Manage your trips
-
-/ = link_to "Create your first listing", new_admin_item_path
+  .row
+    .col-md-4
+    .col-md-4
+      .admin-dashboard
+        .admin-title
+          %strong=@user.first_name
+          %strong>'s Dashboard
+        .admin-section
+          .admin-section-title
+            My Account
+          .admin-section-content
+            =link_to "View my public profile", user_path(@user)
+            %br/
+            =link_to "Update my information", edit_user_path(@user)
+            %br/
+            =link_to "Change my profile photo", '#'
+        .admin-section
+          .admin-section-title
+            My Listings
+          .admin-section-content
+            =link_to "Create a new listing", '#'
+            %br/
+            =link_to "View / edit current listings", listings_user_path(current_user)
+        .admin-section
+          .admin-section-title
+            My Bookings
+          .admin-section-content
+            =link_to "View my bookings", '#'
+            %br/
+            =link_to "Search listings", items_path
+    .col-md-4
