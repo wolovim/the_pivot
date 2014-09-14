@@ -15,6 +15,15 @@
       Category:
       - @item.categories.each do |category|
         = category.name
+    %p.location_text
+      Available:
+      %br/
+      -if @item.availabilities.any?
+        -@item.availabilities.each do |avail|
+          =avail.date
+          %br/
+      -else
+        %p No availability yet!
     %a= button_to "Book it!", add_item_order_path(order, item_id: @item.id), class: 'btn btn-success'
     %p
 
