@@ -37,6 +37,18 @@ RSpec.describe Item, :type => :model do
       item.remove_category(category)
       refute item.categories.include? category
     end
+
+    it 'can parse available dates' do
+      # Keep in mind these are "dd/mm/yyyy"
+      start_date = "26/8/2014"
+      end_date = "28/8/2014"
+
+      item = create :item
+      result = item.parse_available_dates(start_date, end_date)
+
+      expect(result.count).to eq 3
+      expect(result.first[:date]).to eq Date.parse("26/8/2014")
+    end
   end
 
   describe "without valid params" do

@@ -47,4 +47,12 @@ class Item < ActiveRecord::Base
   def extinct?
     self.scarcity == 'extinct'
   end
+
+  def parse_available_dates(start_date, end_date)
+    start_date = Date.parse(start_date)
+    end_date = Date.parse(end_date)
+    date_range = (start_date..end_date).to_a
+
+    date_range.map { |date| {date: date} }
+  end
 end

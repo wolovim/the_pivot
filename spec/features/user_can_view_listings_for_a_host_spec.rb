@@ -26,10 +26,11 @@ describe 'user', type: :feature do
       click_button 'Login'
 
       visit listings_user_path(user)
+      save_and_open_page
 
       expect(page).not_to have_content "Book it!"
       expect(page).to have_content "Create New Listing"
-      expect(page).to have_button "Edit Listing"
+      expect(page).to have_link "Edit Listing"
     end
   end
 end
