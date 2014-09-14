@@ -10,6 +10,13 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
   end
 
+  def edit
+    @item = Item.find(params[:id])
+  end
+
+  def update
+  end
+
   def item_params
     params.require(:item).permit(:title, :description, :price, :people_per_unit, :bathroom, :user_id)
   end
