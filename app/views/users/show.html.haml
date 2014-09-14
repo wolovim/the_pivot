@@ -1,4 +1,35 @@
-%h1 This page will be the publicly viewable user profile; Content below needs to be changed. Real user dashboard lives at /users/:id/dashboard
+.row
+  .col-md-2
+  .col-md-8
+    .profile-photo 
+      %br/
+      %br/
+      %br/
+      %br/
+      [ Avatar placeholder! ]
+    .profile-info
+      =@user.first_name
+      =@user.last_name
+      %br/
+      =@user.city
+      =@user.state
+      %br/
+    .member-since
+      %strong Member since:
+      %br/
+      =@user.created_at.strftime("%B %d, %Y")
+    .profile-items-title
+      %strong= @user.first_name
+      %strong>'s Listings
+    .profile-items
+      -if @user.items.any?
+        -@user.items.each do |item|
+          =link_to item.title, item_path(item)
+      -else
+        %p
+          No listings yet!
+  .col-md-2
+
 / .container-fluid
 /   %h1.page-header= "Hello, #{current_user.first_name.capitalize}! Welcome to your Account Dashboard!"
 /   .row.placeholders

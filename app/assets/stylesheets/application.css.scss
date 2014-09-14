@@ -17,6 +17,43 @@
  *= require_self
  */
 
+
+// USER PROFILE PAGE
+.profile-photo {
+  width: 200px;
+  height: 200px;
+  border: 6px solid black;
+  margin: 40px auto 0 auto;
+  border-radius: 100px;
+  -webkit-border-radius: 100px;
+  -moz-border-radius: 100px;
+  text-align: center;
+}
+
+.profile-info {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 1.6em;
+}
+
+.profile-items-title {
+  text-align: center;
+  font-size: 1.2em;
+  margin-top: 20px;
+}
+
+.member-since {
+  text-align: center;
+  font-size: 1em;
+  margin-top: 10px;
+}
+
+.profile-items {
+  text-align: center;
+  // margin-top: 20px;
+}
+
+// EVERYTHING ELSE
 .carousel-caption {
   // text-shadow: 2px 2px #000000;
   text-shadow: 4px 0px 5px rgba(0, 0, 0, 1);

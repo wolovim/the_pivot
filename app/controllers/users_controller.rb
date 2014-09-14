@@ -8,9 +8,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    return render "errors/404" unless current_user
-
-    render "errors/404"  unless session[:user_id] == current_user.id
+    @user = User.find(params[:id])
   end
 
   def create
@@ -30,7 +28,10 @@ class UsersController < ApplicationController
   end
 
   def dashboard
+    return render "errors/404" unless current_user
     @user = current_user
+
+    render "errors/404"  unless session[:user_id] == current_user.id
   end
 
   def user_params
