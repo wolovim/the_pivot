@@ -39,7 +39,7 @@ class UsersController < ApplicationController
 
   def listings
     @user = User.find(params[:id])
-    @listings = @user.items.all.to_a
+    @items = @user.items.all.to_a
   end
 
   def dashboard
