@@ -16,6 +16,9 @@ class ItemsController < ApplicationController
 
   def update
     @item = current_user.items.find(params[:id])
+    dates = parse_available_dates(params[:from], params[:to])
+    @item.availabilities.create(dates)
+    
     if @item.update(item_params)
       flash[:success] = "Listing updated."
       redirect_to listings_user_path(current_user)
@@ -23,6 +26,14 @@ class ItemsController < ApplicationController
       flash[:error] = "Something went wrong. Please try again."
       render :edit
     end
+  end
+
+  def parse_available_dates(start_date, end_date)
+    start_date = Date.strptime(start_date, "%m/%d/%Y")
+    end_date = Date.strptime(end_date, "%m/%d/%Y")
+    date_range = (start_date..end_date).to_a
+
+    date_range.map { |date| {date: date} }
   end
 
   def item_params

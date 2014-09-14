@@ -21,7 +21,49 @@
       = f.file_field :image
     %br/
     %p
-      Add an availability:
+      %h4 Add an availability:
+
+    %link{:href => "//code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css", :rel => "stylesheet"}/
+    %script{:src => "//code.jquery.com/jquery-1.10.2.js"}
+    %script{:src => "//code.jquery.com/ui/1.11.1/jquery-ui.js"}
+
+    :javascript
+      $(function() {
+        $( "#from" ).datepicker({
+          defaultDate: "+1w",
+          changeMonth: true,
+          numberOfMonths: 3,
+          onClose: function( selectedDate ) {
+            $( "#to" ).datepicker( "option", "minDate", selectedDate );
+          }
+        });
+        $( "#to" ).datepicker({
+          defaultDate: "+1w",
+          changeMonth: true,
+          numberOfMonths: 3,
+          onClose: function( selectedDate ) {
+            $( "#from" ).datepicker( "option", "maxDate", selectedDate );
+          }
+        });
+      });
+    
+    %label{:for => "from"} From 
+    %input#from{:name => "from", :type => "text"}/
+    %label{:for => "to"} to 
+    %input#to{:name => "to", :type => "text"}/
+    %br/
+    %br/
+
+    -if @item.availabilities.any?
+      %p
+        %h4 Current availabilities:
+        -@item.availabilities.each do |avail|
+          =avail.date
+          %br/
+    -else
+      %p
+        No availabilities set up.
+    %br/
     %br/
     %p
       = f.submit
