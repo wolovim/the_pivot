@@ -11,10 +11,18 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    @item = Item.find(params[:id])
+    @item = current_user.items.find(params[:id])
   end
 
   def update
+    @item = current_user.items.find(params[:id])
+    if @item.update(item_params)
+      flash[:success] = "Listing updated."
+      redirect_to listings_user_path(current_user)
+    else
+      flash[:error] = "Something went wrong. Please try again."
+      render :edit
+    end
   end
 
   def item_params
