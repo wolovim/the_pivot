@@ -6,7 +6,7 @@ describe 'user', type: :feature do
       user = create :user, role: "default"
       listing = create :item, title: "MyTitle", user_id: user.id
 
-      visit listings_user_path(user)
+      visit items_user_path(user)
 
       expect(page).not_to have_content "Edit Listing"
       expect(page).not_to have_button "Create New Listing"
@@ -25,7 +25,7 @@ describe 'user', type: :feature do
       fill_in 'password', with: user.password
       click_button 'Login'
 
-      visit listings_user_path(user)
+      visit items_user_path(user)
 
       expect(page).not_to have_content "Book it!"
       expect(page).to have_content "Create New Listing"

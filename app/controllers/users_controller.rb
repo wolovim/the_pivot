@@ -37,7 +37,7 @@ class UsersController < ApplicationController
     end
   end
 
-  def listings
+  def items
     @user = User.find(params[:id])
     @listings = @user.items.all.to_a
   end

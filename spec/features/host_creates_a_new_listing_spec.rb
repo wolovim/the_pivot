@@ -28,7 +28,7 @@ describe 'host', type: :feature do
     fill_in 'password', with: user.password
     click_button 'Login'
 
-    visit listings_user_path(user)
+    visit items_user_path(user)
     click_link "Create New Listing"
 
     fill_in "Listing Title", with: "NewListingTitle"

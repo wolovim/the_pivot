@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   resources :categories,  only: [:index, :show]
   resources :users,       only: [:new, :create, :show, :index, :edit, :update] do
     member do
-      get :listings
+      get :items
       get :dashboard
     end
   end
