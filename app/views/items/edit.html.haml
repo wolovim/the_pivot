@@ -1,0 +1,69 @@
+.container
+  = form_for @item do |f|
+    %ul
+      - @item.errors.full_messages.each do |error|
+        %li= error
+    %p
+      = f.label :title
+      %br/
+      = f.text_field :title
+    %p
+      = f.label :description
+      %br/
+      = f.text_area :description
+    %p
+      = f.label :price
+      %br/
+      = f.text_field :price
+    %p
+      %img{src: "#{@item.image_file_name}", width: "242", height: "242"}
+      %br/
+      = f.file_field :image
+    %br/
+    %p
+      %h4 Add an availability:
+
+    %link{:href => "//code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css", :rel => "stylesheet"}/
+    %script{:src => "//code.jquery.com/jquery-1.10.2.js"}
+    %script{:src => "//code.jquery.com/ui/1.11.1/jquery-ui.js"}
+
+    :javascript
+      $(function() {
+        $( "#from" ).datepicker({
+          defaultDate: "+1w",
+          changeMonth: true,
+          numberOfMonths: 3,
+          onClose: function( selectedDate ) {
+            $( "#to" ).datepicker( "option", "minDate", selectedDate );
+          }
+        });
+        $( "#to" ).datepicker({
+          defaultDate: "+1w",
+          changeMonth: true,
+          numberOfMonths: 3,
+          onClose: function( selectedDate ) {
+            $( "#from" ).datepicker( "option", "maxDate", selectedDate );
+          }
+        });
+      });
+    
+    %label{:for => "from"} From 
+    %input#from{:name => "from", :type => "text"}/
+    %label{:for => "to"} to 
+    %input#to{:name => "to", :type => "text"}/
+    %br/
+    %br/
+
+    -if @item.availabilities.any?
+      %p
+        %h4 Current availabilities:
+        -@item.availabilities.each do |avail|
+          =avail.date
+          %br/
+    -else
+      %p
+        No availabilities set up.
+    %br/
+    %br/
+    %p
+      = f.submit

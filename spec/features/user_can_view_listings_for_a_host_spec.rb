@@ -29,7 +29,7 @@ describe 'user', type: :feature do
 
       expect(page).not_to have_content "Book it!"
       expect(page).to have_content "Create New Listing"
-      expect(page).to have_button "Edit Listing"
+      expect(page).to have_link "Edit Listing"
     end
   end
 end
