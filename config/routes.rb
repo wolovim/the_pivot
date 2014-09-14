@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   resources :items,       only: [:index, :show]
   resources :categories,  only: [:index, :show]
-  resources :users,       only: [:new, :create, :show, :index ] do
+  resources :users,       only: [:new, :create, :show, :index, :edit, :update] do
     member do
       get :listings
       get :dashboard
