@@ -1,3 +1,5 @@
+require 'pony'
+
 class Order < ActiveRecord::Base
   include AASM
 
@@ -14,10 +16,10 @@ class Order < ActiveRecord::Base
     state :cancelled
 
     event :order do
-      transitions :from => :basket, :to => :ordered
+      transitions :from => :basket, :to => :ordered, :on_transition => Proc.new { |obj| obj.send_order }
     end
 
-    event :pay do
+    event :pay, :after => :send_order do
       transitions :from => :ordered, :to => :paid, before_enter: :erase_current_order
     end
 
@@ -79,6 +81,15 @@ class Order < ActiveRecord::Base
 
   def arrival_time
     (updated_at + 45.minutes).strftime('%l:%M %p')
+  end
+
+  def send_order
+    Pony.mail(
+      :from => "TravelHomeBookings@gmail.com",
+      :to => "emilyadavis303@gmail.com",
+      :subject => "Your Booking Summary",
+      :body => "Test."
+    )
   end
 
   private
