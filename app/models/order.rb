@@ -90,9 +90,11 @@ class Order < ActiveRecord::Base
   private
 
   def send_customer_email
+    @current_user = user
+
     Pony.mail(
       :from    => "TravelHomeBookings@gmail.com",
-      :to      => "emilyadavis303@gmail.com",
+      :to      => "#{@current_user.email}",
       :subject => "Your Booking Summary",
       :body    => "Thank you for planning your trip with TravelHome! Here is a summary of your booking(s):"
     )

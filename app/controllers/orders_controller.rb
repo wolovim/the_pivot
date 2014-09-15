@@ -44,6 +44,7 @@ class OrdersController < ApplicationController
 
   def paid
     if order.ordered?
+      order.update_attribute(:user_id, current_user.id)
       order.pay!
     end
     session[:order_id] = nil
