@@ -19,8 +19,12 @@ class ItemsController < ApplicationController
 
     if @item.save
       flash[:success] = "Listing created!"
-      dates = parse_available_dates(params[:from], params[:to])
-      @item.availabilities.create(dates)
+
+      if params[:from] != "" && params[:to] != ""
+        dates = parse_available_dates(params[:from], params[:to])
+        @item.availabilities.create(dates)
+      end
+      
       redirect_to item_path(@item)
     else
       render :new
