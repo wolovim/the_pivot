@@ -55,4 +55,8 @@ class Item < ActiveRecord::Base
 
     date_range.map { |date| {date: date} }
   end
+
+  def available_dates_array
+    self.availabilities.map { |a| a.date.strftime("%Y-%m-%d") }
+  end
 end
