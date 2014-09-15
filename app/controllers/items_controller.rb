@@ -10,6 +10,23 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
   end
 
+  def new
+    @item = Item.new
+  end
+
+  def create
+    @item = current_user.items.new(item_params)
+    dates = parse_available_dates(params[:from], params[:to])
+    @item.availabilities.create(dates)
+
+    if @item.save
+      flash[:success] = "Listing created!"
+      redirect_to item_path(@item)
+    else
+      render :new
+    end
+  end
+
   def edit
     @item = current_user.items.find(params[:id])
   end
