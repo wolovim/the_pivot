@@ -1,0 +1,20 @@
+.container
+  .row.col-lg-6.col-lg-offset-3
+    %h2.form-signin-heading Create a New Listing.
+    = form_for [@item] do |f|
+      - if @item.errors.any?
+        %ul#errors
+          - @item.errors.full_messages.each do |error|
+            %li= error
+      .form-group
+        = f.text_field :title, class: "form-control", placeholder: "Listing Title"
+        %br/
+        = f.text_area :description, class: "form-control", placeholder: "Listing Description"
+        %br/
+        = f.text_field :price, class: "form-control", placeholder: "Daily Rate"
+        %br/
+        = f.select(:people_per_unit, options_for_select([['People Per Unit', 1], [1, 1], [2, 2], [3, 3], [4, 4], [5, 5], [6, 6]]), {}, {class: "form-control"})
+        %br/
+        = f.select(:bathroom, options_for_select([['Bathroom Type', 'Bathroom Type'], ['Private', 'Private'], ['Shared', 'Shared']]), {}, {class: "form-control"})
+        %br/
+        = f.submit "Create Listing", class: "btn btn-large btn-block btn-primary"

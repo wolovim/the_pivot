@@ -10,6 +10,20 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
   end
 
+  def new
+    @item = Item.new
+  end
+
+  def create
+    @item = current_user.items.new(item_params)
+
+    if @item.save
+      redirect_to item_path(@item)
+    else
+      render :new
+    end
+  end
+
   def edit
     @item = current_user.items.find(params[:id])
   end
