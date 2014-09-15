@@ -1,5 +1,3 @@
-require 'pony'
-
 class OrdersController < ApplicationController
   def index
     @orders = Order.all
@@ -49,14 +47,5 @@ class OrdersController < ApplicationController
       order.pay!
     end
     session[:order_id] = nil
-  end
-
-  def send_order
-    Pony.mail(
-      :from => "TravelHomeBookings@gmail.com",
-      :to => "emilyadavis303@gmail.com",
-      :subject => "Your Booking Summary",
-      :body => "Test."
-    )
   end
 end

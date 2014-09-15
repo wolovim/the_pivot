@@ -20,6 +20,15 @@ class OrderItem < ActiveRecord::Base
     end
   end
 
+  # def send_host_email
+  #   Pony.mail(
+  #     :from => "TravelHomeBookings@gmail.com",
+  #     :to => item.user.email,
+  #     :subject => "You have received a booking",
+  #     :body => "Test."
+  #   )
+  # end
+
   private
 
   def set_default_quantity

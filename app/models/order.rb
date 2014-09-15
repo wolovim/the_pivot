@@ -16,10 +16,10 @@ class Order < ActiveRecord::Base
     state :cancelled
 
     event :order do
-      transitions :from => :basket, :to => :ordered, :on_transition => Proc.new { |obj| obj.send_order }
+      transitions :from => :basket, :to => :ordered
     end
 
-    event :pay, :after => :send_order do
+    event :pay, :after => :send_order_emails do
       transitions :from => :ordered, :to => :paid, before_enter: :erase_current_order
     end
 
@@ -58,7 +58,6 @@ class Order < ActiveRecord::Base
     end
   end
 
-
   def total_for_humans
     sprintf("%.2f",(total.to_f/100))
   end
@@ -83,16 +82,25 @@ class Order < ActiveRecord::Base
     (updated_at + 45.minutes).strftime('%l:%M %p')
   end
 
-  def send_order
-    Pony.mail(
-      :from => "TravelHomeBookings@gmail.com",
-      :to => "emilyadavis303@gmail.com",
-      :subject => "Your Booking Summary",
-      :body => "Test."
-    )
+  def send_order_emails
+    send_customer_email
+    # send_host_emails
   end
 
   private
+
+  def send_customer_email
+    Pony.mail(
+      :from    => "TravelHomeBookings@gmail.com",
+      :to      => "emilyadavis303@gmail.com",
+      :subject => "Your Booking Summary",
+      :body    => "Thank you for planning your trip with TravelHome! Here is a summary of your booking(s):"
+    )
+  end
+
+  def send_host_emails
+    order_items.each(&:send_host_email)
+  end
 
   def access_order_item(item)
     self.order_items.where(item_id: item.id).first
