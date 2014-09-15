@@ -20,7 +20,7 @@ describe 'host', type: :feature do
     expect(page).to have_content "NewListingDescription"
   end
 
-  it 'creates a new listing' do
+  xit 'creates a new listing' do
     user = create :user, role: "default"
 
     visit '/login'
