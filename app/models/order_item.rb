@@ -1,6 +1,8 @@
 class OrderItem < ActiveRecord::Base
   belongs_to :order
   belongs_to :item
+  has_many :availabilities
+  
   validates :order_id, :item_id, presence: true
   before_create :set_default_quantity
 

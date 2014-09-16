@@ -8,6 +8,7 @@ class ItemsController < ApplicationController
 
   def show
     @item = Item.find(params[:id])
+    @order = _session_order
   end
 
   def edit
