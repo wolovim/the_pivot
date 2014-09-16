@@ -4,13 +4,14 @@ class Order < ActiveRecord::Base
   include AASM
 
   belongs_to :user
-  has_many :order_items
-  has_many :items, through: :order_items
+  has_many   :order_items
+  has_many   :items, through: :order_items
   belongs_to :address
 
   aasm do
     state :basket, :initial => true
     state :ordered
+    state :requested
     state :paid
     state :completed
     state :cancelled
@@ -19,8 +20,12 @@ class Order < ActiveRecord::Base
       transitions :from => :basket, :to => :ordered
     end
 
-    event :pay, :after => :send_order_emails do
-      transitions :from => :ordered, :to => :paid, before_enter: :erase_current_order
+    event :request do
+      transitions :from => :ordered, :to => :requested
+    end
+
+    event :pay do
+      transitions :from => :requested, :to => :paid, before_enter: :erase_current_order
     end
 
     event :complete do
@@ -82,27 +87,7 @@ class Order < ActiveRecord::Base
     (updated_at + 45.minutes).strftime('%l:%M %p')
   end
 
-  def send_order_emails
-    send_customer_email
-    # send_host_emails
-  end
-
   private
-
-  def send_customer_email
-    @current_user = user
-
-    Pony.mail(
-      :from    => "TravelHomeBookings@gmail.com",
-      :to      => "#{@current_user.email}",
-      :subject => "Your Booking Summary",
-      :body    => "Thank you for planning your trip with TravelHome! Here is a summary of your booking(s):"
-    )
-  end
-
-  def send_host_emails
-    order_items.each(&:send_host_email)
-  end
 
   def access_order_item(item)
     self.order_items.where(item_id: item.id).first
