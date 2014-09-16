@@ -1,7 +1,7 @@
 class OrderItem < ActiveRecord::Base
-  belongs_to :order
-  belongs_to :item
-  validates :order_id, :item_id, presence: true
+  belongs_to    :order
+  belongs_to    :item
+  validates     :order_id, :item_id, presence: true
   before_create :set_default_quantity
 
   def quantity_update(params)
@@ -18,6 +18,18 @@ class OrderItem < ActiveRecord::Base
     else
       nil
     end
+  end
+
+  def send_host_email
+    host_email = item.user.email
+    host_name  = item.user.first_name
+
+    Pony.mail(
+      :from    => "TravelHomeBookings@gmail.com",
+      :to      => host_email,
+      :subject => "You have received a booking request!",
+      :body    => "Hi #{host_name}, you have a booking request for #{item.title}. Please visit your dashboard to accept or deny the request."
+    )
   end
 
   private

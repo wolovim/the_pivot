@@ -1,14 +1,17 @@
+require 'pony'
+
 class Order < ActiveRecord::Base
   include AASM
 
   belongs_to :user
-  has_many :order_items
-  has_many :items, through: :order_items
+  has_many   :order_items
+  has_many   :items, through: :order_items
   belongs_to :address
 
   aasm do
     state :basket, :initial => true
     state :ordered
+    state :requested
     state :paid
     state :completed
     state :cancelled
@@ -17,8 +20,12 @@ class Order < ActiveRecord::Base
       transitions :from => :basket, :to => :ordered
     end
 
+    event :request do
+      transitions :from => :ordered, :to => :requested
+    end
+
     event :pay do
-      transitions :from => :ordered, :to => :paid, before_enter: :erase_current_order
+      transitions :from => :requested, :to => :paid, before_enter: :erase_current_order
     end
 
     event :complete do
@@ -55,7 +62,6 @@ class Order < ActiveRecord::Base
       sum += order_item.quantity * order_item.item.price
     end
   end
-
 
   def total_for_humans
     sprintf("%.2f",(total.to_f/100))

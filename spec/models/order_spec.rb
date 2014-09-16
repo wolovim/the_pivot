@@ -18,7 +18,7 @@ RSpec.describe Order, :type => :model do
   it 'is valid' do
     expect(order).to be_valid
   end
-  
+
   it 'has many items' do
     item_1 = create :item, title: "Item1"
     item_2 = create :item, title: "Item2"
@@ -47,9 +47,9 @@ RSpec.describe Order, :type => :model do
     assert order.items.length == 1
   end
 
-  it 'tells arrival time on payment' do
+  it 'tells arrival time when requested' do
     order.order
-    order.pay
+    order.request
     assert_equal (order.updated_at + 45.minutes).strftime('%l:%M %p'), order.arrival_time
   end
 

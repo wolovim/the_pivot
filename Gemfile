@@ -17,6 +17,7 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'paperclip', "~> 4.1"
 gem 'aasm'
 gem 'haml-rails'
+gem 'pony'
 
 group :development, :test do
   gem 'rspec-rails'

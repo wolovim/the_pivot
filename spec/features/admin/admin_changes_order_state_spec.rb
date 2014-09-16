@@ -10,8 +10,8 @@ describe "an admin changes order state" do
   end
 
     it "changes one order from ordered to paid state" do
-    order = create :order, aasm_state: "ordered"
-    visit admin_orders_path(scope: 'ordered')
+    order = create :order, aasm_state: "requested"
+    visit admin_orders_path(scope: 'requested')
 
     within "h4.pull-left" do
       click_link_or_button 'Mark as Paid'
