@@ -29,6 +29,8 @@ class ItemsController < ApplicationController
     end
   end
 
+  private
+
   def parse_available_dates(start_date, end_date)
     start_date = Date.strptime(start_date, "%m/%d/%Y")
     end_date = Date.strptime(end_date, "%m/%d/%Y")
