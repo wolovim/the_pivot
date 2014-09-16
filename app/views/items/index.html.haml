@@ -37,20 +37,19 @@
                 %a{:href => "#", :role => "menuitem", :tabindex => "-1"} 6 + people
           %br
           %p Accommodations:
-          .btn-group
-            %button.btn.btn-default{:type => "button"} Private
-            %button.btn.btn-default{:type => "button"} Shared
-            %button.btn.btn-default{:type => "button"} Couch
+          .btn-group.accommodations
+            %button.btn.btn-default{:type => "button", :id => "Private"} Private
+            %button.btn.btn-default{:type => "button", :id => "Shared"} Shared
+            %button.btn.btn-default{:type => "button", :id => "Couch"} Couch
           %br
           %br
           %p Bathroom:
           .btn-group.bathrooms
-            -# = link_to "Update", update_item_path(item), :method => :put
             %button.btn.btn-default{:type => "button", :id => "Private"} Private
             %button.btn.btn-default{:type => "button", :id => "Shared"} Shared
 
       %li.pager
-        %a{:href => "/items"} Filter
+        %a{:href => "/items"} Reset
 
 .content
 
@@ -63,7 +62,7 @@
 
           %img{src: "#{item.image_file_name}"}
           .caption
-            %h5= link_to "#{truncate(item.title, :length => 25)}".html_safe, item_path(item)
+            %h5= link_to "#{truncate(item.title, :length => 30)}".html_safe, item_path(item)
             %p $ #{item.price_for_humans}
             = button_to "Book it!", add_item_order_path(order, item_id: item.id), class: "thumbnail-btn btn btn-primary"
 
@@ -86,6 +85,7 @@
 
 %script{:src => "http://maps.googleapis.com/maps/api/js?key=AIzaSyDY0kkJiTPVd2U7aTOAwhc9ySH6oHxOIYM&sensor=false"}
 :javascript
+  $(document).ready(function() {
   function initialize()
   {
   var mapProp = {
@@ -114,3 +114,4 @@
   }
 
   google.maps.event.addDomListener(window, 'load', initialize);
+  });

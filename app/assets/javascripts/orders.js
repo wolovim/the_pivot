@@ -1,63 +1,25 @@
 $(document).ready(function () {
 
-
   var deliveryAddress = $('#delivery-address');
   var paymentInformation = $('#payment-info');
 
-  $('input[name="order_type"]').on('change', function () {
-    var status = this.value;
-
-    if (status === 'pickup') {
-      deliveryAddress.addClass('hidden');
-    }
-
-    if (status === 'delivery') {
-      deliveryAddress.removeClass('hidden');
-    }
-
-  });
-
-  $('input[name="payment_type"]').on('change', function () {
-    var status = this.value;
-
-    if (status === 'pay_in_store') {
-      paymentInformation.addClass('hidden');
-    }
-
-    if (status === 'pay_online') {
-      paymentInformation.removeClass('hidden');
-    }
-
-  });
-
-  // $.ajax({
-  //   url: '/items.json',
-  //   data: { page: 1 },
-  //   success: function(data, statusCode) {
-  //     console.log( statusCode, data );
-  //   }
-  // });
   var list_of_items = [];
   var filters = {};
   function getItems(page) {
     $.get('/items.json',
-      //{ page_num: page },  //  "/items.json?page_num=1"
       function(data, statusCode) {
-        console.log( data );
-        //if (data == '[]') { return; }
         if (statusCode == 'success') {
           $.each(data, function(index, item) {
             list_of_items.push(item);
             renderItem( item );
           });
-          //getItems(page++);
-
         } else {
           console.log( statusCode, data );
         }
       }
     );
   }
+
   $(".listings").html('');
   getItems(1);
 
@@ -65,7 +27,9 @@ $(document).ready(function () {
     $(".listings").append('<div class="thumbnail col-lg-3">' +
       '<img src="'+item.image_file_name+'">' +
       '<div class="caption">' +
-        '<h5><a href="/items/2">'+item.title+'</a></h5>' +
+
+        '<h5><a href="'+ item.path +'">'+item.title+'</a></h5>' +
+
         '<p>$'+item.price+'</p>' +
         '<form action="/orders/25/add_item?item_id='+item.id+'" class="button_to" method="post"><div><input class="thumbnail-btn btn btn-primary" type="submit" value="Book it!"><input name="authenticity_token" type="hidden" value="ok/cMuVXVTaGgCMLmt58c4VIKP7BiANFFw6Hz75r3Pg="></div></form>' +
       '</div>' +
@@ -102,8 +66,19 @@ $(document).ready(function () {
     // delete filters["bathroom"];
     filterItems();
   });
+
+  $(".btn-group.accommodations button").on("click", function(event) {
+    var filter_id = $(this).attr('id');
+    $(".btn-group.accommodations button").removeClass('active');
+    $(this).addClass('active');
+    filters["accommodation"] = filter_id;
+    // To remove a filter:
+    // delete filters["bathroom"];
+    filterItems();
+  });
+
   $(".btn-group.price-range").on("change", function() {
-    // Fix this :)
+    // Fix for price range
     var min = $("#btn-range-min").value,
         max = $("#btn-range-max").value;
     filters["price"] = [min, max];
