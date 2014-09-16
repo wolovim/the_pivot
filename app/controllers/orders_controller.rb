@@ -59,7 +59,7 @@ class OrdersController < ApplicationController
 
   def send_order_emails
     send_customer_email
-    # send_host_emails
+    send_host_emails
   end
 
   private
@@ -78,6 +78,6 @@ class OrdersController < ApplicationController
   end
 
   def send_host_emails
-    order_items.each(&:send_host_email)
+    order.order_items.each(&:send_host_email)
   end
 end
