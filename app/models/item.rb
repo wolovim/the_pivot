@@ -57,6 +57,6 @@ class Item < ActiveRecord::Base
   end
 
   def available_dates
-    self.availabilities.map { |a| a.date.strftime("%Y-%m-%d") }
+    self.availabilities.unreserved.map { |a| a.date.strftime("%Y-%m-%d") }
   end
 end
