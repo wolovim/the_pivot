@@ -4,10 +4,10 @@ describe 'an order', type: :feature do
   let(:current_order) { Order.create! }
   let(:item) { create :item }
 
-  before(:each) do
-    item = create :item, title: "John"
-    address = create :address, item_id: item.id
-  end
+  # before(:each) do
+  #   item = create :item, title: "John"
+  #   address = create :address, item_id: item.id
+  # end
 
   it 'starts with zero items' do
     visit items_path
@@ -16,16 +16,17 @@ describe 'an order', type: :feature do
     expect(page).to have_content("You don't have any items in your cart!")
   end
 
-  xit 'can add an item' do
-    item.categories.create(name: 'Appetizers')
-    availability = item.availabilities.create(date: "10/04/2014")
-    visit item_path(item)
-    # fill_in "from", with: "10/04/2014"
-    # fill_in "to", with: "10/04/2014"
-    click_link_or_button "Book it!"
-    # visit order_path(current_order)
+  it 'can add an item' do
+    visit '/items' # needed so _session_order exists
 
-    expect(page).to have_content("John")
+    item.availabilities.create(date: "10/04/2014")
+    item.availabilities.create(date: "11/04/2014")
+    visit item_path(item)
+    fill_in "from", with: "04/10/2014"
+    fill_in "to", with: "04/11/2014"
+    click_link_or_button "Book it!"
+
+    expect(page).to have_content "Your Order"
   end
 
   xit 'can remove an item' do
