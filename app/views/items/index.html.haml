@@ -44,10 +44,10 @@
           %br
           %br
           %p Bathroom:
-          .btn-group
+          .btn-group.bathrooms
             -# = link_to "Update", update_item_path(item), :method => :put
-            %button.btn.btn-default{:type => "button"} Private
-            %button.btn.btn-default{:type => "button"} Shared
+            %button.btn.btn-default{:type => "button", :id => "Private"} Private
+            %button.btn.btn-default{:type => "button", :id => "Shared"} Shared
 
       %li.pager
         %a{:href => "/items"} Filter

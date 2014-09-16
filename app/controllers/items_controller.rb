@@ -4,6 +4,12 @@ class ItemsController < ApplicationController
     @categories = Category.all
     @main_categories = Category.main_categories
     @special_categories = Category.special_categories
+    respond_to do |format|
+      format.html
+      format.json{
+        render json:@items.to_json
+      }
+    end
   end
 
   def show
@@ -35,7 +41,7 @@ class ItemsController < ApplicationController
     @item = current_user.items.find(params[:id])
     dates = parse_available_dates(params[:from], params[:to])
     @item.availabilities.create(dates)
-    
+
     if @item.update(item_params)
       flash[:success] = "Listing updated."
       redirect_to listings_user_path(current_user)
