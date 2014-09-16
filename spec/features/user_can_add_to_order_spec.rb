@@ -4,10 +4,16 @@ describe 'an order', type: :feature do
   let(:current_order) { Order.create! }
   let(:item) { create :item }
 
-  # before(:each) do
-  #   item = create :item, title: "John"
-  #   address = create :address, item_id: item.id
-  # end
+  def book_an_item
+    item.availabilities.create(date: "10/04/2014")
+    item.availabilities.create(date: "11/04/2014")
+
+    visit '/items' 
+    visit item_path(item)
+    fill_in "from", with: "04/10/2014"
+    fill_in "to", with: "04/11/2014"
+    click_link_or_button "Book it!"
+  end
 
   it 'starts with zero items' do
     visit items_path
@@ -17,26 +23,14 @@ describe 'an order', type: :feature do
   end
 
   it 'can add an item' do
-    visit '/items' # needed so _session_order exists
-
-    item.availabilities.create(date: "10/04/2014")
-    item.availabilities.create(date: "11/04/2014")
-    visit item_path(item)
-    fill_in "from", with: "04/10/2014"
-    fill_in "to", with: "04/11/2014"
-    click_link_or_button "Book it!"
+    book_an_item
 
     expect(page).to have_css ".table", text: "MyTitle"
   end
 
   it 'can remove an item' do
-    visit '/items'
-    item.availabilities.create(date: "10/04/2014")
-    item.availabilities.create(date: "11/04/2014")
-    visit item_path(item)
-    fill_in "from", with: "04/10/2014"
-    fill_in "to", with: "04/11/2014"
-    click_link_or_button "Book it!"
+    book_an_item
+
     click_link_or_button "Remove"
 
     expect(page).not_to have_content("MyTitle")
@@ -44,13 +38,8 @@ describe 'an order', type: :feature do
   end
 
   xit 'reflects the correct number of nights' do
-    visit '/items'
-    item.availabilities.create(date: "10/04/2014")
-    item.availabilities.create(date: "11/04/2014")
-    visit item_path(item)
-    fill_in "from", with: "04/10/2014"
-    fill_in "to", with: "04/11/2014"
-    click_link_or_button "Book it!"
+    book_an_item
+
     click_link_or_button "Remove"
 
     expect(page).to have_content "Nights"
@@ -83,38 +72,13 @@ describe 'an order', type: :feature do
   end
 
   it 'subtotals the price of each item in order' do
-    visit '/items'
-    item.availabilities.create(date: "10/04/2014")
-    item.availabilities.create(date: "11/04/2014")
-    visit item_path(item)
-    fill_in "from", with: "04/10/2014"
-    fill_in "to", with: "04/11/2014"
-    click_link_or_button "Book it!"
+    book_an_item
 
     expect(page).to have_content('$0.64')
   end
 
-  xit 'totals the price of all items in order' do
-    item1 = create :item, title: "Joe", price: 100
-    item2 = create :item, title: "Jane", price: 50
-    item1.categories.create(name: 'Appetizers')
-    item2.categories.create(name: 'Appetizers')
-
-    visit items_path
-
-    page.find(:xpath, "(//div[@class='caption'])[2]").click_on("Book it!")
-
-    visit items_path
-    page.find(:xpath, "(//div[@class='caption'])[3]").click_on("Book it!")
-    expect(page).to have_content('$1.50')
-  end
-
-  xit "can destroy an order" do
-    item.categories.create(name: 'Appetizers')
-
-    visit items_path
-    first(:button, "Book it!").click
-    visit order_path(current_order)
+  it "can return to an empty state" do
+    
 
     click_link_or_button("Remove")
 
