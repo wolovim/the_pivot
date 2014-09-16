@@ -26,31 +26,34 @@ describe 'an order', type: :feature do
     fill_in "to", with: "04/11/2014"
     click_link_or_button "Book it!"
 
-    expect(page).to have_content "Your Order"
+    expect(page).to have_css ".table", text: "MyTitle"
   end
 
-  xit 'can remove an item' do
+  it 'can remove an item' do
+    visit '/items'
+    item.availabilities.create(date: "10/04/2014")
+    item.availabilities.create(date: "11/04/2014")
     visit item_path(item)
-    click_link_or_button("Book it!")
-    visit order_path(current_order)
-    click_link_or_button("Remove")
+    fill_in "from", with: "04/10/2014"
+    fill_in "to", with: "04/11/2014"
+    click_link_or_button "Book it!"
+    click_link_or_button "Remove"
 
-    expect(page).not_to have_content("John")
+    expect(page).not_to have_content("MyTitle")
     expect(page).not_to have_content("Remove")
   end
 
-  xit 'can change an item quantity from the order page' do
+  xit 'reflects the correct number of nights' do
+    visit '/items'
+    item.availabilities.create(date: "10/04/2014")
+    item.availabilities.create(date: "11/04/2014")
     visit item_path(item)
+    fill_in "from", with: "04/10/2014"
+    fill_in "to", with: "04/11/2014"
+    click_link_or_button "Book it!"
+    click_link_or_button "Remove"
 
-    click_link_or_button("Book it!")
-    visit order_path(current_order)
-
-    expect(page).to have_content("Quantity")
-
-    fill_in('item[quantity]', with: 200)
-    click_on('Update')
-
-    expect(page).to have_selector("input[value='200']")
+    expect(page).to have_content "Nights"
   end
 
   xit 'increases quantity when adding repeat items to the order' do
@@ -79,11 +82,14 @@ describe 'an order', type: :feature do
     expect(page).to have_content("There aren't enough of that animal left!")
   end
 
-  xit 'subtotals the price of each item in order' do
+  it 'subtotals the price of each item in order' do
+    visit '/items'
+    item.availabilities.create(date: "10/04/2014")
+    item.availabilities.create(date: "11/04/2014")
     visit item_path(item)
-    click_link_or_button("Book it!")
-    visit item_path(item)
-    click_link_or_button("Book it!")
+    fill_in "from", with: "04/10/2014"
+    fill_in "to", with: "04/11/2014"
+    click_link_or_button "Book it!"
 
     expect(page).to have_content('$0.64')
   end
