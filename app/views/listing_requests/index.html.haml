@@ -1,0 +1,20 @@
+.container
+  .panel.panel-default
+    %h1.panel-heading= "Hi #{current_user.first_name}! Here are the booking requests for your listings:"
+    .panel-body
+      %table.table.table-striped
+        %thead
+          %tr
+            %th Order
+            %th Listing
+            %th Dates
+            %th Number of Nights
+            %th Confirmation
+        %tbody
+          -@listings_requests.each do |request|
+            %tr
+              %td= "#{request.item.title}"
+              %td
+              %td
+              %td
+              %td Confirm Button | Deny Button

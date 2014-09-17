@@ -17,6 +17,8 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :listing_requests, only: [:index]
+
   resources :addresses
 
   namespace :admin do
