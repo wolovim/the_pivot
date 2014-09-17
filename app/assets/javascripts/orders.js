@@ -69,15 +69,15 @@ $(document).ready(function () {
     filterItems();
   });
 
-  // $(".btn-group.accommodations button").on("click", function(event) {
-  //   var filter_id = $(this).attr('id');
-  //   $(".btn-group.accommodations button").removeClass('active');
-  //   $(this).addClass('active');
-  //   filters["accommodation"] = filter_id;
-  //   // To remove a filter:
-  //   // delete filters["bathroom"];
-  //   filterItems();
-  // });
+  $(".btn-group-vertical.accommodations button").on("click", function(event) {
+    var filter_id = $(this).attr('id');
+    $(".btn-group-vertical.accommodations button").removeClass('active');
+    $(this).addClass('active');
+    filters["accommodation"] = filter_id;
+    // To remove a filter:
+    // delete filters["bathroom"];
+    filterItems();
+  });
 
   // $(".btn-group.price-range").on("change", function() {
   //   // Fix for price range
