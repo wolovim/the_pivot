@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     member do
       get :items
       get :dashboard
+      get :avatar
     end
   end
   resources :sessions,    only: [:new, :create, :destroy]
