@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140916172434) do
+ActiveRecord::Schema.define(version: 20140917204119) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,7 +35,7 @@ ActiveRecord::Schema.define(version: 20140916172434) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.date     "date"
-    t.integer  "order_item_id"
+    t.integer  "user_id"
   end
 
   create_table "categories", force: true do |t|
@@ -79,6 +79,8 @@ ActiveRecord::Schema.define(version: 20140916172434) do
     t.integer  "people_per_unit",    default: 1
     t.string   "bathroom",           default: "private"
     t.integer  "user_id"
+    t.string   "accommodation"
+    t.string   "path"
   end
 
   create_table "order_items", force: true do |t|
