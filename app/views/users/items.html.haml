@@ -6,7 +6,8 @@
       %tr
         .thumbnail.col-lg-3
 
-          %img{src: "#{item.image_file_name}"}
+          / %img{src: "#{item.image_file_name}"}
+          %p Image placeholder
           .caption
             %h3= link_to "#{item.title}", item_path(item)
             %p $ #{item.price_for_humans}

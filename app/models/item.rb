@@ -2,11 +2,8 @@ class Item < ActiveRecord::Base
   validates :title, presence: true, uniqueness: true
   validates :description, presence: true
   validates :price, presence: true, numericality: { greater_than: 0 }
+  
   has_many  :item_images, :dependent => :destroy
-   
-  has_attached_file :image, :styles => { :medium => "200x200%", :thumb => "20x20>" }, :default_url => "/assets/:style/missing.jpg"
-  validates_attachment_content_type :image, :content_type => ['image/jpeg', 'image/png','image/gif']
-  validates_attachment_size :image, :less_than => 1.megabytes
 
   validates :price, presence: true
 

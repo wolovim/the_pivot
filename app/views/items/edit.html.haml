@@ -16,7 +16,8 @@
       %br/
       = f.text_field :price
     %p
-      %img{src: "#{@item.image_file_name}", width: "242", height: "242"}
+      / %img{src: "#{@item.image_file_name}", width: "242", height: "242"}
+      %p Image placeholder
       %br/
       = f.file_field :image
     %br/
