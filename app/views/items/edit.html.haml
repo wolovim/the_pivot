@@ -1,5 +1,5 @@
 .row.col-lg-6.col-lg-offset-3
-  %h2.form-signin-heading Edit your listing.
+  %h2.form-signin-heading Update your listing.
   = form_for [@item] do |f|
     - if @item.errors.any?
       %ul#errors
@@ -18,9 +18,9 @@
       %br/
       / %img{src: "#{@item.image_file_name}", width: "242", height: "242"}
       %p Image placeholder
-      %br/
-      %br/
-      = f.file_field :image, class: "form-control"
+      = f.fields_for :item_image do |image_item_fields|
+        = image_item_fields.file_field :image
+        %br/
       %p
         %h4 Add an availability:
       %link{:href => "//code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css", :rel => "stylesheet"}/
