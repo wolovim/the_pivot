@@ -78,8 +78,8 @@ describe 'an order', type: :feature do
   end
 
   it "can return to an empty state" do
+    book_an_item
     
-
     click_link_or_button("Remove")
 
     expect(page).to have_content("You don't have any items in your cart!")
