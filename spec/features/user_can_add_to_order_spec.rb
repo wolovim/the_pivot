@@ -42,7 +42,7 @@ describe 'an order', type: :feature do
     click_link_or_button("Book it!")
     visit order_path(current_order)
 
-    expect(page).to have_content("Quantity")
+    expect(page).to have_content("Number of Nights")
 
     fill_in('item[quantity]', with: 200)
     click_on('Update')

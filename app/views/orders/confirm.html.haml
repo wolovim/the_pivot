@@ -1,16 +1,15 @@
 .container
-  %h1 Confirm Order
+  %h1 Confirm Booking Requests
 
-  %h3.panel-heading Your Order
+  %h3.panel-heading Your Requests
   .panel-body
     %table.table.table-striped
       %tbody
         -order.items.each do |item|
           %tr
             %td #{item.title}
-            %td #{item.description}
             %td $#{item.price_for_humans}
-            %td Quantity: #{order_item(item).quantity}
+            %td For #{order_item(item).quantity} night(s).
 
             %td Subtotal: $#{quantity_price_for_humans(item)}
 
@@ -21,16 +20,10 @@
     %h3.text-muted.order_totals= "Total: $#{order.total_price_for_humans}"
     =link_to "Change Order", order_path(order), class: 'btn btn-danger'
 
-  %h3.panel-heading Your Payment Information
-  -if order.pay_in_store?
-    %h5.panel-body You are paying in store
-  -else
-    =render partial: 'order_payment'
-  =link_to "Change Payment Information", checkout_path, class: 'btn btn-danger'
   %br
   %br
   %br
 
 
-  =link_to "Look Good? Confirm Order", requested_path, class: 'btn btn-primary btn-block'
+  =link_to "Look Good? Send booking requests.", requested_path, class: 'btn btn-primary btn-block'
   %br
