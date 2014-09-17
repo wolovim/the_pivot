@@ -31,7 +31,9 @@ $(document).ready(function () {
         '<h5><a href="'+ item.path +'">'+item.title+'</a></h5>' +
 
         '<p>$'+item.price+'</p>' +
-        '<form action="/orders/25/add_item?item_id='+item.id+'" class="button_to" method="post"><div><input class="thumbnail-btn btn btn-primary" type="submit" value="Book it!"><input name="authenticity_token" type="hidden" value="ok/cMuVXVTaGgCMLmt58c4VIKP7BiANFFw6Hz75r3Pg="></div></form>' +
+        '<form action="/orders/25/add_item?item_id='+item.id+'" class="button_to" method="post">'+
+        '<div><input class="thumbnail-btn btn btn-primary" type="submit" value="Book it!">'+
+        '<input name="authenticity_token" type="hidden" value="ok/cMuVXVTaGgCMLmt58c4VIKP7BiANFFw6Hz75r3Pg="></div></form>' +
       '</div>' +
     '</div>');
   }
