@@ -42,5 +42,6 @@ end
 
 group :production do
   gem 'pg'
-  gem 'aws-sdk'
+  gem 'aws-sdk', '~> 1.20.0'
+  gem 'nokogiri', '~> 1.5.0'
 end
