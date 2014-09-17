@@ -37,6 +37,10 @@ class UsersController < ApplicationController
     end
   end
 
+  def avatar
+    @user = current_user
+  end
+
   def items
     @user = User.find(params[:id])
     @items = @user.items.all.to_a
@@ -53,6 +57,7 @@ class UsersController < ApplicationController
       params.require(:user).permit(:first_name, :last_name,
                                    :username,   :email,
                                    :city,       :state,
-                                   :password,   :password_confirmation)
+                                   :password,   :password_confirmation,
+                                   :avatar)
   end
 end

@@ -1,0 +1,24 @@
+.container
+	#avatar-form
+		%h3 Update your profile photo!
+		%h5 Your current photo:
+		=image_tag @user.avatar.url(:medium), class: "current-avatar"
+		%br/
+		%br/
+		%h5 Select a new photo:
+		=form_for @user, html: {multipart: true} do |f|
+			=f.file_field :avatar
+			%br/
+			%br/
+			%h5 For some reason, please enter your password to save this:
+			%br/
+			=f.label :password
+			%br/
+			=f.text_field :password
+			%br/
+			=f.label :password_confirmation
+			%br/
+			=f.text_field :password_confirmation
+			%br/
+			%br/
+			=f.submit "Update Photo", class: "btn btn-primary"
