@@ -17,7 +17,9 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :listing_requests, only: [:index]
+  resources :listing_requests, only: [:index] do
+    resources :confirmations
+  end
 
   resources :addresses
 

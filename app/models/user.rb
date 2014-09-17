@@ -15,6 +15,7 @@ class User < ActiveRecord::Base
 
   has_many :orders
   has_many :items
+  has_many :order_items, through: :items
 
   def full_name
     "#{first_name} #{last_name}"

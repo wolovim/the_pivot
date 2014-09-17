@@ -11,10 +11,16 @@
             %th Number of Nights
             %th Confirmation
         %tbody
-          -@listings_requests.each do |request|
+          - @listings_requests.each do |request|
             %tr
               %td= "#{request.item.title}"
               %td
-              %td
-              %td
-              %td Confirm Button | Deny Button
+              %td= debug request
+              - if request.confirmed?
+                %td Listing Confirmed
+              - else
+                %td
+                  = link_to listing_request_confirmations_path(request), method: :post do
+                    Confirm Button
+                  \|
+                  Deny Button

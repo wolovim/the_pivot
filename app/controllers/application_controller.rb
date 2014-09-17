@@ -26,9 +26,8 @@ class ApplicationController < ActionController::Base
   end
 
   def current_user
-    if session[:user_id] && cookies.signed[:remember_token]
-      token = User.digest(cookies.signed[:remember_token])
-      @current_user = User.find_by!(id: session[:user_id], remember_token: token)
+    if user_id # session[:user_id] && cookies.signed[:remember_token]
+      @current_user = User.find(user_id)
     end
   end
 
@@ -45,6 +44,10 @@ class ApplicationController < ActionController::Base
   end
 
   private
+
+  def user_id
+    session[:user_id]
+  end
 
   def _session_order
     return unless session[:order_id]

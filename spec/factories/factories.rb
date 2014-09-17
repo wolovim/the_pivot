@@ -39,10 +39,14 @@ FactoryGirl.define do
     item
   end
 
+  sequence :email do |n|
+    "email#{n}@example.com"
+  end
+
   factory :user do
     first_name "John"
     last_name  "Doe"
-    email      "j@example.com"
+    email
     password   "123456789"
     role       "default"
 
