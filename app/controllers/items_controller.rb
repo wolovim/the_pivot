@@ -45,6 +45,7 @@ class ItemsController < ApplicationController
 
   def update
     @item = current_user.items.find(params[:id])
+    @item.item_images.build
 
     unless params[:from] == "" && params[:to] == ""
       dates = parse_available_dates(params[:from], params[:to])
@@ -53,7 +54,7 @@ class ItemsController < ApplicationController
 
     if @item.update(item_params)
       flash[:success] = "Listing updated."
-      redirect_to items_user_path(current_user)
+      redirect_to item_path(@item)
     else
       flash[:error] = "Something went wrong. Please try again."
       render :edit
@@ -70,6 +71,7 @@ class ItemsController < ApplicationController
 
   def item_params
     params.require(:item).permit(:title, :description, :price,
-                                 :people_per_unit, :bathroom, :user_id)
+                                 :people_per_unit, :bathroom, 
+                                 :user_id, :item_image_attributes)
   end
 end

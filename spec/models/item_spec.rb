@@ -8,6 +8,10 @@ RSpec.describe Item, :type => :model do
       expect(item).to be_valid
     end
 
+    it 'responds to item images' do
+      expect(item).to respond_to :item_images
+    end
+
     it 'has a unique name' do
       item1 = Item.new
       item1.title = 'Same Name'
@@ -15,7 +19,6 @@ RSpec.describe Item, :type => :model do
       item2.title = 'Same Name'
       
       expect item2.invalid?
-      # expect{ create :item }.to raise_exception ActiveRecord::RecordInvalid
     end
 
     it 'has categories' do

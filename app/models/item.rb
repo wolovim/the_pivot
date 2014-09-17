@@ -4,6 +4,8 @@ class Item < ActiveRecord::Base
   validates :price, presence: true, numericality: { greater_than: 0 }
   
   has_many  :item_images, :dependent => :destroy
+  
+  accepts_nested_attributes_for :item_images
 
   belongs_to :user
 

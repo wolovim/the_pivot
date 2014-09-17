@@ -9,13 +9,14 @@ describe 'host', type: :feature do
     fill_in 'email address', with: user.email
     fill_in 'password', with: user.password
     click_button 'Login'
-    visit items_user_path(user)
-    click_link_or_button 'Edit Listing'
-    attach_file "item_image", 'spec/fixtures/missing.jpg'
-    save_and_open_page
-    click_link_or_button 'Update Listing'
 
-    click_link_or_button item.title
-    # assertions
+    2.times do
+      visit items_user_path(user)
+      click_link_or_button 'Edit Listing'
+      attach_file "item_item_image_image", 'spec/fixtures/missing.jpg'
+      click_link_or_button 'Update Listing'
+    end
+
+    expect(item.item_images.count). to eq 2
   end
 end
