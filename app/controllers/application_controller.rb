@@ -26,9 +26,9 @@ class ApplicationController < ActionController::Base
   end
 
   def current_user
-    @current_user ||= begin
-      remember_token = User.digest(cookies.signed[:remember_token])
-      User.find_by(remember_token: remember_token)
+    if session[:user_id] && cookies.signed[:remember_token]
+      token = User.digest(cookies.signed[:remember_token])
+      @current_user = User.find_by!(id: session[:user_id], remember_token: token)
     end
   end
 
