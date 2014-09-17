@@ -33,12 +33,15 @@ class ItemsController < ApplicationController
 
   def update
     @item = current_user.items.find(params[:id])
-    dates = parse_available_dates(params[:from], params[:to])
-    @item.availabilities.create(dates)
+
+    unless params[:from] == "" && params[:to] == ""
+      dates = parse_available_dates(params[:from], params[:to])
+      @item.availabilities.create(dates)
+    end
     
     if @item.update(item_params)
       flash[:success] = "Listing updated."
-      redirect_to listings_user_path(current_user)
+      redirect_to items_user_path(current_user)
     else
       flash[:error] = "Something went wrong. Please try again."
       render :edit
@@ -54,6 +57,7 @@ class ItemsController < ApplicationController
   end
 
   def item_params
-    params.require(:item).permit(:title, :description, :price, :people_per_unit, :bathroom, :user_id)
+    params.require(:item).permit(:title, :description, :price,
+                                 :people_per_unit, :bathroom, :user_id)
   end
 end
