@@ -56,6 +56,10 @@ class Item < ActiveRecord::Base
     date_range.map { |date| {date: date} }
   end
 
+  def available_dates
+    self.availabilities.unreserved.map { |a| a.date.strftime("%Y-%m-%d") }
+  end
+
   def accommodation
     categories.first.name if categories.any?
   end
