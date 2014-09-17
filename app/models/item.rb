@@ -5,8 +5,6 @@ class Item < ActiveRecord::Base
   
   has_many  :item_images, :dependent => :destroy
 
-  validates :price, presence: true
-
   belongs_to :user
 
   has_one :address
