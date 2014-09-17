@@ -49,10 +49,6 @@ class OrdersController < ApplicationController
     redirect_to root_path
   end
 
-  def order_params
-    params.require(:order).permit()
-  end
-
   def checkout
     @address = Address.create
   end
@@ -61,8 +57,6 @@ class OrdersController < ApplicationController
     if order.basket?
       order.order!
     end
-
-    # @address = Address.create()
   end
 
   def paid
@@ -70,5 +64,11 @@ class OrdersController < ApplicationController
       order.pay!
     end
     session[:order_id] = nil
+  end
+
+  private
+
+  def order_params
+    params.require(:order).permit()
   end
 end
