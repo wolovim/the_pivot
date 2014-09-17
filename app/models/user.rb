@@ -16,6 +16,9 @@ class User < ActiveRecord::Base
   has_many :orders
   has_many :items
 
+  has_attached_file :avatar, styles: { :medium => "300x300#", :thumb => "100x100#" }, default_url: "/assets/medium/awesome.png"
+  validates_attachment :avatar, content_type: { content_type: ["image/jpg", "image/jpeg", "image/png", "image/gif"] }
+
   def full_name
     "#{first_name} #{last_name}"
   end
@@ -39,6 +42,10 @@ class User < ActiveRecord::Base
   end
 
   private
+
+  def default_url
+    "/assets/avatars"
+  end
 
   def create_remember_token
     self.remember_token = User.digest(User.new_remember_token)

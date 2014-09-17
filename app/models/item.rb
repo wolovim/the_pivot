@@ -59,4 +59,8 @@ class Item < ActiveRecord::Base
   def available_dates
     self.availabilities.unreserved.map { |a| a.date.strftime("%Y-%m-%d") }
   end
+
+  def accommodation
+    categories.first.name if categories.any?
+  end
 end

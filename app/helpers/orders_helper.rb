@@ -3,7 +3,6 @@ module OrdersHelper
     item.order_items.where(order_id: item_order.id).first
   end
 
-
   def quantity_price(item, item_order)
     order_item(item, item_order).quantity * item.price
   end

@@ -4,6 +4,18 @@ class ItemsController < ApplicationController
     @categories = Category.all
     @main_categories = Category.main_categories
     @special_categories = Category.special_categories
+    respond_to do |format|
+      format.html
+      format.json{
+        data = @items.collect do |item|
+          item.as_json.merge(
+            {'path' => item_path(item),
+             'accommodation' => item.accommodation}
+          )
+        end
+        render json: data.to_json
+      }
+    end
   end
 
   def show
@@ -38,12 +50,15 @@ class ItemsController < ApplicationController
 
   def update
     @item = current_user.items.find(params[:id])
-    dates = parse_available_dates(params[:from], params[:to])
-    @item.availabilities.create(dates)
-    
+
+    if params[:from] != "" && params[:to] != ""
+      dates = parse_available_dates(params[:from], params[:to])
+      @item.availabilities.create(dates)
+    end
+
     if @item.update(item_params)
       flash[:success] = "Listing updated."
-      redirect_to listings_user_path(current_user)
+      redirect_to items_user_path(current_user)
     else
       flash[:error] = "Something went wrong. Please try again."
       render :edit

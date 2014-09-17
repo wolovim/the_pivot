@@ -1,18 +1,18 @@
 .container
   .panel.panel-default
-    %h1.panel-heading Your Order
+    %h1.panel-heading Your Booking Requests:
     .panel-body
-      %p Look over your items, add a few more, or proceed to checkout.
+      %p Please glance over your booking requests. Tweak 'em, or proceed to confirm and make requests.
       = flash[:toomany]
       %table.table.table-striped
         %thead
           %tr
-            %th Title
+            %th Listing Name
             %th Description
-            %th Price
-            %th Quantity
+            %th Daily Rate
+            %th Number of Nights
             %th
-            %th Item Subtotal
+            %th Subtotal
         %tbody
         -if order.empty?
           %tr You don't have any items in your cart!
@@ -30,7 +30,7 @@
               %td= button_to "Remove", delete_item_order_path(order, item_id: item.id), class: "btn btn-danger"
               %td $#{quantity_price_for_humans(item)}
     #order-total
-      %h3.text-muted.pull-right= "Order Subtotal: $#{order.total_for_humans}"
+      %h3.text-muted.pull-right= "Booking Subtotal: $#{order.total_for_humans}"
 
 
 -if signed_in?
@@ -39,7 +39,7 @@
       .row.pull-right
         %ul.nav.nav-pills
           %li.active
-            = link_to "Proceed to Checkout", checkout_path
+            = link_to "Proceed to Booking Summary", confirm_path
 -else
   .container
     .col-lg-5-offset-3.pull-right

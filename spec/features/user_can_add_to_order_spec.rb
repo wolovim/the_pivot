@@ -40,8 +40,6 @@ describe 'an order', type: :feature do
   xit 'reflects the correct number of nights' do
     book_an_item
 
-    click_link_or_button "Remove"
-
     expect(page).to have_content "Nights"
   end
 

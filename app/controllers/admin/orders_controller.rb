@@ -1,6 +1,6 @@
-class Admin::OrdersController < AdminController  
+class Admin::OrdersController < AdminController
   def index
-    filter = known_scopes.find(-> { :all }) { |scope_name| scope_name == params[:scope] }
+    filter  = known_scopes.find(-> { :all }) { |scope_name| scope_name == params[:scope] }
     @orders = Order.public_send filter
   end
 

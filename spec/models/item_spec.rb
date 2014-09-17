@@ -9,8 +9,13 @@ RSpec.describe Item, :type => :model do
     end
 
     it 'has a unique name' do
-      create :item
-      expect{ create :item }.to raise_exception ActiveRecord::RecordInvalid
+      item1 = Item.new
+      item1.title = 'Same Name'
+      item2 = Item.new
+      item2.title = 'Same Name'
+      
+      expect item2.invalid?
+      # expect{ create :item }.to raise_exception ActiveRecord::RecordInvalid
     end
 
     it 'has categories' do

@@ -10,11 +10,11 @@
           .admin-section-title
             My Account
           .admin-section-content
-            =link_to "View my public profile", user_path(@user)
+            =link_to "View my public profile", user_path(current_user)
             %br/
-            =link_to "Update my information", edit_user_path(@user)
+            =link_to "Update my information", edit_user_path(current_user)
             %br/
-            =link_to "Change my profile photo", '#'
+            =link_to "Change my profile photo", avatar_user_path(current_user)
         .admin-section
           .admin-section-title
             My Listings
