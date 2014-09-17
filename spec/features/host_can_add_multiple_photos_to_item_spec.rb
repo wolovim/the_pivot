@@ -12,7 +12,8 @@ describe 'host', type: :feature do
     visit items_user_path(user)
     click_link_or_button 'Edit Listing'
     attach_file "item_image", 'spec/fixtures/missing.jpg'
-    click_link_or_button 'Update Item'
+    save_and_open_page
+    click_link_or_button 'Update Listing'
 
     click_link_or_button item.title
     # assertions

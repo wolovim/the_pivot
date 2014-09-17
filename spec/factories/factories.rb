@@ -1,6 +1,8 @@
 FactoryGirl.define do
+  sequence(:title) { |n| "MyTitle #{n}" }
+
   factory :item do
-    title 'MyTitle'
+    title { generate(:title) }
     description 'MyDesc'
     bathroom 'Private'
     people_per_unit 1
