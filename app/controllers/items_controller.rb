@@ -20,6 +20,7 @@ class ItemsController < ApplicationController
 
   def show
     @item = Item.find(params[:id])
+    @order = _session_order
   end
 
   def new
@@ -31,8 +32,10 @@ class ItemsController < ApplicationController
 
     if @item.save
       flash[:success] = "Listing created!"
-      @item.parse_available_dates(params[:from], params[:to])
-      @item.availabilities.create(dates)
+
+      dates = @item.parse_available_dates(params[:from], params[:to])
+      @item.availabilities.create(dates) if dates
+
       redirect_to new_item_image_path(@item)
     else
       render :new
@@ -49,7 +52,7 @@ class ItemsController < ApplicationController
 
     if @item.update(item_params)
       flash[:success] = "Listing updated."
-      @item.parse_available_dates(params[:from], params[:to])
+      dates = @item.parse_available_dates(params[:from], params[:to])
       @item.availabilities.create(dates)
       redirect_to new_item_image_path(@item)
     else

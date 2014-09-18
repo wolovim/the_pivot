@@ -49,8 +49,6 @@ class UsersController < ApplicationController
   def dashboard
     return render "errors/404" unless current_user
     @user = current_user
-
-    render "errors/404"  unless session[:user_id] == current_user.id
   end
 
   def user_params

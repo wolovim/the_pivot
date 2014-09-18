@@ -6,7 +6,7 @@
     %p.location_text
       Sleeps: #{@item.people_per_unit}
     %p.location_text
-      Rate: $ #{@item.price}
+      Rate: $#{@item.price}
     %p.location_text
       Description: #{@item.description}
     %p.location_text
@@ -16,16 +16,69 @@
       - @item.categories.each do |category|
         = category.name
     %p.location_text
-      Available:
+      Search Availability:
       %br/
       -if @item.availabilities.any?
-        -@item.availabilities.each do |avail|
-          =avail.date
+        =form_for @order do |f|
+          
+          %label{:for => "from"} From 
+          %input#from{:name => "from", :type => "text"}/
+          %label{:for => "to"} to 
+          %input#to{:name => "to", :type => "text"}/
+          
+          %link{:href => "//code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css", :rel => "stylesheet"}/
+          %script{:src => "//code.jquery.com/jquery-1.10.2.js"}
+          %script{:src => "//code.jquery.com/ui/1.11.1/jquery-ui.js"}
+
+          :javascript
+            var array = #{ @item.available_dates }
+          
+            $(document).ready(function() {
+              $( "#from" ).datepicker({
+                beforeShowDay: function(date) {
+                  if($.inArray($.datepicker.formatDate('yy-mm-dd', date ), array) > -1)
+                  {
+                      return [true,"",""];
+                  }
+                  else
+                  {
+                      return [false,'',"Unavailable"];
+                  }
+                },
+                defaultDate: "+1w",
+                changeMonth: true,
+                numberOfMonths: 1,
+                onClose: function( selectedDate ) {
+                  $( "#to" ).datepicker( "option", "minDate", selectedDate );
+                }
+              });
+              $( "#to" ).datepicker({
+                beforeShowDay: function(date) {
+                  if($.inArray($.datepicker.formatDate('yy-mm-dd', date ), array) > -1)
+                  {
+                      return [true,"",""];
+                  }
+                  else
+                  {
+                      return [false,'',"Unavailable"];
+                  }
+                },
+                defaultDate: "+1w",
+                changeMonth: true,
+                numberOfMonths: 1,
+                onClose: function( selectedDate ) {
+                  $( "#from" ).datepicker( "option", "maxDate", selectedDate );
+                }
+              });
+            });
+
           %br/
+          %br/
+          = f.hidden_field :item_id, value: @item.id
+          = f.submit "Book it!", class: 'btn btn-success'
+
       -else
         %p No availability yet!
-    %a= button_to "Book it!", add_item_order_path(order, item_id: @item.id), class: 'btn btn-success'
-    %p
 
   .col-md-8
     / %img{src: "#{@item.image_file_name}", width: "90%", height: "242"}
