@@ -19,6 +19,7 @@ Rails.application.routes.draw do
 
   resources :listing_requests, only: [:index] do
     resources :confirmations
+    resources :denials
   end
 
   resources :addresses

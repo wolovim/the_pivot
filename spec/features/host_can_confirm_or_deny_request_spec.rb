@@ -12,8 +12,8 @@ describe 'host', type: :feature do
     my_futon = create(:item, user: @user, title: "My Futon")
     my_couch = create(:item, user: @user, title: "My Couch")
     my_bed = create(:item, user: @user, title: "My Bed")
-    create(:order, items: [my_futon])
-    create(:order, items: [my_couch])
+    create(:order, user: @user, items: [my_futon])
+    create(:order, user: @user, items: [my_couch])
 
     visit dashboard_user_path(@user)
     puts dashboard_user_path(@user)
@@ -24,17 +24,26 @@ describe 'host', type: :feature do
     expect(page).not_to have_content("My Bed")
   end
 
-  it "can confirm a request",t:true do
+  it "can confirm a request" do
     create_order_for_item(title: "My Futon")
 
     visit listing_requests_path
-    click_on "Confirm Button"
-    expect(page).to have_content("Listing Confirmed")
+    click_on "Confirm"
+    expect(page).to have_content("Request CONFIRMED")
     expect(page).not_to have_content("Confirm Button")
+  end
+
+  it "can deny a request" do
+    create_order_for_item(title: "My Hammock")
+
+    visit listing_requests_path
+    click_on "Deny"
+    expect(page).to have_content("Request DENIED")
+    expect(page).not_to have_content("Deny")
   end
 
   def create_order_for_item(title:)
     item = create(:item, user: @user, title: title)
-    create(:order, items: [item])
+    create(:order, user: @user, items: [item])
   end
 end
