@@ -25,7 +25,7 @@ $(document).ready(function () {
 
   function renderItem(item) {
     $(".listings").append('<div class="thumbnail col-lg-3">' +
-      '<img src="'+item.image_file_name+'">' +
+      '<img src="http://static.pexels.com/wp-content/uploads/2014/08/couch-flat-home-2459-525x350.jpg">' +
       '<div class="caption">' +
         '<h5><a href="'+ item.path +'">'+item.title+'</a></h5>' +
         '<p>$'+item.price+'</p>' +

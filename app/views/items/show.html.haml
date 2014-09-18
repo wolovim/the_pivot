@@ -81,8 +81,7 @@
         %p No availability yet!
 
   .col-md-8
-    / %img{src: "#{@item.image_file_name}", width: "90%", height: "242"}
-    %p Image placeholder
+    %img{src: "#{@item.item_images.first.image_file_name}", width: "80%", height: "80%"}
   .col-md-8.image_small
     %img.thumbx{src: "http://static.pexels.com/wp-content/uploads/2014/06/couch-disc-jockey-dj-1688.jpg", width: "10%", height: "80"}
     %img.thumbx{src: "http://static.pexels.com/wp-content/uploads/2014/09/bed-bedroom-furniture-2705.jpg", width: "10%", height: "80"}

@@ -11,10 +11,9 @@ describe 'host', type: :feature do
     click_button 'Login'
 
     2.times do
-      visit items_user_path(user)
-      click_link_or_button 'Edit Listing'
-      attach_file "item_item_image_image", 'spec/fixtures/missing.jpg'
-      click_link_or_button 'Update Listing'
+      visit new_item_image_path(item)
+      attach_file "item_image_image", 'spec/fixtures/missing.jpg'
+      click_link_or_button 'Upload Photo'
     end
 
     expect(item.item_images.count). to eq 2

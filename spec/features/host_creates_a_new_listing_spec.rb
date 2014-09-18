@@ -29,7 +29,8 @@ describe 'host', type: :feature do
     click_button 'Login'
 
     visit dashboard_user_path(user)
-    click_link "Create a new listing"
+
+    click_link "Create a New Listing"
     expect(current_path).to eq new_item_path
 
     fill_in "Listing Title", with: "NewListingTitle"
@@ -37,7 +38,13 @@ describe 'host', type: :feature do
     fill_in "Daily Rate", with: 20
     find('#item_people_per_unit').find(:xpath, 'option[2]').select_option
     find('#item_bathroom').find(:xpath, 'option[2]').select_option
-    click_button "Create Listing"
+    fill_in "from", with: "04/10/2014"
+    fill_in "to", with: "04/11/2014"
+    click_button "Continue"
+
+    attach_file "item_image_image", 'spec/fixtures/missing.jpg'
+    click_link_or_button "Upload Photo"
+    click_link_or_button "I'm finished"
 
     within(".location_title") { expect(page).to have_content "NewListingTitle" }
     within(".location_info") { expect(page)
