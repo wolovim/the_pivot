@@ -7,13 +7,16 @@ class ItemsController < ApplicationController
     respond_to do |format|
       format.html
       format.json{
-        data = @items.collect do |item|
-          item.as_json.merge(
-            {'path' => item_path(item),
-             'accommodation' => item.accommodation}
-          )
-        end
-        render json: data.to_json
+        # data = @items.collect do |item|
+        #   item.as_json.merge(
+        #     {'path' => item_path(item),
+        #      'accommodation' => item.accommodation}
+        #   )
+        # end
+        # render json: data.to_json
+
+        render json: @items, root: false
+
       }
     end
   end

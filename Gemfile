@@ -17,6 +17,7 @@ gem 'paperclip', "~> 4.1"
 gem 'aasm'
 gem 'haml-rails'
 gem 'pony'
+gem 'active_model_serializers'
 
 group :development, :test do
   gem 'rspec-rails'
