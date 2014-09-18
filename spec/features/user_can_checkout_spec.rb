@@ -19,7 +19,7 @@ describe 'A user who is logged in' do
   before do
     @user  = create :user
     @order = create :order
-    @item  = create :item
+    @item  = create :item, user_id: @user.id
     @user.orders << @order
     @order.items << @item
     allow_any_instance_of(ApplicationController)
