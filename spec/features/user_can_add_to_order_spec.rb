@@ -7,6 +7,7 @@ describe 'an order', type: :feature do
   def book_an_item
     item.availabilities.create(date: "10/04/2014")
     item.availabilities.create(date: "11/04/2014")
+    item.item_images.create!
 
     visit '/items' 
     visit item_path(item)
