@@ -3,6 +3,10 @@ require_relative 'feature_spec_helper'
 describe 'an items show page', type: :feature do
   let(:item) { create :item, :title => "MyTitle"}
 
+  before do
+    item.item_images.create!
+  end
+
   it 'has a show page for an item' do
     visit item_path(item)
     expect(page.status_code).to eq(200)
