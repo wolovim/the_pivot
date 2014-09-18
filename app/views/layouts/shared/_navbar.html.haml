@@ -17,6 +17,7 @@
       - if signed_in?
         %ul.nav.navbar-nav.navbar-right
           %li= link_to "Welcome, #{current_user.first_name.capitalize}!", current_user
+          %li= link_to "Visit Dashboard", dashboard_user_path(current_user)
           %li= link_to "My Order (#{order.items.length})", order_path(order)
           -if current_user.role == "admin"
             %li= link_to "Admin Dashboard", admin_dashboard_path

@@ -1,13 +1,11 @@
 class Item < ActiveRecord::Base
   validates :title, presence: true, uniqueness: true
   validates :description, presence: true
-
   validates :price, presence: true, numericality: { greater_than: 0 }
-  has_attached_file :image, :styles => { :medium => "200x200%", :thumb => "20x20>" }, :default_url => "/assets/:style/missing.jpg"
-  validates_attachment_content_type :image, :content_type => ['image/jpeg', 'image/png','image/gif']
-  validates_attachment_size :image, :less_than => 1.megabytes
+  
+  has_many  :item_images, :dependent => :destroy
 
-  validates :price, presence: true
+  accepts_nested_attributes_for :item_images
 
   belongs_to :user
 
@@ -49,11 +47,17 @@ class Item < ActiveRecord::Base
   end
 
   def parse_available_dates(start_date, end_date)
-    start_date = Date.parse(start_date)
-    end_date = Date.parse(end_date)
-    date_range = (start_date..end_date).to_a
+    unless start_date == "" && end_date == ""
+      start_date = Date.strptime(start_date, "%m/%d/%Y")
+      end_date = Date.strptime(end_date, "%m/%d/%Y")
+      date_range = (start_date..end_date).to_a
 
-    date_range.map { |date| {date: date} }
+      date_range.map { |date| {date: date} }
+    end
+  end
+
+  def available_dates
+    self.availabilities.unreserved.map { |a| a.date.strftime("%Y-%m-%d") }
   end
 
   def accommodation

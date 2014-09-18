@@ -23,6 +23,7 @@ class ItemsController < ApplicationController
 
   def show
     @item = Item.find(params[:id])
+    @order = _session_order
   end
 
   def new
@@ -34,9 +35,11 @@ class ItemsController < ApplicationController
 
     if @item.save
       flash[:success] = "Listing created!"
-      dates = parse_available_dates(params[:from], params[:to])
-      @item.availabilities.create(dates)
-      redirect_to item_path(@item)
+
+      dates = @item.parse_available_dates(params[:from], params[:to])
+      @item.availabilities.create(dates) if dates
+
+      redirect_to new_item_image_path(@item)
     else
       render :new
     end
@@ -48,30 +51,22 @@ class ItemsController < ApplicationController
 
   def update
     @item = current_user.items.find(params[:id])
-
-    if params[:from] != "" && params[:to] != ""
-      dates = parse_available_dates(params[:from], params[:to])
-      @item.availabilities.create(dates)
-    end
+    @item.item_images.build
 
     if @item.update(item_params)
       flash[:success] = "Listing updated."
-      redirect_to items_user_path(current_user)
+      dates = @item.parse_available_dates(params[:from], params[:to])
+      @item.availabilities.create(dates)
+      redirect_to new_item_image_path(@item)
     else
       flash[:error] = "Something went wrong. Please try again."
       render :edit
     end
   end
 
-  def parse_available_dates(start_date, end_date)
-    start_date = Date.strptime(start_date, "%m/%d/%Y")
-    end_date = Date.strptime(end_date, "%m/%d/%Y")
-    date_range = (start_date..end_date).to_a
-
-    date_range.map { |date| {date: date} }
-  end
-
   def item_params
-    params.require(:item).permit(:title, :description, :price, :people_per_unit, :bathroom, :user_id)
+    params.require(:item).permit(:title, :description, :price,
+                                 :people_per_unit, :bathroom, 
+                                 :user_id, :item_image_attributes)
   end
 end

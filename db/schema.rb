@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140917204119) do
+ActiveRecord::Schema.define(version: 20140918050053) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -64,31 +64,41 @@ ActiveRecord::Schema.define(version: 20140917204119) do
   add_index "item_availabilities", ["availability_id"], name: "index_item_availabilities_on_availability_id", using: :btree
   add_index "item_availabilities", ["item_id"], name: "index_item_availabilities_on_item_id", using: :btree
 
+  create_table "item_images", force: true do |t|
+    t.integer  "item_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+  end
+
+  add_index "item_images", ["item_id"], name: "index_item_images_on_item_id", using: :btree
+
   create_table "items", force: true do |t|
     t.string   "title"
     t.string   "description"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "price"
-    t.integer  "max_quantity",       default: 500
-    t.string   "image_file_name"
-    t.string   "image_content_type"
-    t.integer  "image_file_size"
-    t.datetime "image_updated_at"
-    t.string   "scarcity",           default: "endangered"
-    t.integer  "people_per_unit",    default: 1
-    t.string   "bathroom",           default: "private"
+    t.integer  "max_quantity",    default: 500
+    t.string   "scarcity",        default: "endangered"
+    t.integer  "people_per_unit", default: 1
+    t.string   "bathroom",        default: "private"
     t.integer  "user_id"
     t.string   "accommodation"
     t.string   "path"
   end
 
   create_table "order_items", force: true do |t|
-    t.integer  "order_id",               null: false
-    t.integer  "item_id",                null: false
+    t.integer  "order_id",                   null: false
+    t.integer  "item_id",                    null: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "quantity",   default: 1
+    t.boolean  "confirmed",  default: false, null: false
+    t.boolean  "denied",     default: false, null: false
   end
 
   create_table "orders", force: true do |t|

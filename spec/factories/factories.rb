@@ -9,6 +9,10 @@ FactoryGirl.define do
     price 32
   end
 
+  factory :item_image do
+    image_file_name
+  end
+
   factory :address do
     item_id 80
     street_1 "1510 Blake"
@@ -23,6 +27,17 @@ FactoryGirl.define do
   end
 
   factory :order do
+    ignore do
+      items nil
+    end
+
+    after :create do |object, evaluator|
+      if evaluator.items
+        evaluator.items.each do |item|
+          create(:order_item, order: object, item: item)
+        end
+      end
+    end
   end
 
   factory :order_item do
@@ -30,11 +45,19 @@ FactoryGirl.define do
     item
   end
 
+  sequence :email do |n|
+    "email#{n}@example.com"
+  end
+
   factory :user do
     first_name "John"
     last_name  "Doe"
-    email      "j@example.com"
+    email
     password   "123456789"
-    role       "admin"
+    role       "default"
+
+    trait :admin do
+      role "admin"
+    end
   end
 end

@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  resources :items,       only: [:index, :show, :edit, :update, :create, :new]
+  resources :items do
+    resources :item_images, as: :images, only: [:new, :create]
+  end
   resources :categories,  only: [:index, :show]
   resources :users,       only: [:new, :create, :show, :index, :edit, :update] do
     member do
@@ -16,6 +18,11 @@ Rails.application.routes.draw do
       post :add_item
       post :delete_item
     end
+  end
+
+  resources :listing_requests, only: [:index] do
+    resources :confirmations
+    resources :denials
   end
 
   resources :addresses
