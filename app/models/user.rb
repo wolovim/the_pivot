@@ -15,6 +15,7 @@ class User < ActiveRecord::Base
 
   has_many :orders
   has_many :items
+  has_many :order_items, through: :items
 
   has_attached_file :avatar, styles: { :medium => "300x300#", :thumb => "100x100#" }, default_url: "/assets/medium/awesome.png"
   validates_attachment :avatar, content_type: { content_type: ["image/jpg", "image/jpeg", "image/png", "image/gif"] }

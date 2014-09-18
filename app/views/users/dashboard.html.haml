@@ -19,9 +19,11 @@
           .admin-section-title
             My Listings
           .admin-section-content
-            =link_to "Create a new listing", new_item_path
+            =link_to "Create a New Listing", new_item_path
             %br/
-            =link_to "View / edit current listings", items_user_path(current_user)
+            =link_to "Manage Your Current Listings", items_user_path(current_user)
+            %br/
+            =link_to "Manage Booking Requests for Your Listings", listing_requests_path
         .admin-section
           .admin-section-title
             My Bookings
