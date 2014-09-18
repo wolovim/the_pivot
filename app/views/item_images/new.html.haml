@@ -1,0 +1,13 @@
+.container
+  .row.col-lg-6.col-lg-offset-3
+    %h2.form-signin-heading Step 2: Add a Photo.
+    = form_for [@item_image] do |f|
+      - if @item_image.errors.any?
+        %ul#errors
+          - @item_image.errors.full_messages.each do |error|
+            %li= error
+      .form-group
+        =f.file_field :image
+        %br/
+        = f.submit "Upload Photo", class: "btn btn-large btn-block btn-primary"
+        = link_to "I'm finished", item_path(@item), class: "btn btn-large btn-block btn-primary"

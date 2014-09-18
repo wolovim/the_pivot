@@ -4,7 +4,7 @@ class Item < ActiveRecord::Base
   validates :price, presence: true, numericality: { greater_than: 0 }
   
   has_many  :item_images, :dependent => :destroy
-  
+
   accepts_nested_attributes_for :item_images
 
   belongs_to :user
@@ -47,11 +47,13 @@ class Item < ActiveRecord::Base
   end
 
   def parse_available_dates(start_date, end_date)
-    start_date = Date.parse(start_date)
-    end_date = Date.parse(end_date)
-    date_range = (start_date..end_date).to_a
+    unless start_date == "" && end_date == ""
+      start_date = Date.strptime(start_date, "%m/%d/%Y")
+      end_date = Date.strptime(end_date, "%m/%d/%Y")
+      date_range = (start_date..end_date).to_a
 
-    date_range.map { |date| {date: date} }
+      date_range.map { |date| {date: date} }
+    end
   end
 
   def accommodation

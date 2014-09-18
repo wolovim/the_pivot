@@ -31,9 +31,9 @@ class ItemsController < ApplicationController
 
     if @item.save
       flash[:success] = "Listing created!"
-      dates = parse_available_dates(params[:from], params[:to])
+      @item.parse_available_dates(params[:from], params[:to])
       @item.availabilities.create(dates)
-      redirect_to item_path(@item)
+      redirect_to new_item_image_path(@item)
     else
       render :new
     end
@@ -47,26 +47,15 @@ class ItemsController < ApplicationController
     @item = current_user.items.find(params[:id])
     @item.item_images.build
 
-    unless params[:from] == "" && params[:to] == ""
-      dates = parse_available_dates(params[:from], params[:to])
-      @item.availabilities.create(dates)
-    end
-
     if @item.update(item_params)
       flash[:success] = "Listing updated."
-      redirect_to item_path(@item)
+      @item.parse_available_dates(params[:from], params[:to])
+      @item.availabilities.create(dates)
+      redirect_to new_item_image_path(@item)
     else
       flash[:error] = "Something went wrong. Please try again."
       render :edit
     end
-  end
-
-  def parse_available_dates(start_date, end_date)
-    start_date = Date.strptime(start_date, "%m/%d/%Y")
-    end_date = Date.strptime(end_date, "%m/%d/%Y")
-    date_range = (start_date..end_date).to_a
-
-    date_range.map { |date| {date: date} }
   end
 
   def item_params

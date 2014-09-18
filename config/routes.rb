@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   resources :items do
-    resources :item_images, as: :images
+    resources :item_images, as: :images, only: [:new, :create]
   end
   resources :categories,  only: [:index, :show]
   resources :users,       only: [:new, :create, :show, :index, :edit, :update] do

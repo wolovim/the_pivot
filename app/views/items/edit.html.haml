@@ -1,5 +1,5 @@
 .row.col-lg-6.col-lg-offset-3
-  %h2.form-signin-heading Update your listing.
+  %h2.form-signin-heading Update your information.
   = form_for [@item] do |f|
     - if @item.errors.any?
       %ul#errors
@@ -16,11 +16,6 @@
       %br/
       = f.select(:bathroom, options_for_select([['Bathroom Type', 'Bathroom Type'], ['Private', 'Private'], ['Shared', 'Shared']]), {}, {class: "form-control"})
       %br/
-      / %img{src: "#{@item.image_file_name}", width: "242", height: "242"}
-      %p Image placeholder
-      = f.fields_for :item_image do |image_item_fields|
-        = image_item_fields.file_field :image
-        %br/
       %p
         %h4 Add an availability:
       %link{:href => "//code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css", :rel => "stylesheet"}/
@@ -65,4 +60,4 @@
           No availabilities set up.
       %br/
       %br/
-      = f.submit "Update Listing", class: "btn btn-large btn-block btn-primary"
+      = f.submit "Continue", class: "btn btn-large btn-block btn-primary"
