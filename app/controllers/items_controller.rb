@@ -1,9 +1,9 @@
 class ItemsController < ApplicationController
   def index
     @items = Item.all
-    @categories = Category.all
-    @main_categories = Category.main_categories
-    @special_categories = Category.special_categories
+    # @categories = Category.all
+    # @main_categories = Category.main_categories
+    # @special_categories = Category.special_categories
     respond_to do |format|
       format.html
       format.json{
