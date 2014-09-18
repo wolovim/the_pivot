@@ -1,6 +1,7 @@
 .container
   .item-container
-    %img{src: "#{@item.image_file_name}", width: "242", height: "242"}
+    / %img{src: "#{@item.image_file_name}", width: "242", height: "242"}
+    %p Images placeholder
     %h3= @item.title
     %p= @item.description
     %p $ #{@item.price_for_humans}

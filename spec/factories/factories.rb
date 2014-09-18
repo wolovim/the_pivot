@@ -9,6 +9,10 @@ FactoryGirl.define do
     price 32
   end
 
+  factory :item_image do
+    image_file_name
+  end
+
   factory :address do
     item_id 80
     street_1 "1510 Blake"

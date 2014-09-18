@@ -1,6 +1,6 @@
 .container
   .row.col-lg-6.col-lg-offset-3
-    %h2.form-signin-heading Create a New Listing.
+    %h2.form-signin-heading Step 1: Add your information.
     = form_for [@item] do |f|
       - if @item.errors.any?
         %ul#errors
@@ -62,4 +62,4 @@
             No availabilities set up.
         %br/
         %br/
-        = f.submit "Create Listing", class: "btn btn-large btn-block btn-primary"
+        = f.submit "Continue", class: "btn btn-large btn-block btn-primary"
