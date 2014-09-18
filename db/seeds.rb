@@ -42,6 +42,24 @@ Item.create!([
   {title: "Eric's Couch",           description: "It's a couch.",                               price: 700,    max_quantity: 500, scarcity: "endangered", people_per_unit: 1, bathroom: "Private", user_id: 10 },
   {title: "Marc's Racecar Bed",     description: "Adult racecar shaped bed.",                   price: 2000,   max_quantity: 500, scarcity: "endangered", people_per_unit: 4, bathroom: "Shared",  user_id: 19 }
 ])
+
+ItemImage.create!([
+  {image_file_name: "http://static.pexels.com/wp-content/uploads/2014/08/couch-flat-home-2459-525x350.jpg", item_id: 1},
+  {image_file_name: "http://static.pexels.com/wp-content/uploads/2014/08/couch-flat-home-2459-525x350.jpg", item_id: 2},
+  {image_file_name: "http://static.pexels.com/wp-content/uploads/2014/08/couch-flat-home-2459-525x350.jpg", item_id: 3},
+  {image_file_name: "http://static.pexels.com/wp-content/uploads/2014/08/couch-flat-home-2459-525x350.jpg", item_id: 4},
+  {image_file_name: "http://static.pexels.com/wp-content/uploads/2014/08/couch-flat-home-2459-525x350.jpg", item_id: 5},
+  {image_file_name: "http://static.pexels.com/wp-content/uploads/2014/08/couch-flat-home-2459-525x350.jpg", item_id: 6},
+  {image_file_name: "http://static.pexels.com/wp-content/uploads/2014/08/couch-flat-home-2459-525x350.jpg", item_id: 7},
+  {image_file_name: "http://static.pexels.com/wp-content/uploads/2014/08/couch-flat-home-2459-525x350.jpg", item_id: 8},
+  {image_file_name: "http://static.pexels.com/wp-content/uploads/2014/08/couch-flat-home-2459-525x350.jpg", item_id: 9},
+  {image_file_name: "http://static.pexels.com/wp-content/uploads/2014/08/couch-flat-home-2459-525x350.jpg", item_id: 10},
+  {image_file_name: "http://static.pexels.com/wp-content/uploads/2014/08/couch-flat-home-2459-525x350.jpg", item_id: 11},
+  {image_file_name: "http://static.pexels.com/wp-content/uploads/2014/08/couch-flat-home-2459-525x350.jpg", item_id: 12},
+  {image_file_name: "http://static.pexels.com/wp-content/uploads/2014/08/couch-flat-home-2459-525x350.jpg", item_id: 13},
+  {image_file_name: "http://static.pexels.com/wp-content/uploads/2014/08/couch-flat-home-2459-525x350.jpg", item_id: 14},
+  {image_file_name: "http://static.pexels.com/wp-content/uploads/2014/08/couch-flat-home-2459-525x350.jpg", item_id: 15}
+])
 Order.create!([
   {user_id: 1, aasm_state: "cancelled", ccn: nil, expdate: nil, card_name: nil},
   {user_id: 2, aasm_state: "cancelled", ccn: nil, expdate: nil, card_name: nil},
