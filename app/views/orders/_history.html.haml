@@ -1,0 +1,29 @@
+.panel.panel-default
+  %h1.panel-heading Booking History: #{current_user.first_name}
+  .panel-body
+    %table.table.table-striped
+      %thead
+        %tr
+          %th Booking #
+          %th Starting Book Date
+          %th Ending Book Date
+          %th Booking Location
+          %th
+          %th Booking Subtotal
+      %tbody
+      -if current_user.orders.empty?
+        %tr You don't have any bookings in your history!
+      -else
+        -current_user.orders.each do |order|
+
+          %tr
+            %td #{order.id}
+            %td #{order.created_at.strftime("%B %d, %Y")}
+            %td
+            %td
+            %td
+            %td
+  #order-total
+    %h6.text-muted.order_totals= "Order Subtotal: $#{order.total_for_humans}"
+    %h6.text-muted.order_totals= "Order Tax: $#{order.tax_for_humans}"
+    %h3.text-muted.order_totals= "Order Total: $#{order.total_price_for_humans}"
