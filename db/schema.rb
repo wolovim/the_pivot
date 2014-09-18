@@ -87,6 +87,8 @@ ActiveRecord::Schema.define(version: 20140918050053) do
     t.integer  "people_per_unit", default: 1
     t.string   "bathroom",        default: "private"
     t.integer  "user_id"
+    t.string   "accommodation"
+    t.string   "path"
   end
 
   create_table "order_items", force: true do |t|

@@ -1,19 +1,22 @@
 class ItemsController < ApplicationController
   def index
     @items = Item.all
-    @categories = Category.all
-    @main_categories = Category.main_categories
-    @special_categories = Category.special_categories
+    # @categories = Category.all
+    # @main_categories = Category.main_categories
+    # @special_categories = Category.special_categories
     respond_to do |format|
       format.html
       format.json{
-        data = @items.collect do |item|
-          item.as_json.merge(
-            {'path' => item_path(item),
-             'accommodation' => item.accommodation}
-          )
-        end
-        render json: data.to_json
+        # data = @items.collect do |item|
+        #   item.as_json.merge(
+        #     {'path' => item_path(item),
+        #      'accommodation' => item.accommodation}
+        #   )
+        # end
+        # render json: data.to_json
+
+        render json: @items, root: false
+
       }
     end
   end
