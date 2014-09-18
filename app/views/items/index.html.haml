@@ -1,6 +1,6 @@
 #sidebar.sidebar-offcanvas.no-gutter{:role => "navigation"}
   .list-group
-    %a.list-group-item.active Filters
+    %a.list-group-item.active Find Your Perfect Place:
     -# -@special_categories.each do |category|
     -#   -unless category.items.empty?
     -#     %a.list-group-item{:href => category_path(category)}= category.name
@@ -72,7 +72,7 @@
         .thumbnail.col-lg-3
 
           / # %img{src: "#{item.item_images.first.image_file_name}"}
-          
+
           .caption
             %h5= link_to "#{truncate(item.title, :length => 30)}".html_safe, item_path(item)
             %p $ #{item.price_for_humans}
