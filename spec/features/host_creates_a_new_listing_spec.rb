@@ -20,7 +20,7 @@ describe 'host', type: :feature do
     expect(page).to have_content "NewListingDescription"
   end
 
-  xit 'creates a new listing' do
+  it 'creates a new listing' do
     user = create :user, role: "default"
 
     visit '/login'
@@ -35,11 +35,12 @@ describe 'host', type: :feature do
     fill_in "Listing Title", with: "NewListingTitle"
     fill_in "Listing Description", with: "NewListingDescription"
     fill_in "Daily Rate", with: 20
-    # select "1", from: "People Per Unit"
-    # select "Shared", from: "Bathroom Type"
+    find('#item_people_per_unit').find(:xpath, 'option[2]').select_option
+    find('#item_bathroom').find(:xpath, 'option[2]').select_option
     click_button "Create Listing"
 
-    expect(page).to have_content "NewListingTitle"
-    expect(page).to have_content "NewListingDescription"
+    within(".location_title") { expect(page).to have_content "NewListingTitle" }
+    within(".location_info") { expect(page)
+                               .to have_content "NewListingDescription" }
   end
 end

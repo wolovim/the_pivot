@@ -20,6 +20,7 @@ class ItemsController < ApplicationController
 
   def show
     @item = Item.find(params[:id])
+    @order = _session_order
   end
 
   def new
@@ -31,8 +32,12 @@ class ItemsController < ApplicationController
 
     if @item.save
       flash[:success] = "Listing created!"
-      dates = parse_available_dates(params[:from], params[:to])
-      @item.availabilities.create(dates)
+
+      if params[:from] != "" && params[:to] != ""
+        dates = parse_available_dates(params[:from], params[:to])
+        @item.availabilities.create(dates)
+      end
+      
       redirect_to item_path(@item)
     else
       render :new
@@ -59,6 +64,8 @@ class ItemsController < ApplicationController
       render :edit
     end
   end
+
+  private
 
   def parse_available_dates(start_date, end_date)
     start_date = Date.strptime(start_date, "%m/%d/%Y")
