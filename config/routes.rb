@@ -1,8 +1,11 @@
 Rails.application.routes.draw do
+
   resources :items do
     resources :item_images, as: :images, only: [:new, :create]
   end
+
   resources :categories,  only: [:index, :show]
+
   resources :users,       only: [:new, :create, :show, :index, :edit, :update] do
     member do
       get :items
@@ -10,6 +13,7 @@ Rails.application.routes.draw do
       get :avatar
     end
   end
+  
   resources :sessions,    only: [:new, :create, :destroy]
   resources :order_items, only: [:update]
   resources :addresses,   only: [:create]

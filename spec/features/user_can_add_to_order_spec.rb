@@ -45,17 +45,17 @@ describe 'an order', type: :feature do
     expect(page.find("#item_quantity").value).to eq "2"
   end
 
-  xit 'cannot have a negative quantity' do
-    visit item_path(item)
-    click_link_or_button("Book it!")
+  it 'cannot have a negative quantity' do
+    book_an_item
+
     fill_in('item[quantity]', with: -2)
     click_on('Update')
     expect(page).to have_selector("input[value='1']")
   end
 
-  xit 'cannot exceed max quantity' do
-    visit item_path(item)
-    click_link_or_button("Book it!")
+  it 'cannot exceed max quantity' do
+    book_an_item
+
     fill_in('item[quantity]', with: 6000)
     click_on('Update')
     expect(page).to have_content("There aren't enough of that animal left!")

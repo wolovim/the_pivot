@@ -33,8 +33,7 @@ describe 'user', type: :feature do
     item2.save
 
     visit items_path
-    click_button "Private"
+    within(".btn-group.bathrooms") { click_link_or_button "Shared" }
     expect(page).to_not have_content('Shared Bathroom Listing')
-
   end
 end
