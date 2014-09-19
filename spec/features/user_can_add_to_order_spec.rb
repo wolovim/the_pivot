@@ -45,16 +45,6 @@ describe 'an order', type: :feature do
     expect(page.find("#item_quantity").value).to eq "2"
   end
 
-  xit 'increases quantity when adding repeat items to the order' do
-    visit item_path(item)
-
-    click_link_or_button("Book it!")
-    visit item_path(item)
-    click_link_or_button("Book it!")
-
-    expect(page).to have_selector("input[value='2']")
-  end
-
   xit 'cannot have a negative quantity' do
     visit item_path(item)
     click_link_or_button("Book it!")
