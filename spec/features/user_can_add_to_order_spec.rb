@@ -38,10 +38,11 @@ describe 'an order', type: :feature do
     expect(page).not_to have_content("Remove")
   end
 
-  xit 'reflects the correct number of nights' do
+  it 'reflects the correct number of nights' do
     book_an_item
 
-    expect(page).to have_content "Nights"
+    expect(page).to have_content "Number of Nights"
+    expect(page.find("#item_quantity").value).to eq "2"
   end
 
   xit 'increases quantity when adding repeat items to the order' do
