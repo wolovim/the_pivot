@@ -64,7 +64,7 @@ describe 'an order', type: :feature do
   it 'subtotals the price of each item in order' do
     book_an_item
 
-    expect(page).to have_content('$0.64')
+    expect(page).to have_content('$0.32')
   end
 
   it "can return to an empty state" do
