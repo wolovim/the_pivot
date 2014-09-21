@@ -1,6 +1,6 @@
 class OrdersController < ApplicationController
   def index
-    @orders = Order.all
+    @orders = current_user.orders
   end
 
   def show
@@ -12,8 +12,8 @@ class OrdersController < ApplicationController
   def update
     item = Item.find(params[:order][:item_id])
     requested_dates = parse_available_dates(params[:from], params[:to])
-    order_item = OrderItem.create(item_id: item.id, 
-                                  order_id: order.id, 
+    order_item = OrderItem.create(item_id: item.id,
+                                  order_id: order.id,
                                   quantity: requested_dates.count)
 
     requested_dates.each do |date|
@@ -60,7 +60,7 @@ class OrdersController < ApplicationController
     end
     session[:order_id] = nil
   end
-  
+
   private
 
   def order_params
