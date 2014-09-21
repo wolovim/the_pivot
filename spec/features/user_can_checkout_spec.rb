@@ -17,9 +17,10 @@ describe 'A user who is logged in' do
   include AdminHelper
 
   before do
-    @user  = create :user
+    @user  = create(:user, email: "t@example.com")
+    @host  = create(:user, id: 999, email: "h@example.com")
     @order = create :order
-    @item  = create :item
+    @item  = create(:item, user_id: 999)
     @user.orders << @order
     @order.items << @item
     allow_any_instance_of(ApplicationController)
