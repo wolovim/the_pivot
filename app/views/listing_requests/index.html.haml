@@ -28,5 +28,5 @@
                 %td Request DENIED
               - else
                 %td
-                  = link_to listing_request_denials_path(request), method: :post do
+                  = link_to listing_request_denials_path(request), method: :post, class: 'btn btn-danger' do
                     Deny
