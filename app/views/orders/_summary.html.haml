@@ -5,9 +5,10 @@
       %thead
         %tr
           %th Title
-          %th Description
           %th Price
-          %th Quantity
+          %th Nights
+          %th Check In
+          %th Check Out
           %th Item Subtotal
       %tbody
       -if order.empty?
@@ -16,9 +17,10 @@
         -order.items.each do |item|
           %tr
             %td #{item.title}
-            %td #{item.description}
             %td $#{item.price_for_humans}
             %td #{order_item(item).quantity}
+            %td #{order_item(item).checkin_date}
+            %td #{order_item(item).checkout_date}
             %td $#{quantity_price_for_humans(item)}
   #order-total
     %h6.text-muted.order_totals= "Order Subtotal: $#{order.total_for_humans}"
