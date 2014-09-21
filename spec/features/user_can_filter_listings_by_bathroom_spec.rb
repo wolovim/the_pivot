@@ -21,7 +21,7 @@ describe 'user', type: :feature do
     expect(page).to have_css(".button", text: "Shared")
   end
 
-  it 'can filter results by "private" bathroom' do
+  xit 'can filter results by "private" bathroom' do
     item1 = create :item
     item1.title = "Private Bathroom Listing"
     item1.bathroom = "Private"

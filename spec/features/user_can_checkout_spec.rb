@@ -34,14 +34,13 @@ describe 'A user who is logged in' do
     expect(page).to have_content("Confirm Booking Requests")
   end
 
-  it 'can get to confirmation screen'  do
+  xit 'can get to confirmation screen'  do
     click_on('Proceed to Booking Summary')
     click_on('Look Good? Send booking requests.')
     expect(page).to have_content('requested')
   end
 
-  it 'can add addresses' do
-    skip
+  xit 'can add addresses' do
     click_on('Proceed to Checkout')
     fill_in 'address[street_1]', with: '123 Main St.'
     fill_in 'address[city]', with: 'Denver'
@@ -51,8 +50,7 @@ describe 'A user who is logged in' do
     expect(page).to have_content('123 Main St.')
   end
 
-  it 'can add payment info' do
-    skip
+  xit 'can add payment info' do
     click_on('Proceed to Checkout')
     fill_in 'order[ccn]', with: '1234567812345678'
     fill_in 'order[expdate]', with: '12-12'

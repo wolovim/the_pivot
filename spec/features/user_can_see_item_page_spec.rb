@@ -5,9 +5,13 @@ describe 'an items show page', type: :feature do
 
   before do
     item.item_images.create!
+    item.availabilities.create!(date: "20/12/2014", date: "20/12/2014")
+    visit '/menu'
   end
 
   it 'has a show page for an item' do
+    require 'pry'
+    binding.pry
     visit item_path(item)
     expect(page.status_code).to eq(200)
     expect(current_path).to eq(item_path(item))
@@ -29,18 +33,10 @@ describe 'an items show page', type: :feature do
     expect(page).to have_content("Private")
   end
 
-  xit "has an add to order button" do
-    # when adding a new availability to item, get error: 
-    # "First argument in form cannot contain nil or be empty"
+  it "has an 'Book it!' button" do
     visit item_path(item)
+    save_and_open_page
     expect(page).to have_button('Book it!')
-  end
-
-  # For TravelHome, users should not be able to view an "extinct" item
-  xit "can see an extinct item" do
-    Item.extinction(item)
-    visit item_path(item)
-    expect(page).to_not have_button('Book it!')
   end
 
   it "cannot visit a page with no action" do
