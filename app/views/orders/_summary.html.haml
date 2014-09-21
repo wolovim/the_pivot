@@ -8,7 +8,6 @@
           %th Description
           %th Price
           %th Quantity
-          %th
           %th Item Subtotal
       %tbody
       -if order.empty?
@@ -20,7 +19,7 @@
             %td #{item.description}
             %td $#{item.price_for_humans}
             %td #{order_item(item).quantity}
-            %td $#{item.price_for_humans * order_item(item).quantity}
+            %td $#{quantity_price_for_humans(item)}
   #order-total
     %h6.text-muted.order_totals= "Order Subtotal: $#{order.total_for_humans}"
     %h6.text-muted.order_totals= "Order Tax: $#{order.tax_for_humans}"
