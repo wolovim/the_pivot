@@ -18,10 +18,11 @@ describe 'A user who is logged in' do
 
   before do
     @user  = create :user
-    @order = create :order
-    @item  = create :item
-    @user.orders << @order
-    @order.items << @item
+    @order = Order.create(user_id: @user.id)
+    @item  = Item.create(title: "Couch", description: "Comfy", price: 50, user_id: @user.id)
+    @order_item = OrderItem.create(order_id: @order.id, item_id: @item.id)
+    @availability = Availability.create(date: Time.now.to_date, order_item_id: @order_item.id)
+
     allow_any_instance_of(ApplicationController)
       .to receive(:order) { @order }
 
