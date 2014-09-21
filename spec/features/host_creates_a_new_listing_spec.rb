@@ -11,7 +11,7 @@ describe "host", type: :feature do
     fill_in "password", with: user.password
 
     click_button "Login"
-    click_link_or_button "Visit Dashboard"
+    click_link_or_button "My Dashboard"
     click_link_or_button "Create a New Listing"
 
     fill_in "Listing Title", with: "NewListingTitle"
