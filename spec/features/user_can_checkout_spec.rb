@@ -31,7 +31,6 @@ describe 'A user who is logged in' do
   end
 
   it 'can access the checkout page' do
-    save_and_open_page
     click_on('Proceed to Booking Summary')
     expect(page).to have_content("Confirm Booking Requests")
   end
