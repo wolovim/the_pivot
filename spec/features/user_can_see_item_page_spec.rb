@@ -10,8 +10,6 @@ describe 'an items show page', type: :feature do
   end
 
   it 'has a show page for an item' do
-    require 'pry'
-    binding.pry
     visit item_path(item)
     expect(page.status_code).to eq(200)
     expect(current_path).to eq(item_path(item))
