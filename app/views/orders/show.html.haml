@@ -10,7 +10,8 @@
             %th Listing Name
             %th Description
             %th Daily Rate
-            %th Number of Nights
+            %th Nights
+            %th Dates
             %th
             %th Subtotal
         %tbody
@@ -23,6 +24,7 @@
               %td #{item.description}
               %td $#{item.price_for_humans}
               %td #{order_item(item).quantity}
+              
               %td= button_to "Remove", delete_item_order_path(order, item_id: item.id), class: "btn btn-danger"
               %td $#{quantity_price_for_humans(item)}
     #order-total
