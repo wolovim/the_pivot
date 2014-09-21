@@ -21,9 +21,10 @@
       -if @item.availabilities.any?
         =form_for @order do |f|
           
-          %label{:for => "from"} From 
+          %label{:for => "from"} Check In: 
           %input#from{:name => "from", :type => "text"}/
-          %label{:for => "to"} to 
+          %br/
+          %label{:for => "to"} Check Out:
           %input#to{:name => "to", :type => "text"}/
           
           %link{:href => "//code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css", :rel => "stylesheet"}/
@@ -75,7 +76,7 @@
           %br/
           %br/
           = f.hidden_field :item_id, value: @item.id
-          = f.submit "Book it!", class: 'btn btn-success'
+          = f.submit "Book it!", class: 'btn btn-primary'
 
       -else
         %p No availability yet!
