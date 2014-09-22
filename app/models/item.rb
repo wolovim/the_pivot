@@ -56,8 +56,16 @@ class Item < ActiveRecord::Base
     end
   end
 
-  def available_dates
+  def available_from_dates
     self.availabilities.unreserved.map { |a| a.date.strftime("%Y-%m-%d") }
+  end
+
+  def available_to_dates
+    self.availabilities.unreserved.map do |a| 
+      x = a.date
+      y = x + 1
+      y.strftime("%Y-%m-%d")
+    end
   end
 
   def accommodation
