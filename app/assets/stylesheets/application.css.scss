@@ -17,6 +17,15 @@
  *= require_self
  */
 
+// Bootstrap overrides
+.btn-primary {
+  color: #3B3B3B;
+  background-color: #D6D6D6;
+}
+
+.caption {
+  color: #D6D6D6;
+}
 
 // USER PROFILE PAGE
 .profile-container {

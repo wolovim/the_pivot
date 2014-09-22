@@ -34,7 +34,6 @@
           :javascript
             var from_array = #{ @item.available_from_dates }
             var to_array = #{ @item.available_to_dates}
-            
             $(document).ready(function() {
               $( "#from" ).datepicker({
                 beforeShowDay: function(date) {
@@ -85,14 +84,4 @@
   .fotorama{"data-nav" => "thumbs"}
     -@item.item_images.each do |item_image|
       %img{:src => "#{item_image.image}"}/  
-  
 
-  / .col-md-8
-  /   %img{src: "#{@item.item_images.first.image}", width: "80%", height: "80%"}
-  / .col-md-8.image_small
-  /   %img.thumbx{src: "http://static.pexels.com/wp-content/uploads/2014/06/couch-disc-jockey-dj-1688.jpg", width: "10%", height: "80"}
-  /   %img.thumbx{src: "http://static.pexels.com/wp-content/uploads/2014/09/bed-bedroom-furniture-2705.jpg", width: "10%", height: "80"}
-  /   %img.thumbx{src: "http://static.pexels.com/wp-content/uploads/2014/08/couch-flat-home-2459.jpg", width: "10%", height: "80"}
-  /   %img.thumbx{src: "http://static.pexels.com/wp-content/uploads/2014/09/couch-furniture-leather-2689.jpg", width: "10%", height: "80"}
-  /   %img.thumbx{src: "http://static.pexels.com/wp-content/uploads/2014/06/couch-disc-jockey-dj-1688.jpg", width: "10%", height: "80"}
-  /   %img.thumbx{src: "http://static.pexels.com/wp-content/uploads/2014/09/bed-bedroom-furniture-2705.jpg", width: "10%", height: "80"}
