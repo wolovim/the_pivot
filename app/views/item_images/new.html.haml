@@ -2,7 +2,7 @@
   .row.col-lg-6.col-lg-offset-3
     .form-image-container
       -@item.item_images.each do |item_image|
-        = image_tag item_image.image.url
+        = image_tag item_image.image.url(:small)
     %h2.form-signin-heading Step 2: Add a Photo.
     = form_for [@item_image] do |f|
       - if @item_image.errors.any?
