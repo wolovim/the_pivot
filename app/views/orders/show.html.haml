@@ -8,9 +8,10 @@
         %thead
           %tr
             %th Listing Name
-            %th Description
             %th Daily Rate
-            %th Number of Nights
+            %th Nights
+            %th Check In
+            %th Check Out
             %th
             %th Subtotal
         %tbody
@@ -20,7 +21,6 @@
           -order.items.each do |item|
             %tr
               %td #{item.title}
-              %td #{item.description}
               %td $#{item.price_for_humans}
               %td
                 = form_for 'item', method: 'PUT', :url => {:controller => 'order_items', action: :update, id: order_item(item) } do |f|
