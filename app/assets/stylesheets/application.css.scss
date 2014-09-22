@@ -114,6 +114,23 @@
 }
 
 // EVERYTHING ELSE
+.caption-user-listings {
+  text-align: center;
+  display: block;
+  padding-bottom: 20px;
+}
+
+.user-listings-container {
+  text-align: center;
+  padding-top: 20px;
+}
+
+.create-listing-btn {
+  padding-bottom: 20px;
+  width: 320px;
+  margin: 0 auto;
+}
+
 .carousel-caption {
   // text-shadow: 2px 2px #000000;
   text-shadow: 4px 0px 5px rgba(0, 0, 0, 1);
@@ -323,9 +340,9 @@
 //   float:left;
 // }
 
-// .new-listing {
-//   width: 50%;
-//   margin: 0 auto;
-//   margin-top: 20px;
-//   margin-bottom: 20px;
-// }
+/*.new-listing {
+  width: 50%;
+  margin: 0 auto;
+  margin-top: 20px;
+  margin-bottom: 20px
+}*/
