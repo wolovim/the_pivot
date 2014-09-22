@@ -32,12 +32,13 @@
           %script{:src => "//code.jquery.com/ui/1.11.1/jquery-ui.js"}
 
           :javascript
-            var array = #{ @item.available_dates }
+            var from_array = #{ @item.available_from_dates }
+            var to_array = #{ @item.available_to_dates}
           
             $(document).ready(function() {
               $( "#from" ).datepicker({
                 beforeShowDay: function(date) {
-                  if($.inArray($.datepicker.formatDate('yy-mm-dd', date ), array) > -1)
+                  if($.inArray($.datepicker.formatDate('yy-mm-dd', date ), from_array) > -1)
                   {
                       return [true,"",""];
                   }
@@ -55,7 +56,7 @@
               });
               $( "#to" ).datepicker({
                 beforeShowDay: function(date) {
-                  if($.inArray($.datepicker.formatDate('yy-mm-dd', date ), array) > -1)
+                  if($.inArray($.datepicker.formatDate('yy-mm-dd', date ), to_array) > -1)
                   {
                       return [true,"",""];
                   }
