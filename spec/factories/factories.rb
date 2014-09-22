@@ -9,6 +9,11 @@ FactoryGirl.define do
     price 32
   end
 
+  factory :availability do
+    date "10/10/2014"
+    order_item_id nil
+  end
+
   factory :item_image do
     image_file_name
   end

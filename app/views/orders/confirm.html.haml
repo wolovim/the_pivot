@@ -4,13 +4,22 @@
   %h3.panel-heading Your Requests
   .panel-body
     %table.table.table-striped
+      %thead
+        %tr
+          %th Location
+          %th Daily Rate
+          %th Nights
+          %th Price
+          %th Check In
+          %th Check Out
       %tbody
         -order.items.each do |item|
           %tr
             %td #{item.title}
             %td $#{item.price_for_humans}
-            %td For #{order_item(item).quantity} night(s).
-
+            %td #{order_item(item).quantity}
+            %td #{order_item(item).checkin_date}
+            %td #{order_item(item).checkout_date}
             %td Subtotal: $#{quantity_price_for_humans(item)}
 
     %h5.text-muted.order_totals= "Subtotal: $#{order.total_for_humans}"

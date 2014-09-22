@@ -20,7 +20,8 @@ describe 'user', type: :feature do
     expect(page).to have_css(".button", text: "Shared")
   end
 
-  it 'can filter results by "private" bathroom' do
+
+  xit 'can filter results by "private" bathroom' do
     item1          = create :item
     item1.title    = "Listing 1"
     item1.bathroom = "Private"
@@ -36,5 +37,8 @@ describe 'user', type: :feature do
     within(".btn-group.bathrooms") { click_button "Private" }
     expect(page).to_not have_content('Listing 2')
 
+    visit items_path
+    within(".btn-group.bathrooms") { click_link_or_button "Shared" }
+    expect(page).to_not have_content('Listing 1')
   end
 end
