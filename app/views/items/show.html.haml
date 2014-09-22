@@ -81,10 +81,10 @@
       -else
         %p No availability yet!
 
-  .fotorama
+  .fotorama{"data-nav" => "thumbs"}
     -@item.item_images.each do |item_image|
-      %img{:src => "#{item_image.image}"}/
-      %img{:src => "#{item_image.image}"}/
+      %img{:src => "#{item_image.image}"}/  
+  
 
   / .col-md-8
   /   %img{src: "#{@item.item_images.first.image}", width: "80%", height: "80%"}
