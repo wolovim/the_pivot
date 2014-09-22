@@ -17,9 +17,13 @@ describe 'A user who is logged in' do
   include AdminHelper
 
   before do
-    @user  = create :user
-    @order = Order.create(user_id: @user.id)
-    @item  = Item.create(title: "Couch", description: "Comfy", price: 50, user_id: @user.id)
+    @user  = create(:user, email: "t@example.com")
+    @host  = create(:user, email: "h@example.com")
+    @order = create(:order, user_id: @user.id)
+    @item  = create(:item, user_id: @host.id)
+    @user.orders << @order
+    @order.items << @item
+
     @order_item = OrderItem.create(order_id: @order.id, item_id: @item.id)
     @availability = Availability.create(date: Time.now.to_date, order_item_id: @order_item.id)
 
