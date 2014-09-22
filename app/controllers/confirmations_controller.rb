@@ -2,7 +2,7 @@ class ConfirmationsController < ApplicationController
   def create
     listing_request.update_attributes!(confirmed: true)
     redirect_to listing_requests_path
-    confirmation_email
+    send_confirmation_email
   end
 
   private
@@ -15,13 +15,13 @@ class ConfirmationsController < ApplicationController
     listing_requests.find(params[:listing_request_id])
   end
 
-  def confirmation_email
+  def send_confirmation_email
     customer       = listing_request.order.user
     customer_email = customer.email
 
     Pony.mail(
       :from    => "TravelHomeBookings@gmail.com",
-      :to      => "#{customer_email}",
+      :to      => customer_email,
       :subject => "Your Booking Request has been Confirmed",
       :body    => "Your request to book #{listing_request.item.title} has been confirmed."
     )
