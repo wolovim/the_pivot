@@ -1,21 +1,24 @@
 #sidebar.sidebar-offcanvas.no-gutter{:role => "navigation"}
   .list-group
     %a.list-group-item.active Find Your Perfect Place:
-    -# -@special_categories.each do |category|
-    -#   -unless category.items.empty?
-    -#     %a.list-group-item{:href => category_path(category)}= category.name
-
     .container-fluid
       .row
         %ul.nav.nav-sidebar
           %li.active
             %br
             %p Location:
-            %input#location{:type => "text", :value => '' }
-          %li
-            %a{:href => "#"} Price
+            %input#location{:type => "text", :value => '', :placeholder => 'City' }
           %li
             %a{:href => "#"} Available Dates
+
+            %p Price:
+            .btn-group.price
+              %button.btn.btn-default{:type => "button", :id => "$"} $
+              %button.btn.btn-default{:type => "button", :id => "$$"} $$
+              %button.btn.btn-default{:type => "button", :id => "$$$"} $$$
+              %button.btn.btn-default{:type => "button", :id => "$$$$"} $$$$
+            %br
+            %br
           -# %p People Per Unit:
           -# .btn-group.people_per_unit
           -#   %button.btn.btn-default{:type => "button", :id => 1 } 1

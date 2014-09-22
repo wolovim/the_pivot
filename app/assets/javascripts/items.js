@@ -70,7 +70,6 @@ $(document).ready(function () {
       $(this).addClass('active');
       filters["bathroom"] = filter_id;
     }
-
     filterItems();
   });
 
@@ -78,8 +77,14 @@ $(document).ready(function () {
     var filter_id = $(this).attr('id');
     var was_selected = $(this).hasClass('active');
     $(".btn-group-vertical.accommodations button").removeClass('active');
-    $(this).addClass('active');
-    filters["accommodation"] = filter_id;
+
+    if(was_selected) {
+      $(this).blur();
+      delete filters["accommodation"]
+    } else {
+      $(this).addClass('active');
+      filters["accommodation"] = filter_id;
+    }
     filterItems();
   });
   //
