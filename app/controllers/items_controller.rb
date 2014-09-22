@@ -50,7 +50,6 @@ class ItemsController < ApplicationController
 
   def update
     @item = current_user.items.find(params[:id])
-    @item.item_images.build
 
     if @item.update(item_params)
       flash[:success] = "Listing updated."
@@ -73,6 +72,6 @@ class ItemsController < ApplicationController
   def item_params
     params.require(:item).permit(:title, :description, :price,
                                  :people_per_unit, :bathroom, 
-                                 :user_id, :item_image_attributes)
+                                 :user_id)
   end
 end
