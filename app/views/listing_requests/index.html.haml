@@ -10,7 +10,6 @@
             %th Dates
             %th Number of Nights
             %th Confirmation Actions
-            %th
         %tbody
           - @listings_requests.each do |request|
             %tr
@@ -20,13 +19,11 @@
               %td= "#{request.quantity}"
               - if request.confirmed?
                 %td Request CONFIRMED
-              - else
-                %td
-                  = link_to listing_request_confirmations_path(request), method: :post do
-                    Confirm
-              - if request.denied?
+              - elsif request.denied?
                 %td Request DENIED
               - else
                 %td
+                  = link_to listing_request_confirmations_path(request), method: :post, class: 'btn btn-success' do
+                    Confirm
                   = link_to listing_request_denials_path(request), method: :post, class: 'btn btn-danger' do
                     Deny
