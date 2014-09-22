@@ -36,8 +36,7 @@ class ItemsController < ApplicationController
     if @item.save
       flash[:success] = "Listing created!"
 
-      dates = @item.parse_available_dates(params[:from], params[:to])
-      @item.availabilities.create(dates) if dates
+      create_availabilities
 
       redirect_to new_item_image_path(@item)
     else
@@ -51,12 +50,12 @@ class ItemsController < ApplicationController
 
   def update
     @item = current_user.items.find(params[:id])
-    @item.item_images.build
 
     if @item.update(item_params)
       flash[:success] = "Listing updated."
-      dates = @item.parse_available_dates(params[:from], params[:to])
-      @item.availabilities.create(dates)
+      
+      create_availabilities
+
       redirect_to new_item_image_path(@item)
     else
       flash[:error] = "Something went wrong. Please try again."
@@ -64,9 +63,15 @@ class ItemsController < ApplicationController
     end
   end
 
+  def create_availabilities
+    dates = @item.parse_available_dates(params[:from], params[:to])
+
+    @item.availabilities.create(dates) if dates
+  end
+
   def item_params
     params.require(:item).permit(:title, :description, :price,
                                  :people_per_unit, :bathroom, 
-                                 :user_id, :item_image_attributes)
+                                 :user_id)
   end
 end

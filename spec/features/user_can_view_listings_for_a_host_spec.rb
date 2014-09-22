@@ -30,7 +30,6 @@ describe 'user', type: :feature do
       visit items_user_path(user)
 
       expect(page).not_to have_content "Book it!"
-      expect(page).to have_content "Create New Listing"
       expect(page).to have_link "Edit Listing"
     end
   end
