@@ -1,0 +1,35 @@
+%h3= "Previous Orders"
+-current_user.orders.reverse.each_with_index do |order, i|
+  -unless order.empty?
+    #accordian.panel-group
+      .panel.panel-default
+        .panel-heading
+          %h4.panel-title
+            %a{"data-parent" => "#accordion", "data-toggle" => "collapse", :href => "#collapse#{i}"}
+              ="#{order.created_at.to_formatted_s(:long_ordinal)}"
+      .panel-collapse.collapse{:id => "collapse#{i}"}
+        .panel-body
+          %table.table-hover.col-lg-12
+            %thead
+              %tr
+                %th Title
+                %th Description
+                %th Price
+                %th Quantity
+                %th Subtotal
+            %tbody
+            -order.order_items.each do |o_item|
+              %tr
+                %td= link_to o_item.item.title, item_path(o_item.item)
+                %td= link_to o_item.item.description, item_path(o_item.item)
+                %td= link_to "$#{o_item.item.price_for_humans}", item_path(o_item.item)
+                %td= link_to o_item.quantity, item_path(o_item.item)
+                %td $ #{quantity_price_for_humans(o_item.item, order)}
+          %h6.order_totals="Subtotal: $#{order.total_for_humans}"
+          %h6.order_totals="Tax: $#{order.tax_for_humans}"
+          %h4.order_totals="Total: $#{order.total_price_for_humans}"
+          #order-info
+            %h6="Order Status: #{order.aasm_state}"
+            %h6="Order Submitted: #{order.updated_at.to_formatted_s(:long_ordinal)}"
+            -if order.completed? || order.cancelled?
+              %h6.text-muted= "Order Inactive as of: #{order.updated_at.to_formatted_s(:long_ordinal)}"

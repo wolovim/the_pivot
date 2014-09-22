@@ -1,4 +1,8 @@
 .container
-  %h3 Your Orders History:
+  = flash[:success]
+  %h3= "Hello, #{current_user.first_name.capitalize}!"
+  %h3 Your Info:
+  %h5= current_user.name
+  %h5= current_user.email
 
-  = render partial: 'orders/history'
+  = render partial: 'orders/previous_orders'
