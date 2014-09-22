@@ -34,7 +34,6 @@ describe 'user', type: :feature do
 
     visit items_path
     within(".btn-group.bathrooms") { click_link_or_button "Shared" }
-    save_and_open_page
     expect(page).to_not have_content('Shared Bathroom Listing')
   end
 end
