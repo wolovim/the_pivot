@@ -30,6 +30,10 @@ $(document).ready(function () {
         '<h5><a href="'+ item.path +'">'+item.title+'</a></h5>' +
         '<p>$'+item.price+'</p>' +
 
+        // fix below, how not to pass authenticity token?
+        '<form action="/orders/25/add_item?item_id='+item.id+'" class="button_to" method="post">'+
+        '<input name="authenticity_token" type="hidden" value="ok/cMuVXVTaGgCMLmt58c4VIKP7BiANFFw6Hz75r3Pg="></div></form>' +
+
       '</div>' +
     '</div>');
   }
@@ -67,7 +71,6 @@ $(document).ready(function () {
       $(this).addClass('active');
       filters["bathroom"] = filter_id;
     }
-
     filterItems();
   });
 
@@ -75,8 +78,14 @@ $(document).ready(function () {
     var filter_id = $(this).attr('id');
     var was_selected = $(this).hasClass('active');
     $(".btn-group-vertical.accommodations button").removeClass('active');
-    $(this).addClass('active');
-    filters["accommodation"] = filter_id;
+
+    if(was_selected) {
+      $(this).blur();
+      delete filters["accommodation"]
+    } else {
+      $(this).addClass('active');
+      filters["accommodation"] = filter_id;
+    }
     filterItems();
   });
   //
