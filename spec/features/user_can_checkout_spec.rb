@@ -20,11 +20,11 @@ describe 'A user who is logged in' do
     @user  = create(:user, email: "t@example.com")
     @host  = create(:user, email: "h@example.com")
     @order = create(:order, user_id: @user.id)
-    @item  = create(:item, user_id: @host.id)
+    @item  = create(:item,  user_id: @host.id)
     @user.orders << @order
     @order.items << @item
 
-    @order_item = OrderItem.create(order_id: @order.id, item_id: @item.id)
+    @order_item   = OrderItem.create(order_id: @order.id, item_id: @item.id)
     @availability = Availability.create(date: Time.now.to_date, order_item_id: @order_item.id)
 
     allow_any_instance_of(ApplicationController)
