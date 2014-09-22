@@ -33,7 +33,6 @@ describe 'an items show page', type: :feature do
 
   it "has an 'Book it!' button" do
     visit item_path(item)
-    save_and_open_page
     expect(page).to have_button('Book it!')
   end
 
