@@ -36,8 +36,7 @@ class ItemsController < ApplicationController
     if @item.save
       flash[:success] = "Listing created!"
 
-      dates = @item.parse_available_dates(params[:from], params[:to])
-      @item.availabilities.create(dates) if dates
+      create_availabilities
 
       redirect_to new_item_image_path(@item)
     else
@@ -55,13 +54,20 @@ class ItemsController < ApplicationController
 
     if @item.update(item_params)
       flash[:success] = "Listing updated."
-      dates = @item.parse_available_dates(params[:from], params[:to])
-      @item.availabilities.create(dates)
+      
+      create_availabilities
+
       redirect_to new_item_image_path(@item)
     else
       flash[:error] = "Something went wrong. Please try again."
       render :edit
     end
+  end
+
+  def create_availabilities
+    dates = @item.parse_available_dates(params[:from], params[:to])
+
+    @item.availabilities.create(dates) if dates
   end
 
   def item_params
