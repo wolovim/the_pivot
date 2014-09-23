@@ -1,0 +1,20 @@
+.container
+  .row.col-lg-6.col-lg-offset-3
+    %h2.form-signin-heading Step 1: Add an address.
+    = form_for [@item, @address] do |f|
+      - if @address.errors.any?
+        %ul#errors
+          - @address.errors.full_messages.each do |error|
+            %li= error
+      .form-group
+        = f.text_field :street_1, class: "form-control", placeholder: "Street 1"
+        %br/
+        = f.text_field :street_2, class: "form-control", placeholder: "Street 2"
+        %br/
+        = f.text_field :city, class: "form-control", placeholder: "City"
+        %br/
+        = f.text_field :state, class: "form-control", placeholder: "State"
+        %br/
+        = f.text_field :zip, class: "form-control", placeholder: "Zipcode"
+        %br/
+        = f.submit "Continue", class: "btn btn-large btn-block btn-primary"

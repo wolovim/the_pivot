@@ -23,6 +23,12 @@ describe "host", type: :feature do
     fill_in "to", with: "04/11/2014"
     click_button "Continue"
 
+    fill_in "Street 1", with: "MyStreet"
+    fill_in "City", with: "Denver"
+    fill_in "State", with: "CO"
+    fill_in "Zipcode", with: 90210
+    click_button "Continue"
+
     attach_file "item_image_image", "spec/fixtures/missing.jpg"
     click_link_or_button "Upload Photo"
     click_link_or_button "I'm finished"
