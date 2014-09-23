@@ -11,9 +11,10 @@ Rails.application.routes.draw do
       get :items
       get :dashboard
       get :avatar
+      get :orders
     end
   end
-  
+
   resources :sessions,    only: [:new, :create, :destroy]
   resources :order_items, only: [:update]
   resources :addresses,   only: [:create]
