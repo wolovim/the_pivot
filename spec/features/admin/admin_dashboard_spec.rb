@@ -3,7 +3,7 @@ require_relative '../feature_spec_helper'
 describe "admin", type: :feature do
 
   it "is redirected to the admin dashboard upon loggin in" do
-    user = FactoryGirl.create :user, role: "admin"
+    user = FactoryGirl.create :user, :admin
 
     visit '/login'
     fill_in "email address", with: user.email
@@ -14,7 +14,7 @@ describe "admin", type: :feature do
   end
 
   it 'has the correct links' do
-    user = FactoryGirl.create :user, role: "admin"
+    user = FactoryGirl.create :user, :admin
 
     visit '/login'
     fill_in "email address", with: user.email
