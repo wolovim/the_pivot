@@ -1,6 +1,6 @@
 .container
   .row.col-lg-6.col-lg-offset-3
-    %h2.form-signin-heading Create a New Listing.
+    %h2.form-signin-heading Step 1: Add your information.
     = form_for [@item] do |f|
       - if @item.errors.any?
         %ul#errors
@@ -17,7 +17,7 @@
         %br/
         = f.select(:bathroom, options_for_select([['Bathroom Type', 'Bathroom Type'], ['Private', 'Private'], ['Shared', 'Shared']]), {}, {class: "form-control"})
         %br/
-        = f.select(:accommodation, options_for_select([['Accommodation Type', 'Accommodation Type'], ['Whole Place', 'Whole Place'], ['Private Room', 'Private Room'], ['Shared Room', 'Shared Room'], ['Couch', 'Couch']]), {}, {class: "form-control"})
+        = f.select(:accommodation, options_for_select([['Accommodation Type', 'Accommodation Type'], ['Whole Place', 'Whole Place'], ['Private Room', 'Private Room'], ['Shared Room', 'Shared Room'], ['Couch', 'Couc']]), {}, {class: "form-control"})
         %br/
         %p
           %h4 Add an availability:
@@ -64,4 +64,4 @@
             No availabilities set up.
         %br/
         %br/
-        = f.submit "Create Listing", class: "btn btn-large btn-block btn-primary"
+        = f.submit "Continue", class: "btn btn-large btn-block btn-primary"

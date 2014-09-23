@@ -7,13 +7,16 @@ class ItemsController < ApplicationController
     respond_to do |format|
       format.html
       format.json{
-        data = @items.collect do |item|
-          item.as_json.merge(
-            {'path' => item_path(item),
-             'accommodation' => item.accommodation}
-          )
-        end
-        render json: data.to_json
+        # data = @items.collect do |item|
+        #   item.as_json.merge(
+        #     {'path' => item_path(item),
+        #      'accommodation' => item.accommodation}
+        #   )
+        # end
+        # render json: data.to_json
+
+        render json: @items, root: false
+
       }
     end
   end
@@ -33,12 +36,9 @@ class ItemsController < ApplicationController
     if @item.save
       flash[:success] = "Listing created!"
 
-      if params[:from] != "" && params[:to] != ""
-        dates = parse_available_dates(params[:from], params[:to])
-        @item.availabilities.create(dates)
-      end
-      
-      redirect_to item_path(@item)
+      create_availabilities
+
+      redirect_to new_item_image_path(@item)
     else
       render :new
     end
@@ -51,31 +51,27 @@ class ItemsController < ApplicationController
   def update
     @item = current_user.items.find(params[:id])
 
-    if params[:from] != "" && params[:to] != ""
-      dates = parse_available_dates(params[:from], params[:to])
-      @item.availabilities.create(dates)
-    end
-
     if @item.update(item_params)
       flash[:success] = "Listing updated."
-      redirect_to items_user_path(current_user)
+      
+      create_availabilities
+
+      redirect_to new_item_image_path(@item)
     else
       flash[:error] = "Something went wrong. Please try again."
       render :edit
     end
   end
 
-  private
+  def create_availabilities
+    dates = @item.parse_available_dates(params[:from], params[:to])
 
-  def parse_available_dates(start_date, end_date)
-    start_date = Date.strptime(start_date, "%m/%d/%Y")
-    end_date = Date.strptime(end_date, "%m/%d/%Y")
-    date_range = (start_date..end_date).to_a
-
-    date_range.map { |date| {date: date} }
+    @item.availabilities.create(dates) if dates
   end
 
   def item_params
-    params.require(:item).permit(:title, :description, :price, :people_per_unit, :bathroom, :user_id)
+    params.require(:item).permit(:title, :description, :price,
+                                 :people_per_unit, :bathroom, 
+                                 :user_id)
   end
 end

@@ -7,6 +7,7 @@ describe 'admin edits an item', type: :feature do
 
   it 'edits a menu item' do
     item = create :item, :title => "hi"
+    item.item_images.create!
 
 
     visit '/admin_dashboard'

@@ -35,6 +35,16 @@ class OrderItem < ActiveRecord::Base
     )
   end
 
+  def checkin_date
+    self.availabilities.first.date.strftime("%b %d, %Y")
+  end
+
+  def checkout_date
+    last_night = self.availabilities.last.date
+    checkout = last_night + 1
+    checkout.strftime("%b %d, %Y")
+  end
+
   private
 
   def set_default_quantity

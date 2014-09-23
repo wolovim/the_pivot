@@ -20,23 +20,25 @@
       %br/
       -if @item.availabilities.any?
         =form_for @order do |f|
-          
-          %label{:for => "from"} From 
+
+          %label{:for => "from"} Check In:
           %input#from{:name => "from", :type => "text"}/
-          %label{:for => "to"} to 
+          %br/
+          %label{:for => "to"} Check Out:
           %input#to{:name => "to", :type => "text"}/
-          
+
           %link{:href => "//code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css", :rel => "stylesheet"}/
           %script{:src => "//code.jquery.com/jquery-1.10.2.js"}
           %script{:src => "//code.jquery.com/ui/1.11.1/jquery-ui.js"}
 
           :javascript
-            var array = #{ @item.available_dates }
-          
+            var from_array = #{ @item.available_from_dates }
+            var to_array = #{ @item.available_to_dates}
+            
             $(document).ready(function() {
               $( "#from" ).datepicker({
                 beforeShowDay: function(date) {
-                  if($.inArray($.datepicker.formatDate('yy-mm-dd', date ), array) > -1)
+                  if($.inArray($.datepicker.formatDate('yy-mm-dd', date ), from_array) > -1)
                   {
                       return [true,"",""];
                   }
@@ -54,7 +56,7 @@
               });
               $( "#to" ).datepicker({
                 beforeShowDay: function(date) {
-                  if($.inArray($.datepicker.formatDate('yy-mm-dd', date ), array) > -1)
+                  if($.inArray($.datepicker.formatDate('yy-mm-dd', date ), to_array) > -1)
                   {
                       return [true,"",""];
                   }
@@ -75,17 +77,22 @@
           %br/
           %br/
           = f.hidden_field :item_id, value: @item.id
-          = f.submit "Book it!", class: 'btn btn-success'
+          = f.submit "Book it!", class: 'btn btn-primary'
 
       -else
         %p No availability yet!
 
-  .col-md-8
-    %img{src: "#{@item.image_file_name}", width: "90%", height: "242"}
-  .col-md-8.image_small
-    %img.thumbx{src: "http://static.pexels.com/wp-content/uploads/2014/06/couch-disc-jockey-dj-1688.jpg", width: "10%", height: "80"}
-    %img.thumbx{src: "http://static.pexels.com/wp-content/uploads/2014/09/bed-bedroom-furniture-2705.jpg", width: "10%", height: "80"}
-    %img.thumbx{src: "http://static.pexels.com/wp-content/uploads/2014/08/couch-flat-home-2459.jpg", width: "10%", height: "80"}
-    %img.thumbx{src: "http://static.pexels.com/wp-content/uploads/2014/09/couch-furniture-leather-2689.jpg", width: "10%", height: "80"}
-    %img.thumbx{src: "http://static.pexels.com/wp-content/uploads/2014/06/couch-disc-jockey-dj-1688.jpg", width: "10%", height: "80"}
-    %img.thumbx{src: "http://static.pexels.com/wp-content/uploads/2014/09/bed-bedroom-furniture-2705.jpg", width: "10%", height: "80"}
+  .fotorama{"data-nav" => "thumbs"}
+    -@item.item_images.each do |item_image|
+      %img{:src => "#{item_image.image}"}/  
+  
+
+  / .col-md-8
+  /   %img{src: "#{@item.item_images.first.image}", width: "80%", height: "80%"}
+  / .col-md-8.image_small
+  /   %img.thumbx{src: "http://static.pexels.com/wp-content/uploads/2014/06/couch-disc-jockey-dj-1688.jpg", width: "10%", height: "80"}
+  /   %img.thumbx{src: "http://static.pexels.com/wp-content/uploads/2014/09/bed-bedroom-furniture-2705.jpg", width: "10%", height: "80"}
+  /   %img.thumbx{src: "http://static.pexels.com/wp-content/uploads/2014/08/couch-flat-home-2459.jpg", width: "10%", height: "80"}
+  /   %img.thumbx{src: "http://static.pexels.com/wp-content/uploads/2014/09/couch-furniture-leather-2689.jpg", width: "10%", height: "80"}
+  /   %img.thumbx{src: "http://static.pexels.com/wp-content/uploads/2014/06/couch-disc-jockey-dj-1688.jpg", width: "10%", height: "80"}
+  /   %img.thumbx{src: "http://static.pexels.com/wp-content/uploads/2014/09/bed-bedroom-furniture-2705.jpg", width: "10%", height: "80"}

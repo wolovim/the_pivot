@@ -4,7 +4,8 @@ describe 'user', type: :feature do
   describe 'traveler' do
     it 'can view listings for a particular host' do
       user = create :user, role: "default"
-      listing = create :item, title: "MyTitle", user_id: user.id
+      item = create :item, title: "MyTitle", user_id: user.id
+      item.item_images.create!
 
       visit items_user_path(user)
 
@@ -18,7 +19,8 @@ describe 'user', type: :feature do
   describe 'host' do
     it 'can view and edit their own listings' do
       user = create :user, role: "default"
-      listing = create :item, title: "MyTitle", user_id: user.id
+      item = create :item, title: "MyTitle", user_id: user.id
+      item.item_images.create!
 
       visit '/login'
       fill_in 'email address', with: user.email
@@ -28,7 +30,6 @@ describe 'user', type: :feature do
       visit items_user_path(user)
 
       expect(page).not_to have_content "Book it!"
-      expect(page).to have_content "Create New Listing"
       expect(page).to have_link "Edit Listing"
     end
   end

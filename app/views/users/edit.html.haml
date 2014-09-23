@@ -20,9 +20,18 @@
       %br/
       = f.text_field :state
     %p
+      = f.label :email
       %br/
-      Password fields can't be blank here.
-      %br/
-      %br/
+      = f.text_field :email
+    %br/
+    %br/
     %p
-      = f.submit
+    %div
+      %p Please enter you password in order to update your changes!
+      %p
+        = f.label :password
+        %br/
+        = f.password_field :password
+
+      %p
+        = f.submit

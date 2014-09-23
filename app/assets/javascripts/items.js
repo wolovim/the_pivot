@@ -25,15 +25,15 @@ $(document).ready(function () {
 
   function renderItem(item) {
     $(".listings").append('<div class="thumbnail col-lg-3">' +
-      '<img src="'+item.image_file_name+'">' +
+      '<img src="http://static.pexels.com/wp-content/uploads/2014/08/couch-flat-home-2459-525x350.jpg">' +
       '<div class="caption">' +
-
         '<h5><a href="'+ item.path +'">'+item.title+'</a></h5>' +
-
         '<p>$'+item.price+'</p>' +
+
+        // fix below, how not to pass authenticity token?
         '<form action="/orders/25/add_item?item_id='+item.id+'" class="button_to" method="post">'+
-        '<div><input class="thumbnail-btn btn btn-primary" type="submit" value="Book it!">'+
         '<input name="authenticity_token" type="hidden" value="ok/cMuVXVTaGgCMLmt58c4VIKP7BiANFFw6Hz75r3Pg="></div></form>' +
+
       '</div>' +
     '</div>');
   }
@@ -61,21 +61,45 @@ $(document).ready(function () {
 
   $(".btn-group.bathrooms button").on("click", function(event) {
     var filter_id = $(this).attr('id');
+    var was_selected = $(this).hasClass('active');
     $(".btn-group.bathrooms button").removeClass('active');
-    $(this).addClass('active');
-    filters["bathroom"] = filter_id;
-    // To remove a filter:
-    // delete filters["bathroom"];
+
+    if(was_selected) {
+      $(this).blur();
+      delete filters["bathroom"]
+    } else {
+      $(this).addClass('active');
+      filters["bathroom"] = filter_id;
+    }
     filterItems();
   });
 
   $(".btn-group-vertical.accommodations button").on("click", function(event) {
     var filter_id = $(this).attr('id');
+    var was_selected = $(this).hasClass('active');
     $(".btn-group-vertical.accommodations button").removeClass('active');
-    $(this).addClass('active');
-    filters["accommodation"] = filter_id;
-    // To remove a filter:
-    // delete filters["bathroom"];
+
+    if(was_selected) {
+      $(this).blur();
+      delete filters["accommodation"]
+    } else {
+      $(this).addClass('active');
+      filters["accommodation"] = filter_id;
+    }
+    filterItems();
+  });
+  //
+  // $(".btn-group.people_per_unit button").on("click", function(event) {
+  //   var filter_id = $(this).attr('id');
+  //   $(".btn-group.people_per_unit button").removeClass('active');
+  //   $(this).addClass('active');
+  //   filters["people_per_unit"] = filter_id;
+  //   filterItems();
+  // });
+
+  $(".dropdown.people_per_unit li").on("click", function(event) {
+    var filter_id = $(this).attr('id');
+    filters["people_per_unit"] = filter_id;
     filterItems();
   });
 
