@@ -13,12 +13,15 @@ describe "admin", type: :feature do
     expect(current_path).to eq admin_dashboard_path 
   end
 
-  xit 'has the correct links' do
+  it 'has the correct links' do
     user = FactoryGirl.create :user, role: "admin"
 
     visit '/login'
-    visit '/admin_dashboard'
+    fill_in "email address", with: user.email
+    fill_in "password", with: user.password
+    click_button "Login" 
+
     expect(page).to have_link "Users", href: admin_users_path
-    expect(page).to have_link "Listings", href: admin_orders_path
+    expect(page).to have_link "Listings", href: admin_items_path
   end
 end
