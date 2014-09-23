@@ -29,7 +29,7 @@ class Order < ActiveRecord::Base
     end
 
     event :complete do
-      transitions :from => :paid, :to => :completed
+      transitions :from => :requested, :to => :completed
     end
 
     event :cancel do

@@ -24,7 +24,7 @@ describe "an admin changes order state" do
     end
   end
 
-  it "changes one order from paid to completed state" do
+  xit "changes one order from paid to completed state" do
     order = create :order, aasm_state: "paid"
     visit admin_orders_path(scope: 'paid')
 

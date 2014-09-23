@@ -10,11 +10,11 @@ class OrdersController < ApplicationController
   end
 
   def update
-    item = Item.find(params[:order][:item_id])
+    item            = Item.find(params[:order][:item_id])
     requested_dates = parse_available_dates(params[:from], params[:to])
-    order_item = OrderItem.create(item_id: item.id, 
-                                  order_id: order.id, 
-                                  quantity: requested_dates.count)
+    order_item      = OrderItem.create(item_id: item.id,
+                                      order_id: order.id,
+                                      quantity: requested_dates.count)
     make_dates_unavailable(item, order_item, requested_dates)
     redirect_to order
   end
@@ -48,7 +48,7 @@ class OrdersController < ApplicationController
     end
     session[:order_id] = nil
   end
-  
+
   private
 
   def order_params
@@ -74,7 +74,7 @@ class OrdersController < ApplicationController
     date_range = (start_date..end_date).to_a
     date_range.first(date_range.size - 1)
   end
-  
+
   def make_dates_unavailable(item, order_item, requested_dates)
     requested_dates.each do |date|
       availability = item.availabilities.find_by(date: date)
@@ -82,13 +82,13 @@ class OrdersController < ApplicationController
       availability.save
     end
   end
-  
+
   def send_customer_email
     customer_email = order.user.email
 
     Pony.mail(
       :from    => "TravelHomeBookings@gmail.com",
-      :to      => "#{customer_email}",
+      :to      => customer_email,
       :subject => "Your Booking Summary",
       :body    => "Thank you for planning your trip with TravelHome! We've notified the hosts of your booking requests! \n
                   Order Number: #{order.id}\n
