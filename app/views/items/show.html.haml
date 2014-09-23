@@ -1,91 +1,115 @@
 .container
   .row
-    .col-md-6.location-info
-      %h3=@item.title
-      %p.location_text
-        Location: #{@item.address.street_1 if @item.address}
-      %p.location_text
-        Sleeps: #{@item.people_per_unit}
-      %p.location_text
-        Rate: $#{@item.price}
-      %p.location_text
-        Description: #{@item.description}
-      %p.location_text
-        Bathroom: #{@item.bathroom}
-      %p.location_text
-        Category:
-        - @item.categories.each do |category|
-          = category.name
-      %p.location_text
-        Search Availability:
-        %br/
-        -if @item.availabilities.any?
-          =form_for @order do |f|
+    .col-md-6
+      .item-show-title
+        =@item.title
+      .location-info
+        %p.location_text
+          %b Location: 
+          #{@item.address.street_1 if @item.address}
+        %p.location_text
+          %b Sleeps: 
+          #{@item.people_per_unit}
+        %p.location_text
+          %b Rate: 
+          $#{@item.price}
+        %p.location_text
+          %b Description: 
+          #{@item.description}
+        %p.location_text
+          %b Bathroom: 
+          #{@item.bathroom}
+        %p.location_text
+          %b Category:
+          - @item.categories.each do |category|
+            = category.name
+        %p.location_text
+          %b Search Availability:
+          %br/
+          -if @item.availabilities.any?
+            =form_for @order do |f|
 
-            %label{:for => "from"} Check In:
-            %input#from{:name => "from", :type => "text"}/
-            %br/
-            %label{:for => "to"} Check Out:
-            %input#to{:name => "to", :type => "text"}/
+              %label{:for => "from"} Check In:
+              %input#from{:name => "from", :type => "text"}/
+              %br/
+              %label{:for => "to"} Check Out:
+              %input#to{:name => "to", :type => "text"}/
 
-            %link{:href => "//code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css", :rel => "stylesheet"}/
-            %script{:src => "//code.jquery.com/jquery-1.10.2.js"}
-            %script{:src => "//code.jquery.com/ui/1.11.1/jquery-ui.js"}
+              %link{:href => "//code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css", :rel => "stylesheet"}/
+              %script{:src => "//code.jquery.com/jquery-1.10.2.js"}
+              %script{:src => "//code.jquery.com/ui/1.11.1/jquery-ui.js"}
 
-            :javascript
-              var from_array = #{ @item.available_from_dates }
-              var to_array = #{ @item.available_to_dates}
-              $(document).ready(function() {
-                $( "#from" ).datepicker({
-                  beforeShowDay: function(date) {
-                    if($.inArray($.datepicker.formatDate('yy-mm-dd', date ), from_array) > -1)
-                    {
-                        return [true,"",""];
+              :javascript
+                var from_array = #{ @item.available_from_dates }
+                var to_array = #{ @item.available_to_dates}
+                $(document).ready(function() {
+                  $( "#from" ).datepicker({
+                    beforeShowDay: function(date) {
+                      if($.inArray($.datepicker.formatDate('yy-mm-dd', date ), from_array) > -1)
+                      {
+                          return [true,"",""];
+                      }
+                      else
+                      {
+                          return [false,'',"Unavailable"];
+                      }
+                    },
+                    defaultDate: "+1w",
+                    changeMonth: true,
+                    numberOfMonths: 1,
+                    onClose: function( selectedDate ) {
+                      $( "#to" ).datepicker( "option", "minDate", selectedDate );
                     }
-                    else
-                    {
-                        return [false,'',"Unavailable"];
+                  });
+                  $( "#to" ).datepicker({
+                    beforeShowDay: function(date) {
+                      if($.inArray($.datepicker.formatDate('yy-mm-dd', date ), to_array) > -1)
+                      {
+                          return [true,"",""];
+                      }
+                      else
+                      {
+                          return [false,'',"Unavailable"];
+                      }
+                    },
+                    defaultDate: "+1w",
+                    changeMonth: true,
+                    numberOfMonths: 1,
+                    onClose: function( selectedDate ) {
+                      $( "#from" ).datepicker( "option", "maxDate", selectedDate );
                     }
-                  },
-                  defaultDate: "+1w",
-                  changeMonth: true,
-                  numberOfMonths: 1,
-                  onClose: function( selectedDate ) {
-                    $( "#to" ).datepicker( "option", "minDate", selectedDate );
-                  }
+                  });
                 });
-                $( "#to" ).datepicker({
-                  beforeShowDay: function(date) {
-                    if($.inArray($.datepicker.formatDate('yy-mm-dd', date ), to_array) > -1)
-                    {
-                        return [true,"",""];
-                    }
-                    else
-                    {
-                        return [false,'',"Unavailable"];
-                    }
-                  },
-                  defaultDate: "+1w",
-                  changeMonth: true,
-                  numberOfMonths: 1,
-                  onClose: function( selectedDate ) {
-                    $( "#from" ).datepicker( "option", "maxDate", selectedDate );
-                  }
-                });
-              });
 
-            %br/
-            %br/
-            = f.hidden_field :item_id, value: @item.id
-            = f.submit "Book it!", class: 'btn btn-primary'
+              %br/
+              %br/
+              = f.hidden_field :item_id, value: @item.id
+              = f.submit "Book it!", class: 'btn btn-primary'
 
-        -else
-          %p No availability yet!
+          -else
+            %p No availability yet!
 
-    .fotorama.image-picker.col-md-6{"data-nav" => "thumbs", "data-maxwidth"=>"480px", "data-minwidth"=>"480px"}
-      -@item.item_images.each do |item_image|
-        %img{:src => "#{item_image.image}"}
-
-  .row
-    .listing-description
+    .col-md-6
+      .right-column-margin
+      .item-section-title
+        %span.glyphicon.glyphicon-camera
+        Photos
+      .fotorama.image-picker{"data-nav" => "thumbs", "data-maxwidth"=>"480px", "data-minwidth"=>"480px"}
+        -@item.item_images.each do |item_image|
+          %img{:src => "#{item_image.image}"}
+      .item-section-title
+        %span.glyphicon.glyphicon-pushpin
+        Location
+      .listing-map
+        %iframe{:frameborder => "0", :height => "300", :src => "https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d3067.8044170608996!2d-104.98826600000002!3d39.74404399999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sus!4v1411488101180", :style => "border:0", :width => "400"}
+      .item-section-title
+        %span.glyphicon.glyphicon-comment
+        Reviews
+      .listing-reviews
+        %strong Review 1
+        %p Omg this place is amazing.
+        %strong Review 2
+        %p Wow, like such wow.
+        %strong Review 3
+        %p Lol, seriously
 
