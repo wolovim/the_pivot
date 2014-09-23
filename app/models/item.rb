@@ -9,7 +9,7 @@ class Item < ActiveRecord::Base
 
   belongs_to :user
 
-  has_one :address
+  has_one :address, dependent: :destroy
 
   has_many :categorizations
   has_many :categories, through: :categorizations
