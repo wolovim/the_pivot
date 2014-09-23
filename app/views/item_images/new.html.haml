@@ -3,7 +3,7 @@
     .form-image-container
       -@item.item_images.each do |item_image|
         = image_tag item_image.image.url(:small)
-    %h2.form-signin-heading Step 2: Add Photos.
+    %h2.listing-form-heading Step 3: Add Photos.
     = form_for [@item_image] do |f|
       - if @item_image.errors.any?
         %ul#errors
@@ -12,5 +12,6 @@
       .form-group
         =f.file_field :image
         %br/
+        %p.form-hints Upload as many images as you'd like, and click "I'm finished" when you are ready to finalize your listing.
         = f.submit "Upload Photo", class: "btn btn-large btn-block btn-primary"
         = link_to "I'm finished", item_path(@item), class: "btn btn-large btn-block btn-primary"

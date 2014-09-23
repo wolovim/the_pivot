@@ -1,12 +1,13 @@
 .container
   .row.col-lg-6.col-lg-offset-3
-    %h2.form-signin-heading Step 1: Add an address.
+    %h2.listing-form-heading Step 2: Add an address.
     = form_for [@item, @address] do |f|
       - if @address.errors.any?
         %ul#errors
           - @address.errors.full_messages.each do |error|
             %li= error
       .form-group
+        %p.form-hints Enter the address for your listing.
         = f.text_field :street_1, class: "form-control", placeholder: "Street 1"
         %br/
         = f.text_field :street_2, class: "form-control", placeholder: "Street 2"
