@@ -2,8 +2,11 @@ Rails.application.routes.draw do
 
   resources :items do
     resources :item_images, as: :images, only: [:new, :create]
+    resources :addresses, as: :addresses, only: [:new, :create, :edit, :update]
   end
 
+  resources :addresses
+  
   resources :categories,  only: [:index, :show]
 
   resources :users,       only: [:new, :create, :show, :index, :edit, :update] do
@@ -17,7 +20,6 @@ Rails.application.routes.draw do
 
   resources :sessions,    only: [:new, :create, :destroy]
   resources :order_items, only: [:update]
-  resources :addresses,   only: [:create]
   resources :orders,      except: [:new] do
     member do
       post :add_item
@@ -29,8 +31,6 @@ Rails.application.routes.draw do
     resources :confirmations
     resources :denials
   end
-
-  resources :addresses
 
   namespace :admin do
     resources :items do
