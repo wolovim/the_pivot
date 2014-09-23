@@ -27,8 +27,9 @@ describe "host", type: :feature do
     click_link_or_button "Upload Photo"
     click_link_or_button "I'm finished"
 
-    within(".location_title") { expect(page).to have_content "NewListingTitle" }
-    within(".location_info") { expect(page)
-                               .to have_content "NewListingDescription" }
+    within(".location-info") do
+      expect(page).to have_content "NewListingTitle"
+      expect(page).to have_content "NewListingDescription"
+    end
   end
 end
