@@ -1,25 +1,19 @@
 .container
   .panel.panel-default
     %h1.panel-heading Users
-    / .panel-body
-    /   %table.table.table-striped
-    /     %thead
-    /       %tr
-    /         %th Title
-    /         %th Price
-    /         %th Nights
-    /         %th Check In
-    /         %th Check Out
-    /         %th Item Subtotal
-    /     %tbody
-    /     -if order.empty?
-    /       %tr You don't have any items in your cart!
-    /     -else
-    /       -order.items.each do |item|
-    /         %tr
-    /           %td #{item.title}
-    /           %td $#{item.price_for_humans}
-    /           %td #{order_item(item).quantity}
-    /           %td #{order_item(item).checkin_date}
-    /           %td #{order_item(item).checkout_date}
-    /           %td $#{quantity_price_for_humans(item)}
+    .panel-body
+      %table.table.table-striped
+        %thead
+          %tr
+            %th Last Name
+            %th First Name
+            %th Signup Date
+        %tbody
+          -@users.each do |user|
+            %tr
+              %td= user.last_name
+              %td= user.first_name 
+              %td= user.created_at
+              %td= link_to "Profile", user_path(user)
+              %td= link_to "Listings", items_user_path(user) 
+              %td= link_to "Delete User", admin_user_path(user), method: :delete
