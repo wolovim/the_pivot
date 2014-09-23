@@ -1,4 +1,5 @@
 class AddressesController < ApplicationController
+
   def new
     @item = current_user.items.find(params[:item_id])
     @address = Address.new
@@ -17,15 +18,16 @@ class AddressesController < ApplicationController
   end
 
   def edit
-    item = current_user.items.find(params[:item_id])
-    @address = item.address
+    @item = current_user.items.find(params[:item_id])
+    @address = @item.address
   end
 
   def update
-    @address = Address.find(params)
+    @item = current_user.items.find(params[:item_id])
+    @address = @item.address
 
-    if @address.save
-      redirect_to checkout_path
+    if @address.update(address_params)
+      redirect_to new_item_image_path(@item)
     else
       flash[:errors] = @address.errors.messages
       render "orders/checkout"

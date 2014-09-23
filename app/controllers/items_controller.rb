@@ -56,7 +56,7 @@ class ItemsController < ApplicationController
       
       create_availabilities
 
-      redirect_to new_item_image_path(@item)
+      redirect_to edit_item_address_path(@item, @item.address)
     else
       flash[:error] = "Something went wrong. Please try again."
       render :edit
