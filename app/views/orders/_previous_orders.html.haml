@@ -12,18 +12,27 @@
           %table.table-hover.col-lg-12
             %thead
               %tr
-                %th Title
-                %th Description
-                %th Price
-                %th Quantity
+                %th Listing
+                %th Daily Rate
+                %th Checkin Date
+                %th Checkout Date
+                %th Number of Nights
+                %th Confirmation Status
                 %th Subtotal
             %tbody
             -order.order_items.each do |o_item|
               %tr
                 %td= link_to o_item.item.title, item_path(o_item.item)
-                %td= link_to o_item.item.description, item_path(o_item.item)
-                %td= link_to "$#{o_item.item.price_for_humans}", item_path(o_item.item)
-                %td= link_to o_item.quantity, item_path(o_item.item)
+                %td= "$#{o_item.item.price_for_humans}"
+                %td= o_item.checkin_date
+                %td= o_item.checkout_date
+                %td= o_item.availabilities.count
+                - if o_item.confirmed?
+                  %td Request CONFIRMED
+                - elsif o_item.denied?
+                  %td Request DENIED
+                - else
+                  %td Waiting on host action.
                 %td $ #{quantity_price_for_humans(o_item.item, order)}
           %h6.order_totals="Subtotal: $#{order.total_for_humans}"
           %h6.order_totals="Tax: $#{order.tax_for_humans}"
