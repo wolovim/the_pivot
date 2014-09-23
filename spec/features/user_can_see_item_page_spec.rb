@@ -1,7 +1,8 @@
 require_relative 'feature_spec_helper'
 
 describe 'an items show page', type: :feature do
-  let(:item) { create :item, :title => "MyTitle"}
+  let(:user) { create :user }
+  let(:item) { create :item, :title => "MyTitle", user_id: user.id}
 
   before do
     item.item_images.create!

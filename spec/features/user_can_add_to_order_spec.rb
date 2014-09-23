@@ -2,12 +2,14 @@ require_relative 'feature_spec_helper'
 
 describe 'an order', type: :feature do
   let(:current_order) { Order.create! }
-  let(:item) { FactoryGirl.create :item }
+  let(:user) { FactoryGirl.create :user }
+  let(:item) { FactoryGirl.create :item, user_id: user.id }
 
   def book_an_item
     item.availabilities.create(date: "10/04/2014")
     item.availabilities.create(date: "11/04/2014")
     item.item_images.create!
+    
 
     visit "/items"
     visit item_path(item)
