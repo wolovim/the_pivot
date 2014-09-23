@@ -16,8 +16,9 @@
             %tr
               %td= "#{request.order.user.first_name}'s Request"
               %td= "#{request.item.title}"
-              %td
-              %td= "#{request.quantity}"
+              %td= "#{request.checkin_date}"
+              %td= "#{request.checkout_date}"
+              %td= "#{request.availabilities.count}"
               - if request.confirmed?
                 %td Request CONFIRMED
               - elsif request.denied?
