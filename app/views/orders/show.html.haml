@@ -22,10 +22,12 @@
             %tr
               %td #{item.title}
               %td $#{item.price_for_humans}
-              %td.nights #{order_item(item).quantity}
-              %td.check-in #{order_item(item).checkin_date}
-              %td.check-out #{order_item(item).checkout_date}
-              %td= button_to "Remove", delete_item_order_path(order, item_id: item.id), class: "btn btn-danger"
+              %td
+                = form_for 'item', method: 'PUT', :url => {:controller => 'order_items', action: :update, id: order_item(item) } do |f|
+                  .field
+                    = f.number_field :quantity, :value => order_item(item).quantity
+                    = submit_tag "Update", class: "btn btn-primary"
+              %td= button_to "Remove", delete_item_order_path(order, item_id: item.id), class: "btn btn-default"
               %td $#{quantity_price_for_humans(item)}
     #order-total
       %h3.text-muted.pull-right= "Booking Subtotal: $#{order.total_for_humans}"

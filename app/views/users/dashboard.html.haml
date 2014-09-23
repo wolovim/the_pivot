@@ -1,34 +1,39 @@
-.container-fluid
+.container-fluid.dashboard
   .row
     .col-md-4
     .col-md-4
-      .admin-dashboard
-        .admin-title
-          %strong=@user.first_name
-          %strong>'s Dashboard
-        .admin-section
-          .admin-section-title
-            My Account
-          .admin-section-content
-            =link_to "View my public profile", user_path(current_user)
-            %br/
-            =link_to "Update my information", edit_user_path(current_user)
-            %br/
-            =link_to "Change my profile photo", avatar_user_path(current_user)
-        .admin-section
-          .admin-section-title
-            My Listings
-          .admin-section-content
-            =link_to "Create a New Listing", new_item_path
-            %br/
-            =link_to "Manage Your Current Listings", items_user_path(current_user)
-            %br/
-            =link_to "Manage Booking Requests for Your Listings", listing_requests_path
-        .admin-section
-          .admin-section-title
-            My Bookings
-          .admin-section-content
-            =link_to "View my bookings", '#'
-            %br/
-            =link_to "Search listings", items_path
+      .admin-double-dash
+        .admin-dashboard
+          .admin-title
+            %strong=@user.first_name
+            %strong>'s Dashboard
+            %hr
+          .admin-section
+            .admin-section-title
+              %span.glyphicon.glyphicon-user 
+              %strong My Account
+            .admin-section-content
+              =link_to "View my public profile", user_path(current_user)
+              %br/
+              =link_to "Update my information", edit_user_path(current_user)
+              %br/
+              =link_to "Change my profile photo", avatar_user_path(current_user)
+          .admin-section
+            .admin-section-title
+              %span.glyphicon.glyphicon-home 
+              %strong My Listings
+            .admin-section-content
+              =link_to "Create a New Listing", new_item_path
+              %br/
+              =link_to "Manage Your Current Listings", items_user_path(current_user)
+              %br/
+              =link_to "Manage Booking Requests for Your Listings", listing_requests_path
+          .admin-section
+            .admin-section-title
+              %span.glyphicon.glyphicon-plane 
+              %strong My Bookings
+            .admin-section-content
+              =link_to "View my bookings", '#'
+              %br/
+              =link_to "Search listings", items_path
     .col-md-4
