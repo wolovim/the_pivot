@@ -14,9 +14,9 @@ describe "host", type: :feature do
     click_link_or_button "My Dashboard"
     click_link_or_button "Create a New Listing"
 
-    fill_in "Listing Title", with: "NewListingTitle"
-    fill_in "Listing Description", with: "NewListingDescription"
-    fill_in "Daily Rate", with: 20
+    fill_in "item_title", with: "NewListingTitle"
+    fill_in "item_description", with: "NewListingDescription"
+    fill_in "item_price", with: 20
     find('#item_people_per_unit').find(:xpath, 'option[2]').select_option
     find('#item_bathroom').find(:xpath, 'option[2]').select_option
     fill_in "from", with: "04/10/2014"
