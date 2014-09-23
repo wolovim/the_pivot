@@ -31,10 +31,12 @@ describe "host", type: :feature do
 
     click_link_or_button "I'm finished"
 
-    within(".location-info") do
+    within(".item-show-title") do
       expect(page).not_to have_content "MyTitle"
-      expect(page).not_to have_content "MyDesc"
       expect(page).to have_content "NewListingTitle"
+    end
+    within(".location-info") do
+      expect(page).not_to have_content "MyDesc"
       expect(page).to have_content "NewListingDescription"
     end
   end
