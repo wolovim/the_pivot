@@ -17,9 +17,9 @@
           %tr
             %td #{item.title}
             %td $#{item.price_for_humans}
-            %td #{order_item(item).quantity}
-            %td #{order_item(item).checkin_date}
-            %td #{order_item(item).checkout_date}
+            %td.nights #{order_item(item).quantity}
+            %td.check-in #{order_item(item).checkin_date}
+            %td.check-out #{order_item(item).checkout_date}
             %td Subtotal: $#{quantity_price_for_humans(item)}
 
     %h5.text-muted.order_totals= "Subtotal: $#{order.total_for_humans}"
