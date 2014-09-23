@@ -17,14 +17,13 @@
         = f.text_field :price, class: "form-control", placeholder: "How much would you like to charge per night?"
         %br/
         %p.form-hints People Per Unit
-        %p.form-hints How many can your space accomodate?
-        = f.select(:people_per_unit, options_for_select([['People Per Unit', 1], [1, 1], [2, 2], [3, 3], [4, 4], [5, 5], [6, 6]]), {}, {class: "form-control"})
+        = f.select(:people_per_unit, options_for_select([['How many can your space accomodate?', 1], [1, 1], [2, 2], [3, 3], [4, 4], [5, 5], [6, 6]]), {}, {class: "form-control"})
         %br/
-        %p.form-hints Is your bathroom private or shared?
-        = f.select(:bathroom, options_for_select([['Bathroom Type', 'Bathroom Type'], ['Private', 'Private'], ['Shared', 'Shared']]), {}, {class: "form-control"})
+        %p.form-hints Bathroom Type
+        = f.select(:bathroom, options_for_select([['Is your bathroom private or shared?', 'Bathroom Type'], ['Private', 'Private'], ['Shared', 'Shared']]), {}, {class: "form-control"})
         %br/
-        %p.form-hints What type of accomodation?
-        = f.select(:accommodation, options_for_select([['Accommodation Type', 'Accommodation Type'], ['Whole Place', 'Whole Place'], ['Private Room', 'Private Room'], ['Shared Room', 'Shared Room'], ['Couch', 'Couc']]), {}, {class: "form-control"})
+        %p.form-hints Accomodation Type
+        = f.select(:accommodation, options_for_select([['What type of accomodation?', 'Accommodation Type'], ['Whole Place', 'Whole Place'], ['Private Room', 'Private Room'], ['Shared Room', 'Shared Room'], ['Couch', 'Couc']]), {}, {class: "form-control"})
         %br/
         %p
           %h4 Add availabilities:
