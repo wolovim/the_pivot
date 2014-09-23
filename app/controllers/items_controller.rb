@@ -38,7 +38,7 @@ class ItemsController < ApplicationController
 
       create_availabilities
 
-      redirect_to new_item_image_path(@item)
+      redirect_to new_item_address_path(@item)
     else
       render :new
     end
