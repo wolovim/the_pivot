@@ -16,7 +16,10 @@
             %th Subtotal
         %tbody
         -if order.empty?
-          %tr You don't have any items in your cart!
+          %tr 
+            %i You don't have any items in your cart!
+          %br/
+          %br/
         -else
           -order.items.each do |item|
             %tr
