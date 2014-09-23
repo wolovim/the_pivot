@@ -1,20 +1,25 @@
 .container
   .row.col-lg-6.col-lg-offset-3
-    %h2.form-signin-heading Step 1: Update address.
+    %h2.listing-form-heading Step 2: Update address.
     = form_for [@item, @address] do |f|
       - if @address.errors.any?
         %ul#errors
           - @address.errors.full_messages.each do |error|
             %li= error
       .form-group
+        %p.form-hints Street 1
         = f.text_field :street_1, class: "form-control", placeholder: "Street 1"
         %br/
+        %p.form-hints Street 2
         = f.text_field :street_2, class: "form-control", placeholder: "Street 2"
         %br/
+        %p.form-hints City
         = f.text_field :city, class: "form-control", placeholder: "City"
         %br/
+        %p.form-hints State
         = f.text_field :state, class: "form-control", placeholder: "State"
         %br/
+        %p.form-hints Zipcode
         = f.text_field :zip, class: "form-control", placeholder: "Zipcode"
         %br/
         = f.submit "Continue", class: "btn btn-large btn-block btn-primary"
