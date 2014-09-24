@@ -53,7 +53,7 @@ class ItemsController < ApplicationController
 
     if @item.update(item_params)
       flash[:success] = "Listing updated."
-      
+
       create_availabilities
 
       redirect_to edit_item_address_path(@item, @item.address)
@@ -71,7 +71,7 @@ class ItemsController < ApplicationController
 
   def item_params
     params.require(:item).permit(:title, :description, :price,
-                                 :people_per_unit, :bathroom, 
-                                 :user_id)
+                                 :people_per_unit, :bathroom,
+                                 :user_id, :accommodation)
   end
 end
