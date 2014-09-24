@@ -25,11 +25,11 @@ class Order < ActiveRecord::Base
     end
 
     event :pay do
-      transitions :from => :requested, :to => :paid, before_enter: :erase_current_order
+      transitions :from => :requested, :to => :paid
     end
 
     event :complete do
-      transitions :from => :requested, :to => :completed
+      transitions :from => [:requested, :basket], :to => :completed
     end
 
     event :cancel do

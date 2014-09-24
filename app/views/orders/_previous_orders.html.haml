@@ -6,6 +6,8 @@
           %h4.panel-title
             %a{"data-parent" => "#accordion", "data-toggle" => "collapse", :href => "#collapse#{i}"}
               ="Trip Dates: #{order.order_items.first.checkin_date} to #{order.order_items.last.checkout_date}"
+              %br
+              ="Status: #{order.aasm_state.upcase}"
       .panel-collapse.collapse{:id => "collapse#{i}"}
         .panel-body
           %table.table-striped.col-lg-12
@@ -45,11 +47,13 @@
                       %span.glyphicon.glyphicon-remove
                       Cancel Request
                 %td $ #{quantity_price_for_humans(o_item.item, order)}
-          %h6.order_totals="Subtotal: $#{order.total_for_humans}"
-          %h6.order_totals="Tax: $#{order.tax_for_humans}"
+          %h5.order_totals="Subtotal: $#{order.total_for_humans}"
+          %h5.order_totals="Tax: $#{order.tax_for_humans}"
           %h4.order_totals="Total: $#{order.total_price_for_humans}"
           #order-info
-            %h6="Booking Status: #{order.aasm_state}"
-            %h6="Booking Requests Submitted On: #{order.updated_at.to_formatted_s(:long_ordinal)}"
+            %h5="Booking Status: #{order.aasm_state.capitalize}"
+            %h5="Booking Requests Submitted On: #{order.created_at.to_formatted_s(:long)}"
+            - if order.may_complete? && order.order_items.all? { |o_item| o_item.confirmed? || o_item.denied? }
+              = link_to "Complete Order", completed_path(order), class: 'btn btn-success'
             -if order.completed? || order.cancelled?
-              %h6.text-muted= "Order Inactive as of: #{order.updated_at.to_formatted_s(:long_ordinal)}"
+              %h4.text-muted= "Order Inactive as of: #{order.updated_at.to_formatted_s(:long_ordinal)}"
