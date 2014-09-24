@@ -35,18 +35,14 @@
                   %td
                     %span.glyphicon.glyphicon-remove.denied DENIED
                     %br
-                    = link_to "Delete Request", order_item_path(o_item.id), method: :delete, class: "btn btn-danger"
+                    = link_to "Delete Request", order_item_path(o_item.id), method: :delete, class: "btn btn-danger btn-block"
                   %td
                 - else
                   %td
                     Awaiting confirmation.
                   %td
-                    = link_to "#", :title => "Send host a reminder.", class: "btn btn-warning" do
-                      %span.glyphicon.glyphicon-envelope
-                      Email Host
-                    %br
-                    = link_to '#', class: "btn btn-danger" do
-                      %span.glyphicon.glyphicon-remove
+                    = link_to "Email Host", reminder_path, class: "btn btn-warning btn-block" 
+                    = link_to "Cancel Request", order_item_path(o_item.id), method: :delete, class: "btn btn-danger btn-block"
                 %td $ #{quantity_price_for_humans(o_item.item, order)}
           %h5.order_totals="Subtotal: $#{order.total_for_humans}"
           %h5.order_totals="Tax: $#{order.tax_for_humans}"
@@ -54,7 +50,7 @@
           #order-info
             %h5="Booking Status: #{order.aasm_state.capitalize}"
             %h5="Booking Requests Submitted On: #{order.created_at.to_formatted_s(:long)}"
-            - if order.may_complete? && order.order_items.all? { |o_item| o_item.confirmed? || o_item.denied? }
+            - if order.may_complete? && order.order_items.all? { |o_item| o_item.confirmed? }
               = link_to "Complete Order", completed_path(order), class: 'btn btn-success'
             -if order.completed? || order.cancelled?
               %h4.text-muted= "Order Inactive as of: #{order.updated_at.to_formatted_s(:long_ordinal)}"
