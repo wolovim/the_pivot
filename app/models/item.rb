@@ -2,12 +2,11 @@ class Item < ActiveRecord::Base
   validates :title, presence: true, uniqueness: true
   validates :description, presence: true
   validates :price, presence: true, numericality: { greater_than: 0 }
-  
-  has_many  :item_images, :dependent => :destroy
-
-  accepts_nested_attributes_for :item_images
+  validates_inclusion_of :bathroom, in: ["Private", "Shared"]
 
   belongs_to :user
+
+  has_many  :item_images, :dependent => :destroy
 
   has_one :address, dependent: :destroy
 
