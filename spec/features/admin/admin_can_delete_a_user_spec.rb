@@ -6,8 +6,6 @@ describe "admin", type: :feature do
     admin = FactoryGirl.create :user, :admin
     user1 = FactoryGirl.create :user, last_name: "McCringleberry", role: "user"
 
-
-    visit '/login'
     visit '/login'
     fill_in "email address", with: admin.email
     fill_in "password", with: admin.password
