@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Item, :type => :model do
-  let(:item) { create :item }
+  let(:item) { FactoryGirl.create :item }
 
   describe "with valid params" do
     it 'is valid' do
@@ -83,9 +83,14 @@ RSpec.describe Item, :type => :model do
       expect(item).not_to be_valid
     end
 
+    it 'is not valid with no bathroom type' do
+      item.bathroom = nil
+      expect(item).not_to be_valid
+    end
+
     it 'has many orders' do
-      order1 = create :order
-      order2 = create :order
+      order1 = FactoryGirl.create :order
+      order2 = FactoryGirl.create :order
 
       order1.items << item
       order2.items << item
