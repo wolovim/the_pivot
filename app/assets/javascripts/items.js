@@ -38,6 +38,15 @@ $(document).ready(function () {
     '</div>');
   }
 
+  function checkMyDateWithinRange(myDate, start, end){
+    var startDate = new Date(start);
+    var endDate = new Date(end);     
+    if (startDate < myDate && myDate < endDate) {
+       return true; 
+    }
+    return false;
+  }
+
   function filterItems() {
     $(".listings").html('');
     $.each(list_of_items, function(index, item) {
@@ -49,14 +58,52 @@ $(document).ready(function () {
           if (value[0] > item[key] || value[1] < item[key]) {
             shouldBeVisible = false;
           }
-        } else if (filters[key] !== item[key]) {
-          shouldBeVisible = false;
         }
+
+        if (key === "bathroom") {
+          if (filters[key] !== item[key]) {
+            shouldBeVisible = false;
+          }
+        }
+
+        if (key === "date_filter") {
+          var availabilities = item.availabilities
+          var checkin = filters[key].checkin
+          var checkout = filters[key].checkout
+
+          var requestedDateArray = getDateArray(new Date(checkin), new Date(checkout));
+          
+          var availableDateArray = availabilities.map(function(obj) { 
+            return new Date(obj["date"]).getTime(); 
+          });
+
+          var counter = 0;
+          for (i = 0; i < requestedDateArray.length; i++) {
+            var date = requestedDateArray[i];
+            for (j = 0; j < availableDateArray.length; j++) {
+              if (date === availableDateArray[j]) {
+                counter++;
+              }
+            }
+          }
+          if (counter !== requestedDateArray.length) {
+            shouldBeVisible = false;
+          }
+        }        
       });
+
       if (shouldBeVisible === true) {
         renderItem( item );
       }
     });
+  }
+
+  function getDateArray( d1, d2 ){
+    var oneDay = 24*3600*1000;
+    for (var d=[],ms=d1*1,last=d2*1;ms<last;ms+=oneDay){
+      d.push( new Date(ms).getTime() );
+    }
+    return d;
   }
 
   $(".btn-group.bathrooms button").on("click", function(event) {
@@ -88,6 +135,21 @@ $(document).ready(function () {
     }
     filterItems();
   });
+
+  $(".date-picker[type='date']").on("change", function (event) {
+    var checkin = $("input[name='checkin']").val();
+    var checkout = $("input[name='checkout']").val();
+    if(checkin && checkout) {
+      filters["date_filter"] = {
+        checkin: checkin,
+        checkout: checkout
+      }
+    } else {
+      delete filters["date_filter"]
+    }
+    filterItems();
+  });
+
   //
   // $(".btn-group.people_per_unit button").on("click", function(event) {
   //   var filter_id = $(this).attr('id');

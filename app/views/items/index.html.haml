@@ -9,8 +9,11 @@
             %p Location:
             %input#location{:type => "text", :value => '', :placeholder => 'City' }
           %li
-            %a{:href => "#"} Available Dates
+            %p Available Dates:
+            %input{type: "date", name: "checkin", class: "date-picker"}
+            %input{type: "date", name: "checkout", class: "date-picker"}
 
+          %li
             %p Price:
             .btn-group.price
               %button.btn.btn-default{:type => "button", :id => "$"} $

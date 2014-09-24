@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
   def index
-    @items = Item.all
+    @items = Item.includes(:availabilities).all
     # @categories = Category.all
     # @main_categories = Category.main_categories
     # @special_categories = Category.special_categories
