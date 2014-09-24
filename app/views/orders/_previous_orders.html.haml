@@ -34,6 +34,8 @@
                 - elsif o_item.denied?
                   %td
                     %span.glyphicon.glyphicon-remove.denied DENIED
+                    %br
+                    = link_to "Delete Request", order_item_path(o_item.id), method: :delete, class: "btn btn-danger"
                   %td
                 - else
                   %td
@@ -43,9 +45,8 @@
                       %span.glyphicon.glyphicon-envelope
                       Email Host
                     %br
-                    = link_to '#', :title => "Cancel this booking request.", class: "btn btn-danger" do
+                    = link_to '#', class: "btn btn-danger" do
                       %span.glyphicon.glyphicon-remove
-                      Cancel Request
                 %td $ #{quantity_price_for_humans(o_item.item, order)}
           %h5.order_totals="Subtotal: $#{order.total_for_humans}"
           %h5.order_totals="Tax: $#{order.tax_for_humans}"
