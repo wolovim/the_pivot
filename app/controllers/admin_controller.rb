@@ -9,6 +9,6 @@ class AdminController < ApplicationController
 
   private
   def authorize?
-    session[:user_id] == current_user.id
+    render 'errors/404' unless current_user.role == "admin"
   end
 end

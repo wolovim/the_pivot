@@ -41,6 +41,7 @@ Rails.application.routes.draw do
       end
     end
     resources :categories
+    resources :users, only: [:index, :destroy]
     resources :orders, only: [:index, :show, :edit, :update]
     put '/orders/:id/run_event', to: 'orders#run_event', as: :order_event
   end
