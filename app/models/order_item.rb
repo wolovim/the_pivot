@@ -45,6 +45,17 @@ class OrderItem < ActiveRecord::Base
     checkout.strftime("%b %d, %Y")
   end
 
+  def send_host_reminder_email
+    host_email = item.user.email
+
+    Pony.mail(
+      :from    => "TravelHomeBookings@gmail.com",
+      :to      => host_email,
+      :subject => "You have Pending Requests",
+      :body    => "Hi #{item.user}, don't forget to confirm or deny #{order.user.first_name}'s request!"
+    )
+  end
+
   private
 
   def set_default_quantity

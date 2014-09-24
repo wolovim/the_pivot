@@ -20,9 +20,11 @@
               %td= "#{request.checkout_date}"
               %td= "#{request.availabilities.count}"
               - if request.confirmed?
-                %td Request CONFIRMED
+                %td
+                  %span.glyphicon.glyphicon-ok.confirmed
               - elsif request.denied?
-                %td Request DENIED
+                %td
+                  %span.glyphicon.glyphicon-remove.denied
               - else
                 %td
                   = link_to listing_request_confirmations_path(request), method: :post, class: 'btn btn-success' do

@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   end
 
   resources :addresses
-  
+
   resources :categories,  only: [:index, :show]
 
   resources :users,       only: [:new, :create, :show, :index, :edit, :update] do
