@@ -2,16 +2,16 @@
   .panel.panel-default
     %h1.panel-heading Your Booking Requests:
     .panel-body
-      %p Please glance over your booking requests. Tweak 'em, or proceed to confirm and make requests.
+      %p Please glance over your booking requests. If everything looks good then move on to enter your payment info.
       = flash[:toomany]
       %table.table.table-striped
         %thead
           %tr
-            %th Listing Name
-            %th Daily Rate
-            %th Nights
+            %th Listing
+            %th Nightly Rate
             %th Check In
             %th Check Out
+            %th Number of Nights
             %th
             %th Subtotal
         %tbody
