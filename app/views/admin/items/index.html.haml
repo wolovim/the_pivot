@@ -1,28 +1,25 @@
 .container
-  = link_to "Create New Listing", new_admin_item_path, role: "button", :class => "btn btn-primary btn-lg btn-block new-listing"
-  %table.table.table-striped
-    %thead
-      %tr
-        %th.title-col Title
-        %th.desc-col Description
-        %th Price
-        %th Categories
-        %th
-        %th
-    %tbody
-      -@items.each do |item|
-        %tr
-          %td.title-col= link_to item.title, admin_item_path(item)
-          %td.desc-col= item.description
-          %td= item.price_for_humans
-          %td
-            .dropdown
-              %button#dropdownMenu1.btn.btn-default.dropdown-toggle{"data-toggle" => "dropdown", :type => "button"}
-                Categories
-                %span.caret
-              %ul.dropdown-menu{"aria-labelledby" => "dropdownMenu1", :role => "menu"}
-                -item.categories.each do |category|
-                  %li{:role => "presentation"}
-                    = link_to category.name, admin_item_path(item), role: "menuitem", tabindex: "-1"
-          %td= link_to "Add/Remove Categories", admin_item_path(item)
-          %td= link_to "Edit Item", edit_admin_item_path(item)
+  .panel.panel-default
+    %h1.panel-heading Users
+    .panel-body
+      %table.table.table-striped
+        %thead
+          %tr
+            %th Host
+            %th Title
+            %th Daily Rate
+            %th Bathroom
+            %th People per Unit
+            %th 
+            %th
+            %th
+        %tbody
+          -@items.each do |item|
+            %tr
+              %td= link_to "#{item.user.first_name}", user_path(item.user)
+              %td= item.title
+              %td= item.price_for_humans
+              %td= item.bathroom
+              %td= item.people_per_unit
+              %td= link_to "View Listing", item_path(item)
+              %td= link_to "Delete Listing", admin_item_path(item), method: :delete, data: {confirm: "Really delete?  With great power comes great responsibility."}

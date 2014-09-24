@@ -17,6 +17,7 @@
  *= require_self
  */
 
+
  //USER ON ITEM SHOW PAGE
 .user-show-title {
   margin-top: 30px;
@@ -434,6 +435,14 @@
     float: none;
     min-width: 380px;
   }
+}
+
+.denied{
+  color: red;
+}
+
+.confirmed{
+  color: green;
 }
 
 // #each_listing {

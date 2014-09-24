@@ -20,7 +20,7 @@
         = f.select(:people_per_unit, options_for_select([['How many can your space accomodate?', 1], [1, 1], [2, 2], [3, 3], [4, 4], [5, 5], [6, 6]]), {}, {class: "form-control"})
         %br/
         %p.form-hints Bathroom Type
-        = f.select(:bathroom, options_for_select([['Is your bathroom private or shared?', 'Bathroom Type'], ['Private', 'Private'], ['Shared', 'Shared']]), {}, {class: "form-control"})
+        = f.select(:bathroom, options_for_select([['Is your bathroom private or shared?'], ['Private', 'Private'], ['Shared', 'Shared']]), {}, {class: "form-control"})
         %br/
         %p.form-hints Accomodation Type
         = f.select(:accommodation, options_for_select([['What type of accomodation?', 'Accommodation Type'], ['Whole Place', 'Whole Place'], ['Private Room', 'Private Room'], ['Shared Room', 'Shared Room'], ['Couch', 'Couc']]), {}, {class: "form-control"})
