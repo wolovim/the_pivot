@@ -78,7 +78,7 @@ ActiveRecord::Schema.define(version: 20140918050053) do
 
   create_table "items", force: true do |t|
     t.string   "title"
-    t.string   "description"
+    t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "price"

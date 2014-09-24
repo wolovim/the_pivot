@@ -6,12 +6,12 @@
       .location-info
         %p.location_text
           %b Location:
-          %br/
-          #{@item.address.street_1 if @item.address}
-          %br/
-          #{@item.address.city if @item.address},
-          #{@item.address.state if @item.address}
-          #{@item.address.zip if @item.address}
+          -if @item.address
+            =@item.address.street_1
+            =@item.address.street_2
+            =@item.address.city
+            =@item.address.state
+            =@item.address.zip
         %p.location_text
           %b Sleeps:
           #{@item.people_per_unit}
