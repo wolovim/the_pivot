@@ -37,6 +37,33 @@
   background-color: #ede7dd;
 }
 
+.user-info {
+  margin-top: 10px;
+  padding: 15px 0 20px 60px;
+  background-color: #ede7dd;
+}
+
+.user-column-left {
+  width: 25%;
+  display: inline-block;
+}
+
+.user-column-right {
+  width: 65%;
+  display: inline-block;
+  margin-left: 25px;
+}
+
+.item-user-photo {
+  width: 100px;
+  height: 100px;
+  margin-top: -60px;
+  border-radius: 50px;
+  -webkit-border-radius: 50px;
+  -moz-border-radius: 50px;
+  border: 3px solid #55534f;
+}
+
 .right-column-margin {
   margin-top: 60px;
 }

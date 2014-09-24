@@ -89,6 +89,29 @@
           -else
             %p No availability yet!
 
+      .user-show-title
+        About 
+        =@item.user.first_name
+      .user-info
+        .user-column-left
+          %p
+            =image_tag @item.user.avatar.url(:thumb), class: "item-user-photo"
+        .user-column-right
+          %p
+            %b Hometown: 
+            =@item.user.city
+            =@item.user.state
+          %p
+            %b Member Since:
+            =@item.user.created_at.strftime("%b %d, %Y")
+          %p
+            %b Response Rate:
+            95%
+          %p
+            %b Response Time:
+            Within 24 hours
+
+
     .col-md-6
       .right-column-margin
       .item-section-title
@@ -106,10 +129,25 @@
         %span.glyphicon.glyphicon-comment
         Reviews
       .listing-reviews
+        %span.glyphicon.glyphicon-star
+        %span.glyphicon.glyphicon-star
+        %span.glyphicon.glyphicon-star
+        %span.glyphicon.glyphicon-star
+        %span.glyphicon.glyphicon-star-empty
         %strong Review 1
         %p Omg this place is amazing.
+        %span.glyphicon.glyphicon-star
+        %span.glyphicon.glyphicon-star
+        %span.glyphicon.glyphicon-star
+        %span.glyphicon.glyphicon-star
+        %span.glyphicon.glyphicon-star
         %strong Review 2
         %p Wow, like such wow.
+        %span.glyphicon.glyphicon-star
+        %span.glyphicon.glyphicon-star
+        %span.glyphicon.glyphicon-star-empty
+        %span.glyphicon.glyphicon-star-empty
+        %span.glyphicon.glyphicon-star-empty
         %strong Review 3
         %p Lol, seriously
 
