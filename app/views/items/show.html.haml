@@ -28,8 +28,7 @@
           #{@item.bathroom}
         %p.location_text
           %b Accommodation:
-          - @item.categories.each do |category|
-            = category.name
+          #{@item.accommodation}
         %p.location_text
           %b Search Availability:
           %br/
