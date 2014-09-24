@@ -10,7 +10,7 @@
             %hr
           .admin-section
             .admin-section-title
-              %span.glyphicon.glyphicon-user 
+              %span.glyphicon.glyphicon-user
               %strong My Account
             .admin-section-content
               =link_to "View my public profile", user_path(current_user)
@@ -20,7 +20,7 @@
               =link_to "Change my profile photo", avatar_user_path(current_user)
           .admin-section
             .admin-section-title
-              %span.glyphicon.glyphicon-home 
+              %span.glyphicon.glyphicon-home
               %strong My Listings
             .admin-section-content
               =link_to "Create a New Listing", new_item_path
@@ -30,7 +30,7 @@
               =link_to "Manage Booking Requests for Your Listings", listing_requests_path
           .admin-section
             .admin-section-title
-              %span.glyphicon.glyphicon-plane 
+              %span.glyphicon.glyphicon-plane
               %strong My Bookings
             .admin-section-content
               =link_to "View my bookings", orders_path
