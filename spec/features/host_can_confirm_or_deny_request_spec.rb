@@ -37,7 +37,7 @@ describe 'host', type: :feature do
     visit listing_requests_path
     click_on "Confirm"
 
-    expect(page).to     have_content("Request CONFIRMED")
+    expect(page).to     have_content("CONFIRMED")
     expect(page).not_to have_content("Confirm Button")
   end
 
@@ -46,8 +46,8 @@ describe 'host', type: :feature do
 
     visit listing_requests_path
     click_on "Deny"
-    
-    expect(page).to     have_content("Request DENIED")
+
+    expect(page).to     have_content("DENIED")
     expect(page).not_to have_content("Deny")
   end
 
