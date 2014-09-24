@@ -52,7 +52,7 @@ $(document).ready(function () {
     $priceButtons.on('click', function () {
       $priceButtons.removeClass('active');
       $(this).addClass('active');
-      var price = this.innerHTML;
+      var price = parseInt(this.innerHTML, 10);
       filters.price = function (listing) {
         return listing.price === price;
       };
