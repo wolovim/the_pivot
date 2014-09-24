@@ -6,9 +6,11 @@
       .location-info
         %p.location_text
           %b Location:
+          %br/
           -if @item.address
             =@item.address.street_1
             =@item.address.street_2
+            %br/
             =@item.address.city
             =@item.address.state
             =@item.address.zip
