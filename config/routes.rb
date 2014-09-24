@@ -19,7 +19,7 @@ Rails.application.routes.draw do
   end
 
   resources :sessions,    only: [:new, :create, :destroy]
-  resources :order_items, only: [:update]
+  resources :order_items, only: [:update, :destroy]
   resources :orders,      except: [:new] do
     member do
       post :add_item

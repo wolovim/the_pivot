@@ -11,6 +11,13 @@ class OrderItemsController < ApplicationController
     end
   end
 
+  def destroy
+    @order_item = OrderItem.find(params[:id])
+
+    @order_item.destroy
+    redirect_to orders_path
+  end
+
   def quantity_params
     result = @order_item.quantity_update(params[:item][:quantity])
 

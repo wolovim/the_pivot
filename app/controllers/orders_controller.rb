@@ -51,11 +51,13 @@ class OrdersController < ApplicationController
 
   def completed
     user_order = current_user.orders.find(params[:id])
-    
+
     if user_order.may_complete? && user_order.order_items.all? {|oi| oi.confirmed? || oi.denied?}
       user_order.complete!
     end
+
     flash[:success] = "Your booking has been completed, and your credit card has been charged."
+    redirect_to orders_path
   end
 
   private
