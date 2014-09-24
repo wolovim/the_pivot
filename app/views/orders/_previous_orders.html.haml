@@ -1,4 +1,3 @@
-%h3= "Previous Orders"
 -current_user.orders.reverse.each_with_index do |order, i|
   -unless order.empty?
     #accordian.panel-group
@@ -6,39 +5,55 @@
         .panel-heading
           %h4.panel-title
             %a{"data-parent" => "#accordion", "data-toggle" => "collapse", :href => "#collapse#{i}"}
-              ="#{order.created_at.to_formatted_s(:long_ordinal)}"
+              ="Trip Dates: #{order.order_items.first.checkin_date} to #{order.order_items.last.checkout_date}"
+              %br
+              ="Status: #{order.aasm_state.upcase}"
       .panel-collapse.collapse{:id => "collapse#{i}"}
         .panel-body
-          %table.table-hover.col-lg-12
+          %table.table-striped.col-lg-12
             %thead
               %tr
-                %th Listing
-                %th Daily Rate
-                %th Checkin Date
-                %th Checkout Date
+                %th Accommodations
+                %th Nightly Rate
+                %th Trip Dates
                 %th Number of Nights
                 %th Confirmation Status
+                %th
                 %th Subtotal
             %tbody
             -order.order_items.each do |o_item|
               %tr
                 %td= link_to o_item.item.title, item_path(o_item.item)
                 %td= "$#{o_item.item.price_for_humans}"
-                %td= o_item.checkin_date
-                %td= o_item.checkout_date
+                %td= "#{o_item.checkin_date} - #{o_item.checkout_date}"
                 %td= o_item.availabilities.count
                 - if o_item.confirmed?
-                  %td Request CONFIRMED
+                  %td
+                    %span.glyphicon.glyphicon-ok.confirmed CONFIRMED
+                  %td
                 - elsif o_item.denied?
-                  %td Request DENIED
+                  %td
+                    %span.glyphicon.glyphicon-remove.denied DENIED
+                  %td
                 - else
-                  %td Waiting on host action.
+                  %td
+                    Awaiting confirmation.
+                  %td
+                    = link_to "#", :title => "Send host a reminder.", class: "btn btn-warning" do
+                      %span.glyphicon.glyphicon-envelope
+                      Email Host
+                    %br
+                    = link_to '#', :title => "Cancel this booking request.", class: "btn btn-danger" do
+                      %span.glyphicon.glyphicon-remove
+                      Cancel Request
                 %td $ #{quantity_price_for_humans(o_item.item, order)}
-          %h6.order_totals="Subtotal: $#{order.total_for_humans}"
-          %h6.order_totals="Tax: $#{order.tax_for_humans}"
+          %h5.order_totals="Subtotal: $#{order.total_for_humans}"
+          %h5.order_totals="Tax: $#{order.tax_for_humans}"
           %h4.order_totals="Total: $#{order.total_price_for_humans}"
           #order-info
-            %h6="Order Status: #{order.aasm_state}"
-            %h6="Order Submitted: #{order.updated_at.to_formatted_s(:long_ordinal)}"
+            %h5="Booking Status: #{order.aasm_state.capitalize}"
+            %h5="Booking Requests Submitted On: #{order.created_at.to_formatted_s(:long)}"
+            - if order.may_complete? && order.order_items.all? { |o_item| o_item.confirmed? || o_item.denied? }
+              = link_to "Complete Order", completed_path(order), class: 'btn btn-success'
             -if order.completed? || order.cancelled?
-              %h6.text-muted= "Order Inactive as of: #{order.updated_at.to_formatted_s(:long_ordinal)}"
+              %h4.text-muted= "Order Inactive as of: #{order.updated_at.to_formatted_s(:long_ordinal)}"

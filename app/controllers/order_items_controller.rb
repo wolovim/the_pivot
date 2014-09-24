@@ -21,4 +21,15 @@ class OrderItemsController < ApplicationController
       params[:item][:quantity] = 1
     end
   end
+
+  def send_host_reminder_email
+    host_email = item.user.email
+
+    Pony.mail(
+      :from    => "TravelHomeBookings@gmail.com",
+      :to      => host_email,
+      :subject => "You have Pending Requests",
+      :body    => "Hi #{item.user.first_name}, don't forget to visit your dashboard to confirm or deny #{order.user.first_name}'s request!"
+    )
+  end
 end

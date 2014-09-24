@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   end
 
   resources :addresses
-  
+
   resources :categories,  only: [:index, :show]
 
   resources :users,       only: [:new, :create, :show, :index, :edit, :update] do
@@ -55,6 +55,7 @@ Rails.application.routes.draw do
   get    '/checkout',              to: 'orders#checkout'
   get    '/confirm',               to: 'orders#confirm'
   get    '/requested',             to: 'orders#requested'
+  get    '/completed/:id',         to: 'orders#completed',         as: "completed"
   match  '/admin_dashboard',       to: 'admin#dashboard',          via: 'get'
   get    '/code',                  to: 'pages#code'
   delete '/admin/:id/orders',      to: 'admin/orders#delete_item', as: "admin_delete_order_item"
