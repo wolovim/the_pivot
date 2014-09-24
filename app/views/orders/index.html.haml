@@ -1,8 +1,5 @@
 .container
   = flash[:success]
-  %h3= "Hello, #{current_user.first_name.capitalize}!"
-  %h3 Your Info:
-  %h5= current_user.name
-  %h5= current_user.email
+  %h3= "Hi #{current_user.first_name.capitalize}! You can view and manage your previous trips below."
 
   = render partial: 'orders/previous_orders'

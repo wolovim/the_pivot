@@ -1,0 +1,19 @@
+.container
+  .panel.panel-default
+    %h1.panel-heading Users
+    .panel-body
+      %table.table.table-striped
+        %thead
+          %tr
+            %th Last Name
+            %th First Name
+            %th Signup Date
+        %tbody
+          -@users.each do |user|
+            %tr
+              %td= user.last_name
+              %td= user.first_name 
+              %td= user.created_at
+              %td= link_to "Profile", user_path(user)
+              %td= link_to "Listings", items_user_path(user) 
+              %td= link_to "Delete User", admin_user_path(user), method: :delete

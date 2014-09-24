@@ -17,10 +17,10 @@
         = f.text_field :price, class: "form-control"
         %br/
         %p.form-hints People Per Unit
-        = f.select(:people_per_unit, options_for_select([['People Per Unit', 1], [1, 1], [2, 2], [3, 3], [4, 4], [5, 5], [6, 6]]), {}, {class: "form-control"})
+        = f.select(:people_per_unit, options_for_select([[@item.people_per_unit, @item.people_per_unit], [1, 1], [2, 2], [3, 3], [4, 4], [5, 5], [6, 6]]), {}, {class: "form-control"})
         %br/
         %p.form-hints Bathroom Type
-        = f.select(:bathroom, options_for_select([['Bathroom Type', 'Bathroom Type'], ['Private', 'Private'], ['Shared', 'Shared']]), {}, {class: "form-control"})
+        = f.select(:bathroom, options_for_select([[@item.bathroom, @item.bathroom], ['Private', 'Private'], ['Shared', 'Shared']]), {}, {class: "form-control"})
         %br/
         %p
           %h4 Add availabilities:
