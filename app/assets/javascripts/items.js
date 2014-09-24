@@ -5,6 +5,7 @@ $(document).ready(function () {
   var $peoplePerUnitButtons = $('.people_per_unit button');
   var $bathroomButtons = $('.bathrooms button');
   var $priceButtons = $('.price button');
+  var $dateInputs = $(".date-picker[type='date']")
 
   var filters = {
     peoplePerUnit: null,
@@ -59,7 +60,7 @@ $(document).ready(function () {
       filterListings(listings);
     });
     
-    $(".date-picker[type='date']").on("change", function (event) {
+    $dateInputs.on("change", function (event) {
       var checkin = $("input[name='checkin']").val();
       var checkout = $("input[name='checkout']").val();
       if(checkin && checkout) {
@@ -117,13 +118,30 @@ $(document).ready(function () {
 
   function renderListings(listings) {
     var listingElements = listings.map(function (listing) {
-      return '<div class="thumbnail col-lg-3">' +
+      // debugger
+      return '<div class="thumbnail col-lg-3">' + '<img src="'+ listing.item_images[0].json_image_link +'">' +
+      '<div class="caption">' +
         '<div class="caption">' +
           '<h5><a href="'+ listing.path +'">'+ listing.title +'</a></h5>' +
           '<p>$'+ listing.price +'</p>' +
         '</div>' +
       '</div>'
     });
+
+    // function renderItem(item) {
+    // $(".listings").append('<div class="thumbnail col-lg-3">' +
+    //   '<img src="http://static.pexels.com/wp-content/uploads/2014/08/couch-flat-home-2459-525x350.jpg">' +
+    //   '<div class="caption">' +
+    //     '<h5><a href="'+ item.path +'">'+item.title+'</a></h5>' +
+    //     '<p>$'+item.price+'</p>' +
+
+    //     // fix below, how not to pass authenticity token?
+    //     '<form action="/orders/25/add_item?item_id='+item.id+'" class="button_to" method="post">'+
+    //     '<input name="authenticity_token" type="hidden" value="ok/cMuVXVTaGgCMLmt58c4VIKP7BiANFFw6Hz75r3Pg="></div></form>' +
+
+    //     '</div>' +
+    //   '</div>');
+    // } 
 
     $listings.empty();
     $listings.append(listingElements);
