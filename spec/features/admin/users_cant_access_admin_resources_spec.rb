@@ -19,10 +19,11 @@ describe "non-admin", type: :feature do
 
   it "can't acess the admin users page" do
     visit '/admin/users'
-    expect(page).not_to have_content "Signup Date"
+    expect(page).not_to have_link "Delete User"
   end
 
-  xit "can't access the admin listings page" do
+  it "can't access the admin listings page" do
     visit '/admin/items'
+    expect(page).not_to have_link "Delete Listing"
   end
 end
