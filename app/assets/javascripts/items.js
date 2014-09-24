@@ -3,6 +3,8 @@ $(document).ready(function () {
   var $listings = $('.listings');
   var $accomodationsButtons = $('.accommodations button');
   var $peoplePerUnitButtons = $('.people_per_unit button');
+  var $bathroomButtons = $('.bathrooms button');
+  var $priceButtons = $('.price button');
 
   var filters = {
     peoplePerUnit: null,
@@ -10,7 +12,7 @@ $(document).ready(function () {
     price: null,
     bathroom: null,
     location: null,
-    availablilities
+    availablilities: null
   };
 
   $.getJSON('/items.json').done(function (listings) {
@@ -36,7 +38,29 @@ $(document).ready(function () {
       };
       filterListings(listings);
     });
+
+    $bathroomButtons.on('click', function () {
+      $bathroomButtons.removeClass('active');
+      $(this).addClass('active');
+      var bathroom = this.innerHTML;
+      filters.bathroom = function (listing) {
+        return listing.bathroom === bathroom;
+      };
+      filterListings(listings);
+    });
+
+    $priceButtons.on('click', function () {
+      $priceButtons.removeClass('active');
+      $(this).addClass('active');
+      var price = this.innerHTML;
+      filters.price = function (listing) {
+        return listing.price === price;
+      };
+      filterListings(listings);
+    });
   });
+
+
 
   function filterListings(listings) {
     var validListings = listings;
