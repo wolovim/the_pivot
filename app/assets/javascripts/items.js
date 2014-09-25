@@ -123,7 +123,7 @@ $(document).ready(function () {
       '<div class="caption" style="margin-top: -295px;">' +
         '<div class="caption">' +
           '<br/><br/><br/><h5 style="display: inline-block; background: white; margin-left: -20px; padding: 5px;"><a href="'+ listing.path +'">'+ listing.title +'</a></h5>' +
-          '<br/><br/><br/><br/><br/><br/><br/><p style="display: inline-block; margin-left: 165px; background: white; padding: 3px; font-weight: bold;">$'+ listing.price +'</p>' +
+          '<br/><br/><br/><br/><br/><br/><br/><p style="display: inline-block; margin-left: 157px; background: white; padding: 3px; font-weight: bold;">$'+ listing.price +'</p>' +
         '</div>' +
       '</div>'
     });
