@@ -322,7 +322,15 @@ Availability.create!([
   {date:"18/10/2014", order_item_id: 48},
   {date:"23/10/2014", order_item_id: 49},
   {date:"24/10/2014", order_item_id: 49},
-  {date:"25/10/2014", order_item_id: 49}
+  {date:"25/10/2014", order_item_id: 49},
+  {date:"22/10/2014", order_item_id: 50},
+  {date:"23/10/2014", order_item_id: 50},
+  {date:"24/10/2014", order_item_id: 50},
+  {date:"25/10/2014", order_item_id: 51},
+
+
+
+
   ])
 
 Order.create!([
