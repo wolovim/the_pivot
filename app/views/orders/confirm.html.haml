@@ -1,38 +1,50 @@
 .container
-  %h1 Confirm Booking Requests
+  %h1 Enter Payment Info & Submit Booking Requests
+  %h4 *Your credit card will not be charged until all of your requests have been confirmed or denied, and you complete your order.
 
-  %h3.panel-heading Your Requests
-  .panel-body
-    %table.table.table-striped
-      %thead
+.container
+  %h3.form-signin-heading Enter Payment & Billing Information
+  %form.form-horizontal{:role => "form"}
+  .form-group
+    %label.col-sm-2.control-label{:for => "inputEmail3"} Name on Card:
+    .col-sm-10
+      %input#inputEmail3.form-control{:placeholder => "Enter name as it appears on card"}/
+  .form-group
+    %label.col-sm-2.control-label{:for => "inputPassword3"} Billing Adress:
+    .col-sm-10
+      %input#inputPassword3.form-control{:placeholder => "Street address, City, ST, Zipcode"}/
+  .form-group
+    %label.col-sm-2.control-label{:for => "inputPassword3"} Credit Card Number:
+    .col-sm-10
+      %input#inputPassword3.form-control{:placeholder => "XXXX XXXX XXXX XXXX"}/
+  .form-group
+    %label.col-sm-2.control-label{:for => "inputPassword3"} Expiration Date:
+    .col-sm-10
+      %input#inputPassword3.form-control{:placeholder => "MM/YY"}/
+  .form-group
+    .col-sm-offset-2.col-sm-10
+  .form-group
+    .col-sm-offset-2.col-sm-10
+
+  %br
+  %br
+  %br
+
+  %h3 Quick Sum Up
+  %table.table.table-striped
+    %thead
+      %tr
+        %th Location
+        %th Check In
+        %th Check Out
+    %tbody
+      -order.items.each do |item|
         %tr
-          %th Location
-          %th Daily Rate
-          %th Nights
-          %th Check In
-          %th Check Out
-          %th Subtotal
-      %tbody
-        -order.items.each do |item|
-          %tr
-            %td #{item.title}
-            %td $#{item.price_for_humans}
-            %td.nights #{order_item(item).quantity}
-            %td.check-in #{order_item(item).checkin_date}
-            %td.check-out #{order_item(item).checkout_date}
-            %td Subtotal: $#{quantity_price_for_humans(item)}
-
-    %h5.text-muted.order_totals= "Subtotal: $#{order.total_for_humans}"
-    %br
-    %h5.text-muted.order_totals= "Tax: $#{order.tax_for_humans}"
-    %br
-    %h3.text-muted.order_totals= "Total: $#{order.total_price_for_humans}"
-    =link_to "Change Order", order_path(order), class: 'btn btn-danger'
+          %td #{item.title}
+          %td.check-in #{order_item(item).checkin_date}
+          %td.check-out #{order_item(item).checkout_date}
 
   %br
-  %br
-  %br
 
-
-  =link_to "Look Good? Send booking requests.", requested_path, class: 'btn btn-primary btn-block'
+  =link_to "Everything good? Submit requests.", requested_path, class: 'btn btn-success btn-block'
   %%br
