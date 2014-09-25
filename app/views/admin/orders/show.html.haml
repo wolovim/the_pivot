@@ -38,7 +38,7 @@
                   .field
                     = f.number_field :quantity, :value => order_item.quantity
                     = submit_tag "Update", class: "btn btn-primary"
-              %td= link_to "Remove", admin_delete_order_item_path(@user_order, item_id: order_item.item.id), method: :delete, class: "btn btn-danger"
+              %td= link_to "Remove", admin_delete_order_item_path(@user_order, item_id: order_item.item.id), method: :delete, class: "btn btn-default"
             %td= "$#{quantity_price_for_humans(order_item.item, order)}"
     %h4.pull-right
       ="Total: $#{@user_order.total_price_for_humans}"

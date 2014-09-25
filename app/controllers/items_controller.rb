@@ -1,9 +1,6 @@
 class ItemsController < ApplicationController
   def index
     @items = Item.includes(:availabilities).all
-    # @categories = Category.all
-    # @main_categories = Category.main_categories
-    # @special_categories = Category.special_categories
     respond_to do |format|
       format.html
       format.json{
@@ -14,9 +11,7 @@ class ItemsController < ApplicationController
         #   )
         # end
         # render json: data.to_json
-
         render json: @items, root: false
-
       }
     end
   end
