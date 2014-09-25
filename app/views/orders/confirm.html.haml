@@ -22,11 +22,6 @@
             %td.check-out #{order_item(item).checkout_date}
             %td Subtotal: $#{quantity_price_for_humans(item)}
 
-    %h5.text-muted.order_totals= "Subtotal: $#{order.total_for_humans}"
-    %br
-    %h5.text-muted.order_totals= "Tax: $#{order.tax_for_humans}"
-    %br
-    %h3.text-muted.order_totals= "Total: $#{order.total_price_for_humans}"
     =link_to "Change Order", order_path(order), class: 'btn btn-danger'
 
   %br
