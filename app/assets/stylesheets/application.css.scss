@@ -231,15 +231,16 @@
 }
 
 // EVERYTHING ELSE
-.caption-user-listings {
-  text-align: center;
-  display: block;
-  padding-bottom: 20px;
-}
+// .caption-user-listings {
+//   text-align: center;
+//   display: block;
+//   padding-bottom: 20px;
+// }
 
 .user-listings-container {
   text-align: center;
   padding-top: 20px;
+  margin: 200px;
 }
 
 .create-listing-btn {
@@ -394,7 +395,7 @@
   top: 50px;
   bottom: 0px;
   width: 250px;
-  background: #f9f9f9;
+  background: #f1f1f1;
   overflow-y: auto;
 }
 
@@ -408,12 +409,18 @@
 
 .listings {
   position: absolute;
-  padding: 0 60px;
+  padding: 2px;
   top: 300px;
   bottom: 0px;
   left: 0px;
   right: 0px;
   overflow-y: auto;
+}
+
+.thumbnail {
+  border: 0;
+  padding: 2px 2px 0px 2px;
+  margin: 1px 0 0 0;
 }
 
 .people_per_unit {
