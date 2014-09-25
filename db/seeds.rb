@@ -1,6 +1,39 @@
 Address.create!([
-  {street_1: "1510 Blake Street",  street_2: "", city: "Denver",   state: "CO", zip: "80202", item_id: 2},
-  {street_1: "1624 Market Street", street_2: "", city: "New York", state: "NY", zip: "90210", item_id: 1}
+  {street_1: "1624 Market St", street_2: "", city: "Denver", state: "CO", zip: "80202", item_id: 1},
+  {street_1: "1510 Blake St", street_2: "", city: "Denver", state: "CO", zip: "80202", item_id: 2},
+  {street_1: "797 W 29th Ave", street_2: "", city: "Denver", state: "CO", zip: "80202", item_id: 3},
+  {street_1: "1215 15th St", street_2: "", city: "Denver", state: "CO", zip: "80202", item_id: 4},
+  {street_1: "1510 Blake St", street_2: "", city: "Denver", state: "CO", zip: "80202", item_id: 5},
+  {street_1: "1062 Deleware St", street_2: "", city: "Denver", state: "CO", zip: "80204", item_id: 6},
+  {street_1: "2030 W 30th Ave", street_2: "", city: "Denver", state: "CO", zip: "80211", item_id: 7},
+  {street_1: "3400 Navajo St", street_2: "", city: "Denver", state: "CO", zip: "80211", item_id: 8},
+  {street_1: "275 South Cherokee St", street_2: "", city: "Denver", state: "CO", zip: "80223", item_id: 9},
+  {street_1: "150 Clayton Lane", street_2: "", city: "Denver", state: "CO", zip: "80206", item_id: 10},
+  {street_1: "2191 Arapahoe St", street_2: "", city: "Denver", state: "CO", zip: "80205", item_id: 11},
+  {street_1: "3090 Downing St", street_2: "", city: "Denver", state: "CO", zip: "80205", item_id: 12},
+  {street_1: "2300 Steele St", street_2: "", city: "Denver", state: "CO", zip: "80205", item_id: 13},
+  {street_1: "1835 Franklin St", street_2: "", city: "Denver", state: "CO", zip: "80218", item_id: 14},
+
+  {street_1: "1624 Market St", street_2: "", city: "New York", state: "NY", zip: "80202", item_id: 15},
+  {street_1: "1510 Blake St", street_2: "", city: "New York", state: "NY", zip: "80202", item_id: 16},
+  {street_1: "797 W 29th Ave", street_2: "", city: "New York", state: "NY", zip: "80202", item_id: 17},
+  {street_1: "1215 15th St", street_2: "", city: "New York", state: "NY", zip: "80202", item_id: 18},
+  {street_1: "1510 Blake St", street_2: "", city: "New York", state: "NY", zip: "80202", item_id: 19},
+  {street_1: "1062 Deleware St", street_2: "", city: "New York", state: "NY", zip: "80204", item_id: 20},
+  {street_1: "2030 W 30th Ave", street_2: "", city: "New York", state: "NY", zip: "80211", item_id: 21},
+  {street_1: "3400 Navajo St", street_2: "", city: "New York", state: "NY", zip: "80211", item_id: 22},
+  {street_1: "275 South Cherokee St", street_2: "", city: "New York", state: "NY", zip: "80223", item_id: 23},
+  {street_1: "150 Clayton Lane", street_2: "", city: "New York", state: "NY", zip: "80206", item_id: 24},
+  {street_1: "2191 Arapahoe St", street_2: "", city: "New York", state: "NY", zip: "80205", item_id: 25},
+  {street_1: "3090 Downing St", street_2: "", city: "New York", state: "NY", zip: "80205", item_id: 26},
+  {street_1: "2300 Steele St", street_2: "", city: "New York", state: "NY", zip: "80205", item_id: 27},
+  {street_1: "1835 Franklin St", street_2: "", city: "New York", state: "NY", zip: "80218", item_id: 28},
+  {street_1: "2233 Franklin St", street_2: "", city: "New York", state: "CO", zip: "80218", item_id: 29},
+  {street_1: "332 Gustavo Ave", street_2: "", city: "New York", state: "CA", zip: "80218", item_id: 30},
+  {street_1: "2211 Emily Lane", street_2: "", city: "New York", state: "CA", zip: "80218", item_id: 31},
+  {street_1: "3344 Run DMC", street_2: "", city: "New York", state: "CA", zip: "80218", item_id: 32},
+  {street_1: "1835 Frank Lane", street_2: "", city: "New York", state: "CA", zip: "80218", item_id: 33},
+
 ])
 
 Categorization.create!([
