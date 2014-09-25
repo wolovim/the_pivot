@@ -11,6 +11,13 @@ class OrderItemsController < ApplicationController
     end
   end
 
+  def destroy
+    @order_item = OrderItem.find(params[:id])
+
+    @order_item.destroy
+    redirect_to orders_path
+  end
+
   def quantity_params
     result = @order_item.quantity_update(params[:item][:quantity])
 
@@ -22,14 +29,18 @@ class OrderItemsController < ApplicationController
     end
   end
 
-  def send_host_reminder_email
-    host_email = item.user.email
+  def reminder
+    send_host_reminder_email
+    flash[:success] = "We've sent a friendly reminder to the host on your behalf!"
+    redirect_to orders_path
+  end
 
+  def send_host_reminder_email
     Pony.mail(
       :from    => "TravelHomeBookings@gmail.com",
-      :to      => host_email,
+      :to      => "HostEmail@email.com",
       :subject => "You have Pending Requests",
-      :body    => "Hi #{item.user.first_name}, don't forget to visit your dashboard to confirm or deny #{order.user.first_name}'s request!"
+      :body    => "Please visit your dashboard to take care of some pending booking requests."
     )
   end
 end

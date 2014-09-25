@@ -2,45 +2,49 @@
   .panel.panel-default
     %h1.panel-heading Your Booking Requests:
     .panel-body
-      %p Please glance over your booking requests. Tweak 'em, or proceed to confirm and make requests.
+      %p Please glance over your booking requests. If everything looks good then move on to enter your payment info.
       = flash[:toomany]
       %table.table.table-striped
         %thead
           %tr
-            %th Listing Name
-            %th Daily Rate
-            %th Nights
+            %th Listing
+            %th Nightly Rate
             %th Check In
             %th Check Out
+            %th Number of Nights
             %th
             %th Subtotal
         %tbody
         -if order.empty?
-          %tr 
+          %tr
             %i You don't have any items in your cart!
           %br/
           %br/
         -else
           -order.items.each do |item|
             %tr
-              %td #{item.title}
-              %td $#{item.price_for_humans}
-              %td.nights #{order_item(item).quantity}
-              %td.check-in #{order_item(item).checkin_date}
-              %td.check-out #{order_item(item).checkout_date}
-              %td= button_to "Remove", delete_item_order_path(order, item_id: item.id), class: "btn btn-danger"
-              %td $#{quantity_price_for_humans(item)}
+              %td.h4 #{item.title}
+              %td.h4 $#{item.price_for_humans}
+              %td.h4.check-in #{order_item(item).checkin_date}
+              %td.h4.check-out #{order_item(item).checkout_date}
+              %td.h4.nights #{order_item(item).quantity}
+              %td= button_to "Remove", delete_item_order_path(order, item_id: item.id), class: "btn btn-default"
+              %td.h4 $#{quantity_price_for_humans(item)}
     #order-total
-      %h3.text-muted.pull-right= "Booking Subtotal: $#{order.total_for_humans}"
-
+      %h4.text-muted.order_totals= "Subtotal: $#{order.total_for_humans}"
+      %br
+      %h4.text-muted.order_totals= "Tax: $#{order.tax_for_humans}"
+      %br
+      %h4.text-muted.order_totals= "Total: $#{order.total_price_for_humans}"
 
 -if signed_in?
   -unless order.total == 0|| order.empty?
     .container
       .row.pull-right
-        %ul.nav.nav-pills
-          %li.active
-            = link_to "Proceed to Booking Summary", confirm_path
+        %br
+        = link_to "Click to Enter Payment Info", confirm_path, class: 'btn btn-block btn-success'
+        %h5 or
+        = link_to "Change Order", order_path(order), class: 'btn btn-block btn-primary'
 -else
   .container
     .col-lg-5-offset-3.pull-right

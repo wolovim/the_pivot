@@ -374,7 +374,7 @@
 
 #sidebar {
   position: fixed;
-  padding: 20px;
+  padding: 0 20px 0 20px;
   top: 50px;
   bottom: 0px;
   width: 250px;
@@ -400,9 +400,18 @@
   overflow-y: auto;
 }
 
+.people_per_unit {
+  display: inline-block;
+  width: 100%;
+}
+
 .pagination {
   float: none;
   display: inline-block;
+}
+
+.pager {
+  margin: 20px 0 0 0
 }
 
 .col-lg-3 {
