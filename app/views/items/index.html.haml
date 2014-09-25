@@ -1,35 +1,34 @@
 #sidebar.sidebar-offcanvas.no-gutter{:role => "navigation"}
-  .list-group
-    %a.list-group-item.active Find Your Perfect Place:
-    .container-fluid
-      .row
-        %ul.nav.nav-sidebar
-          %li.active
-            %br
-            %p Location:
-            %input#location{ :type => "text", :value => '', :placeholder => 'City' }
-          %li
-            %p Available Dates:
-            %input{type: "date", name: "checkin", class: "date-picker"}
-            %input{type: "date", name: "checkout", class: "date-picker"}
+  .container-fluid
+    .row
+      %ul.nav.nav-sidebar
+        %li.active
+          %p Location:
+          %input#location{ :type => "text", :value => '', :placeholder => 'City' }
+        %br
+        %li
+          %p Available Dates:
+          %input{type: "date", name: "checkin", class: "date-picker"}
+          %input{type: "date", name: "checkout", class: "date-picker"}
 
-          %p Price:
-          .btn-group.price
-            %button.btn.btn-default{:type => "button", :price => 1200 } $
-            %button.btn.btn-default{:type => "button", :price => 2000 } $$
-            %button.btn.btn-default{:type => "button", :price => 3300 } $$$
-            %button.btn.btn-default{:type => "button", :price => 177600 } $$$$
+        %br
+        %p Price:
+        .btn-group.price
+          %button.btn.btn-default{:type => "button", :price => 1200 } $
+          %button.btn.btn-default{:type => "button", :price => 2000 } $$
+          %button.btn.btn-default{:type => "button", :price => 3300 } $$$
+          %button.btn.btn-default{:type => "button", :price => 177600 } $$$$
+        %br
+        %br
+        %p People Per Unit:
+        .btn-group.people_per_unit
+          %button.btn.btn-default{:type => "button", :people_per_unit => 1 } 1
+          %button.btn.btn-default{:type => "button", :people_per_unit => 2 } 2
+          %button.btn.btn-default{:type => "button", :people_per_unit => 3 } 3
+          %button.btn.btn-default{:type => "button", :people_per_unit => 4 } 4
+          %button.btn.btn-default{:type => "button", :people_per_unit => 5 } 5 +
           %br
           %br
-          %p People Per Unit:
-          .btn-group.people_per_unit
-            %button.btn.btn-default{:type => "button", :people_per_unit => 1 } 1
-            %button.btn.btn-default{:type => "button", :people_per_unit => 2 } 2
-            %button.btn.btn-default{:type => "button", :people_per_unit => 3 } 3
-            %button.btn.btn-default{:type => "button", :people_per_unit => 4 } 4
-            %button.btn.btn-default{:type => "button", :people_per_unit => 5 } 5
-          %p
-
           -# .dropdown.people_per_unit
           -#   %button#dropdownMenu1.btn.btn-default.dropdown-toggle{"data-toggle" => "dropdown", :type => "button"}
           -#     People per Unit

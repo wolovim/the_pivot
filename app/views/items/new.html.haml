@@ -13,7 +13,7 @@
         %p.form-hints Listing Description
         = f.text_area :description, class: "form-control", placeholder: "Our most successful descriptions are between 100 - 250 words."
         %br/
-        %p.form-hints Daily Rate
+        %p.form-hints Nightly Rate
         = f.text_field :price, class: "form-control", placeholder: "How much would you like to charge per night?"
         %br/
         %p.form-hints People Per Unit
@@ -66,9 +66,9 @@
             -@item.availabilities.each do |avail|
               =avail.date
               %br/
-        -else
-          %p
-            No availabilities set up.
+        -# -else
+        -#   %p
+        -#     No availabilities set up.
         %br/
         %br/
         = f.submit "Continue", class: "btn btn-large btn-block btn-primary"
