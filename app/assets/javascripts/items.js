@@ -123,38 +123,13 @@ $(document).ready(function () {
       '<div class="caption" style="margin-top: -295px;">' +
         '<div class="caption">' +
           '<br/><br/><br/><h5 style="display: inline-block; background: white; margin-left: -20px; padding: 5px;"><a href="'+ listing.path +'">'+ listing.title +'</a></h5>' +
-          '<br/><br/><br/><br/><br/><br/><br/><p style="display: inline-block; margin-left: 157px; background: white; padding: 3px; font-weight: bold;">$'+ listing.price +'</p>' +
+          '<br/><br/><br/><br/><br/><br/><br/><p style="display: inline-block; margin-left: 157px; background: white; padding: 3px; font-weight: bold;">$'+ listing.price/100 +'</p>' +
         '</div>' +
       '</div>'
     });
 
-    // function renderItem(item) {
-    // $(".listings").append('<div class="thumbnail col-lg-3">' +
-    //   '<img src="http://static.pexels.com/wp-content/uploads/2014/08/couch-flat-home-2459-525x350.jpg">' +
-    //   '<div class="caption">' +
-    //     '<h5><a href="'+ item.path +'">'+item.title+'</a></h5>' +
-    //     '<p>$'+item.price+'</p>' +
-
-    //     // fix below, how not to pass authenticity token?
-    //     '<form action="/orders/25/add_item?item_id='+item.id+'" class="button_to" method="post">'+
-    //     '<input name="authenticity_token" type="hidden" value="ok/cMuVXVTaGgCMLmt58c4VIKP7BiANFFw6Hz75r3Pg="></div></form>' +
-
-    //     '</div>' +
-    //   '</div>');
-    // } 
-
     $listings.empty();
     $listings.append(listingElements);
   }
-
-  //   if(was_selected) {
-  //     $(this).blur();
-  //     delete filters["accommodation"]
-  //   } else {
-  //     $(this).addClass('active');
-  //     filters["accommodation"] = filter_id;
-  //   }
-  //   filterItems();
-  // });
 
   });
