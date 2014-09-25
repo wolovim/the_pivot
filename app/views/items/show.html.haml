@@ -5,27 +5,29 @@
         =@item.title
       .location-info
         %p.location_text
-          %b Location: 
+          %b Location:
+          %br/
           -if @item.address
             =@item.address.street_1
             =@item.address.street_2
+            %br/
             =@item.address.city
             =@item.address.state
             =@item.address.zip
         %p.location_text
-          %b Sleeps: 
+          %b Sleeps:
           #{@item.people_per_unit}
         %p.location_text
-          %b Rate: 
-          $#{@item.price}
+          %b Nightly Rate:
+          $#{@item.price_for_humans}
         %p.location_text
-          %b Description: 
+          %b Description:
           #{@item.description}
         %p.location_text
-          %b Bathroom: 
+          %b Bathroom:
           #{@item.bathroom}
         %p.location_text
-          %b Category:
+          %b Accommodation:
           - @item.categories.each do |category|
             = category.name
         %p.location_text
@@ -95,7 +97,7 @@
             %p No availability yet!
 
       .user-show-title
-        About 
+        About
         =@item.user.first_name
       .user-info
         .user-column-left
@@ -103,7 +105,7 @@
             =image_tag @item.user.avatar.url(:thumb), class: "item-user-photo"
         .user-column-right
           %p
-            %b Hometown: 
+            %b Hometown:
             =@item.user.city
             =@item.user.state
           %p
@@ -155,4 +157,3 @@
         %span.glyphicon.glyphicon-star-empty
         %strong Review 3
         %p Lol, seriously
-
