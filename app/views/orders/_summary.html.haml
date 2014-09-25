@@ -1,33 +1,26 @@
-%h1 Booking Summary:
-%table.table-striped.col-lg-12
-  %thead
-    %tr
-      %th Accommodations
-      %th Nightly Rate
-      %th Trip Dates
-      %th Number of Nights
-      %th Confirmation Status
-      %th Subtotal
-  %tbody
-  -order.order_items.each do |o_item|
-    %tr
-      %td= link_to o_item.item.title, item_path(o_item.item)
-      %td= "$#{o_item.item.price_for_humans}"
-      %td= "#{o_item.checkin_date} - #{o_item.checkout_date}"
-      %td= o_item.availabilities.count
-      - if o_item.confirmed?
-        %td
-          %span.glyphicon.glyphicon-ok.confirmed CONFIRMED
-        %td
-      - elsif o_item.denied?
-        %td
-          %span.glyphicon.glyphicon-remove.denied DENIED
-          %br
-          = link_to "Delete Request", order_item_path(o_item.id), method: :delete, class: "btn btn-danger btn-block"
-        %td
-      - else
-        %td
-          Awaiting confirmation.
-      %td $ #{quantity_price_for_humans(o_item.item, order)}
+.container
+  .panel.panel-default
+    %h1.panel-heading Your Booking Requests:
+    %table.table.table-striped
+      %thead
+        %tr
+          %th Accommodations
+          %th Nightly Rate
+          %th Trip Dates
+          %th Number of Nights
+          %th Confirmation Status
+          %th Subtotal
 
-%h4.order_totals="Total: $#{order.total_price_for_humans}"
+      %tbody
+      -order.order_items.each do |o_item|
+        %tr
+          %td.h4= link_to o_item.item.title, item_path(o_item.item)
+          %td.h4= "$#{o_item.item.price_for_humans}"
+          %td.h4= "#{o_item.checkin_date} - #{o_item.checkout_date}"
+          %td.h4= o_item.availabilities.count
+          %td.h4 Awaiting confirmation.
+          %td $ #{quantity_price_for_humans(o_item.item, order)}
+
+  %h4.order_totals="Total: $#{order.total_price_for_humans}"
+
+  =link_to "Manage Your Requests", dashboard_user_path(current_user), class: 'btn btn-default'
