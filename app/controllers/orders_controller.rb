@@ -52,7 +52,7 @@ class OrdersController < ApplicationController
   def completed
     user_order = current_user.orders.find(params[:id])
 
-    if user_order.may_complete? && user_order.order_items.all? {|oi| oi.confirmed? || oi.denied?}
+    if user_order.may_complete? && user_order.order_items.all? {|oi| oi.confirmed?}
       user_order.complete!
     end
 

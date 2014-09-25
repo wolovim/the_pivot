@@ -58,6 +58,7 @@ Rails.application.routes.draw do
   get    '/requested',             to: 'orders#requested'
   get    '/completed/:id',         to: 'orders#completed',         as: "completed"
   match  '/admin_dashboard',       to: 'admin#dashboard',          via: 'get'
+  get    '/reminder',              to: 'order_items#reminder'
   get    '/code',                  to: 'pages#code'
   delete '/admin/:id/orders',      to: 'admin/orders#delete_item', as: "admin_delete_order_item"
   put    '/admin/order_items/:id', to: 'admin/order_items#update'
