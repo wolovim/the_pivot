@@ -1,6 +1,6 @@
 Address.create!([
-  {street_1: "1510 Blake St",  street_2: "", city: "Denver",   state: "CO", zip: "80202", item_id: 2},
-  {street_1: "1624 Market St", street_2: "", city: "New York", state: "NY", zip: "90210", item_id: 1}
+  {street_1: "1510 Blake Street",  street_2: "", city: "Denver",   state: "CO", zip: "80202", item_id: 2},
+  {street_1: "1624 Market Street", street_2: "", city: "New York", state: "NY", zip: "90210", item_id: 1}
 ])
 
 Categorization.create!([
