@@ -1,6 +1,5 @@
 #sidebar.sidebar-offcanvas.no-gutter{:role => "navigation"}
   .list-group
-    %a.list-group-item.active Find Your Perfect Place:
     .container-fluid
       .row
         %ul.nav.nav-sidebar
@@ -9,10 +8,11 @@
             %p Location:
             %input#location{ :type => "text", :value => '', :placeholder => 'City' }
           %li
+          %br
             %p Available Dates:
             %input{type: "date", name: "checkin", class: "date-picker"}
             %input{type: "date", name: "checkout", class: "date-picker"}
-
+          %br
           %p Price:
           .btn-group.price
             %button.btn.btn-default{:type => "button", :price => 1200 } $
@@ -27,8 +27,8 @@
             %button.btn.btn-default{:type => "button", :people_per_unit => 2 } 2
             %button.btn.btn-default{:type => "button", :people_per_unit => 3 } 3
             %button.btn.btn-default{:type => "button", :people_per_unit => 4 } 4
-            %button.btn.btn-default{:type => "button", :people_per_unit => 5 } 5
-          %p
+            %button.btn.btn-default{:type => "button", :people_per_unit => 5 } 5 +
+          %br
 
           -# .dropdown.people_per_unit
           -#   %button#dropdownMenu1.btn.btn-default.dropdown-toggle{"data-toggle" => "dropdown", :type => "button"}
