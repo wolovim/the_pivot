@@ -6,6 +6,7 @@ $(document).ready(function () {
   var $bathroomButtons = $('.bathrooms button');
   var $priceButtons = $('.price button');
   var $dateInputs = $(".date-picker[type='date']")
+  var $locationField = $("input[type=text]")
 
   var filters = {
     peoplePerUnit: null,
@@ -19,6 +20,16 @@ $(document).ready(function () {
   $.getJSON('/items.json').done(function (listings) {
 
     renderListings(listings);
+
+    $locationField.on('change', function () {
+      var location = $(this).val();
+      filters.location = function (listing) {
+        if (listing.address) {
+          return listing.address.city === location;
+        }
+      };
+      filterListings(listings);
+    });
 
     $accomodationsButtons.on('click', function () {
       $accomodationsButtons.removeClass('active');
@@ -78,7 +89,6 @@ $(document).ready(function () {
         filters.availabilities = function (listing) {
           var requestedDateArray = getDateArray(new Date(checkin), new Date(checkout));
           var availabilities = listing.availabilities
-          debugger
           var availableDateArray = availabilities.map(function(obj) { 
             return new Date(obj["date"]).getTime(); 
           });
@@ -130,7 +140,6 @@ $(document).ready(function () {
 
   function renderListings(listings) {
     var listingElements = listings.map(function (listing) {
-      // debugger
       return '<div class="thumbnail col-lg-3">' + '<img src="'+ listing.item_images[0].json_image_link +'">' +
       '<div class="caption" style="margin-top: -295px;">' +
         '<div class="caption">' +
