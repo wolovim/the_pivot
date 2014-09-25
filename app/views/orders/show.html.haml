@@ -3,11 +3,10 @@
     %h1.panel-heading Your Booking Requests:
     .panel-body
       %p Please glance over your booking requests. If everything looks good then move on to enter your payment info.
-      = flash[:toomany]
       %table.table.table-striped
         %thead
           %tr
-            %th Listing
+            %th Accomodations
             %th Nightly Rate
             %th Check In
             %th Check Out
@@ -42,9 +41,7 @@
     .container
       .row.pull-right
         %br
-        = link_to "Click to Enter Payment Info", confirm_path, class: 'btn btn-block btn-success'
-        %h5 or
-        = link_to "Change Order", order_path(order), class: 'btn btn-block btn-primary'
+        = link_to "Enter Payment Info", confirm_path, class: 'btn btn-block btn-success'
 -else
   .container
     .col-lg-5-offset-3.pull-right
