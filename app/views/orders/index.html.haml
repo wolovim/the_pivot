@@ -1,5 +1,5 @@
 .container
   = flash[:success]
-  %h3= "Hi #{current_user.first_name.capitalize}! You can view and manage your previous trips below."
+  %h3= "Hi #{current_user.first_name.capitalize}! You can view and manage your trips below."
 
   = render partial: 'orders/previous_orders'

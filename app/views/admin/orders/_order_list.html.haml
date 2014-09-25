@@ -35,4 +35,4 @@
             - if order.may_complete?
               = link_to "Mark as Completed", admin_order_event_path(order, event: 'complete'), method: "put", :role => "button", :class => "btn btn-success"
             - if order.may_cancel?
-              = link_to "Cancel Order",      admin_order_event_path(order, event: 'cancel'),   method: "put", :role => "button", :class => "btn btn-danger"
+              = link_to "Cancel Order",      admin_order_event_path(order, event: 'cancel'),   method: "put", :role => "button", :class => "btn btn-default"
