@@ -1,6 +1,6 @@
 .container
   %h1 Enter Payment Info & Submit Booking Requests
-  %h4 *Your credit card will not be charged until all of your requests have been confirmed or denied, and you complete your order.
+  %h4 *Your credit card will not be charged until your requests have been confirmed.
 
 .container
   %h3.form-signin-heading Enter Payment & Billing Information
@@ -26,15 +26,15 @@
   .form-group
     .col-sm-offset-2.col-sm-10
 
-  %br
-  %br
-  %br
+  %br/
+  %br/
+  %br/
 
   %h3 Quick Sum Up
   %table.table.table-striped
     %thead
       %tr
-        %th Location
+        %th Accomodations
         %th Check In
         %th Check Out
     %tbody
@@ -47,4 +47,3 @@
   %br
 
   =link_to "Everything good? Submit requests.", requested_path, class: 'btn btn-success btn-block'
-  %%br
