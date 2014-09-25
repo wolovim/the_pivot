@@ -120,10 +120,10 @@ $(document).ready(function () {
     var listingElements = listings.map(function (listing) {
       // debugger
       return '<div class="thumbnail col-lg-3">' + '<img src="'+ listing.item_images[0].json_image_link +'">' +
-      '<div class="caption">' +
+      '<div class="caption" style="margin-top: -295px;">' +
         '<div class="caption">' +
-          '<h5><a href="'+ listing.path +'">'+ listing.title +'</a></h5>' +
-          '<p>$'+ listing.price +'</p>' +
+          '<br/><br/><br/><h5 style="display: inline-block; background: white; margin-left: -20px; padding: 5px;"><a href="'+ listing.path +'">'+ listing.title +'</a></h5>' +
+          '<br/><br/><br/><br/><br/><br/><br/><p style="display: inline-block; margin-left: 165px; background: white; padding: 3px; font-weight: bold;">$'+ listing.price +'</p>' +
         '</div>' +
       '</div>'
     });
