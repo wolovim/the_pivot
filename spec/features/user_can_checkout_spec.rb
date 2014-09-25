@@ -34,12 +34,12 @@ describe 'A user who is logged in' do
   end
 
   it 'can access the checkout page' do
-    click_on('Click to Enter Payment Info')
+    click_on('Enter Payment Info')
     expect(page).to have_content("Enter Payment Info & Submit Booking Requests")
   end
 
   it 'can get to confirmation screen'  do
-    click_on('Click to Enter Payment Info')
+    click_on('Enter Payment Info')
     click_on('Everything good? Submit requests.')
     expect(page).to have_content('requested')
   end
