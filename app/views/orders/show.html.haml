@@ -37,14 +37,14 @@
       %br
       %h4.text-muted.order_totals= "Total: $#{order.total_price_for_humans}"
 
-
 -if signed_in?
   -unless order.total == 0|| order.empty?
     .container
       .row.pull-right
-        %ul.nav.nav-pills
-          %li.active
-            = link_to "Click to Enter Payment Info", confirm_path
+        %br
+        = link_to "Click to Enter Payment Info", confirm_path, class: 'btn btn-block btn-success'
+        %h5 or
+        = link_to "Change Order", order_path(order), class: 'btn btn-block btn-primary'
 -else
   .container
     .col-lg-5-offset-3.pull-right
