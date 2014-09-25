@@ -29,7 +29,6 @@
               %td.check-out #{order_item(item).checkout_date}
               %td= button_to "Remove", delete_item_order_path(order, item_id: item.id), class: "btn-xs btn-default"
               %td $#{quantity_price_for_humans(item)}
-
     #order-total
       %h4.text-muted.order_totals= "Subtotal: $#{order.total_for_humans}"
       %br

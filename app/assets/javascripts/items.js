@@ -53,9 +53,20 @@ $(document).ready(function () {
     $priceButtons.on('click', function () {
       $priceButtons.removeClass('active');
       $(this).addClass('active');
-      var price = parseInt(this.innerHTML, 10);
+      var price = this.innerHTML;
       filters.price = function (listing) {
-        return listing.price === price;
+        if (price === '$') {
+          return listing.price < 5100;
+        }
+        else if (price === '$$') {
+          return listing.price >= 5100 && listing.price < 10000;
+        }
+        else if (price === '$$$') {
+          return listing.price >= 10000 && listing.price < 15000;
+        }
+        else if (price === '$$$$') {
+          return listing.price >= 15000;
+        }
       };
       filterListings(listings);
     });
@@ -67,6 +78,7 @@ $(document).ready(function () {
         filters.availabilities = function (listing) {
           var requestedDateArray = getDateArray(new Date(checkin), new Date(checkout));
           var availabilities = listing.availabilities
+          debugger
           var availableDateArray = availabilities.map(function(obj) { 
             return new Date(obj["date"]).getTime(); 
           });
