@@ -19,7 +19,6 @@ function initializeMap(listings){
   });
 }
 
-
 function filterMapMarkers(validListings) {
   _.each(allMarkers, function(marker){marker.setVisible(false)})
   var validListingIds = _.map(validListings, function(listing){ return listing.id})
@@ -28,8 +27,3 @@ function filterMapMarkers(validListings) {
   });
   _.each(visibleMarkers, function(marker){marker.setVisible(true)})
 }
-
-
-function findMarker(id){
-  markr= _.find(allMarkers, function(marker){ return marker.id == id})
-  marker.set_icon("sekected_icon")
