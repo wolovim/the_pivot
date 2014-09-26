@@ -1,6 +1,6 @@
 # TravelHome
 
-Built for the (Turing School of Software and Design)[http://turing.io], 
+Built for the [Turing School of Software and Design](http://turing.io), 
 TravelHome is a site for people to rent out lodging (think airbnb, couchsurfing).  
 
 Users can function both as hosts and travellers.  An example workflow may look 
