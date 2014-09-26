@@ -19,6 +19,7 @@ function initializeMap(listings){
   });
 }
 
+
 function filterMapMarkers(validListings) {
   _.each(allMarkers, function(marker){marker.setVisible(false)})
   var validListingIds = _.map(validListings, function(listing){ return listing.id})

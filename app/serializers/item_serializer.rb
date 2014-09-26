@@ -10,6 +10,7 @@ class ItemSerializer < ActiveModel::Serializer
   def path
     item_path(object)
   end
+
   # def default_serializer_options
   #   {root: false}
   # end
