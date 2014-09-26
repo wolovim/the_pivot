@@ -22,6 +22,8 @@ class Item < ActiveRecord::Base
   scope :endangered, -> { where(scarcity: endangered) }
   scope :extinct,    -> { where(scarcity: extinct) }
 
+  delegate :latitude, :longitude, to: :address
+
   def add_category(category)
     if !self.categories.include?(category)
       self.categories << category
@@ -65,7 +67,7 @@ class Item < ActiveRecord::Base
       (available_date + 1).strftime("%Y-%m-%d")
     end
   end
-  # 
+  #
   # def accommodation
   #   categories.first.name if categories.any?
   # end
