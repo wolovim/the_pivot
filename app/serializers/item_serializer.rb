@@ -5,6 +5,7 @@ class ItemSerializer < ActiveModel::Serializer
 
   has_many :availabilities
   has_many :item_images
+  has_one :address
 
   def path
     item_path(object)
