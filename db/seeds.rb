@@ -597,7 +597,7 @@ ItemImage.create!([
   {image: File.new("#{Rails.root}/spec/fixtures/Coral.jpg"), item_id: 27},
   {image: File.new("#{Rails.root}/spec/fixtures/Guest_office.jpeg"), item_id: 28},
   {image: File.new("#{Rails.root}/spec/fixtures/Guest_room_1.jpg"), item_id: 29},
-  {image: File.new("#{Rails.root}/spec/fixtures/Harry-bad-ass-cupboard-bed.jpg"), item_id: 30},
+  {image: File.new("#{Rails.root}/spec/fixtures/bad-ass-stairs-bed.png"), item_id: 30},
   {image: File.new("#{Rails.root}/spec/fixtures/Guest-room-6.gif"), item_id: 31},
   {image: File.new("#{Rails.root}/spec/fixtures/Guest-room18.JPG"), item_id: 32},
   {image: File.new("#{Rails.root}/spec/fixtures/New-bedroom.jpg"), item_id: 33}

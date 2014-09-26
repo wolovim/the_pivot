@@ -20,6 +20,7 @@ $(document).ready(function () {
   $.getJSON('/items.json').done(function (listings) {
 
     renderListings(listings);
+    initializeMap(listings);
 
     $locationField.on('change', function () {
       var location = $(this).val();
@@ -81,7 +82,7 @@ $(document).ready(function () {
       };
       filterListings(listings);
     });
-    
+
     $dateInputs.on("change", function (event) {
       var checkin = $("input[name='checkin']").val();
       var checkout = $("input[name='checkout']").val();
@@ -89,8 +90,8 @@ $(document).ready(function () {
         filters.availabilities = function (listing) {
           var requestedDateArray = getDateArray(new Date(checkin), new Date(checkout));
           var availabilities = listing.availabilities
-          var availableDateArray = availabilities.map(function(obj) { 
-            return new Date(obj["date"]).getTime(); 
+          var availableDateArray = availabilities.map(function(obj) {
+            return new Date(obj["date"]).getTime();
           });
           var counter = 0;
           for (i = 0; i < requestedDateArray.length; i++) {
@@ -107,7 +108,7 @@ $(document).ready(function () {
       filterListings(listings);
     });
 
-    filterListings(listings);
+    // filterListings(listings);
 
     function getDateArray( d1, d2 ){
       var oneDay = 24*3600*1000;
@@ -119,9 +120,9 @@ $(document).ready(function () {
 
     function checkMyDateWithinRange(myDate, start, end){
       var startDate = new Date(start);
-      var endDate = new Date(end);     
+      var endDate = new Date(end);
       if (startDate < myDate && myDate < endDate) {
-         return true; 
+         return true;
       }
       return false;
     }
@@ -135,6 +136,7 @@ $(document).ready(function () {
       if (filter !== null) validListings = validListings.filter(filter);
     });
 
+    filterMapMarkers(validListings);
     renderListings(validListings);
   }
 
@@ -148,7 +150,6 @@ $(document).ready(function () {
         '</div>' +
       '</div>'
     });
-
     $listings.empty();
     $listings.append(listingElements);
   }

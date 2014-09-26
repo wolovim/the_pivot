@@ -17,6 +17,7 @@ gem 'aasm'
 gem 'haml-rails'
 gem 'pony'
 gem 'active_model_serializers'
+gem 'geocoder'
 
 group :development, :test do
   gem 'rspec-rails'

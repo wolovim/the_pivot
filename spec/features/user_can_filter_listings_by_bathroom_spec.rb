@@ -7,7 +7,7 @@ describe 'user', type: :feature do
     expect(json_response).to have_content []
   end
 
-  it 'gets back items' do
+  xit 'gets back items' do
     items = create_list :item, 3
     visit items_path(format: :json)
     json_response = JSON.parse(page.body, symbolize_names: true)
