@@ -36,7 +36,8 @@ addresses = [
 ]
 
 addresses.each do |address|
-  Address.create!(address)
+  addr = Address.create!(address)
+  puts "Address #{addr.id} created!"
   sleep 0.3
 end
 
