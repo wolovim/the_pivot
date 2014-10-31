@@ -1,4 +1,4 @@
-Address.create!([
+addresses = [
   {street_1: "1624 Market St", street_2: "", city: "Denver", state: "CO", zip: "80202", item_id: 1},
   {street_1: "1510 Blake St", street_2: "", city: "Denver", state: "CO", zip: "80202", item_id: 2},
   {street_1: "797 W 29th Ave", street_2: "", city: "Denver", state: "CO", zip: "80202", item_id: 3},
@@ -33,8 +33,12 @@ Address.create!([
   {street_1: "2211 Emily Lane", street_2: "", city: "New York", state: "CA", zip: "80218", item_id: 31},
   {street_1: "3344 Run DMC", street_2: "", city: "New York", state: "CA", zip: "80218", item_id: 32},
   {street_1: "1835 Frank Lane", street_2: "", city: "New York", state: "CA", zip: "80218", item_id: 33},
+]
 
-])
+addresses.each do |address|
+  Address.create!(address)
+  sleep 0.3
+end
 
 Categorization.create!([
   {item_id: 1,  category_id: 1},
