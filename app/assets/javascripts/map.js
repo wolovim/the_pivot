@@ -5,8 +5,8 @@ function initializeMap(listings){
     zoom:12,
     mapTypeId:google.maps.MapTypeId.ROADMAP
     };
-  var map=new google.maps.Map(document.getElementById("googleMap")
-    ,mapProp);
+
+  var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
 
   allMarkers = _.map(listings, function(listing){
     return new google.maps.Marker({
@@ -15,7 +15,6 @@ function initializeMap(listings){
               title: listing.title,
               listingId: listing.id,
             })
-
   });
 }
 
