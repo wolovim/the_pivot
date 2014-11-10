@@ -1,10 +1,12 @@
 # TravelHome
 
-Built for the [Turing School of Software and Design](http://turing.io), 
+App is accessible in production at: http://gotravelhome.herokuapp.com/
+Screencast is accessible at: https://vimeo.com/110099688
+
+Built for the [Turing School of Software and Design](http://turing.io),
 TravelHome is a site for people to rent out lodging (think airbnb, couchsurfing).  
 
-Users can function both as hosts and travellers.  An example workflow may look 
-something like this:
+Users can function both as hosts and travellers.  Workflow:
 
 - A traveler comes to the site and browses available listings
 - They request to book a listing, at which point the host is notified by email
